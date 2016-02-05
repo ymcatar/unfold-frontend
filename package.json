@@ -28,6 +28,7 @@
     "gulp-livereload": "^3.8.1",
     "gulp-nodemon": "^2.0.6",
     "gulp-sass": "^2.0.4",
+    "gulp-watch": "^4.3.5",
     "history": "^1.17.0",
     "jquery-browserify": "^1.8.1",
     "react": "^0.14.7",
