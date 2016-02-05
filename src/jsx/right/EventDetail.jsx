@@ -1,17 +1,17 @@
 import React from 'react';
 
-import Colors from './Colors.jsx';
+import Colors from 'config/Colors.jsx';
 
 const style = {
-	main: {
-		color: Colors.right.textColor
-	},
 	h1: {
-		marginBottom: '20px'
+		marginBottom: '20px',
+		color: Colors.right.eventDetail.title,
+		fontWeight: '700'
 	},
 	h2: {
 		textAlign: 'justify',
-		textJustify: 'inter-word'
+		textJustify: 'inter-word',
+		color: Colors.right.eventDetail.description
 	}
 }
 
