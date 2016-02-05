@@ -10,7 +10,7 @@ var nodemon = require('gulp-nodemon');
 var watch = require('gulp-watch');
 
 gulp.task('jsx', () => {
-	browserify('./src/jsx/App.jsx', { debug: true })
+	browserify('./src/jsx/App.jsx', { debug: true, paths: ['./src/jsx'] })
 		.transform(babelify, { presets: ["es2015", "react"] })
 		.bundle()
 		.on("error", err => { console.log("Error : " + err.message); })
