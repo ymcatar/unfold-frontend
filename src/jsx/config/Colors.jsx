@@ -7,6 +7,14 @@ const colors = {
 };
 
 export default {
+	common: {
+		avatar: {
+			name: colors.white,
+			title: colors.white,
+			online: '#9CF924',
+			offline: '#27C0E4'
+		}
+	},
 	right: {
 		backgroundColor: colors.primary900, 
 		color: colors.white100,
@@ -15,7 +23,7 @@ export default {
 			description: colors.white200
 		},
 		header: {
-			color: colors.white 
+			color: colors.white
 		}
 	},
 	left: {
