@@ -12,9 +12,8 @@ const style = {
 		textAlign: 'justify',
 		textJustify: 'inter-word',
 		color: Colors.right.eventDetail.description,
-		fontWeight: '700'
 	}
-}
+};
 
 export default class EventDetail extends React.Component {
 	render() {
