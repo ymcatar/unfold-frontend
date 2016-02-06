@@ -3,8 +3,9 @@ import React from 'react';
 import Colors from 'config/Colors.jsx';
 import Placeholder from 'config/Placeholder.jsx';
 
-import Logo from 'left/Logo.jsx';
+import Logo from 'common/Logo.jsx';
 import EventDetail from 'right/EventDetail.jsx';
+import InfoBox from 'right/InfoBox.jsx';
 
 import {Row, Col, Image} from 'react-bootstrap';
 
@@ -21,11 +22,13 @@ const styles = {
 		backgroundColor: Colors.right.backgroundColor,
 		color: Colors.right.color,
 		height: '100vh',
-		padding: '30px 5vw 10px 4vw'
+		padding: '30px 5vw 10px 4vw',
+		boxShadow: Colors.zDepth
 	},
 	header: {
 		fontWeight: '700',
 		marginTop: '30px',
+		marginBottom: '30px',
 		color: Colors.right.header.color,
 		borderTop: '2px ${Colors.right.header.color} solid'
 	}
@@ -43,11 +46,13 @@ const generateContributor = function(avatar, name, title) {
 	const styles = {
 		image: {
 			width: '50px',
-			height: '50px'
+			height: '50px',
+			boxShadow: Colors.zDepth
 		},
 		text: {
 			margin: '5px',
-			marginLeft: '20px'
+			marginLeft: '20px',
+			color: Colors.white
 		},
 		main: {
 			marginTop: '5px'
@@ -71,9 +76,9 @@ export default class ReaderView extends React.Component {
 		return (
 			<Row style={styles.main}> 
 				<Col xs={12} sm={8} md={8} lg={8} style={styles.left}>
+					<Logo />
 				</Col>
 				<Col xsHidden={true} sm={4} md={4} lg={4} style={styles.right}>
-					<Logo />
 					<EventDetail
 						title={Placeholder.event.title}
 						description={Placeholder.event.description} />
@@ -83,6 +88,7 @@ export default class ReaderView extends React.Component {
 					{generateContributor('res/avatar.jpg', 'Matias', 'It just works!')}
 
 					{generateHeader('INFORMATION')}
+					<InfoBox />
 				</Col>
 			</Row>
 		);

@@ -3,7 +3,7 @@ import React from 'react';
 const styles = {
 	img: {
 		height: '80px',
-		margin: '20px 0px 20px 0px'
+		margin: '10px 0px 10px 20px'
 	}
 }
 
