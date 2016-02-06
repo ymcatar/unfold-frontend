@@ -4,7 +4,7 @@ import Colors from 'config/Colors.jsx';
 import Placeholder from 'config/Placeholder.jsx';
 
 import Logo from 'common/Logo.jsx';
-import Avatar from 'common/Avatar.jsx';
+import AvatarList from 'common/AvatarList.jsx';
 
 import EventDetail from 'right/EventDetail.jsx';
 import InfoBox from 'right/InfoBox.jsx';
@@ -56,7 +56,7 @@ export default class ReaderView extends React.Component {
 						description={Placeholder.event.description} />
 					{generateHeader('CONTRIBUTORS')}
 
-					<Avatar image='res/avatar.jpg' name='DuARTe' title='Our Lord' online={true} />
+					<AvatarList users={Placeholder.contributors} />
 
 					{generateHeader('INFORMATION')}
 					<InfoBox />
