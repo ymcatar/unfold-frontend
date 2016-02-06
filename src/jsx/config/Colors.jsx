@@ -1,13 +1,19 @@
+const colors = {
+	primary900: '#019EC3',
+	primary300: '#AAE9F8',
+	white: 'white'
+};
+
 export default {
 	right: {
-		backgroundColor: '#019EC3',
-		color: '#EEEDFF',
+		backgroundColor: colors.primary900, 
+		color: colors.primary300,
 		eventDetail: {
-			title: 'white',
-			descirption: 'white'
+			title: colors.white,
+			description: colors.primary300 
 		},
 		header: {
-			color: '#260554'
+			color: colors.white 
 		}
 	},
 	left: {
