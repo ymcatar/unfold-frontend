@@ -1,0 +1,10 @@
+html, body, #main {
+	margin: 0;
+	height: 100%;
+	font-family: 'Lato', sans-serif;
+}
+
+#main {
+	height: 100vh;
+	width: 100vw;
+}
