@@ -19,9 +19,9 @@ gulp.task('jsx', () => {
 		.pipe(livereload());
 });
 
-gulp.task('start', () => {
-	nodemon({ script: 'index.js', ext: 'js html' });
-});
+// gulp.task('start', () => {
+// 	nodemon({ script: 'index.js', ext: 'js html' });
+// });
 
 gulp.task('static', () => {
 	gulp.src(['./src/index.html', './src/main.css'])
@@ -34,4 +34,4 @@ gulp.task('watch', () => {
 	watch(['./src/index.html', './src/main.css'], () => { gulp.start('static'); });
 });
 
-gulp.task('default', ['start', 'watch', 'jsx', 'static']);
+gulp.task('default', ['watch', 'jsx', 'static']);

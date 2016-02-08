@@ -3,6 +3,8 @@ import React from 'react';
 import Colors from 'config/Colors.jsx';
 
 const style = {
+	main: {
+	},
 	h1: {
 		marginBottom: '20px',
 		color: Colors.right.eventDetail.title,
@@ -19,9 +21,9 @@ export default class EventDetail extends React.Component {
 	render() {
 		return(
 			<div style={style.main}>
-				<h1 style={style.h1}>
+				<h2 style={style.h1}>
 					{this.props.title}
-				</h1>
+				</h2>
 				<p style={style.h2}>{this.props.description}</p>
 			</div>
 		);

@@ -5,6 +5,7 @@ import Placeholder from 'config/Placeholder.jsx';
 
 import Logo from 'common/Logo.jsx';
 import AvatarList from 'common/AvatarList.jsx';
+import Header from 'common/Header.jsx';
 
 import EventDetail from 'right/EventDetail.jsx';
 import InfoBox from 'right/InfoBox.jsx';
@@ -16,7 +17,7 @@ const styles = {
 		textColor: Colors.right.textColor
 	},
 	left: {
-		backgroundColor: Colors.left.backgroundColor, 
+		backgroundColor: Colors.left.backgroundColor,
 		height: '100vh',
 		padding: '30px'
 	},
@@ -25,28 +26,13 @@ const styles = {
 		color: Colors.right.color,
 		height: '100vh',
 		padding: '30px 5vw 10px 4vw',
-	},
-	header: {
-		fontWeight: '700',
-		marginTop: '30px',
-		marginBottom: '30px',
-		color: Colors.right.header.color,
-		borderTop: '2px ${Colors.right.header.color} solid'
 	}
-};
-
-const generateHeader = function(text) {
-	return (
-		<h5 style={styles.header}>
-			{text}
-		</h5>
-	)
 };
 
 export default class ReaderView extends React.Component {
 	render() {
 		return (
-			<Row style={styles.main}> 
+			<Row style={styles.main}>
 				<Col xs={12} sm={8} md={8} lg={8} style={styles.left}>
 					<Logo />
 				</Col>
@@ -54,12 +40,16 @@ export default class ReaderView extends React.Component {
 					<EventDetail
 						title={Placeholder.event.title}
 						description={Placeholder.event.description} />
-					{generateHeader('CONTRIBUTORS')}
 
+					<Header text='INFORMATION' />
+					<InfoBox text={Placeholder.info}/>
+
+					<Header text='CONTRIBUTORS' />
 					<AvatarList users={Placeholder.contributors} />
 
-					{generateHeader('INFORMATION')}
-					<InfoBox />
+					<Header text='TRANSLATORS' />
+					<AvatarList users={Placeholder.translators} />
+
 				</Col>
 			</Row>
 		);
