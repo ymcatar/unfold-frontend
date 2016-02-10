@@ -1,9 +1,9 @@
 import React from 'react';
-
 import Colors from 'config/Colors.jsx';
 
-const style = {
+const styles = {
 	main: {
+		marginBottom: '20px'
 	},
 	h1: {
 		marginBottom: '20px',
@@ -11,8 +11,6 @@ const style = {
 		fontWeight: '700'
 	},
 	h2: {
-		textAlign: 'justify',
-		textJustify: 'inter-word',
 		color: Colors.right.eventDetail.description,
 	}
 };
@@ -20,11 +18,11 @@ const style = {
 export default class EventDetail extends React.Component {
 	render() {
 		return(
-			<div style={style.main}>
-				<h2 style={style.h1}>
+			<div style={styles.main}>
+				<h2 style={styles.h1}>
 					{this.props.title}
 				</h2>
-				<p style={style.h2}>{this.props.description}</p>
+				<p style={styles.h2}>{this.props.description}</p>
 			</div>
 		);
 	}

@@ -4,7 +4,7 @@
   "license": "GPL-3.0",
   "description": "Front-end interface for unfold",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "gulp & node index.js"
   },
   "repository": {
     "type": "git",
@@ -31,13 +31,12 @@
     "gulp-watch": "^4.3.5",
     "history": "^1.17.0",
     "jquery-browserify": "^1.8.1",
+    "marked": "^0.3.5",
+    "node-uuid": "^1.4.7",
     "react": "^0.14.7",
     "react-bootstrap": "^0.28.2",
     "react-dom": "^0.14.7",
     "react-router": "^1.0.0-rc1",
     "vinyl-source-stream": "^1.1.0"
-  },
-  "scripts": {
-	  "start": "gulp & node index.js"
   }
 }
