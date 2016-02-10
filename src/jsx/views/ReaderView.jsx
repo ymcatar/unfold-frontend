@@ -5,16 +5,19 @@ import Placeholder from 'config/Placeholder.jsx';
 
 import Logo from 'common/Logo.jsx';
 import AvatarList from 'common/AvatarList.jsx';
-import Header from 'common/Header.jsx';
 
 import EventDetail from 'right/EventDetail.jsx';
-import InfoBox from 'right/InfoBox.jsx';
 
-import {Row, Col, Image} from 'react-bootstrap';
+import Information from 'right/Information.jsx';
+import Contributors from 'right/Contributors.jsx';
+import Translators from 'right/Translators.jsx';
+
+import {Row, Col} from 'react-bootstrap';
 
 const styles = {
 	main: {
-		textColor: Colors.right.textColor
+		textColor: Colors.right.textColor,
+		overflow: 'hidden'
 	},
 	left: {
 		backgroundColor: Colors.left.backgroundColor,
@@ -25,7 +28,7 @@ const styles = {
 		backgroundColor: Colors.right.backgroundColor,
 		color: Colors.right.color,
 		height: '100vh',
-		padding: '30px 5vw 10px 4vw',
+		padding: '30px 3vw 10px 2vw'
 	}
 };
 
@@ -41,14 +44,10 @@ export default class ReaderView extends React.Component {
 						title={Placeholder.event.title}
 						description={Placeholder.event.description} />
 
-					<Header text='INFORMATION' />
-					<InfoBox text={Placeholder.info}/>
+					<Information data={Placeholder.info} />
 
-					<Header text='CONTRIBUTORS' />
-					<AvatarList users={Placeholder.contributors} />
-
-					<Header text='TRANSLATORS' />
-					<AvatarList users={Placeholder.translators} />
+					<Contributors data={Placeholder.contributors} />
+					<Translators data={Placeholder.translators} />
 
 				</Col>
 			</Row>

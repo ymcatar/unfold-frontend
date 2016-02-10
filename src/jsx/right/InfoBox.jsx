@@ -1,4 +1,5 @@
 import React from 'react';
+import marked from 'marked';
 
 import Colors from 'config/Colors.jsx';
 
@@ -16,9 +17,8 @@ const styles = {
 export default class InfoBox extends React.Component {
 	render() {
 		return (
-			<div style={styles.main}>
-				<p style={styles.p}>{this.props.text}</p>
-			</div>
+			<div
+				dangerouslySetInnerHTML={{__html: marked(this.props.data)}} />
 		);
 	}
 }

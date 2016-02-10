@@ -16,18 +16,21 @@ export default {
 		}
 	},
 	right: {
-		backgroundColor: colors.primary900, 
-		color: colors.white100,
+		backgroundColor: colors.primary900,
+		color: colors.white,
 		eventDetail: {
 			title: colors.white,
-			description: colors.white200
+			description: colors.white
 		},
-		header: {
-			color: colors.white
+		collapseBox: {
+			backgroundColor: '#019EC3'
+		},
+		Information: {
+			borderColor: '#04BFEB'
 		}
 	},
 	left: {
-		backgroundColor: '#04BFEB' 
+		backgroundColor: '#04BFEB'
 	},
 	zDepth: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
-}
+};
