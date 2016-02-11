@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CollapseBox from 'right/CollapseBox.jsx';
+import CollapseBox from 'right/common/CollapseBox.jsx';
 import AvatarList from 'common/AvatarList.jsx';
 
 export default class Translators extends React.Component {

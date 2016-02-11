@@ -1,4 +1,5 @@
 import React from 'react';
+import {Row, Col} from 'react-bootstrap';
 
 import Colors from 'config/Colors.jsx';
 import Placeholder from 'config/Placeholder.jsx';
@@ -6,13 +7,11 @@ import Placeholder from 'config/Placeholder.jsx';
 import Logo from 'common/Logo.jsx';
 import AvatarList from 'common/AvatarList.jsx';
 
-import EventDetail from 'right/EventDetail.jsx';
+import EventDetail from 'right/common/EventDetail.jsx';
 
-import Information from 'right/Information.jsx';
-import Contributors from 'right/Contributors.jsx';
-import Translators from 'right/Translators.jsx';
-
-import {Row, Col} from 'react-bootstrap';
+import Information from 'right/reader/Information.jsx';
+import Contributors from 'right/reader/Contributors.jsx';
+import Translators from 'right/reader/Translators.jsx';
 
 const styles = {
 	main: {
@@ -40,6 +39,7 @@ export default class ReaderView extends React.Component {
 					<Logo />
 				</Col>
 				<Col xsHidden={true} sm={4} md={4} lg={4} style={styles.right}>
+
 					<EventDetail
 						title={Placeholder.event.title}
 						description={Placeholder.event.description} />
