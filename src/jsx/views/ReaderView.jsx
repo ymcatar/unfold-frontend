@@ -3,54 +3,80 @@ import React from 'react';
 import Colors from 'config/Colors.jsx';
 import Placeholder from 'config/Placeholder.jsx';
 
+import MediaQuery from 'react-responsive';
+
 import Logo from 'common/Logo.jsx';
-import AvatarList from 'common/AvatarList.jsx';
 
-import EventDetail from 'right/EventDetail.jsx';
+import ReaderStream from 'left/ReaderStream.jsx';
 
-import Information from 'right/Information.jsx';
-import Contributors from 'right/Contributors.jsx';
-import Translators from 'right/Translators.jsx';
+import EventDetail from 'right/common/EventDetail.jsx';
 
-import {Row, Col} from 'react-bootstrap';
+import Information from 'right/reader/Information.jsx';
+import Contributors from 'right/reader/Contributors.jsx';
+import Translators from 'right/reader/Translators.jsx';
 
 const styles = {
 	main: {
 		textColor: Colors.right.textColor,
-		overflow: 'hidden'
+		overflow: 'hidden',
+		display: 'flex'
 	},
 	left: {
 		backgroundColor: Colors.left.backgroundColor,
 		height: '100vh',
-		padding: '30px'
+		width: '100%',
+		padding: '30px',
+		overflowY: 'scroll'
 	},
 	right: {
 		backgroundColor: Colors.right.backgroundColor,
 		color: Colors.right.color,
 		height: '100vh',
-		padding: '30px 3vw 10px 2vw'
+		width: '500px',
+		padding: '30px'
 	}
 };
 
 export default class ReaderView extends React.Component {
 	render() {
+
+		let left = (
+			<div style={styles.left}>
+				<ReaderStream
+					data={Placeholder.readerStream}
+					contributors={Placeholder.contributors} />
+			</div>
+		);
+
+		let right = (
+			<div style={styles.right}>
+				<Logo />
+				<EventDetail
+					title={Placeholder.event.title}
+					description={Placeholder.event.description} />
+
+				<Information data={Placeholder.info} />
+
+				<Contributors data={Placeholder.contributors} />
+				<Translators data={Placeholder.translators} />
+
+			</div>
+		);
+
 		return (
-			<Row style={styles.main}>
-				<Col xs={12} sm={8} md={8} lg={8} style={styles.left}>
-					<Logo />
-				</Col>
-				<Col xsHidden={true} sm={4} md={4} lg={4} style={styles.right}>
-					<EventDetail
-						title={Placeholder.event.title}
-						description={Placeholder.event.description} />
-
-					<Information data={Placeholder.info} />
-
-					<Contributors data={Placeholder.contributors} />
-					<Translators data={Placeholder.translators} />
-
-				</Col>
-			</Row>
+			<div>
+				<MediaQuery query='(min-width: 780px)'>
+					<div style={styles.main}>
+						{left}
+						{right}
+					</div>
+				</MediaQuery>
+				<MediaQuery query='(max-width: 780px)'>
+					<div style={styles.main}>
+						{left}
+					</div>
+				</MediaQuery>
+			</div>
 		);
 	}
 }

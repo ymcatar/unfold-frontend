@@ -1,0 +1,72 @@
+import React from 'react';
+import {OverlayTrigger, Tooltip} from 'react-bootstrap';
+import moment from 'moment';
+
+import Colors from 'config/Colors.jsx';
+
+import UpdateAvatar from 'left/common/UpdateAvatar.jsx';
+import TypeText from 'left/common/TypeText.jsx';
+
+const styles = {
+	main: {
+		width: '100%',
+		display: 'flex',
+		margin: '20px 20px 20px 5px'
+	},
+	avatar: {
+		position: 'relative',
+		left: '-15px',
+		top: '10px'
+	},
+	card: {
+		width: '100%',
+		backgroundColor: 'white',
+		boxShadow: Colors.zDepth,
+		border: '3px #FFFFFF solid',
+		borderRadius: '2px',
+		padding: '15px'
+	},
+	info: {
+		color: 'grey',
+		height: '25px'
+	},
+	content: {
+		padding: '15px'
+	}
+};
+
+export default class UpdateBox extends React.Component {
+	render() {
+		const {name, title, image, online} = this.props.contributor;
+		const date = moment(this.props.submitTime);
+
+		let content;
+		switch(this.props.type) {
+			case 'text':
+				content = (<TypeText data={this.props.content}/>);
+				break;
+		}
+
+		return (
+			<div style={styles.main}>
+				<div style={styles.avatar}>
+					<UpdateAvatar
+						name={name}
+						title={title}
+						image={image}
+						online={online}
+						size="50" />
+				</div>
+				<div style={styles.card}>
+					<div style={styles.info}>
+						<h5 className="pull-left">{this.props.contributor.name}</h5>
+						<h5 className="pull-right">{date.format('llll')}</h5>
+					</div>
+					<div style={styles.content}>
+						{content}
+					</div>
+				</div>
+			</div>
+		);
+	}
+}

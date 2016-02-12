@@ -3,7 +3,7 @@ import {Row, Col} from 'react-bootstrap';
 
 import uuid from 'node-uuid';
 
-import Avatar from 'common/Avatar.jsx';
+import Avatar from 'right/common/Avatar.jsx';
 
 const generateAvatar = function(user, count) {
 	let {name, title, image, online} = user;

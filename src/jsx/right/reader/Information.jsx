@@ -2,8 +2,8 @@ import React from 'react';
 
 import Colors from 'config/Colors.jsx';
 
-import CollapseBox from 'right/CollapseBox.jsx';
-import InfoBox from 'right/InfoBox.jsx';
+import CollapseBox from 'right/common/CollapseBox.jsx';
+import InfoBox from 'right/reader/InfoBox.jsx';
 
 const styles = {
     container: {
