@@ -1,7 +1,7 @@
 import React from 'react';
 
 import CollapseBox from 'right/common/CollapseBox.jsx';
-import AvatarList from 'common/AvatarList.jsx';
+import AvatarList from 'right/common/AvatarList.jsx';
 
 export default class Contributors extends React.Component {
     render() {

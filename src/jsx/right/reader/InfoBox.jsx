@@ -1,5 +1,5 @@
 import React from 'react';
-import marked from 'marked';
+import markdown from 'common/Markdown.js';
 
 import Colors from 'config/Colors.jsx';
 
@@ -18,7 +18,7 @@ export default class InfoBox extends React.Component {
 	render() {
 		return (
 			<div
-				dangerouslySetInnerHTML={{__html: marked(this.props.data)}} />
+				dangerouslySetInnerHTML={{__html: markdown(this.props.data)}} />
 		);
 	}
 }
