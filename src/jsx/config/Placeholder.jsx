@@ -46,37 +46,43 @@ export default {
 			type: 'text',
 			contributor: '01',
 			content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis finibus orci, eu porta nisi consectetur non. Proin volutpat nibh vel aliquet porttitor. Praesent metus orci, suscipit ac condimentum a, facilisis finibus ex. Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-12T03:21:55Z'
+			submitTime: '2016-02-12T03:21:55Z',
+			tags: ['important']
 		},
 		{
 			type: 'text',
 			contributor: '02',
 			content: '> Praesent metus orci, suscipit ac condimentum a, facilisis finibus ex. Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.\n Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-			submitTime: '2016-02-12T08:21:55Z'
+			submitTime: '2016-02-12T08:21:55Z',
+			tags: ['reliable', 'important']
 		},
 		{
 			type: 'text',
 			contributor: '01',
 			content: 'Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-11T03:21:55Z'
+			submitTime: '2016-02-11T03:21:55Z',
+			tags: ['unverified']
 		},
 		{
 			type: 'text',
 			contributor: '03',
 			content: 'Proin volutpat nibh vel aliquet porttitor. Praesent metus orci, suscipit ac condimentum a, facilisis finibus ex. Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-11T03:21:55Z'
+			submitTime: '2016-02-11T03:21:55Z',
+			tags: ['Custom Tag 1', 'Custom Tag 2']
 		},
 		{
 			type: 'text',
 			contributor: '01',
 			content: 'Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-11T03:21:55Z'
+			submitTime: '2016-02-11T03:21:55Z',
+			tags: ['Custom Tag 1', 'Custom Tag 2']
 		},
 		{
 			type: 'text',
 			contributor: '01',
 			content: 'Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-11T03:21:55Z'
+			submitTime: '2016-02-11T03:21:55Z',
+			tags: ['Custom Tag 1', 'Custom Tag 2']
 		},
 	]
 };

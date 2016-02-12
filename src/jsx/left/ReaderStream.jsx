@@ -16,6 +16,7 @@ export default class ReaderStream extends React.Component {
 			<UpdateBox
 				key={uuid.v1()}
 				type={item.type}
+				tags={item.tags}
 				contributor={
 					this.props.contributors.filter(user => user.id === item.contributor)[0]
 				}
@@ -23,7 +24,7 @@ export default class ReaderStream extends React.Component {
 				content={item.content} />
 		));
 		return (
-			<div className="container" style={styles.main}>
+			<div className="container-fluid" style={styles.main}>
 				{contents}
 			</div>
 		);

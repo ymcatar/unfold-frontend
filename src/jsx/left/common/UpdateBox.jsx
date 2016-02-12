@@ -1,10 +1,13 @@
 import React from 'react';
 import {OverlayTrigger, Tooltip} from 'react-bootstrap';
 import moment from 'moment';
+import MediaQuery from 'react-responsive';
 
 import Colors from 'config/Colors.jsx';
 
 import UpdateAvatar from 'left/common/UpdateAvatar.jsx';
+import Tags from 'left/common/Tags.jsx';
+
 import TypeText from 'left/common/TypeText.jsx';
 
 const styles = {
@@ -49,21 +52,30 @@ export default class UpdateBox extends React.Component {
 
 		return (
 			<div style={styles.main}>
-				<div style={styles.avatar}>
-					<UpdateAvatar
-						name={name}
-						title={title}
-						image={image}
-						online={online}
-						size="50" />
-				</div>
+				<MediaQuery query='(min-width: 500px)'>
+					<div style={styles.avatar}>
+						<UpdateAvatar
+							name={name}
+							title={title}
+							image={image}
+							online={online}
+							size="50" />
+					</div>
+				</MediaQuery>
 				<div style={styles.card}>
 					<div style={styles.info}>
-						<h5 className="pull-left">{this.props.contributor.name}</h5>
-						<h5 className="pull-right">{date.format('llll')}</h5>
+						<MediaQuery query='(min-width: 500px)'>
+							<h5 className="pull-left">{this.props.contributor.name}</h5>
+						</MediaQuery>
+						<h5 className="pull-right">
+							{date.format('llll')}
+						</h5>
 					</div>
 					<div style={styles.content}>
 						{content}
+					</div>
+					<div>
+						<Tags data={this.props.tags} />
 					</div>
 				</div>
 			</div>
