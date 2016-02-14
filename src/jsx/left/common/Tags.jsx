@@ -1,43 +1,43 @@
 import React from 'react';
-import {Label} from 'react-bootstrap';
-
 import uuid from 'node-uuid';
 
-const Styles = {
-    main: {
-        marginRight: '5px'
-    }
-};
+import Colors from 'config/Colors.jsx';
+
+const getStyles = style => ({
+    marginRight: '5px',
+    color: style,
+    fontWeight: 'bolder'
+});
 
 export default class Tags extends React.Component {
     render() {
         let tags = this.props.data.map(item => {
-            let text, bsStyle;
+            let text, style;
             switch(item) {
                 case 'reliable':
-                    text = 'Reliable';
-                    bsStyle = 'success';
+                    text = 'reliable';
+                    style = Colors.left.tags.reliable;
                     break;
                 case 'important':
-                    text = 'Important';
-                    bsStyle = 'info';
+                    text = 'important';
+                    style = Colors.left.tags.important;
                     break;
                 case 'unverified':
-                    text = 'Unverified';
-                    bsStyle = 'danger';
+                    text = 'unverified';
+                    style = Colors.left.tags.unverified;
                     break;
                 default:
                     text = item;
-                    bsStyle = 'default';
+                    style = Colors.left.tags.default;
                     break;
             }
             return (
-                <Label
-                    style={Styles.main}
+                <a
+                    style={getStyles(style)}
                     key={uuid.v1()}
-                    bsStyle={bsStyle}>
-                    {text}
-                </Label>
+                    href="#">
+                    #{text}
+                </a>
             );
         });
         return (

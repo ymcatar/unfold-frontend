@@ -6,7 +6,7 @@ import Colors from 'config/Colors.jsx';
 const generateStyle = function(props) {
     return {
         container: {
-            backgroundColor: Colors.right.collapseBox.backgroundColor
+            backgroundColor: Colors.right.backgroundColor
         }
     };
 };

@@ -3,7 +3,7 @@ export default {
 		title: "Umbrella Revolution",
 		description: 'The Umbrella Movement is a loose pro-democracy political movement that was created spontaneously during the Hong Kong protests of 2014.'
 	},
-	info: "We are currently inviting some more contributors for the live stream. If you are interested, feel free to send a message to one of our contributors!\n\nbtw **Lorem ipsum** dolor sit amet, consectetur adipiscing elit. Donec fringilla lobortis porttitor. Vivamus condimentum fermentum magna, id ultrices erat pellentesque nec. Aliquam eu pulvinar purus. Nullam in hendrerit nisi, ac fringilla lectus. Quisque sed eros faucibus, posuere ante ut, ultrices nisi. Duis vel ex malesuada, dignissim nisi posuere, cursus velit. Vestibulum pellentesque molestie porttitor. Donec porttitor turpis quis quam convallis cursus. Sed tristique ante finibus eros congue, sed efficitur elit iaculis.",
+	info: "We are currently inviting some more contributors for the live stream. If you are interested, feel free to send a message to one of our contributors!\n",
 	contributors: [
 		{
 			id: '01',
@@ -33,56 +33,29 @@ export default {
 			title: 'Savior',
 			image: 'res/avatar2.jpg',
 			online: false
-		},
-		{
-			name: 'Matias',
-			title: 'Savior',
-			image: 'res/avatar.jpg',
-			online: true
-		},
+		}
 	],
 	readerStream: [
 		{
 			type: 'text',
 			contributor: '01',
-			content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis finibus orci, eu porta nisi consectetur non. Proin volutpat nibh vel aliquet porttitor. Praesent metus orci, suscipit ac condimentum a, facilisis finibus ex. Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
+			content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			submitTime: '2016-02-12T03:21:55Z',
 			tags: ['important']
 		},
 		{
 			type: 'text',
 			contributor: '02',
-			content: '> Praesent metus orci, suscipit ac condimentum a, facilisis finibus ex. Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.\n Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			content: 'Praesent metus orci, suscipit ac condimentum a, facilisis finibus ex.',
 			submitTime: '2016-02-12T08:21:55Z',
 			tags: ['reliable', 'important']
 		},
 		{
 			type: 'text',
 			contributor: '01',
-			content: 'Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-11T03:21:55Z',
-			tags: ['unverified']
-		},
-		{
-			type: 'text',
-			contributor: '03',
-			content: 'Proin volutpat nibh vel aliquet porttitor. Praesent metus orci, suscipit ac condimentum a, facilisis finibus ex. Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-11T03:21:55Z',
-			tags: ['Custom Tag 1', 'Custom Tag 2']
-		},
-		{
-			type: 'text',
-			contributor: '01',
-			content: 'Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-11T03:21:55Z',
-			tags: ['Custom Tag 1', 'Custom Tag 2']
-		},
-		{
-			type: 'text',
-			contributor: '01',
-			content: 'Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-11T03:21:55Z',
-			tags: ['Custom Tag 1', 'Custom Tag 2']
-		},
+			content: 'Integer nisl est, sagittis eget lacus at, maximus suscipit dolor. Integer a laoreet nisi. Nulla finibus metus nec nisl ultricies, vel pulvinar erat efficitur. Mauris viverra pharetra neque, sed ornare nulla sollicitudin non. In convallis efficitur est quis mattis. Donec iaculis velit sed neque pharetra, nec fringilla mauris pretium. Proin lacinia auctor dolor nec tempor. Aliquam eleifend cursus consectetur. Fusce ex ante, imperdiet ut enim in, condimentum tempus velit.',
+			submitTime: '2016-02-12T08:21:55Z',
+			tags: []
+		}
 	]
 };

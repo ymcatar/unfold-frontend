@@ -11,7 +11,10 @@ var watch = require('gulp-watch');
 
 gulp.task('jsx', () => {
 	browserify('./src/jsx/App.jsx', { debug: true, paths: ['./src/jsx'] })
-		.transform(babelify, { presets: ["es2015", "react"] })
+		.transform(babelify, {
+			presets: ["es2015", "react"],
+			ignore: /(bower_components)|(node_modules)/
+		})
 		.bundle()
 		.on("error", err => { console.log("Error : " + err.message); })
 		.pipe(source('bundle.js'))

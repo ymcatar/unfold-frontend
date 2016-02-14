@@ -14,12 +14,13 @@ const styles = {
 	main: {
 		width: '100%',
 		display: 'flex',
-		margin: '20px 20px 20px 5px'
+		marginTop: '20px',
+		marginBottom: '20px'
 	},
 	avatar: {
 		position: 'relative',
-		left: '-15px',
-		top: '10px'
+		left: '-10px',
+		top: '5px'
 	},
 	card: {
 		width: '100%',
@@ -27,14 +28,13 @@ const styles = {
 		boxShadow: Colors.zDepth,
 		border: '3px #FFFFFF solid',
 		borderRadius: '2px',
-		padding: '15px'
+		padding: '10px'
 	},
 	info: {
 		color: 'grey',
 		height: '25px'
 	},
 	content: {
-		padding: '15px'
 	}
 };
 
@@ -65,7 +65,9 @@ export default class UpdateBox extends React.Component {
 				<div style={styles.card}>
 					<div style={styles.info}>
 						<MediaQuery query='(min-width: 500px)'>
-							<h5 className="pull-left">{this.props.contributor.name}</h5>
+							<h5 className="pull-left">
+								{this.props.contributor.name}
+							</h5>
 						</MediaQuery>
 						<h5 className="pull-right">
 							{date.format('llll')}
