@@ -1,5 +1,5 @@
 import React from 'react';
-
+import _ from 'lodash';
 import uuid from 'node-uuid';
 
 import UpdateBox from 'left/common/UpdateBox.jsx';
@@ -11,6 +11,12 @@ const styles = {
 };
 
 export default class ReaderStream extends React.Component {
+
+	shouldComponentUpdate(nextProps, nextState) {
+		console.log(nextProps, this.props);
+        return _.equal(nextProps, this.props);
+    }
+
 	render() {
 		let contents = this.props.data.map(item => (
 			<UpdateBox

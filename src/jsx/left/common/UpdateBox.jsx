@@ -2,6 +2,7 @@ import React from 'react';
 import {OverlayTrigger, Tooltip} from 'react-bootstrap';
 import moment from 'moment';
 import MediaQuery from 'react-responsive';
+import _ from 'lodash';
 
 import Colors from 'config/Colors.jsx';
 
@@ -69,14 +70,8 @@ export default class UpdateBox extends React.Component {
 				</MediaQuery>
 				<div style={styles.card}>
 					<div style={styles.info}>
-						<MediaQuery query='(min-width: 500px)'>
-							<h5 className="pull-left">
-								{this.props.contributor.name}
-							</h5>
-						</MediaQuery>
-						<h5 className="pull-right">
-							{date.format('llll')}
-						</h5>
+						<h5 className="pull-left">{this.props.contributor.name}</h5>
+						<h5 className="pull-right">{date.format('llll')}</h5>
 					</div>
 					<div style={styles.content}>
 						{content}

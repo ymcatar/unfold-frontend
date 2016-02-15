@@ -10,8 +10,7 @@ export default class TypeTwitter extends React.Component {
         super();
         this.state = {
             id: uuid.v1(),
-            init: false,
-            body: `<span class="fa fa-spin fa-spinner" />`
+            body: ''
         };
     }
 
@@ -25,12 +24,14 @@ export default class TypeTwitter extends React.Component {
         fetch('https://api.twitter.com/1/statuses/oembed.json?' + extra)
             .then(res => res.json())
             .then(msg => {
-                this.setState({ body: msg.html, init: true });
+                this.rendered = false;
+                this.setState({ body: msg.html });
             })
             .catch(console.error.bind(console));
     }
 
     componentDidUpdate() {
+        console.log('updated!');
         window.twttr.ready(twttr => {
             Promise.resolve(window.twttr.widgets.load(document.getElementById(this.state.id)))
                 .then(() => {

@@ -65,13 +65,20 @@ export default class ReaderView extends React.Component {
 
 		return (
 			<div>
-				<MediaQuery query='(min-width: 780px)'>
-					<div style={styles.main}>
-						{left}
-						{right}
-					</div>
+				<MediaQuery minDeviceWidth={1224}>
+					<MediaQuery minWidth={780}>
+						<div style={styles.main}>
+							{left}
+							{right}
+						</div>
+					</MediaQuery>
+					<MediaQuery maxWidth={780}>
+						<div style={styles.main}>
+							{left}
+						</div>
+					</MediaQuery>
 				</MediaQuery>
-				<MediaQuery query='(max-width: 780px)'>
+				<MediaQuery maxDeviceWidth={1224}>
 					<div style={styles.main}>
 						{left}
 					</div>
