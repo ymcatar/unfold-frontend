@@ -37,6 +37,16 @@ export default {
 	],
 	readerStream: [
 		{
+			type: 'twitter',
+			contributor: '02',
+			content: 'Latest tweets from John Oilver!',
+			submitTime: '2016-02-14T08:21:55Z',
+			tags: ['testingTwitter'],
+			source: {
+				path: 'https://twitter.com/iamjohnoliver/status/698866238269845504'
+			}
+		},
+		{
 			type: 'text',
 			contributor: '01',
 			content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -51,11 +61,29 @@ export default {
 			tags: ['reliable', 'important']
 		},
 		{
+			type: 'twitter',
+			contributor: '03',
+			content: 'Wow! Donald is really annoying!',
+			tags: ['important'],
+			submitTime: '2016-02-12T08:21:55Z',
+			source: {
+				path: '698752909236969472'
+			}
+		},
+		{
 			type: 'text',
 			contributor: '01',
 			content: 'Integer nisl est, sagittis eget lacus at, maximus suscipit dolor. Integer a laoreet nisi. Nulla finibus metus nec nisl ultricies, vel pulvinar erat efficitur. Mauris viverra pharetra neque, sed ornare nulla sollicitudin non. In convallis efficitur est quis mattis. Donec iaculis velit sed neque pharetra, nec fringilla mauris pretium. Proin lacinia auctor dolor nec tempor. Aliquam eleifend cursus consectetur. Fusce ex ante, imperdiet ut enim in, condimentum tempus velit.',
-			submitTime: '2016-02-12T08:21:55Z',
-			tags: []
-		}
+			submitTime: '2016-02-11T08:21:55Z',
+			tags: ['customTag', 'anotherCustomTag']
+		},
+		{
+			type: 'text',
+			contributor: '01',
+			content: 'Lorem ipsum dolor sit amet, et accusata theophrastus duo. Sed alia saepe in. Ius et stet partem apeirian, sed dicta prodesset scripserit ea. Qui an congue tractatos, vix ad harum quaeque laoreet, his omnis concludaturque an. Et nec utinam pertinacia moderatius, dicta pertinacia accommodare mea in.\n\nEt idque impedit fabellas his, adhuc ignota repudiandae ei vix, pro at aliquam deleniti partiendo. Vis an quis essent, commodo atomorum abhorreant ad quo, feugiat referrentur repudiandae est at. Sit cu autem lorem pericula. Dicat persius mel ei, facer semper deleniti per cu. Id tale alia constituto per, oporteat facilisis eos in.\n\nLiber adipiscing eos ei, choro soluta duo ne. No magna solum vix, eu vis ridens voluptua. Ea qui esse blandit invenire. Eu has zril laudem dolorum, imperdiet interesset ne has. Vel assum ornatus expetendis ad, quod veri constituam duo ea.\n\nMucius explicari quaerendum an qui, no nihil conceptam theophrastus per. Dolorem accusata sapientem ne pri. Fuisset tacimates constituto mel ea, mea molestie euripidis id, eam probo munere verterem id. Cu vel lorem malis nonumy, has an case splendide, in eum detraxit menandri voluptaria. Possim voluptatum vel at, has indoctum salutandi consequuntur ex, sed partem sadipscing ei.',
+			submitTime: '2016-02-10T08:21:55Z',
+			tags: ['customTag']
+		},
+
 	]
 };

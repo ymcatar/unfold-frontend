@@ -9,6 +9,7 @@ import UpdateAvatar from 'left/common/UpdateAvatar.jsx';
 import Tags from 'left/common/Tags.jsx';
 
 import TypeText from 'left/common/TypeText.jsx';
+import TypeTwitter from 'left/common/TypeTwitter.jsx';
 
 const styles = {
 	main: {
@@ -32,7 +33,8 @@ const styles = {
 	},
 	info: {
 		color: 'grey',
-		height: '25px'
+		height: '25px',
+		marginBottom: '20px'
 	},
 	content: {
 	}
@@ -41,12 +43,15 @@ const styles = {
 export default class UpdateBox extends React.Component {
 	render() {
 		const {name, title, image, online} = this.props.contributor;
-		const date = moment(this.props.submitTime);
+		const date = moment(this.props.data.submitTime);
 
 		let content;
-		switch(this.props.type) {
+		switch(this.props.data.type) {
 			case 'text':
-				content = (<TypeText data={this.props.content}/>);
+				content = (<TypeText data={this.props.data.content}/>);
+				break;
+			case 'twitter':
+				content = (<TypeTwitter data={this.props.data.content} src={this.props.data.source}/>);
 				break;
 		}
 
@@ -77,7 +82,7 @@ export default class UpdateBox extends React.Component {
 						{content}
 					</div>
 					<div>
-						<Tags data={this.props.tags} />
+						<Tags data={this.props.data.tags} />
 					</div>
 				</div>
 			</div>
