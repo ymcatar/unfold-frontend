@@ -1,36 +1,27 @@
-const colors = {
-	primary900: '#019EC3',
-	primary800: '#04BFEB',
-	white: 'white',
-	white100: 'rgba(255, 255, 255, 0.9)',
-	white200: 'rgba(255, 255, 255, 0.8)'
-};
-
 export default {
 	common: {
 		avatar: {
-			name: colors.white,
-			title: colors.white,
+			name: 'white',
+			title: 'white',
 			online: '#9CF924',
-			offline: '#27C0E4'
+			offline: '#7E57C2'
 		}
 	},
 	right: {
-		backgroundColor: colors.primary900,
-		color: colors.white,
-		eventDetail: {
-			title: colors.white,
-			description: colors.white
-		},
-		collapseBox: {
-			backgroundColor: '#019EC3'
-		},
+		backgroundColor: '#4527A0',
+		color: 'white',
 		Information: {
-			borderColor: '#04BFEB'
+			borderColor: '#7E57C2'
 		}
 	},
 	left: {
-		backgroundColor: '#04BFEB'
+		backgroundColor: '#EEEEEE',
+		tags: {
+			reliable: '#4527A0',
+			important: '#F50057',
+			unverified: '#FFC107',
+			default: 'grey'
+		}
 	},
-	zDepth: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
+	zDepth: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
 };

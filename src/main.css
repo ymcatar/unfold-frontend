@@ -11,12 +11,12 @@ html, body, #main {
 }
 
 .collapseBox {
-	background-color: #019EC3;
-	border: 2px #04BFEB solid;
+	background-color: #4527A0;
+	border: 2px #7E57C2 solid;
 }
 
 .collapseBox > .panel-heading {
-	background-color: #019EC3;
+	background-color: #4527A0;
 	color: white;
 	border: none;
 }

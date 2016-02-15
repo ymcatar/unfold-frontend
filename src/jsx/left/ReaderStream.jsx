@@ -15,15 +15,11 @@ export default class ReaderStream extends React.Component {
 		let contents = this.props.data.map(item => (
 			<UpdateBox
 				key={uuid.v1()}
-				type={item.type}
-				contributor={
-					this.props.contributors.filter(user => user.id === item.contributor)[0]
-				}
-				submitTime={item.submitTime}
-				content={item.content} />
+				contributor={this.props.contributors.filter(user => user.id === item.contributor)[0]}
+				data={item} />
 		));
 		return (
-			<div className="container" style={styles.main}>
+			<div className="container-fluid" style={styles.main}>
 				{contents}
 			</div>
 		);

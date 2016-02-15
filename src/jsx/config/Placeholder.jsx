@@ -3,7 +3,7 @@ export default {
 		title: "Umbrella Revolution",
 		description: 'The Umbrella Movement is a loose pro-democracy political movement that was created spontaneously during the Hong Kong protests of 2014.'
 	},
-	info: "We are currently inviting some more contributors for the live stream. If you are interested, feel free to send a message to one of our contributors!\n\nbtw **Lorem ipsum** dolor sit amet, consectetur adipiscing elit. Donec fringilla lobortis porttitor. Vivamus condimentum fermentum magna, id ultrices erat pellentesque nec. Aliquam eu pulvinar purus. Nullam in hendrerit nisi, ac fringilla lectus. Quisque sed eros faucibus, posuere ante ut, ultrices nisi. Duis vel ex malesuada, dignissim nisi posuere, cursus velit. Vestibulum pellentesque molestie porttitor. Donec porttitor turpis quis quam convallis cursus. Sed tristique ante finibus eros congue, sed efficitur elit iaculis.",
+	info: "We are currently inviting some more contributors for the live stream. If you are interested, feel free to send a message to one of our contributors!\n",
 	contributors: [
 		{
 			id: '01',
@@ -33,50 +33,57 @@ export default {
 			title: 'Savior',
 			image: 'res/avatar2.jpg',
 			online: false
-		},
-		{
-			name: 'Matias',
-			title: 'Savior',
-			image: 'res/avatar.jpg',
-			online: true
-		},
+		}
 	],
 	readerStream: [
 		{
+			type: 'twitter',
+			contributor: '02',
+			content: 'Latest tweets from John Oilver!',
+			submitTime: '2016-02-14T08:21:55Z',
+			tags: ['testingTwitter'],
+			source: {
+				path: 'https://twitter.com/iamjohnoliver/status/698866238269845504'
+			}
+		},
+		{
 			type: 'text',
 			contributor: '01',
-			content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis finibus orci, eu porta nisi consectetur non. Proin volutpat nibh vel aliquet porttitor. Praesent metus orci, suscipit ac condimentum a, facilisis finibus ex. Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-12T03:21:55Z'
+			content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			submitTime: '2016-02-12T03:21:55Z',
+			tags: ['important']
 		},
 		{
 			type: 'text',
 			contributor: '02',
-			content: '> Praesent metus orci, suscipit ac condimentum a, facilisis finibus ex. Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.\n Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-			submitTime: '2016-02-12T08:21:55Z'
+			content: 'Praesent metus orci, suscipit ac condimentum a, facilisis finibus ex.',
+			submitTime: '2016-02-12T08:21:55Z',
+			tags: ['reliable', 'important']
 		},
 		{
-			type: 'text',
-			contributor: '01',
-			content: 'Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-11T03:21:55Z'
-		},
-		{
-			type: 'text',
+			type: 'twitter',
 			contributor: '03',
-			content: 'Proin volutpat nibh vel aliquet porttitor. Praesent metus orci, suscipit ac condimentum a, facilisis finibus ex. Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-11T03:21:55Z'
+			content: 'Wow! Donald is really annoying!',
+			tags: ['important'],
+			submitTime: '2016-02-12T08:21:55Z',
+			source: {
+				path: '698752909236969472'
+			}
 		},
 		{
 			type: 'text',
 			contributor: '01',
-			content: 'Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-11T03:21:55Z'
+			content: 'Integer nisl est, sagittis eget lacus at, maximus suscipit dolor. Integer a laoreet nisi. Nulla finibus metus nec nisl ultricies, vel pulvinar erat efficitur. Mauris viverra pharetra neque, sed ornare nulla sollicitudin non. In convallis efficitur est quis mattis. Donec iaculis velit sed neque pharetra, nec fringilla mauris pretium. Proin lacinia auctor dolor nec tempor. Aliquam eleifend cursus consectetur. Fusce ex ante, imperdiet ut enim in, condimentum tempus velit.',
+			submitTime: '2016-02-11T08:21:55Z',
+			tags: ['customTag', 'anotherCustomTag']
 		},
 		{
 			type: 'text',
 			contributor: '01',
-			content: 'Phasellus efficitur justo congue ligula commodo, eu pharetra ex dapibus.',
-			submitTime: '2016-02-11T03:21:55Z'
+			content: 'Lorem ipsum dolor sit amet, et accusata theophrastus duo. Sed alia saepe in. Ius et stet partem apeirian, sed dicta prodesset scripserit ea. Qui an congue tractatos, vix ad harum quaeque laoreet, his omnis concludaturque an. Et nec utinam pertinacia moderatius, dicta pertinacia accommodare mea in.\n\nEt idque impedit fabellas his, adhuc ignota repudiandae ei vix, pro at aliquam deleniti partiendo. Vis an quis essent, commodo atomorum abhorreant ad quo, feugiat referrentur repudiandae est at. Sit cu autem lorem pericula. Dicat persius mel ei, facer semper deleniti per cu. Id tale alia constituto per, oporteat facilisis eos in.\n\nLiber adipiscing eos ei, choro soluta duo ne. No magna solum vix, eu vis ridens voluptua. Ea qui esse blandit invenire. Eu has zril laudem dolorum, imperdiet interesset ne has. Vel assum ornatus expetendis ad, quod veri constituam duo ea.\n\nMucius explicari quaerendum an qui, no nihil conceptam theophrastus per. Dolorem accusata sapientem ne pri. Fuisset tacimates constituto mel ea, mea molestie euripidis id, eam probo munere verterem id. Cu vel lorem malis nonumy, has an case splendide, in eum detraxit menandri voluptaria. Possim voluptatum vel at, has indoctum salutandi consequuntur ex, sed partem sadipscing ei.',
+			submitTime: '2016-02-10T08:21:55Z',
+			tags: ['customTag']
 		},
+
 	]
 };
