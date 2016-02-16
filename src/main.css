@@ -1,22 +1,165 @@
 html, body, #main {
-	margin: 0;
-	height: 100%;
-	font-family: 'Fira Sans', sans-serif;
+    margin: 0;
+    height: 100%;
+    font-family: 'Fira Sans', sans-serif;
 }
-
 #main {
-	height: 100vh;
-	width: 100vw;
-	overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
-
 .collapseBox {
-	background-color: #4527A0;
-	border: 2px #7E57C2 solid;
+    background-color: #4527A0;
+    border: 2px #7E57C2 solid;
+}
+.collapseBox > .panel-heading {
+    background-color: #4527A0;
+    color: white;
+    border: none;
 }
 
-.collapseBox > .panel-heading {
-	background-color: #4527A0;
-	color: white;
-	border: none;
+/* oembed css start -------------- */
+
+.noembed-wrapper {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+    margin: 5px 0px 10px 0px;
 }
+
+.noembed-embed-inner img {
+    width: 100%;
+    height: auto;
+}
+
+.noembed-embed-inner iframe {
+    max-width: 100%;
+}
+
+.noembed-embed-inner {
+    padding: 0px 0px 0px 10px;
+    border-left: 5px solid #eee;
+    background: #fff;
+    color: #000;
+    font-size: 12px;
+}
+.noembed-embed .noembed-meta-info {
+    width: 100%;
+    border-left: 5px solid #eee;
+    font-size: 10px;
+    font-weight: bolder;
+    color: black;
+    overflow-x: hidden;
+}
+.noembed-embed .noembed-meta-info td {
+    vertical-align: middle;
+    line-height: 1em;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+@media only screen and (max-width: 500px) {
+    .noembed-embed .noembed-meta-info td:nth-child(2) {
+        display: none;
+    }
+}
+
+.noembed-embed .noembed-meta-info td:first-child {
+    padding-left: 10px;
+}
+.noembed-embed .noembed-meta-info td:last-child {
+    padding-right: 0px;
+}
+.noembed-embed .noembed-meta-info a {
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+}
+.noembed-embed .favicon {
+    height: 16px;
+    width: 16px;
+}
+.noembed-embed .favicon img {
+    width: 16px;
+    width: 16px;
+    display: inline-block;
+    margin: 0px;
+    padding: 0;
+    border: none;
+    margin-right: 5px;
+}
+.noembed-twittercard {
+    padding: 10px;
+}
+.noembed-twittercard img {
+    float: right;
+    margin-left: 10px;
+    background: #efefef;
+    border: 1px solid #ddd;
+}
+.noembed-twittercard h2 {
+    margin: 0;
+    font-size: 1.2em;
+}
+.noembed-twittercard a {
+    text-decoration: none;
+}
+.noembed-twittercard p {
+    margin: 0;
+    padding: 0;
+    margin-top: 0.8em;
+}
+.noembed-twitter {
+    padding: 0;
+    max-width: 500px;
+    font-size: 16px;
+}
+.noembed-twitter a {
+    text-decoration: none;
+}
+.noembed-twitter a:hover {
+    text-decoration: underline;
+}
+.noembed-twitter .tweet_main {
+    padding: 10px;
+}
+.noembed-twitter div.tweet_image img {
+    display: block;
+}
+.noembed-twitter div.tweet_image {
+    float: left;
+    margin-right: 5px;
+}
+.noembed-twitter div.tweet_text {
+    clear: both;
+    padding: 0.5em 0;
+}
+.noembed-twitter .tweet_screen_name {
+    font-weight: bold;
+    color: #000;
+}
+.noembed-twitter .tweet_real_name {
+    font-weight: normal;
+    font-size: 12px;
+    color: #999;
+}
+.noembed-twitter div.tweet_info a, .noembed-twitter div.tweet_info {
+    font-size: 12px;
+    color: #999;
+}
+.noembed-twitter div.tweet_info div {
+    display: inline;
+}
+.noembed-giantbomb p,
+.noembed-youtube p {
+  margin: 0;
+  padding: 0;
+}
+.noembed-imgur > a > img {
+    width: 100%;
+    height: auto;
+}
+
+
+
+/* oembed css end -------------- */

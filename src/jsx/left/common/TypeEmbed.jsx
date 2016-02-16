@@ -4,7 +4,7 @@ import uuid from 'node-uuid';
 
 import markdown from 'common/Markdown.js';
 
-export default class TypeTwitter extends React.Component {
+export default class TypeEmbed extends React.Component {
 
     constructor() {
         super();
@@ -15,29 +15,13 @@ export default class TypeTwitter extends React.Component {
     }
 
     componentWillMount() {
-        let extra;
-        if (this.props.src.path.trim().match(/^[0-9]+$/g))
-            extra = 'id=' + this.props.src.path.trim();
-        else
-            extra = 'url=' + this.props.src.path.trim();
 
-        fetch('https://api.twitter.com/1/statuses/oembed.json?' + extra)
+        fetch('http://noembed.com/embed?url=' + this.props.src.path.trim())
             .then(res => res.json())
             .then(msg => {
-                this.rendered = false;
                 this.setState({ body: msg.html });
             })
             .catch(console.error.bind(console));
-    }
-
-    componentDidUpdate() {
-        console.log('updated!');
-        window.twttr.ready(twttr => {
-            Promise.resolve(window.twttr.widgets.load(document.getElementById(this.state.id)))
-                .then(() => {
-                    document.getElementById(this.state.id).style.removeProperty('display');
-                });
-        });
     }
 
     render() {
@@ -46,7 +30,6 @@ export default class TypeTwitter extends React.Component {
                 <p dangerouslySetInnerHTML={{__html: markdown(this.props.data)}} />
                 <div
                     id={this.state.id}
-                    style={{display: 'none'}}
                     dangerouslySetInnerHTML={{__html: this.state.body}} />
             </div>
         );

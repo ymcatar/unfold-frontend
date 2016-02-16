@@ -43,7 +43,7 @@ export default {
 			submitTime: '2016-02-14T08:21:55Z',
 			tags: ['testingTwitter'],
 			source: {
-				path: 'https://twitter.com/iamjohnoliver/status/698866238269845504'
+				path: 'https://twitter.com/LastWeekTonight/status/699240904830402560'
 			}
 		},
 		{
@@ -61,13 +61,41 @@ export default {
 			tags: ['reliable', 'important']
 		},
 		{
+			type: 'flickr',
+			contributor: '01',
+			content: 'Flickr?',
+			submitTime: '2016-02-11T08:21:55Z',
+			source: {
+				path: 'https://www.flickr.com/photos/mingz/15368541196/'
+			}
+		},
+		{
+			type: 'imgur',
+			contributor: '02',
+			content: 'Dank meme!',
+			submitTime: '2016-02-11T08:21:55Z',
+			source: {
+				path: 'http://imgur.com/JoZNRyo'
+			}
+		},
+		{
 			type: 'twitter',
 			contributor: '03',
 			content: 'Wow! Donald is really annoying!',
 			tags: ['important'],
 			submitTime: '2016-02-12T08:21:55Z',
 			source: {
-				path: '698752909236969472'
+				path: 'https://twitter.com/realDonaldTrump/status/698752909236969472'
+			}
+		},
+		{
+			type: 'youtube',
+			contributor: '02',
+			content: 'YouTube embed video!',
+			tags: ['youtube'],
+			submitTime: '2016-02-11T08:21:55Z',
+			source: {
+				path: 'https://www.youtube.com/watch?v=rHFOwlMCdto'
 			}
 		},
 		{

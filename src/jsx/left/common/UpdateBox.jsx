@@ -10,7 +10,8 @@ import UpdateAvatar from 'left/common/UpdateAvatar.jsx';
 import Tags from 'left/common/Tags.jsx';
 
 import TypeText from 'left/common/TypeText.jsx';
-import TypeTwitter from 'left/common/TypeTwitter.jsx';
+import TypeEmbed from 'left/common/TypeEmbed.jsx';
+//import TypeReddit from 'left/common/TypeReddit.jsx';
 
 const styles = {
 	main: {
@@ -52,7 +53,11 @@ export default class UpdateBox extends React.Component {
 				content = (<TypeText data={this.props.data.content}/>);
 				break;
 			case 'twitter':
-				content = (<TypeTwitter data={this.props.data.content} src={this.props.data.source}/>);
+			case 'reddit':
+			case 'youtube':
+			case 'flickr':
+			case 'imgur':
+				content = (<TypeEmbed data={this.props.data.content} src={this.props.data.source}/>);
 				break;
 		}
 

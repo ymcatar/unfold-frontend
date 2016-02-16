@@ -11,6 +11,8 @@ const getStyles = style => ({
 
 export default class Tags extends React.Component {
     render() {
+        if (!this.props.data || this.props.data === 0)
+            return null;
         let tags = this.props.data.map(item => {
             let text, style;
             switch(item) {
