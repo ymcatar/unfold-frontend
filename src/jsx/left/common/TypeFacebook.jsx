@@ -22,31 +22,19 @@ export default class TypeFacebook extends React.Component {
         };
     }
 
+    /*
     componentDidMount() {
         if (window.FB)
             window.FB.XFBML.parse();
     }
+    */
 
     render() {
         return (
             <div>
                 <p dangerouslySetInnerHTML={{__html: markdown(this.props.data)}} />
                 <div style={styles.post}>
-                    <MediaQuery maxWidth={780}>
-                        <div
-                            className="fb-post"
-                            id={this.state.id}
-                            data-width={"350"}
-                            data-href={this.props.src.path} />
-                    </MediaQuery>
-
-                    <MediaQuery minWidth={780}>
-                        <div
-                            className="fb-post"
-                            id={this.state.id}
-                            data-width={"500"}
-                            data-href={this.props.src.path} />
-                    </MediaQuery>
+                    <a href={this.props.src.path} target="_blank">Link</a>
                 </div>
             </div>
         );

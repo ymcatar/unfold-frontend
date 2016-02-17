@@ -62,9 +62,9 @@ export default class UpdateBox extends React.Component {
 			case 'imgur':
 				content = (<TypeEmbed data={this.props.data.content} src={this.props.data.source}/>);
 				break;
-			//case 'facebook':
-			//	content = (<TypeFacebook data={this.props.data.content} src={this.props.data.source}/>);
-			//	break;
+			case 'facebook':
+				content = (<TypeFacebook data={this.props.data.content} src={this.props.data.source}/>);
+				break;
 		}
 
 		let avatar;
