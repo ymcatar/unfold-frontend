@@ -16,10 +16,9 @@ import TypeFacebook from 'left/common/TypeFacebook.jsx';
 const styles = {
 	main: {
 		width: '700px',
-		maxWidth: '90%',
+		maxWidth: '100%',
 		display: 'flex',
-		marginTop: '10px',
-		marginBottom: '10px'
+		margin: '10px'
 	},
 	avatar: {
 		position: 'relative',
@@ -41,7 +40,7 @@ const styles = {
 	},
 	content: {
 		minWidth: '75%',
-		maxWidth: '500px',
+		maxWidth: '550px',
 		margin: '10px 0px 10px 0px'
 	}
 };
@@ -63,9 +62,9 @@ export default class UpdateBox extends React.Component {
 			case 'imgur':
 				content = (<TypeEmbed data={this.props.data.content} src={this.props.data.source}/>);
 				break;
-			case 'facebook':
-				content = (<TypeFacebook data={this.props.data.content} src={this.props.data.source}/>);
-				break;
+			//case 'facebook':
+			//	content = (<TypeFacebook data={this.props.data.content} src={this.props.data.source}/>);
+			//	break;
 		}
 
 		let avatar;
