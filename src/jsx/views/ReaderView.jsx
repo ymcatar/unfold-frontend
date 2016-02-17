@@ -19,7 +19,9 @@ const styles = {
 	main: {
 		textColor: Colors.right.textColor,
 		overflow: 'hidden',
-		display: 'flex'
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	left: {
 		backgroundColor: Colors.left.backgroundColor,
@@ -32,7 +34,7 @@ const styles = {
 		backgroundColor: Colors.right.backgroundColor,
 		color: Colors.right.color,
 		height: '100vh',
-		width: '500px',
+		width: '400px',
 		padding: '30px'
 	}
 };
@@ -40,9 +42,10 @@ const styles = {
 export default class ReaderView extends React.Component {
 	render() {
 
-		let left = (
+		let left = small => (
 			<div style={styles.left}>
 				<ReaderStream
+					small={small}
 					data={Placeholder.readerStream}
 					contributors={Placeholder.contributors} />
 			</div>
@@ -66,15 +69,15 @@ export default class ReaderView extends React.Component {
 		return (
 			<div>
 				<MediaQuery minDeviceWidth={1224}>
-					<MediaQuery minWidth={780}>
+					<MediaQuery minWidth={800}>
 						<div style={styles.main}>
-							{left}
+							{left(true)}
 							{right}
 						</div>
 					</MediaQuery>
-					<MediaQuery maxWidth={780}>
+					<MediaQuery maxWidth={800}>
 						<div style={styles.main}>
-							{left}
+							{left(false)}
 						</div>
 					</MediaQuery>
 				</MediaQuery>

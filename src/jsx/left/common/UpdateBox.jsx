@@ -15,10 +15,11 @@ import TypeFacebook from 'left/common/TypeFacebook.jsx';
 
 const styles = {
 	main: {
-		width: '100%',
+		width: '700px',
+		maxWidth: '90%',
 		display: 'flex',
-		marginTop: '20px',
-		marginBottom: '20px'
+		marginTop: '10px',
+		marginBottom: '10px'
 	},
 	avatar: {
 		position: 'relative',
@@ -39,6 +40,7 @@ const styles = {
 		marginBottom: '20px'
 	},
 	content: {
+		minWidth: '75%',
 		maxWidth: '500px',
 		margin: '10px 0px 10px 0px'
 	}
@@ -66,18 +68,22 @@ export default class UpdateBox extends React.Component {
 				break;
 		}
 
+		let avatar;
+		if (this.props.small)
+			avatar = (
+				<div style={styles.avatar}>
+					<UpdateAvatar
+						name={name}
+						title={title}
+						image={image}
+						online={online}
+						size="50" />
+				</div>
+			);
+
 		return (
 			<div style={styles.main}>
-				<MediaQuery query='(min-width: 780px)'>
-					<div style={styles.avatar}>
-						<UpdateAvatar
-							name={name}
-							title={title}
-							image={image}
-							online={online}
-							size="50" />
-					</div>
-				</MediaQuery>
+				{avatar}
 				<div style={styles.card}>
 					<div style={styles.info}>
 						<h5 className="pull-left">{this.props.contributor.name}</h5>

@@ -6,9 +6,6 @@ import MediaQuery from 'react-responsive';
 import markdown from 'common/Markdown.js';
 
 const styles = {
-    main: {
-        overflow: 'scroll'
-    },
     post: {
         overflow: 'scroll',
         borderLeft: '5px solid #EEEEEE',
@@ -20,37 +17,37 @@ export default class TypeFacebook extends React.Component {
 
     constructor() {
         super();
-        this.id = uuid.v1();
+        this.state = {
+            id: uuid.v1()
+        };
     }
 
     componentDidMount() {
-        console.log(window);
         if (window.FB)
             window.FB.XFBML.parse();
     }
 
     render() {
         return (
-            <div style={styles.main}>
+            <div>
                 <p dangerouslySetInnerHTML={{__html: markdown(this.props.data)}} />
+                <div style={styles.post}>
+                    <MediaQuery maxWidth={780}>
+                        <div
+                            className="fb-post"
+                            id={this.state.id}
+                            data-width={"350"}
+                            data-href={this.props.src.path} />
+                    </MediaQuery>
 
-                <MediaQuery maxWidth={780}>
-                    <div
-                        style={styles.post}
-                        className="fb-post"
-                        id={this.id}
-                        data-width={350}
-                        data-href={this.props.src.path} />
-                </MediaQuery>
-
-                <MediaQuery minWidth={780}>
-                    <div
-                        style={styles.post}
-                        className="fb-post"
-                        id={this.id}
-                        data-width={500}
-                        data-href={this.props.src.path} />
-                </MediaQuery>
+                    <MediaQuery minWidth={780}>
+                        <div
+                            className="fb-post"
+                            id={this.state.id}
+                            data-width={"500"}
+                            data-href={this.props.src.path} />
+                    </MediaQuery>
+                </div>
             </div>
         );
     }
