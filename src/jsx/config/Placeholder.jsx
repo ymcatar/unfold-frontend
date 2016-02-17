@@ -37,6 +37,26 @@ export default {
 	],
 	readerStream: [
 		{
+			type: 'facebook',
+			contributor: '01',
+			content: 'Facebook API is slow.',
+			submitTime: '2016-02-15T08:21:55Z',
+			tags: ['facebook'],
+			source: {
+				path: 'https://www.facebook.com/CucsSecrets/posts/670557983046987'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '02',
+			content: 'Facebook post.',
+			submitTime: '2016-02-15T08:21:55Z',
+			tags: ['facebook'],
+			source: {
+				path: 'https://www.facebook.com/CucsSecrets/photos/a.332118786890910.1073741828.331985230237599/676256339143818/?type=3'
+			}
+		},
+		{
 			type: 'twitter',
 			contributor: '02',
 			content: 'Latest tweets from John Oilver!',

@@ -25,7 +25,7 @@ const styles = {
 		backgroundColor: Colors.left.backgroundColor,
 		height: '100vh',
 		width: '100%',
-		padding: '20px',
+		padding: '10px',
 		overflowY: 'scroll'
 	},
 	right: {

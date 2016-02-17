@@ -11,7 +11,7 @@ import Tags from 'left/common/Tags.jsx';
 
 import TypeText from 'left/common/TypeText.jsx';
 import TypeEmbed from 'left/common/TypeEmbed.jsx';
-//import TypeReddit from 'left/common/TypeReddit.jsx';
+import TypeFacebook from 'left/common/TypeFacebook.jsx';
 
 const styles = {
 	main: {
@@ -39,6 +39,8 @@ const styles = {
 		marginBottom: '20px'
 	},
 	content: {
+		maxWidth: '500px',
+		margin: '10px 0px 10px 0px'
 	}
 };
 
@@ -59,11 +61,14 @@ export default class UpdateBox extends React.Component {
 			case 'imgur':
 				content = (<TypeEmbed data={this.props.data.content} src={this.props.data.source}/>);
 				break;
+			case 'facebook':
+				content = (<TypeFacebook data={this.props.data.content} src={this.props.data.source}/>);
+				break;
 		}
 
 		return (
 			<div style={styles.main}>
-				<MediaQuery query='(min-width: 500px)'>
+				<MediaQuery query='(min-width: 780px)'>
 					<div style={styles.avatar}>
 						<UpdateAvatar
 							name={name}
