@@ -146,6 +146,12 @@ export default {
 			submitTime: '2016-02-14T02:23:55Z',
 			tags: ['customTag']
 		},
-
+		{
+			type: 'text',
+			contributor: '01',
+			content: 'Lorem ipsum dolor sit amet, et accusata theophrastus duo. Sed alia saepe in. Ius et stet partem apeirian, sed dicta prodesset scripserit ea.',
+			submitTime: '2016-02-13T01:23:55Z',
+			tags: ['customTag']
+		},
 	]
 };

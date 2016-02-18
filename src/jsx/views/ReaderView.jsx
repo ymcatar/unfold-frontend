@@ -34,8 +34,8 @@ const styles = {
 	},
 	mid: {
 		backgroundColor: Colors.mid.backgroundColor,
-		width: '50px',
-		minWidth: '50px',
+		width: '80px',
+		minWidth: '80px',
 		height: '100vh',
 		overflowY: 'scroll'
 	},

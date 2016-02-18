@@ -15,9 +15,10 @@ export default {
 		}
 	},
 	mid: {
+		date: '#777777',
+		color: '#CCCCCC',
 		backgroundColor: '#EEEEEE',
-		lighter: '#DDDDDD',
-		heavier: '#AAAAAA'
+		bar: '#CCCCCC'
 	},
 	left: {
 		backgroundColor: '#EEEEEE',
