@@ -9,6 +9,8 @@ import Logo from 'common/Logo.jsx';
 
 import ReaderStream from 'left/ReaderStream.jsx';
 
+import Timeline from 'mid/Timeline.jsx';
+
 import EventDetail from 'right/common/EventDetail.jsx';
 
 import Information from 'right/reader/Information.jsx';
@@ -30,12 +32,21 @@ const styles = {
 		padding: '10px',
 		overflowY: 'scroll'
 	},
+	mid: {
+		backgroundColor: Colors.mid.backgroundColor,
+		width: '50px',
+		minWidth: '50px',
+		height: '100vh',
+		overflowY: 'scroll'
+	},
 	right: {
 		backgroundColor: Colors.right.backgroundColor,
 		color: Colors.right.color,
 		height: '100vh',
-		width: '400px',
-		padding: '30px'
+		minWidth: '350px',
+		width: '320px',
+		padding: '20px',
+		boxShadow: Colors.zDepth
 	}
 };
 
@@ -48,6 +59,12 @@ export default class ReaderView extends React.Component {
 					small={small}
 					data={Placeholder.readerStream}
 					contributors={Placeholder.contributors} />
+			</div>
+		);
+
+		let mid = (
+			<div style={styles.mid}>
+				<Timeline data={Placeholder.readerStream}/>
 			</div>
 		);
 
@@ -66,25 +83,34 @@ export default class ReaderView extends React.Component {
 			</div>
 		);
 
+		const generateBody = (showLeft, showMid, showRight, leftSmall) => {
+			let l = showLeft? left(leftSmall): null;
+			let m = showMid? mid: null;
+			let r = showRight? right: null;
+			return (
+				<div style={styles.main}>
+					{l}
+					{m}
+					{r}
+				</div>
+			);
+		};
+
 		return (
 			<div>
 				<MediaQuery minDeviceWidth={1224}>
-					<MediaQuery minWidth={800}>
-						<div style={styles.main}>
-							{left(true)}
-							{right}
-						</div>
+					<MediaQuery minWidth={1000}>
+						{generateBody(true, true, true, true)}
+					</MediaQuery>
+					<MediaQuery minWidth={800} maxWidth={1000}>
+						{generateBody(true, true, true, true)}
 					</MediaQuery>
 					<MediaQuery maxWidth={800}>
-						<div style={styles.main}>
-							{left(false)}
-						</div>
+						{generateBody(true, true, false, false)}
 					</MediaQuery>
 				</MediaQuery>
 				<MediaQuery maxDeviceWidth={1224}>
-					<div style={styles.main}>
-						{left}
-					</div>
+					{generateBody(true, true, false, false)}
 				</MediaQuery>
 			</div>
 		);

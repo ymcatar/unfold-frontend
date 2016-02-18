@@ -1,13 +1,20 @@
 import React from 'react';
-import {Row, Col} from 'react-bootstrap';
-
 import uuid from 'node-uuid';
 
 import Avatar from 'right/common/Avatar.jsx';
 
+const styles = {
+	main: {
+		display: 'flex',
+		width: '300px',
+		flexFlow: 'row wrap',
+		alignContent: 'flex-start'
+	}
+};
+
 const generateAvatar = function(user, count) {
 	let {name, title, image, online} = user;
-	const styles = { margin: '0px 0px 10px 0px' };
+	const styles = { margin: '0px 10px 10px 0px' };
 	return (
 		<Avatar
 			key={uuid.v1()}
@@ -22,14 +29,14 @@ const generateAvatar = function(user, count) {
 export default class AvatarList extends React.Component {
 	render() {
 		let avatars = this.props.data.map((user, i) => (
-			<Col xs={4} sm={4} md={3} lg={3} key={uuid.v1()}>
+			<div key={uuid.v1()}>
 				{generateAvatar(user)}
-			</Col>
+			</div>
 		));
 		return (
-			<Row>
+			<div style={styles.main}>
 				{avatars}
-			</Row>
+			</div>
 		);
 	}
 }

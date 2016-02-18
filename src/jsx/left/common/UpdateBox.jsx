@@ -15,7 +15,7 @@ import TypeFacebook from 'left/common/TypeFacebook.jsx';
 
 const styles = {
 	main: {
-		width: '700px',
+		width: '600px',
 		maxWidth: '100%',
 		display: 'flex',
 		margin: '10px'

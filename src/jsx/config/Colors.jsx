@@ -14,6 +14,11 @@ export default {
 			borderColor: '#7E57C2'
 		}
 	},
+	mid: {
+		backgroundColor: '#EEEEEE',
+		lighter: '#DDDDDD',
+		heavier: '#AAAAAA'
+	},
 	left: {
 		backgroundColor: '#EEEEEE',
 		tags: {
