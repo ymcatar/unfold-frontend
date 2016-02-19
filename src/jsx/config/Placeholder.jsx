@@ -40,6 +40,13 @@ export default {
 			image: 'res/avatar2.jpg',
 			online: true
 		},
+		{
+			id: '06',
+			name: 'Donald Pump',
+			title: 'Manager',
+			image: 'res/avatar2.jpg',
+			online: true
+		},
 	],
 	translators: [
 		{
