@@ -40,6 +40,7 @@ export default {
 			image: 'res/avatar2.jpg',
 			online: true
 		},
+		// The following is not used yet
 		{
 			id: '06',
 			name: 'Donald Pump',
