@@ -9,6 +9,8 @@ var source = require('vinyl-source-stream');
 var gutil = require('gulp-util');
 var watch = require('gulp-watch');
 
+var livereload = require('gulp-livereload');
+
 const staticPath = ['./src/index.html', './src/main.css', './src/noembed.css'];
 
 gulp.task('jsx', () => {
@@ -31,6 +33,7 @@ gulp.task('jsx', () => {
 			.on('error', err => { gutil.log(err.message); })
 			.pipe(source('bundle.js'))
 			.pipe(gulp.dest('./dist'))
+			.pipe(livereload())
 			.on('end', () => { gutil.log('jsx completed.'); });
 	}
 
@@ -41,10 +44,17 @@ gulp.task('jsx', () => {
 
 gulp.task('static', () => {
 	function process() {
-		gulp.src(staticPath).pipe(gulp.dest('./dist'));
+		gulp
+			.src(staticPath)
+			.pipe(gulp.dest('./dist'))
+			.pipe(livereload());
 	}
 	process();
 	watch(staticPath, process);
 });
 
-gulp.task('default', ['jsx', 'static']);
+gulp.task('reload', () => {
+	livereload.listen();
+});
+
+gulp.task('default', ['jsx', 'static', 'reload']);
