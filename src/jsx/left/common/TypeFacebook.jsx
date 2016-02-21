@@ -8,12 +8,12 @@ import markdown from 'common/Markdown.js';
 const styles = {
     post: {
         borderLeft: '5px solid #EEEEEE',
-        padding: '0px 0px 0px 10px',
-        display: 'flex'
+        padding: '0px 0px 0px 10px'
     },
     fb: {
         width: '100% !important',
-        overflow: 'scroll'
+        overflowY: 'hidden',
+        overflowX: 'scroll'
     }
 };
 
@@ -28,7 +28,7 @@ export default class TypeFacebook extends React.Component {
 
     componentDidMount() {
         if (window.FB)
-            window.FB.XFBML.parse();
+            window.FB.XFBML.parse(document.getElementById(this.state.id));
     }
 
     render() {

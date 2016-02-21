@@ -30,3 +30,6 @@ body, .smooth-container {
     margin-top: 7px;
     margin-bottom: 7px;
 }
+iframe{
+    max-width: 100% !important;
+}
