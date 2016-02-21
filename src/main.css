@@ -26,3 +26,7 @@ html, body, #main {
 body, .smooth-container {
     scroll-behavior: smooth
 }
+.navbar-text {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}

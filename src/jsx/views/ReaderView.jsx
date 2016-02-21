@@ -5,7 +5,7 @@ import Placeholder from 'config/Placeholder.jsx';
 
 import MediaQuery from 'react-responsive';
 
-import Logo from 'common/Logo.jsx';
+import ReaderTop from 'top/ReaderTop.jsx';
 
 import ReaderStream from 'left/ReaderStream.jsx';
 
@@ -20,6 +20,7 @@ import Translators from 'right/reader/Translators.jsx';
 const styles = {
 	main: {
 		textColor: Colors.right.textColor,
+		marginTop: '50px',
 		overflow: 'hidden',
 		display: 'flex',
 		alignItems: 'center',
@@ -71,7 +72,6 @@ export default class ReaderView extends React.Component {
 
 		let right = (
 			<div style={styles.right}>
-				<Logo />
 				<EventDetail
 					title={Placeholder.event.title}
 					description={Placeholder.event.description} />
@@ -89,10 +89,13 @@ export default class ReaderView extends React.Component {
 			let m = showMid? mid: null;
 			let r = showRight? right: null;
 			return (
-				<div style={styles.main}>
-					{l}
-					{m}
-					{r}
+				<div>
+					<ReaderTop />
+					<div style={styles.main}>
+						{l}
+						{m}
+						{r}
+					</div>
 				</div>
 			);
 		};

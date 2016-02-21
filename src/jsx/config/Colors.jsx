@@ -7,6 +7,11 @@ export default {
 			offline: '#7e57c2'
 		}
 	},
+	top: {
+		backgroundColor: 'white',
+		border: '#eee',
+		color: 'black'
+	},
 	right: {
 		backgroundColor: '#4527a0',
 		color: 'white',

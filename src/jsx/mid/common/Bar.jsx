@@ -35,7 +35,7 @@ export default class Bar extends React.Component {
 
     scrollTo() {
         if (this.props.length !== 0) {
-            const sweetScroll = new SweetScroll({offset: -10}, "#left");
+            const sweetScroll = new SweetScroll({offset: -15}, "#left");
             let name = '.update_' + this.props.time;
             sweetScroll.to(name);
         }

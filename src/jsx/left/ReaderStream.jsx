@@ -17,7 +17,7 @@ const styles = {
 export default class ReaderStream extends React.Component {
 
 	shouldComponentUpdate(nextProps, nextState) {
-        return !_.equal(nextProps, this.props);
+        return !(_.equal(nextProps, this.props));
     }
 
 	render() {
