@@ -34,8 +34,8 @@ const styles = {
 	},
 	mid: {
 		backgroundColor: Colors.mid.backgroundColor,
-		width: '80px',
-		minWidth: '80px',
+		width: '70px',
+		minWidth: '70px',
 		height: '100vh',
 		overflowY: 'scroll'
 	},
@@ -106,11 +106,11 @@ export default class ReaderView extends React.Component {
 						{generateBody(true, true, true, true)}
 					</MediaQuery>
 					<MediaQuery maxWidth={800}>
-						{generateBody(true, true, false, false)}
+						{generateBody(true, false, false, false)}
 					</MediaQuery>
 				</MediaQuery>
 				<MediaQuery maxDeviceWidth={1224}>
-					{generateBody(true, true, false, false)}
+					{generateBody(true, false, false, false)}
 				</MediaQuery>
 			</div>
 		);

@@ -1,18 +1,18 @@
 import React from 'react';
-
+import {OverlayTrigger, Tooltip} from 'react-bootstrap';
 import Colors from 'config/Colors.jsx';
 
-const getStyles = length => ({
-    backgroundColor: Colors.mid.bar,
-    width: `${length/100*80}px`,
-    height: '20px',
-    margin: '0 5px 0 auto'
+const getStyles = (length, disable) => ({
+    backgroundColor: disable? Colors.mid.disable: Colors.mid.enable,
+    width: `${length/100*70}px`,
+    height: '10px',
+    margin: '0 2px 0 auto'
 });
 
 let styles = {
     main: {
-        height: '20px',
-        margin: '0 10px 2px 0',
+        height: '10px',
+        margin: '0 0 2px 0',
         display: 'flex'
     },
     label: {
@@ -24,14 +24,14 @@ let styles = {
 
 export default class Bar extends React.Component {
     render() {
-        let length = Math.min(this.props.length, 100);
+        let length = Math.max(3, Math.min(this.props.length, 100));
+        let tooltip = (<Tooltip>{`${this.props.label}:00`}</Tooltip>);
         return (
-            <div style={styles.main}>
-                <div style={getStyles(length)} />
-                <div style={styles.label}>
-                    {this.props.label}
+            <OverlayTrigger placement="right" overlay={tooltip} animation={false}>
+                <div style={styles.main}>
+                    <div style={getStyles(length, this.props.length === 0)} />
                 </div>
-            </div>
+            </OverlayTrigger>
         );
     }
 }

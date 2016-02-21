@@ -9,7 +9,7 @@ const styles = {
     text: {
         position: 'relative',
         height: '20px',
-        right: '-37px',
+        right: '-28px',
         color: Colors.mid.date
     },
     main: {
