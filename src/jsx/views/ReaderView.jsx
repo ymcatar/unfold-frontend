@@ -49,24 +49,52 @@ const styles = {
 		padding: '20px',
 		overflowY: 'scroll',
 		boxShadow: Colors.zDepth
+	},
+	filter: {
+		paddingLeft: '20px',
+		color: Colors.left.filter
 	}
 };
 
 export default class ReaderView extends React.Component {
+
+	constructor() {
+		super();
+		this.state = {filter: 'all'};
+		this.handleFilter = this.handleFilter.bind(this);
+		this.getFilteredStream = this.getFilteredStream.bind(this);
+	}
+
+	handleFilter(test) {
+		console.log(test);
+		this.setState({filter: test});
+	}
+
+	getFilteredStream() {
+		if (this.state.filter === 'all')
+			return Placeholder.readerStream;
+		else
+			return Placeholder.readerStream.filter(item => (
+				item.tags && item.tags.indexOf(this.state.filter) >= 0
+			));
+	}
+
 	render() {
 
 		let left = small => (
 			<div style={styles.left} id="left">
+				<h2 style={styles.filter}>{'#' + this.state.filter}</h2>
 				<ReaderStream
 					small={small}
-					data={Placeholder.readerStream}
+					data={this.getFilteredStream()}
+					handleFilter={this.handleFilter}
 					contributors={Placeholder.contributors} />
 			</div>
 		);
 
 		let mid = (
 			<div style={styles.mid}>
-				<Timeline data={Placeholder.readerStream}/>
+				<Timeline data={this.getFilteredStream()}/>
 			</div>
 		);
 
@@ -90,7 +118,9 @@ export default class ReaderView extends React.Component {
 			let r = showRight? right: null;
 			return (
 				<div>
-					<ReaderTop />
+					<ReaderTop
+						filter={this.state.filter}
+						handleFilter={this.handleFilter}/>
 					<div style={styles.main}>
 						{l}
 						{m}

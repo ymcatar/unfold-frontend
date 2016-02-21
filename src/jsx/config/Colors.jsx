@@ -33,7 +33,8 @@ export default {
 			important: '#f50057',
 			unverified: '#fcc107',
 			default: 'grey'
-		}
+		},
+		filter: '#A500E3'
 	},
 	zDepth: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
 };

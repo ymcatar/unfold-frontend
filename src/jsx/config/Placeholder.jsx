@@ -152,6 +152,6 @@ export default {
 			content: 'Lorem ipsum dolor sit amet, et accusata theophrastus duo. Sed alia saepe in. Ius et stet partem apeirian, sed dicta prodesset scripserit ea.',
 			submitTime: '2016-02-13T01:23:55Z',
 			tags: ['customTag']
-		},
+		}
 	]
 };

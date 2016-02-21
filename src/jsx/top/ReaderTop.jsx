@@ -20,16 +20,27 @@ const styles = {
 export default class ReaderTop extends React.Component {
     constructor() {
         super();
-        this.handleSelect = this.handleSelect.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
+        this.handleBackToTop = this.handleBackToTop.bind(this);
     }
 
-    handleSelect(key) {
+    handleFilter(key) {
         switch(key) {
-            case 1:
-                const sweetScroll = new SweetScroll({offset: -10}, "#left");
-                sweetScroll.to(0);
+            case 'important':
+                this.props.handleFilter.call(this, 'important');
+                break;
+            case 'reliable':
+                this.props.handleFilter.call(this, 'reliable');
+                break;
+            case 'all':
+                this.props.handleFilter.call(this, 'all');
                 break;
         }
+    }
+
+    handleBackToTop() {
+        const sweetScroll = new SweetScroll({offset: -10}, "#left");
+        sweetScroll.to(0);
     }
 
     render() {
@@ -42,8 +53,19 @@ export default class ReaderTop extends React.Component {
                             <img src="res/logo.png" style={styles.logo}/>
                         </Navbar.Text>
                     </Navbar.Header>
-                    <Nav pullRight onSelect={this.handleSelect}>
-                        <NavItem eventKey={1} href="#">
+                    <Nav onSelect={this.handleFilter} activeKey={this.props.filter}>
+                        <NavItem eventKey={'all'} href="#">
+                            All
+                        </NavItem>
+                        <NavItem eventKey={'important'} href="#">
+                            Important
+                        </NavItem>
+                        <NavItem eventKey={'reliable'} href="#">
+                            Reliable
+                        </NavItem>
+                    </Nav>
+                    <Nav pullRight onSelect={this.handleBackToTop}>
+                        <NavItem eventKey={'top'} href="#">
                             <i className="fa fa-chevron-circle-up" />
                             &nbsp;Top
                         </NavItem>

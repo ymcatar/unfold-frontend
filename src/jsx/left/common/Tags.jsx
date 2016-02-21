@@ -10,6 +10,16 @@ const getStyles = style => ({
 });
 
 export default class Tags extends React.Component {
+
+    constructor() {
+        super();
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(key) {
+        this.props.handleFilter.call(this, key);
+    }
+
     render() {
         if (!this.props.data || this.props.data === 0)
             return null;
@@ -36,6 +46,7 @@ export default class Tags extends React.Component {
             return (
                 <a
                     style={getStyles(style)}
+                    onClick={() => {this.handleClick(text); }}
                     key={uuid.v1()}
                     href="#">
                     #{text}

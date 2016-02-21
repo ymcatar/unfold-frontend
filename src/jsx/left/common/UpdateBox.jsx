@@ -92,7 +92,8 @@ export default class UpdateBox extends React.Component {
 						{content}
 					</div>
 					<div>
-						<Tags data={this.props.data.tags} />
+						<Tags
+							data={this.props.data.tags} handleFilter={this.props.handleFilter} />
 					</div>
 				</div>
 			</div>
