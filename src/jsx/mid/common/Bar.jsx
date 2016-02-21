@@ -12,13 +12,14 @@ const getStyles = (length, disable) => ({
     margin: '0 2px 0 auto'
 });
 
+const getMainStyles = disable => ({
+    height: '10px',
+    margin: '0 0 2px 0',
+    display: 'flex',
+    cursor: disable? 'auto': 'pointer'
+});
+
 let styles = {
-    main: {
-        height: '10px',
-        margin: '0 0 2px 0',
-        display: 'flex',
-        cursor: 'pointer'
-    },
     label: {
         width: '10px',
         fontWeight: 'bolder',
@@ -33,18 +34,21 @@ export default class Bar extends React.Component {
     }
 
     scrollTo() {
-        const sweetScroll = new SweetScroll({offset: -10}, "#left");
-        let name = '.update_' + this.props.time;
-        sweetScroll.to(name);
+        if (this.props.length !== 0) {
+            const sweetScroll = new SweetScroll({offset: -10}, "#left");
+            let name = '.update_' + this.props.time;
+            sweetScroll.to(name);
+        }
     }
 
     render() {
         let length = Math.max(3, Math.min(this.props.length, 100));
         let tooltip = (<Tooltip id={uuid.v1()}>{`${this.props.label}:00`}</Tooltip>);
+        let disable = (this.props.length === 0);
         return (
             <OverlayTrigger placement="right" overlay={tooltip} animation={false}>
-                <div style={styles.main} onClick={this.scrollTo}>
-                    <div style={getStyles(length, this.props.length === 0)} />
+                <div style={getMainStyles(disable)} onClick={this.scrollTo}>
+                    <div style={getStyles(length, disable)} />
                 </div>
             </OverlayTrigger>
         );
