@@ -19,22 +19,22 @@ const styles = {
 
 export default class Day extends React.Component {
     render() {
-
         let bars = [];
         let hash = this.props.data;
         let size = hash.total;
 
+        let [year, month, day] = this.props.date;
         for (let i = 23; i >= 0; i--) {
             bars.push((
                 <Bar
                     key={uuid.v1()}
+                    time={year + month + day+ i}
                     label={i < 10? '0'+i: i}
                     length={hash[i]/size*2*100}
                     heavier={i == '0'} />
             ));
         }
 
-        let [year, month, day] = this.props.date;
         return (
             <div style={styles.main}>
                 <b style={styles.text}>

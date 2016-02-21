@@ -1,5 +1,8 @@
 import React from 'react';
 import {OverlayTrigger, Tooltip} from 'react-bootstrap';
+import uuid from 'node-uuid';
+import SweetScroll from 'sweet-scroll';
+
 import Colors from 'config/Colors.jsx';
 
 const getStyles = (length, disable) => ({
@@ -13,7 +16,8 @@ let styles = {
     main: {
         height: '10px',
         margin: '0 0 2px 0',
-        display: 'flex'
+        display: 'flex',
+        cursor: 'pointer'
     },
     label: {
         width: '10px',
@@ -23,12 +27,23 @@ let styles = {
 };
 
 export default class Bar extends React.Component {
+    constructor() {
+        super();
+        this.scrollTo = this.scrollTo.bind(this);
+    }
+
+    scrollTo() {
+        const sweetScroll = new SweetScroll({offset: -10}, "#left");
+        let name = '.update_' + this.props.time;
+        sweetScroll.to(name);
+    }
+
     render() {
         let length = Math.max(3, Math.min(this.props.length, 100));
-        let tooltip = (<Tooltip>{`${this.props.label}:00`}</Tooltip>);
+        let tooltip = (<Tooltip id={uuid.v1()}>{`${this.props.label}:00`}</Tooltip>);
         return (
             <OverlayTrigger placement="right" overlay={tooltip} animation={false}>
-                <div style={styles.main}>
+                <div style={styles.main} onClick={this.scrollTo}>
                     <div style={getStyles(length, this.props.length === 0)} />
                 </div>
             </OverlayTrigger>

@@ -81,7 +81,7 @@ export default class UpdateBox extends React.Component {
 			);
 
 		return (
-			<div style={styles.main}>
+			<div style={styles.main} className={`update_${date.format('YYYYMMDDH')}`}>
 				{avatar}
 				<div style={styles.card}>
 					<div style={styles.info}>

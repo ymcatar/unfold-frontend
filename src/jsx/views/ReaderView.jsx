@@ -54,7 +54,7 @@ export default class ReaderView extends React.Component {
 	render() {
 
 		let left = small => (
-			<div style={styles.left}>
+			<div style={styles.left} id="left">
 				<ReaderStream
 					small={small}
 					data={Placeholder.readerStream}

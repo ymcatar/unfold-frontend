@@ -18,6 +18,11 @@ html, body, #main {
     border: none;
 }
 ::-webkit-scrollbar {
-display: none;
+    display: none;
 }
-.element { -ms-overflow-style: none; }
+.element {
+    -ms-overflow-style: none;
+}
+body, .smooth-container {
+    scroll-behavior: smooth
+}
