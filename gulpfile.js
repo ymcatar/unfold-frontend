@@ -20,15 +20,14 @@ gulp.task('jsx', () => {
 		cache: {},
 		packageCache: {},
 		fullPaths: true
+	}).transform(babelify, {
+		presets: ["es2015", "react"],
+		ignore: /(bower_components)|(node_modules)/
 	});
 
 	function rebundle() {
 		gutil.log('jsx starting.');
 		bundler
-			.transform(babelify, {
-				presets: ["es2015", "react"],
-				ignore: /(bower_components)|(node_modules)/
-			})
 			.bundle()
 			.on('error', err => { gutil.log(err.message); })
 			.pipe(source('bundle.js'))
