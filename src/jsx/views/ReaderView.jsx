@@ -46,6 +46,7 @@ const styles = {
 		minWidth: '350px',
 		width: '320px',
 		padding: '20px',
+		overflowY: 'scroll',
 		boxShadow: Colors.zDepth
 	}
 };
