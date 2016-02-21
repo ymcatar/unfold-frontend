@@ -20,7 +20,7 @@ export default class Avatar extends React.Component {
 		return (
 			<div style={this.props.style}>
 				<OverlayTrigger
-					trigger={"hover"}
+					trigger={["hover", "focus"]}
 					placement="bottom"
 					overlay={
 						<Popover
