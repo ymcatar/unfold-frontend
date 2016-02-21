@@ -46,7 +46,10 @@ export default class ReaderTop extends React.Component {
     render() {
         return (
             <Navbar style={styles.main} fixedTop={true} fluid={true}>
-                <Navbar.Toggle />
+                <Navbar.Toggle>
+                    <i className="fa fa-bars" />
+                    &nbsp;Toggle
+                </Navbar.Toggle>
                 <Navbar.Collapse>
                     <Navbar.Header>
                         <Navbar.Text>

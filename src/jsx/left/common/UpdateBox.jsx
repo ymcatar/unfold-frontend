@@ -27,6 +27,7 @@ const styles = {
 	},
 	card: {
 		width: '100%',
+		maxWidth: '100%',
 		backgroundColor: 'white',
 		boxShadow: Colors.zDepth,
 		border: '3px #FFFFFF solid',

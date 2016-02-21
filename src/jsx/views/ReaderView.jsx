@@ -20,7 +20,7 @@ import Translators from 'right/reader/Translators.jsx';
 const styles = {
 	main: {
 		textColor: Colors.right.textColor,
-		marginTop: '50px',
+		paddingTop: '50px',
 		overflow: 'hidden',
 		display: 'flex',
 		alignItems: 'center',
@@ -31,6 +31,7 @@ const styles = {
 		height: '100vh',
 		width: '100%',
 		padding: '10px',
+		paddingBottom: '50px',
 		overflowY: 'scroll'
 	},
 	mid: {
@@ -44,8 +45,8 @@ const styles = {
 		backgroundColor: Colors.right.backgroundColor,
 		color: Colors.right.color,
 		height: '100vh',
-		minWidth: '350px',
-		width: '320px',
+		minWidth: '300px',
+		width: '300px',
 		padding: '20px',
 		overflowY: 'scroll',
 		boxShadow: Colors.zDepth
@@ -137,7 +138,7 @@ export default class ReaderView extends React.Component {
 						{generateBody(true, true, true, true)}
 					</MediaQuery>
 					<MediaQuery minWidth={800} maxWidth={1000}>
-						{generateBody(true, true, true, true)}
+						{generateBody(true, true, true, false)}
 					</MediaQuery>
 					<MediaQuery maxWidth={800}>
 						{generateBody(true, false, false, false)}
