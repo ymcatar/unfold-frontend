@@ -18,11 +18,11 @@ export default {
 		}
 	},
 	timeline: {
-		date: '#555',
-		color: '#555',
+		date: '#9e7dd8',
+		color: '#9e7dd8',
 		backgroundColor: '#eee',
-		enable: '#555',
-		disable: '#ddd'
+		enable: '#9e7dd8',
+		disable: '#cacaca'
 	},
 	stream: {
 		backgroundColor: '#eee',

@@ -2,6 +2,8 @@ import React from 'react';
 import _ from 'lodash';
 import uuid from 'node-uuid';
 
+import Colors from 'config/Colors.jsx';
+
 import UpdateBox from './common/UpdateBox.jsx';
 
 const styles = {

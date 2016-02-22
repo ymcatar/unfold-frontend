@@ -46,11 +46,6 @@ const styles = {
 		overflowY: 'scroll',
 		boxShadow: Colors.zDepth,
 		zIndex: 3
-	},
-	filter: {
-		paddingLeft: '20px',
-		color: Colors.stream.filter,
-		fontWeight: '300'
 	}
 };
 
@@ -64,7 +59,6 @@ export default class ReaderView extends React.Component {
 	}
 
 	handleFilter(test) {
-		console.log(test);
 		this.setState({filter: test});
 	}
 
@@ -81,7 +75,6 @@ export default class ReaderView extends React.Component {
 		const generateBody = (stream, timeline, info, noAvatar) => {
 			let streamComponent = small => (
 				<div style={styles.left} id="left">
-					<h2 style={styles.filter}>{'#' + this.state.filter}</h2>
 					<ReaderStream
 						small={small}
 						data={this.getFilteredStream()}
@@ -111,9 +104,9 @@ export default class ReaderView extends React.Component {
 						filter={this.state.filter}
 						handleFilter={this.handleFilter}/>
 					<div style={styles.main}>
-						{r}
 						{l}
 						{m}
+						{r}
 					</div>
 				</div>
 			);

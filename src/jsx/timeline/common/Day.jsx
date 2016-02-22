@@ -11,7 +11,7 @@ const styles = {
         height: '20px',
         right: '-28px',
         color: Colors.timeline.date,
-        fontWeight: '300'
+        fontWeight: '500'
     },
     main: {
         margin: '0 0 20px 0'
