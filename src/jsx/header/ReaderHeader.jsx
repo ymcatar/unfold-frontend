@@ -7,17 +7,17 @@ import Colors from 'config/Colors.jsx';
 const styles = {
     main: {
         boxShadow: Colors.zDepth,
-        backgroundColor: Colors.top.backgroundColor,
-        color: Colors.top.color,
-        borderColor: Colors.top.border,
-        fontWeight: '600'
+        backgroundColor: Colors.header.backgroundColor,
+        color: Colors.header.color,
+        borderColor: Colors.header.border,
+        fontWeight: '500'
     },
     logo: {
         height: '36px'
     }
 };
 
-export default class ReaderTop extends React.Component {
+export default class ReaderHeader extends React.Component {
     constructor() {
         super();
         this.handleFilter = this.handleFilter.bind(this);

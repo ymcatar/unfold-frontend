@@ -6,7 +6,7 @@ import Colors from 'config/Colors.jsx';
 const getStyles = style => ({
     marginRight: '5px',
     color: style,
-    fontWeight: 'bolder'
+    fontWeight: '500'
 });
 
 export default class Tags extends React.Component {
@@ -28,19 +28,19 @@ export default class Tags extends React.Component {
             switch(item) {
                 case 'reliable':
                     text = 'reliable';
-                    style = Colors.left.tags.reliable;
+                    style = Colors.stream.tags.reliable;
                     break;
                 case 'important':
                     text = 'important';
-                    style = Colors.left.tags.important;
+                    style = Colors.stream.tags.important;
                     break;
                 case 'unverified':
                     text = 'unverified';
-                    style = Colors.left.tags.unverified;
+                    style = Colors.stream.tags.unverified;
                     break;
                 default:
                     text = item;
-                    style = Colors.left.tags.default;
+                    style = Colors.stream.tags.default;
                     break;
             }
             return (
@@ -55,6 +55,7 @@ export default class Tags extends React.Component {
         });
         return (
             <div>
+                <i className="fa fa-tag">&nbsp;</i>
                 {tags}
             </div>
         );

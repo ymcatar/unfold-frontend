@@ -7,11 +7,11 @@ const styles = {
 	},
 	h1: {
 		marginBottom: '20px',
-		color: Colors.right.color,
-		fontWeight: '700'
+		color: Colors.info.color,
+		fontWeight: '500'
 	},
 	h2: {
-		color: Colors.right.color,
+		color: Colors.info.color,
 	}
 };
 

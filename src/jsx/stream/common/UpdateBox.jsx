@@ -6,12 +6,12 @@ import _ from 'lodash';
 
 import Colors from 'config/Colors.jsx';
 
-import UpdateAvatar from 'left/common/UpdateAvatar.jsx';
-import Tags from 'left/common/Tags.jsx';
+import UpdateAvatar from './UpdateAvatar.jsx';
+import Tags from './Tags.jsx';
 
-import TypeText from 'left/common/TypeText.jsx';
-import TypeEmbed from 'left/common/TypeEmbed.jsx';
-import TypeFacebook from 'left/common/TypeFacebook.jsx';
+import TypeText from './TypeText.jsx';
+import TypeEmbed from './TypeEmbed.jsx';
+import TypeFacebook from './TypeFacebook.jsx';
 
 const styles = {
 	main: {

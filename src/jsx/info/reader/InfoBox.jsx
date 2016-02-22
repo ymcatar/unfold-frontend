@@ -1,8 +1,6 @@
 import React from 'react';
 import markdown from 'common/Markdown.js';
 
-import Colors from 'config/Colors.jsx';
-
 const styles = {
 	main: {
 		overflowY: 'scroll',

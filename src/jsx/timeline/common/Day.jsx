@@ -3,14 +3,15 @@ import uuid from 'node-uuid';
 
 import Colors from 'config/Colors.jsx';
 
-import Bar from 'mid/common/Bar.jsx';
+import Bar from './Bar.jsx';
 
 const styles = {
     text: {
         position: 'relative',
         height: '20px',
         right: '-28px',
-        color: Colors.mid.date
+        color: Colors.timeline.date,
+        fontWeight: '300'
     },
     main: {
         margin: '0 0 20px 0'
@@ -28,7 +29,7 @@ export default class Day extends React.Component {
             bars.push((
                 <Bar
                     key={uuid.v1()}
-                    time={year + month + day+ i}
+                    time={year + month + day + i}
                     label={i < 10? '0'+i: i}
                     length={hash[i]/size*2*100}
                     heavier={i == '0'} />

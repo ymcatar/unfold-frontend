@@ -5,10 +5,10 @@ import SweetScroll from 'sweet-scroll';
 
 import Colors from 'config/Colors.jsx';
 
-const getStyles = (length, disable) => ({
-    backgroundColor: disable? Colors.mid.disable: Colors.mid.enable,
+const getStyles = (length, disable, mobile) => ({
+    backgroundColor: disable? Colors.timeline.disable: Colors.timeline.enable,
     width: `${length/100*70}px`,
-    height: '10px',
+    height: mobile? '30px': '10px',
     margin: '0 2px 0 auto'
 });
 
@@ -18,14 +18,6 @@ const getMainStyles = disable => ({
     display: 'flex',
     cursor: disable? 'auto': 'pointer'
 });
-
-let styles = {
-    label: {
-        width: '10px',
-        fontWeight: 'bolder',
-        color: Colors.mid.color
-    }
-};
 
 export default class Bar extends React.Component {
     constructor() {
@@ -46,9 +38,9 @@ export default class Bar extends React.Component {
         let tooltip = (<Tooltip id={uuid.v1()}>{`${this.props.label}:00`}</Tooltip>);
         let disable = (this.props.length === 0);
         return (
-            <OverlayTrigger placement="right" overlay={tooltip} animation={false}>
+            <OverlayTrigger placement="bottom" overlay={tooltip} animation={false}>
                 <div style={getMainStyles(disable)} onClick={this.scrollTo}>
-                    <div style={getStyles(length, disable)} />
+                    <div style={getStyles(length, disable, this.props.mobile)} />
                 </div>
             </OverlayTrigger>
         );

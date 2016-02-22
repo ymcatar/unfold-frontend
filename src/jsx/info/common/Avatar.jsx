@@ -6,7 +6,7 @@ import uuid from 'node-uuid';
 import Colors from 'config/Colors.jsx';
 
 const getImageStyle = function(size = 55, on = false) {
-	let {online, offline} = Colors.common.avatar;
+	let {online, offline} = Colors.avatar;
 	return {
 		width: `${size}px`,
 		height: `${size}px`,

@@ -2,16 +2,16 @@ import React from 'react';
 
 import Colors from 'config/Colors.jsx';
 
-import CollapseBox from 'right/common/CollapseBox.jsx';
-import InfoBox from 'right/reader/InfoBox.jsx';
+import CollapseBox from '../common/CollapseBox.jsx';
+import InfoBox from './InfoBox.jsx';
 
 const styles = {
     container: {
         maxHeight: '50vh',
         padding: '10px',
         overflowY: 'scroll',
-        borderTop: `2px solid ${Colors.right.Information.borderColor}`,
-        borderBottom: `2px solid ${Colors.right.Information.borderColor}`
+        borderTop: `2px solid ${Colors.info.information.borderColor}`,
+        borderBottom: `2px solid ${Colors.info.information.borderColor}`
     }
 };
 

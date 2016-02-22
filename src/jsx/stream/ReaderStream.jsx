@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import uuid from 'node-uuid';
 
-import UpdateBox from 'left/common/UpdateBox.jsx';
+import UpdateBox from './common/UpdateBox.jsx';
 
 const styles = {
 	main: {

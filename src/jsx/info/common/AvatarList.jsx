@@ -1,7 +1,7 @@
 import React from 'react';
 import uuid from 'node-uuid';
 
-import Avatar from 'right/common/Avatar.jsx';
+import Avatar from './Avatar.jsx';
 
 const styles = {
 	main: {

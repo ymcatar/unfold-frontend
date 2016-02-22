@@ -1,25 +1,20 @@
 import React from 'react';
+import MediaQuery from 'react-responsive';
 
 import Colors from 'config/Colors.jsx';
 import Placeholder from 'config/Placeholder.jsx';
 
-import MediaQuery from 'react-responsive';
+import ReaderHeader from 'header/ReaderHeader.jsx';
 
-import ReaderTop from 'top/ReaderTop.jsx';
+import ReaderStream from 'stream/ReaderStream.jsx';
 
-import ReaderStream from 'left/ReaderStream.jsx';
+import Timeline from 'timeline/Timeline.jsx';
 
-import Timeline from 'mid/Timeline.jsx';
-
-import EventDetail from 'right/common/EventDetail.jsx';
-
-import Information from 'right/reader/Information.jsx';
-import Contributors from 'right/reader/Contributors.jsx';
-import Translators from 'right/reader/Translators.jsx';
+import ReaderInfo from 'info/ReaderInfo.jsx';
 
 const styles = {
 	main: {
-		textColor: Colors.right.textColor,
+		textColor: Colors.info.textColor,
 		paddingTop: '50px',
 		overflow: 'hidden',
 		display: 'flex',
@@ -27,7 +22,7 @@ const styles = {
 		justifyContent: 'center'
 	},
 	left: {
-		backgroundColor: Colors.left.backgroundColor,
+		backgroundColor: Colors.stream.backgroundColor,
 		height: '100vh',
 		width: '100%',
 		padding: '10px',
@@ -35,25 +30,27 @@ const styles = {
 		overflowY: 'scroll'
 	},
 	mid: {
-		backgroundColor: Colors.mid.backgroundColor,
+		backgroundColor: Colors.timeline.backgroundColor,
 		width: '70px',
 		minWidth: '70px',
 		height: '100vh',
 		overflowY: 'scroll'
 	},
 	right: {
-		backgroundColor: Colors.right.backgroundColor,
-		color: Colors.right.color,
+		backgroundColor: Colors.info.backgroundColor,
+		color: Colors.info.color,
 		height: '100vh',
 		minWidth: '300px',
 		width: '300px',
 		padding: '20px',
 		overflowY: 'scroll',
-		boxShadow: Colors.zDepth
+		boxShadow: Colors.zDepth,
+		zIndex: 3
 	},
 	filter: {
 		paddingLeft: '20px',
-		color: Colors.left.filter
+		color: Colors.stream.filter,
+		fontWeight: '300'
 	}
 };
 
@@ -81,51 +78,42 @@ export default class ReaderView extends React.Component {
 	}
 
 	render() {
+		const generateBody = (stream, timeline, info, noAvatar) => {
+			let streamComponent = small => (
+				<div style={styles.left} id="left">
+					<h2 style={styles.filter}>{'#' + this.state.filter}</h2>
+					<ReaderStream
+						small={small}
+						data={this.getFilteredStream()}
+						handleFilter={this.handleFilter}
+						contributors={Placeholder.contributors} />
+				</div>
+			);
 
-		let left = small => (
-			<div style={styles.left} id="left">
-				<h2 style={styles.filter}>{'#' + this.state.filter}</h2>
-				<ReaderStream
-					small={small}
-					data={this.getFilteredStream()}
-					handleFilter={this.handleFilter}
-					contributors={Placeholder.contributors} />
-			</div>
-		);
+			let timelineComponent = (
+				<div style={styles.mid}>
+					<Timeline data={this.getFilteredStream()}/>
+				</div>
+			);
 
-		let mid = (
-			<div style={styles.mid}>
-				<Timeline data={this.getFilteredStream()}/>
-			</div>
-		);
+			let infoComponent = (
+				<div style={styles.right}>
+					<ReaderInfo data={Placeholder} />
+				</div>
+			);
 
-		let right = (
-			<div style={styles.right}>
-				<EventDetail
-					title={Placeholder.event.title}
-					description={Placeholder.event.description} />
-
-				<Information data={Placeholder.info} />
-
-				<Contributors data={Placeholder.contributors} />
-				<Translators data={Placeholder.translators} />
-
-			</div>
-		);
-
-		const generateBody = (showLeft, showMid, showRight, leftSmall) => {
-			let l = showLeft? left(leftSmall): null;
-			let m = showMid? mid: null;
-			let r = showRight? right: null;
+			let l = stream? streamComponent(noAvatar): null;
+			let m = timeline? timelineComponent: null;
+			let r = info? infoComponent: null;
 			return (
 				<div>
-					<ReaderTop
+					<ReaderHeader
 						filter={this.state.filter}
 						handleFilter={this.handleFilter}/>
 					<div style={styles.main}>
+						{r}
 						{l}
 						{m}
-						{r}
 					</div>
 				</div>
 			);
@@ -141,7 +129,7 @@ export default class ReaderView extends React.Component {
 						{generateBody(true, true, true, false)}
 					</MediaQuery>
 					<MediaQuery maxWidth={800}>
-						{generateBody(true, false, false, false)}
+						{generateBody(true, true, false, false)}
 					</MediaQuery>
 				</MediaQuery>
 				<MediaQuery maxDeviceWidth={1224}>

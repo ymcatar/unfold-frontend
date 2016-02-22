@@ -2,7 +2,7 @@ import React from 'react';
 import uuid from 'node-uuid';
 import moment from 'moment';
 
-import Day from 'mid/common/Day.jsx';
+import Day from './common/Day.jsx';
 
 const styles = {
     main: {
