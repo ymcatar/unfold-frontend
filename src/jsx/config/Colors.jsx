@@ -3,31 +3,38 @@ export default {
 		avatar: {
 			name: 'white',
 			title: 'white',
-			online: '#9CF924',
-			offline: '#7E57C2'
+			online: '#9cf924',
+			offline: '#7e57c2'
 		}
 	},
+	top: {
+		backgroundColor: 'white',
+		border: '#eee',
+		color: 'black'
+	},
 	right: {
-		backgroundColor: '#4527A0',
+		backgroundColor: '#4527a0',
 		color: 'white',
 		Information: {
-			borderColor: '#7E57C2'
+			borderColor: '#7e57c2'
 		}
 	},
 	mid: {
-		date: '#777777',
-		color: '#CCCCCC',
-		backgroundColor: '#EEEEEE',
-		bar: '#CCCCCC'
+		date: '#9e7dd8',
+		color: '#9e7dd8',
+		backgroundColor: '#eee',
+		enable: '#9e7dd8',
+		disable: '#cacaca'
 	},
 	left: {
-		backgroundColor: '#EEEEEE',
+		backgroundColor: '#eee',
 		tags: {
-			reliable: '#4527A0',
-			important: '#F50057',
-			unverified: '#FFC107',
+			reliable: '#4527a0',
+			important: '#f50057',
+			unverified: '#fcc107',
 			default: 'grey'
-		}
+		},
+		filter: '#A500E3'
 	},
 	zDepth: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
 };

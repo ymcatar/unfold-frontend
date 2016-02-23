@@ -161,5 +161,113 @@ export default {
 			submitTime: '2016-02-13T01:23:55Z',
 			tags: ['customTag']
 		},
+		//start to insert data
+		{
+			type: 'text',
+			contributor: '02',
+			content: 'Carrie Lam: We still have a lot of room under the decision made by NPC.',
+			submitTime: '2014-10-21T12:03:10Z',
+			tags: ['customTag']
+		},
+		{
+			type: 'text',
+			contributor: '03',
+			content: 'Alex Chow: political issues should be resolved via political means',
+			submitTime: '2014-10-21T11:06:28Z',
+			tags: ['customTag']
+		},
+		{
+			type: 'text',
+			contributor: '03',
+			content: 'Alex Chow: Gov\'t is seemingly not solving political problems politically.',
+			submitTime: '2014-10-21T11:03:00Z',
+			tags: ['customTag']
+		},
+		{
+			type: 'text',
+			contributor: '05',
+			content: 'Alex Chow speaking.',
+			submitTime: '2014-10-21T11:02:05Z',
+			tags: ['customTag']
+		},
+		{
+			type: 'twitter',
+			contributor: '01',
+			content: 'The dialogue starts',
+			submitTime: '2014-10-21T10:10:30Z',
+			tags: ['twitter','important'],
+			source: { 
+				path: 'https://twitter.com/OCLPHK/status/524500530270191618'
+			}
+		},
+		{
+			type: 'text',
+			contributor: '01',
+			content: 'Each speaker can only speak for 5 minutes.',
+			submitTime: '2014-10-21T10:13:05Z',
+			tags: ['customTag'],
+		},
+		{
+			type: 'twitter',
+			contributor: '01',
+			content: '',
+			submitTime: '2014-10-21T10:03:47Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/OCLPHK/status/524500911159115777'
+			}
+		},
+		{
+			type: 'text',
+			contributor: '06',
+			content: 'Leonard Cheng is introducing both sides and his roles.',
+			submitTime: '2014-10-21T10:01:42Z',
+			tags: ['customTag']
+		},
+		{
+			type: 'text',
+			contributor: '05',
+			content: 'guys it\'s about time get prepared for the dialogue',
+			submitTime: '2014-10-21T09:25:14Z',
+			tags: ['customTag'],
+		},
+		{
+			type: 'twitter',
+			contributor: '01',
+			content: '',
+			submitTime: '2014-10-21T08:20:44Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/TheAPJournalist/status/524474283490541568'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '03',
+			content: '',
+			submitTime: '2014-10-21T08:17:49Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/antd/status/524474172492087296'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '01',
+			content: '',
+			submitTime: '2014-10-21T08:12:29Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/TheAPJournalist/status/524472102813171712'
+			}
+		}
+
+
+        
+
+
+		
+
+
 	]
 };

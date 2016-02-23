@@ -18,6 +18,18 @@ html, body, #main {
     border: none;
 }
 ::-webkit-scrollbar {
-display: none;
+    display: none;
 }
-.element { -ms-overflow-style: none; }
+.element {
+    -ms-overflow-style: none;
+}
+body, .smooth-container {
+    scroll-behavior: smooth
+}
+.navbar-text {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+iframe{
+    max-width: 100% !important;
+}

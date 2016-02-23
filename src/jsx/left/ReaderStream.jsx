@@ -17,13 +17,14 @@ const styles = {
 export default class ReaderStream extends React.Component {
 
 	shouldComponentUpdate(nextProps, nextState) {
-        return _.equal(nextProps, this.props);
+        return _.isEqual(nextProps, this.props) === false;
     }
 
 	render() {
 		let contents = this.props.data.map(item => (
 			<UpdateBox
 				key={uuid.v1()}
+				handleFilter={this.props.handleFilter}
 				small={this.props.small}
 				contributor={this.props.contributors.filter(user => user.id === item.contributor)[0]}
 				data={item} />

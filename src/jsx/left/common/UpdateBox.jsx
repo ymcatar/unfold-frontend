@@ -27,6 +27,7 @@ const styles = {
 	},
 	card: {
 		width: '100%',
+		maxWidth: '100%',
 		backgroundColor: 'white',
 		boxShadow: Colors.zDepth,
 		border: '3px #FFFFFF solid',
@@ -81,7 +82,7 @@ export default class UpdateBox extends React.Component {
 			);
 
 		return (
-			<div style={styles.main}>
+			<div style={styles.main} className={`update_${date.format('YYYYMMDDH')}`}>
 				{avatar}
 				<div style={styles.card}>
 					<div style={styles.info}>
@@ -92,7 +93,8 @@ export default class UpdateBox extends React.Component {
 						{content}
 					</div>
 					<div>
-						<Tags data={this.props.data.tags} />
+						<Tags
+							data={this.props.data.tags} handleFilter={this.props.handleFilter} />
 					</div>
 				</div>
 			</div>

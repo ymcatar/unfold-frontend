@@ -5,7 +5,7 @@ import Placeholder from 'config/Placeholder.jsx';
 
 import MediaQuery from 'react-responsive';
 
-import Logo from 'common/Logo.jsx';
+import ReaderTop from 'top/ReaderTop.jsx';
 
 import ReaderStream from 'left/ReaderStream.jsx';
 
@@ -20,6 +20,7 @@ import Translators from 'right/reader/Translators.jsx';
 const styles = {
 	main: {
 		textColor: Colors.right.textColor,
+		paddingTop: '50px',
 		overflow: 'hidden',
 		display: 'flex',
 		alignItems: 'center',
@@ -30,12 +31,13 @@ const styles = {
 		height: '100vh',
 		width: '100%',
 		padding: '10px',
+		paddingBottom: '50px',
 		overflowY: 'scroll'
 	},
 	mid: {
 		backgroundColor: Colors.mid.backgroundColor,
-		width: '80px',
-		minWidth: '80px',
+		width: '70px',
+		minWidth: '70px',
 		height: '100vh',
 		overflowY: 'scroll'
 	},
@@ -43,34 +45,62 @@ const styles = {
 		backgroundColor: Colors.right.backgroundColor,
 		color: Colors.right.color,
 		height: '100vh',
-		minWidth: '350px',
-		width: '320px',
+		minWidth: '300px',
+		width: '300px',
 		padding: '20px',
+		overflowY: 'scroll',
 		boxShadow: Colors.zDepth
+	},
+	filter: {
+		paddingLeft: '20px',
+		color: Colors.left.filter
 	}
 };
 
 export default class ReaderView extends React.Component {
+
+	constructor() {
+		super();
+		this.state = {filter: 'all'};
+		this.handleFilter = this.handleFilter.bind(this);
+		this.getFilteredStream = this.getFilteredStream.bind(this);
+	}
+
+	handleFilter(test) {
+		console.log(test);
+		this.setState({filter: test});
+	}
+
+	getFilteredStream() {
+		if (this.state.filter === 'all')
+			return Placeholder.readerStream;
+		else
+			return Placeholder.readerStream.filter(item => (
+				item.tags && item.tags.indexOf(this.state.filter) >= 0
+			));
+	}
+
 	render() {
 
 		let left = small => (
-			<div style={styles.left}>
+			<div style={styles.left} id="left">
+				<h2 style={styles.filter}>{'#' + this.state.filter}</h2>
 				<ReaderStream
 					small={small}
-					data={Placeholder.readerStream}
+					data={this.getFilteredStream()}
+					handleFilter={this.handleFilter}
 					contributors={Placeholder.contributors} />
 			</div>
 		);
 
 		let mid = (
 			<div style={styles.mid}>
-				<Timeline data={Placeholder.readerStream}/>
+				<Timeline data={this.getFilteredStream()}/>
 			</div>
 		);
 
 		let right = (
 			<div style={styles.right}>
-				<Logo />
 				<EventDetail
 					title={Placeholder.event.title}
 					description={Placeholder.event.description} />
@@ -88,10 +118,15 @@ export default class ReaderView extends React.Component {
 			let m = showMid? mid: null;
 			let r = showRight? right: null;
 			return (
-				<div style={styles.main}>
-					{l}
-					{m}
-					{r}
+				<div>
+					<ReaderTop
+						filter={this.state.filter}
+						handleFilter={this.handleFilter}/>
+					<div style={styles.main}>
+						{l}
+						{m}
+						{r}
+					</div>
 				</div>
 			);
 		};
@@ -103,14 +138,14 @@ export default class ReaderView extends React.Component {
 						{generateBody(true, true, true, true)}
 					</MediaQuery>
 					<MediaQuery minWidth={800} maxWidth={1000}>
-						{generateBody(true, true, true, true)}
+						{generateBody(true, true, true, false)}
 					</MediaQuery>
 					<MediaQuery maxWidth={800}>
-						{generateBody(true, true, false, false)}
+						{generateBody(true, false, false, false)}
 					</MediaQuery>
 				</MediaQuery>
 				<MediaQuery maxDeviceWidth={1224}>
-					{generateBody(true, true, false, false)}
+					{generateBody(true, false, false, false)}
 				</MediaQuery>
 			</div>
 		);

@@ -2,42 +2,58 @@ var gulp = require('gulp');
 
 var browserify = require('browserify');
 var babelify = require('babelify');
+var watchify = require('watchify');
 
 var source = require('vinyl-source-stream');
-var livereload = require('gulp-livereload');
 
 var gutil = require('gulp-util');
-
-var nodemon = require('gulp-nodemon');
 var watch = require('gulp-watch');
 
-gulp.task('jsx', () => {
-	browserify('./src/jsx/App.jsx', { debug: true, paths: ['./src/jsx'] })
-		.transform(babelify, {
-			presets: ["es2015", "react"],
-			ignore: /(bower_components)|(node_modules)/
-		})
-		.bundle()
-		.on("error", err => { gutil.log(err.message); })
-		.pipe(source('bundle.js'))
-		.pipe(gulp.dest('./dist'))
-		.pipe(livereload())
-		.on("end", () => { gutil.log("jsx completed."); });
-});
+var livereload = require('gulp-livereload');
 
-// gulp.task('start', () => {
-// 	nodemon({ script: 'index.js', ext: 'js html' });
-// });
+const staticPath = ['./src/index.html', './src/main.css', './src/noembed.css'];
+
+gulp.task('jsx', () => {
+	var bundler = browserify('./src/jsx/App.jsx', {
+		debug: true,
+		paths: ['./src/jsx'],
+		cache: {},
+		packageCache: {},
+		fullPaths: true
+	}).transform(babelify, {
+		presets: ["es2015", "react"],
+		ignore: /(bower_components)|(node_modules)/
+	});
+
+	function rebundle() {
+		gutil.log('jsx starting.');
+		bundler
+			.bundle()
+			.on('error', err => { gutil.log(err.message); })
+			.pipe(source('bundle.js'))
+			.pipe(gulp.dest('./dist'))
+			.pipe(livereload())
+			.on('end', () => { gutil.log('jsx completed.'); });
+	}
+
+	bundler = watchify(bundler);
+	rebundle();
+	bundler.on('update', rebundle);
+});
 
 gulp.task('static', () => {
-	gulp.src(['./src/index.html', './src/main.css', './src/noembed.css'])
-		.pipe(gulp.dest('./dist'))
-		.pipe(livereload());
+	function process() {
+		gulp
+			.src(staticPath)
+			.pipe(gulp.dest('./dist'))
+			.pipe(livereload());
+	}
+	process();
+	watch(staticPath, process);
 });
 
-gulp.task('watch', () => {
-	watch('./src/jsx/**/*.jsx', () => { gulp.start('jsx'); });
-	watch(['./src/index.html', './src/main.css', './src/noembed.css'], () => { gulp.start('static'); });
+gulp.task('reload', () => {
+	livereload.listen();
 });
 
-gulp.task('default', ['watch', 'jsx', 'static']);
+gulp.task('default', ['jsx', 'static', 'reload']);

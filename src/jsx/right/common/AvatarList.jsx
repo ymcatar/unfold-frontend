@@ -6,7 +6,7 @@ import Avatar from 'right/common/Avatar.jsx';
 const styles = {
 	main: {
 		display: 'flex',
-		width: '300px',
+		width: '100%',
 		flexFlow: 'row wrap',
 		alignContent: 'flex-start'
 	}
