@@ -13,6 +13,12 @@ const styles = {
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center'
+	},
+	header: {
+		color: Colors.stream.header,
+		borderBottom: `3px ${Colors.stream.headerBorder} solid`,
+		padding: '0 10px 5px 10px',
+		textAlign: 'center'
 	}
 };
 
@@ -38,6 +44,7 @@ export default class ReaderStream extends React.Component {
 		));
 		return (
 			<div style={styles.main}>
+				<h2 style={styles.header}>#{this.props.header}</h2>
 				{contents}
 			</div>
 		);

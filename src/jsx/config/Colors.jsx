@@ -32,7 +32,9 @@ export default {
 			unverified: '#fcc107',
 			default: 'grey'
 		},
-		filter: '#555'
+		filter: '#555',
+		header: '#aaa',
+		headerBorder: '#aaa'
 	},
 	zDepth: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
 };
