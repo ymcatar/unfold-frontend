@@ -23,7 +23,12 @@ export default class ReaderStream extends React.Component {
     }
 
 	render() {
-		let contents = this.props.data.map(item => (
+		let data = this.props.data.sort((a, b) => {
+			a = new Date(a.submitTime);
+			b = new Date(b.submitTime);
+			return b - a;
+		});
+		let contents = data.map(item => (
 			<UpdateBox
 				key={uuid.v1()}
 				handleFilter={this.props.handleFilter}

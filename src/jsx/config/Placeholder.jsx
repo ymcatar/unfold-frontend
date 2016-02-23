@@ -79,6 +79,16 @@ export default {
 			}
 		},
 		{
+			type: 'facebook',
+			contributor: '02',
+			content: 'Facebook post.',
+			submitTime: '2016-04-14T08:20:55Z',
+			tags: ['facebook'],
+			source: {
+				path: 'https://www.facebook.com/CucsSecrets/photos/a.332118786890910.1073741828.331985230237599/676256339143818/?type=3'
+			}
+		},
+		{
 			type: 'twitter',
 			contributor: '02',
 			content: 'Latest tweets from John Oilver!',
@@ -196,7 +206,7 @@ export default {
 			content: 'The dialogue starts',
 			submitTime: '2014-10-21T10:10:30Z',
 			tags: ['twitter','important'],
-			source: { 
+			source: {
 				path: 'https://twitter.com/OCLPHK/status/524500530270191618'
 			}
 		},
@@ -213,7 +223,7 @@ export default {
 			content: '',
 			submitTime: '2014-10-21T10:03:47Z',
 			tags: ['twitter'],
-			source: { 
+			source: {
 				path: 'https://twitter.com/OCLPHK/status/524500911159115777'
 			}
 		},
@@ -237,7 +247,7 @@ export default {
 			content: '',
 			submitTime: '2014-10-21T08:20:44Z',
 			tags: ['twitter'],
-			source: { 
+			source: {
 				path: 'https://twitter.com/TheAPJournalist/status/524474283490541568'
 			}
 		},
@@ -247,7 +257,7 @@ export default {
 			content: '',
 			submitTime: '2014-10-21T08:17:49Z',
 			tags: ['twitter'],
-			source: { 
+			source: {
 				path: 'https://twitter.com/antd/status/524474172492087296'
 			}
 		},
@@ -257,16 +267,16 @@ export default {
 			content: '',
 			submitTime: '2014-10-21T08:12:29Z',
 			tags: ['twitter'],
-			source: { 
+			source: {
 				path: 'https://twitter.com/TheAPJournalist/status/524472102813171712'
 			}
 		}
 
 
-        
 
 
-		
+
+
 
 
 	]
