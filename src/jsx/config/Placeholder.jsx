@@ -40,14 +40,13 @@ export default {
 			image: 'res/avatar2.jpg',
 			online: true
 		},
-		// The following is not used yet
 		{
 			id: '06',
-			name: 'Donald Pump',
-			title: 'Manager',
+			name: 'anthony',
+			title: 'Savior',
 			image: 'res/avatar2.jpg',
 			online: true
-		},
+		}
 	],
 	translators: [
 		{
@@ -59,114 +58,898 @@ export default {
 	],
 	readerStream: [
 		{
+			type: 'facebook',
+			contributor: '01',
+			content: 'Facebook API is slow.',
+			submitTime: '2016-02-14T08:21:55Z',
+			tags: ['facebook'],
+			source: {
+				path: 'https://www.facebook.com/CucsSecrets/posts/670557983046987'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '02',
+			content: 'Facebook post.',
+			submitTime: '2016-02-14T08:20:55Z',
+			tags: ['facebook'],
+			source: {
+				path: 'https://www.facebook.com/CucsSecrets/photos/a.332118786890910.1073741828.331985230237599/676256339143818/?type=3'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '02',
+			content: 'Latest tweets from John Oilver!',
+			submitTime: '2016-02-14T08:18:55Z',
+			tags: ['testingTwitter'],
+			source: {
+				path: 'https://twitter.com/LastWeekTonight/status/699240904830402560'
+			}
+		},
+		{
+			type: 'text',
+			contributor: '01',
+			content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			submitTime: '2016-02-14T07:10:55Z',
+			tags: ['important']
+		},
+		{
 			type: 'text',
 			contributor: '02',
-			content: 'Carrie Lam: We still have a lot of room under the decision made by NPC.',
-			submitTime: '2014-10-21T12:03:10Z',
-			tags: ['customTag']
+			content: 'Praesent metus orci, suscipit ac condimentum a, facilisis finibus ex.',
+			submitTime: '2016-02-14T07:05:55Z',
+			tags: ['reliable', 'important']
 		},
 		{
-			type: 'text',
-			contributor: '03',
-			content: 'Alex Chow: political issues should be resolved via political means',
-			submitTime: '2014-10-21T11:06:28Z',
-			tags: ['customTag']
-		},
-		{
-			type: 'text',
-			contributor: '03',
-			content: 'Alex Chow: Gov\'t is seemingly not solving political problems politically.',
-			submitTime: '2014-10-21T11:03:00Z',
-			tags: ['customTag']
-		},
-		{
-			type: 'text',
-			contributor: '05',
-			content: 'Alex Chow speaking.',
-			submitTime: '2014-10-21T11:02:05Z',
-			tags: ['customTag']
-		},
-		{
-			type: 'twitter',
+			type: 'flickr',
 			contributor: '01',
-			content: 'The dialogue starts',
-			submitTime: '2014-10-21T10:10:30Z',
-			tags: ['twitter','important'],
+			content: 'Flickr?',
+			submitTime: '2016-02-14T06:13:55Z',
 			source: {
-				path: 'https://twitter.com/OCLPHK/status/524500530270191618'
+				path: 'https://www.flickr.com/photos/mingz/15368541196/'
 			}
 		},
 		{
-			type: 'text',
-			contributor: '01',
-			content: 'Each speaker can only speak for 5 minutes.',
-			submitTime: '2014-10-21T10:13:05Z',
-			tags: ['customTag'],
-		},
-		{
-			type: 'twitter',
-			contributor: '01',
-			content: '',
-			submitTime: '2014-10-21T10:03:47Z',
-			tags: ['twitter'],
+			type: 'imgur',
+			contributor: '02',
+			content: 'Dank meme!',
+			submitTime: '2016-02-14T04:23:55Z',
 			source: {
-				path: 'https://twitter.com/OCLPHK/status/524500911159115777'
-			}
-		},
-		{
-			type: 'text',
-			contributor: '06',
-			content: 'Leonard Cheng is introducing both sides and his roles.',
-			submitTime: '2014-10-21T10:01:42Z',
-			tags: ['customTag']
-		},
-		{
-			type: 'text',
-			contributor: '05',
-			content: 'guys it\'s about time get prepared for the dialogue',
-			submitTime: '2014-10-21T09:25:14Z',
-			tags: ['customTag'],
-		},
-		{
-			type: 'twitter',
-			contributor: '01',
-			content: '',
-			submitTime: '2014-10-21T08:20:44Z',
-			tags: ['twitter'],
-			source: {
-				path: 'https://twitter.com/TheAPJournalist/status/524474283490541568'
+				path: 'http://imgur.com/JoZNRyo'
 			}
 		},
 		{
 			type: 'twitter',
 			contributor: '03',
-			content: '',
-			submitTime: '2014-10-21T08:17:49Z',
-			tags: ['twitter'],
+			content: 'Wow! Donald is really annoying!',
+			tags: ['important'],
+			submitTime: '2016-02-14T03:22:55Z',
 			source: {
-				path: 'https://twitter.com/antd/status/524474172492087296'
+				path: 'https://twitter.com/realDonaldTrump/status/698752909236969472'
 			}
 		},
 		{
-			type: 'twitter',
-			contributor: '01',
-			content: '',
-			submitTime: '2014-10-21T08:12:29Z',
-			tags: ['twitter'],
+			type: 'youtube',
+			contributor: '02',
+			content: 'YouTube embed video!',
+			tags: ['youtube'],
+			submitTime: '2016-02-14T03:22:55Z',
 			source: {
-				path: 'https://twitter.com/TheAPJournalist/status/524472102813171712'
+				path: 'https://www.youtube.com/watch?v=rHFOwlMCdto'
 			}
 		},
-		////
-		//
+		{
+			type: 'text',
+			contributor: '01',
+			content: 'Integer nisl est, sagittis eget lacus at, maximus suscipit dolor. Integer a laoreet nisi. Nulla finibus metus nec nisl ultricies, vel pulvinar erat efficitur. Mauris viverra pharetra neque, sed ornare nulla sollicitudin non. In convallis efficitur est quis mattis. Donec iaculis velit sed neque pharetra, nec fringilla mauris pretium. Proin lacinia auctor dolor nec tempor. Aliquam eleifend cursus consectetur. Fusce ex ante, imperdiet ut enim in, condimentum tempus velit.',
+			submitTime: '2016-02-14T03:10:55Z',
+			tags: []
+		},
+		{
+			type: 'text',
+			contributor: '01',
+			content: 'Lorem ipsum dolor sit amet, et accusata theophrastus duo. Sed alia saepe in. Ius et stet partem apeirian, sed dicta prodesset scripserit ea. Qui an congue tractatos, vix ad harum quaeque laoreet, his omnis concludaturque an. Et nec utinam pertinacia moderatius, dicta pertinacia accommodare mea in.\n\nEt idque impedit fabellas his, adhuc ignota repudiandae ei vix, pro at aliquam deleniti partiendo. Vis an quis essent, commodo atomorum abhorreant ad quo, feugiat referrentur repudiandae est at. Sit cu autem lorem pericula. Dicat persius mel ei, facer semper deleniti per cu. Id tale alia constituto per, oporteat facilisis eos in.\n\nLiber adipiscing eos ei, choro soluta duo ne. No magna solum vix, eu vis ridens voluptua. Ea qui esse blandit invenire. Eu has zril laudem dolorum, imperdiet interesset ne has. Vel assum ornatus expetendis ad, quod veri constituam duo ea.\n\nMucius explicari quaerendum an qui, no nihil conceptam theophrastus per. Dolorem accusata sapientem ne pri. Fuisset tacimates constituto mel ea, mea molestie euripidis id, eam probo munere verterem id. Cu vel lorem malis nonumy, has an case splendide, in eum detraxit menandri voluptaria. Possim voluptatum vel at, has indoctum salutandi consequuntur ex, sed partem sadipscing ei.',
+			submitTime: '2016-02-14T02:23:55Z',
+			tags: []
+		},
+		//start to insert data
+		////day 27
 
+		////day 28 finished 
+		{	
+			type:'text',
+			contributor: '06',
+			content:'2352, police are gathering at Wan Chai exhibition center as more protesters increasing in that area.',
+			submitTime:'2014-09-30T15:59:22Z',
+			tags:['WanChai'],
+		},
+		{
+			type: 'facebook',
+			contributor: '05',
+			content: '[23:05] Breaking: Protesters seemed to be occupying Canton Road, Tsim Sha Tsui.',
+			submitTime: '2014-09-30T15:08:19Z',
+			tags: ['facebook','TsimShaTsui'],
+			source: { 
+				path: 'https://www.facebook.com/socrec/photos/982100198483578/'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '02',
+			content: '',
+			submitTime: '2014-09-30T14:15:44Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/stegersaurus/status/516953899001856000',
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '05',
+			content: '2200, dangerous sharp object spotted by HKFS volunteers near the venue. Already removed.',
+			submitTime: '2014-09-30T14:15:19Z',
+			tags: ['facebook','Central'],
+			source: { 
+				path: 'https://www.facebook.com/hkfs1958/photos/a.10151401759847872.1073741825.269056797871/10152472622737872/'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '05',
+			content: '2210, good atmosphere in Causeway Bay SOGO.',
+			submitTime: '2014-09-30T14:11:19Z',
+			tags: ['facebook','CausewayBay'],
+			source: { 
+				path: 'https://www.facebook.com/UnitedSocialPress/photos/a.625319927500944.1073741845.579827748716829/831656010200667/'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '05',
+			content: '2200, lawmaker Wong Yuk Man @ Mong Kok giving speech',
+			submitTime: '2014-09-30T14:08:19Z',
+			tags: ['facebook','Mongkok'],
+			source: { 
+				path: 'https://www.facebook.com/passiontimes/photos/a.422169814512858.102977.420361564693683/765838946812608/'
+			}
+		},
+		{	
+			type:'text',
+			contributor: '05',
+			content:'2113, Causeway BayMTR station Exit F, protesters setup up obstacles.',
+			submitTime:'2014-09-30T13:22:22Z',
+			tags:[],
+		},
+		{
+			type: 'twitter',
+			contributor: '02',
+			content: '',
+			submitTime: '2014-09-30T13:14:44Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/youngposthk/status/516938225143668736',
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '06',
+			content: '',
+			submitTime: '2014-09-30T13:11:44Z',
+			tags: ['twitter','WanChai'],
+			source: { 
+				path: 'https://twitter.com/freakingcat/status/516937724004020225',
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '06',
+			content: '',
+			submitTime: '2014-09-30T13:10:44Z',
+			tags: ['twitter','Admiralty'],
+			source: { 
+				path: 'https://twitter.com/freakingcat/status/516937921257947136',
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '06',
+			content: '',
+			submitTime: '2014-09-30T13:07:44Z',
+			tags: ['twitter','CausewayBay'],
+			source: { 
+				path: 'https://twitter.com/olivesophierose/status/516936747570049024',
+			}
+		},
+		{	
+			type:'text',
+			contributor: '01',
+			content:`[20:55] New protest fronts may be emerging. Tonight, protest organisers announced that the Sheung Shui MTR Station had been "occupied" but did not give details.`,
+			submitTime:'2014-09-30T13:06:22Z',
+			tags:[],
+		},
+		{
+			type: 'twitter',
+			contributor: '04',
+			content: '',
+			submitTime: '2014-09-30T13:04:44Z',
+			tags: ['twitter','CausewayBay'],
+			source: { 
+				path: 'https://twitter.com/marcosharpy/status/516936109243121664',
+			}
+		},
+		{//cant post the photo
+			type: 'imgur',
+			contributor: '05',
+			content: 'Cambodia newspaper headlines.',
+			submitTime: '2014-09-30T12:04:13Z',
+			source: {
+				path: 'http://i.imgur.com/oSQSyeU.jpg'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '02',
+			content: '',
+			submitTime: '2014-09-30T12:03:44Z',
+			tags: ['twitter','Central'],
+			source: { 
+				path: 'https://twitter.com/youngposthk/status/516921176350662656',
+			}
+		},
+		{	
+			type:'text',
+			contributor: '01',
+			content:`[7:25] Sir Richard Ottaway of the UK Parliament Foreign Affairs Select Committee tells the BBC that they will continue to conduct an inquiry into Hong Kong, which would include looking at the agreement signed between Britain and China regarding Hong Kong. On China's demand that other countries stay out, he replied: "I don't agree with them... to say Britain has no role in this is quite ridiculous really."`,
+			submitTime:'2014-09-30T11:28:22Z',
+			tags:[],
+		},
+		{
+			type: 'twitter',
+			contributor: '06',
+			content: '',
+			submitTime: '2014-09-30T11:26:44Z',
+			tags: ['twitter','Admiralty'],
+			source: { 
+				path: 'https://twitter.com/OCLPHK/status/516911734729093120',
+			}
+		},
+		{	
+			type:'text',
+			contributor: '01',
+			content:`[7:15] Student leaders Lester Shum and Agnes Chow addressed crowds in Central, thanking all those who joined, saying the turnout was a surprise.
+“We are not only hoping for CY [Leung] to step down but we are also hoping for democratic development in Hong Kong – that we should have civil nomination and universal suffrage,” they said.
+Chow, whose long, pink hair was soaked in sweat, urged the public to come out and join the protests to tomorrow, a public holiday and the anniversary of the Communist Party’s founding. Chow said she did not know how long the civil disobedience action would last.
+In a warning to Hong Kong chief executive Leung, she said: “Where there are hundreds of thousands or even over millions of people coming out, you should respect the opinion of Hong Kong people and step down. GGive Hong Kong people a real democratic system with civil nomination."`,
+			submitTime:'2014-09-30T11:26:22Z',
+			tags:[],
+		},
+		{
+			type: 'twitter',
+			contributor: '02',
+			content: '',
+			submitTime: '2014-09-30T11:25:44Z',
+			tags: ['twitter','CausewayBay','Central'],
+			source: { 
+				path: 'https://twitter.com/youngposthk/status/516911102311944192'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '06',
+			content: '',
+			submitTime: '2014-09-30T11:17:22Z',
+			tags: ['twitter','CausewayBay'],
+			source: { 
+				path: 'https://twitter.com/AgnesBun/status/516909337302679553'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '05',
+			content: '',
+			submitTime: '2014-09-30T11:11:22Z',
+			tags: ['twitter','Mongkok'],
+			source: { 
+				path: 'https://twitter.com/youngposthk/status/516905921339858945'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '06',
+			content: '',
+			submitTime: '2014-09-30T10:35:25Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/DimiSevastopulo/status/516896485099585538'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '04',
+			content: '',
+			submitTime: '2014-09-30T10:05:25Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/youngposthk/status/516889904999972864'
+			}
+		},
+		{	
+			type:'text',
+			contributor: '01',
+			content:`[5:45] Hong Kong police hold a press conference saying they never meant to “open fire” on protesters on Sunday, when officers unleashed 87 rounds of tear gas.
+Pressed on whether police planned to shoot rubber bullets that day, Police Chief Superintendent Steve Hui Chun-tak, from the police public relations bureau, refused to answer directly, only stressing that they “never intended to fire any shots”.
+Hui suggested a warning sign held up by officers before they shot tear gas may have caused confusion.
+“The flag has two sides; the side in black says ‘warning: tear smoke’ while the other side says ‘disperse or we fire’,” he said. “We never meant to show [the other side of the flag] to the crowd in the front and we had absolutely no intention to open fire."
+Only pepper spray, batons and tear gas were used, he said.`,
+			submitTime:'2014-09-30T10:03:22Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '01',
+			content:'[5:59] There are several reports of government supporters going down to the protests to remonstrate with people there.',
+			submitTime:'2014-09-30T10:01:22Z',
+			tags:[],
+		},
+		{
+			type: 'twitter',
+			contributor: '04',
+			content: '',
+			submitTime: '2014-09-30T09:54:55Z',
+			tags: ['twitter','Central'],
+			source: { 
+				path: 'https://twitter.com/youngposthk/status/516882423171518464'
+			}
+		},
+		{	
+			type:'text',
+			contributor: '02',
+			content:'1731 Chan Kin Man: The two demands proposed earlier came from the majority of slogans which protesters chanted: "CY Leung step down" and "we want genuine universal suffrage".',
+			submitTime:'2014-09-30T09:32:56Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '02',
+			content:'1700 Police and Fire Services press conference ended. OCLP press conference will follow at 1730 hours.',
+			submitTime:'2014-09-30T09:02:56Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '02',
+			content:'1636 Fire Services Department representative claimed emergency services affected by protests.',
+			submitTime:'2014-09-30T08:37:56Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '02',
+			content:'1636 Fire Services Department representative takes turn to speak in the press conference.',
+			submitTime:'2014-09-30T08:36:56Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '02',
+			content:'1633 Police press conference: ~3670 meters of roads blocked in all protest sites.',
+			submitTime:'2014-09-30T08:34:56Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '02',
+			content:'1629 Police representative showing a map of the protests in the press conference.',
+			submitTime:'2014-09-30T08:29:56Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '02',
+			content:'[1615] Press Conference by Police and Fire Service Department starts.',
+			submitTime:'2014-09-30T08:19:56Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '05',
+			content:'Local media are reporting that the police will speak to reporters at 4pm local time. This will be followed by a public statement due to be issued by student activists and Occupy Central at 4.30pm.',
+			submitTime:'2014-09-30T08:10:56Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '03',
+			content:'The Police Force and Fire Services Department will hold a press conference in 16:00.',
+			submitTime:'2014-09-30T08:07:56Z',
+			tags:[],
+		},
+		{
+			type: 'imgur',
+			contributor: '06',
+			content: '1559 Gloucester Road, Admiralty.',
+			submitTime: '2014-09-30T08:05:13Z',
+			source: {
+				path: 'http://imgur.com/Oqm4KZW'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '05',
+			content: '1450, Mongkok. >1000 protesters here',
+			submitTime: '2014-09-30T07:13:19Z',
+			tags: ['facebook','Mongkok'],
+			source: { 
+				path: 'https://www.facebook.com/inmediahk/photos/pcb.748548795182161/748548455182195/'
+			}
+		},
+		{	
+			type:'text',
+			contributor: '03',
+			content:'**Hospital Authority (HA)** clarifies that earlier rumours about a pregnant woman failing to reach hospital on time due to protests were untrue',
+			submitTime:'2014-09-30T07:05:56Z',
+			tags:[],
+		},
+		{
+			type: 'twitter',
+			contributor: '02',
+			content: '',
+			submitTime: '2014-09-30T06:54:55Z',
+			tags: ['twitter','Admiralty'],
+			source: { 
+				path: 'https://twitter.com/OCLPHK/status/516843601406349312'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '05',
+			content: '1445, Admiralty. Cops nowhere to be seen except outside Chief Executive\'s office.',
+			submitTime: '2014-09-30T06:47:18Z',
+			tags: ['facebook','Admiralty'],
+			source: { 
+				path: 'https://www.facebook.com/dashhk/photos/a.650935051654975.1073741829.430660383682444/701764646572015/'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '05',
+			content: '1400, First-aid station now urgently need anyone with knowledge on how to perform first-aid.',
+			submitTime: '2014-09-30T06:10:18Z',
+			tags: ['facebook','Central'],
+			source: { 
+				path: 'https://www.facebook.com/928hkbucommunewscenter/posts/715183841863089'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '02',
+			content: '1328, Nathan Road, Mongkok.',
+			submitTime: '2014-09-30T06:08:18Z',
+			tags: ['facebook','Mongkok'],
+			source: { 
+				path: 'https://www.facebook.com/hk926/photos/a.351496551667942.1073741827.351486368335627/352734098210854/'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '06',
+			content: '',
+			submitTime: '2014-09-30T05:06:18Z',
+			tags: ['twitter','CausewayBay','Central'],
+			source: { 
+				path: 'https://twitter.com/youngposthk/status/516816132808790017'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '05',
+			content: '',
+			submitTime: '2014-09-30T04:39:18Z',
+			tags: ['twitter','CausewayBay'],
+			source: { 
+				path: 'https://twitter.com/SCMP_News/status/516801065631907841'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '02',
+			content: '',
+			submitTime: '2014-09-30T04:30:32Z',
+			tags: ['twitter','WanChai'],
+			source: { 
+				path: 'https://twitter.com/youngposthk/status/516807076203360256'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '05',
+			content: '',
+			submitTime: '2014-09-30T03:40:37Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/youngposthk/status/516793275886223360'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '02',
+			content: '1122, Admiralty. Police blocked Tim Wa Avenue.',
+			submitTime: '2014-09-30T03:08:18Z',
+			tags: ['facebook','Admiralty'],
+			source: { 
+				path: 'https://www.facebook.com/hk926/photos/a.351496551667942.1073741827.351486368335627/352712374879693/'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '03',
+			content: '',
+			submitTime: '2014-09-30T03:13:29Z',
+			tags: ['twitter','Admiralty'],
+			source: { 
+				path: 'https://twitter.com/youngposthk/status/516787673885708289'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '06',
+			content: 'Chan Kin Man asked supporters not to bring fresh food for supplies.',
+			submitTime: '2014-09-30T03:08:18Z',
+			tags: ['facebook'],
+			source: { 
+				path: 'https://www.facebook.com/Sanpoyanpage/photos/pcb.305574666310163/305574632976833/'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '06',
+			content: '1105, Mongkok. ~200 people here.',
+			submitTime: '2014-09-30T03:08:18Z',
+			tags: ['facebook','Mongkok'],
+			source: { 
+				path: 'https://www.facebook.com/inmediahk/photos/a.321611837875861.67317.200954406608272/748487155188325/'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '01',
+			content: '',
+			submitTime: '2014-09-30T02:34:55Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/OCLPHK/status/516777690783690752'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '06',
+			content: '1000, about 300 people at Admiralty. Police are starting to form formation. Volunteers need to stop working and move to Admiralty to fill up Admiralty.',
+			submitTime: '2014-09-30T02:33:26Z',
+			tags: ['facebook'],
+			source: { 
+				path: 'https://www.facebook.com/928hkbucommunewscenter/posts/715138295200977'
+			}
+		},
+		{	
+			type:'text',
+			contributor: '05',
+			content:`Scholarism has once again repeated their four demands on Facebook:
+- Establish civil nomination as a valid nomination method for the 2017 Chief Executive Election,
+- Start to reform of the Legislative Council (LEGCO), abolish all functional constituency seats of the LEGCO,
+- Make an official apology to the Hong Kong people, withdraw the injustice resolution concerning Hong Kong political reform, Or else, 
+- principal officials responsible for the political reform including CY Leung, Carrie Lam, Rimsky Yuen and Tam Chi-yuen should take the blame and resign.`,
+			submitTime:'2014-09-30T02:25:47Z',
+			tags:['Scholarism'],
+		},
+		{
+			type: 'facebook',
+			contributor: '06',
+			content: '(10:06) All exits in Admiralty MTR station have been opened.\nSource: JMSC Reporter Laura Chung',
+			submitTime: '2014-09-30T02:17:26Z',
+			tags: ['facebook'],
+			source: { 
+				path: 'https://www.facebook.com/hkverified/photos/641507725967055/'
+			}
+		},
+		{	
+			type:'text',
+			contributor: '04',
+			content:'1000, Passion Times once again urges people to go to Admiralty to fight against the clearance by the police.',
+			submitTime:'2014-09-30T02:00:31Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '04',
+			content:'1000, CY Leung\'s press conference ended."',
+			submitTime:'2014-09-30T02:00:31Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '04',
+			content:'0956, CY Leung said "I treated my election campaign in 2012 like a campaign in a universal sufferage."',
+			submitTime:'2014-09-30T01:57:11Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '03',
+			content:'<09:54> CY is now taking questions from reporters',
+			submitTime:'2014-09-30T01:55:11Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '05',
+			content:'CY: We highly value and respect the police\'s professional opinion',
+			submitTime:'2014-09-30T01:49:11Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '05',
+			content:'CY: I, and the government, respect legal methods of expression, incl. political opinions, but hope that they [protestors] watch for their own safety',
+			submitTime:'2014-09-30T01:46:53Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '05',
+			content:'<09:41> CY Leung is currently making a statement [TVB]',
+			submitTime:'2014-09-30T01:42:33Z',
+			tags:[],
+		},
+		{
+			type: 'facebook',
+			contributor: '06',
+			content: '(09:11) Police are still standing guard at the Arsenal Street barrier blocking off the highway. The atmosphere is currently peaceful, with several protesters still present at the scene.\nSource: HKU Student Tong Chiu-Yu, Department of Politics and Public Administration',
+			submitTime: '2014-09-30T01:38:29Z',
+			tags: ['facebook'],
+			source: { 
+				path: 'https://www.facebook.com/hkverified/photos/641498585967969/'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '01',
+			content: '',
+			submitTime: '2014-09-30T01:34:40Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/UmbrellaInfoCen/status/516756411217223680'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '06',
+			content: '',
+			submitTime: '2014-09-30T01:23:40Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/youngposthk/status/516758022425559040'
+			}
+		},
+		{	
+			type:'text',
+			contributor: '05',
+			content:'Pro-democracy groups demand unconditional release of student occupiers of CivicSquare. Police hold 3 top leaders for nearly 2 days.\nSource: Occupy Central (Twitter)',
+			submitTime:'2014-09-30T01:22:41Z',
+			tags:[],
+		},
+		{	
+			type:'text',
+			contributor: '05',
+			content:'0834, there were only less than a hundred protesters in Causeway Bay, but they are still occupying all car lanes outside SOGO.',
+			submitTime:'2014-09-30T00:47:41Z',
+			tags:['CausewayBay'],
+		},
+		{	
+			type:'text',
+			contributor: '05',
+			content:'0808, crowds in Mong Kok began to clean up the street.',
+			submitTime:'2014-09-30T00:10:41Z',
+			tags:['MongKok'],
+		},
+		{	
+			type:'text',
+			contributor: '02',
+			content:'0757, Admiralty MTR station exit A reopen',
+			submitTime:'2014-09-30T00:02:41Z',
+			tags:['Admiralty'],
+		},
+		{
+			type: 'twitter',
+			contributor: '06',
+			content: '',
+			submitTime: '2014-09-29T23:45:10Z',
+			tags: ['twitter','Admiralty'],
+			source: { 
+				path: 'https://twitter.com/fion_li/status/516733012164100098'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '06',
+			content: '',
+			submitTime: '2014-09-29T23:30:10Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/jackycwong/status/516722321160024064'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '02',
+			content: '',
+			submitTime: '2014-09-29T22:55:58Z',
+			tags: ['twitter','MongKok'],
+			source: { 
+				path: 'https://twitter.com/hkdemonow/status/516709870976778240'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '01',
+			content: '',
+			submitTime: '2014-09-29T21:51:01Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/namelessinchina/status/516705778967666689'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '06',
+			content: '',
+			submitTime: '2014-09-29T21:41:01Z',
+			tags: ['twitter','MongKok'],
+			source: { 
+				path: 'https://twitter.com/BWaiC/status/516702182960144385'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '06',
+			content: '',
+			submitTime: '2014-09-29T20:40:01Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/andrewcnn/status/516687880609992704'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '03',
+			content: '<04:32> CausewayBay. All is calm there',
+			submitTime: '2014-09-29T20:38:01Z',
+			tags: ['twitter','CausewayBay'],
+			source: { 
+				path: 'https://twitter.com/harbourtimes/status/516686864468545537'
+			}
+		},
+		{	
+			type:'text',
+			contributor: '02',
+			content:'Scholarism urge resident near Admiralty, Causeway Bay and Mong Kok to join the protest, saying the coming hours are the prime time of police\'s clearance operation.',
+			submitTime:'2014-09-29T19:53:41Z',
+			tags:['Scholarism'],
+		},
+		{
+			type: 'facebook',
+			contributor: '06',
+			content: '[02:52] Police officers arrived at Mong Kok car incident scene.',
+			submitTime: '2014-09-29T19:06:52Z',
+			tags: ['facebook'],
+			source: { 
+				path: 'https://www.facebook.com/928hkbucommunewscenter/photos/714992728548867/'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '05',
+			content: 'More coverage on the Mong Kok car incident.',
+			submitTime: '2014-09-29T18:12:52Z',
+			tags: ['facebook'],
+			source: { 
+				path: 'https://www.facebook.com/mingpaoinews/photos/a.498214740238666.1073741826.498203090239831/773050169421787/'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '05',
+			content: '0201, crowd at Lockhart Road getting prepared for defense.',
+			submitTime: '2014-09-29T18:06:52Z',
+			tags: ['facebook'],
+			source: { 
+				path: 'https://www.facebook.com/inmediahk/posts/748161785220862'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '03',
+			content: '',
+			submitTime: '2014-09-29T18:05:01Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/jasmine_siu/status/516647350597459968'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '02',
+			content: '',
+			submitTime: '2014-09-29T17:54:11Z',
+			tags: ['twitter','WanChai'],
+			source: { 
+				path: 'https://twitter.com/VivienneChow/status/516647080698212353'
+			}
+		},
+		{
+			type: 'imgur',
+			contributor: '06',
+			content: 'Birds eyes view of the gathering outside sogo. Sorry for low quality photos. Atmosphere mostly calm. Announcements are made advising what to do in case of police storming and water canons. Moral remains high.',
+			submitTime: '2014-09-29T17:44:13Z',
+			source: {
+				path: 'http://i.imgur.com/4neVabPh.jpg'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '05',
+			content: '',
+			submitTime: '2014-09-29T17:22:44Z',
+			tags: ['twitter','CausewayBay'],
+			source: { 
+				path: 'https://twitter.com/hkdemonow/status/516638731613126657'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '01',
+			content: '',
+			submitTime: '2014-09-29T17:01:44Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/frostyhk/status/516633958000234498'
+			}
+		},
+		{
+			type: 'twitter',
+			contributor: '01',
+			content: `FYI the HK police uses flags of different colours to warn protesters.
+			Flags we have seen include:
+- 'Yellow flag': this is an unlawful assembly, please leave (something like that)
+- 'Red flag': stop charging or police will use violence
+- 'Black flag': warning, tear gas
+- 'Orange flag': back down or we'll shoot (bullet type not specified)
+			`,
+			submitTime: '2014-09-29T16:45:33Z',
+			tags: ['twitter'],
+			source: { 
+				path: 'https://twitter.com/frostyhk/status/516629239299207168'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '03',
+			content: '2335 Protesters surrounded police HQ.',
+			submitTime: '2014-09-29T16:05:52Z',
+			tags: ['facebook'],
+			source: { 
+				path: 'https://www.facebook.com/hkfs1958/photos/a.433111302871.207569.269056797871/10152470885812872/'
+			}
+		},
+		
+		////day 29 finished
 		{
 			type: 'facebook',
 			contributor: '02',
 			content: '2337, Causeway Bay.',
 			submitTime: '2014-09-29T15:40:55Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/inmediahk/photos/pcb.748080998562274/748080875228953/'
 			}
 		},
@@ -185,16 +968,16 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T15:23:20Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/scarychica/status/516604567119609856'
 			}
 		},
-		{
+		{	
 			type:'text',
 			contributor: '02',
 			content:'2250, Central. Despite the crowds around the war memorial in Central, not one person is standing or sitting on the grass. There\'s a new cardboard sign over the usual sign telling people not to go on the grass. (Source: SCMP)',
 			submitTime:'2014-09-29T15:14:01Z',
-			tags:['customTag'],
+			tags:[],
 		},
 		{
 			type: 'facebook',
@@ -202,7 +985,7 @@ export default {
 			content: '2211, Admiralty. Joshua Wong and co thank citizens for their support.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T14:22:58Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/longhairhk/photos/a.79833563252.78031.10795878252/10152440420878253/'
 			}
 		},
@@ -212,7 +995,7 @@ export default {
 			content: '[22:12] Police retreated forces in Tamar Park and Civic Square, so citizens are now free to move in and out. The only defense line in the area is at Government HQ.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T14:22:48Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/928hkbucommunewscenter/posts/714906608557479'
 			}
 		},
@@ -222,7 +1005,7 @@ export default {
 			content: '[22:11] Central.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T14:13:48Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/VJMediaHK/photos/592555580854572/'
 			}
 		},
@@ -232,7 +1015,7 @@ export default {
 			content: '2200, \'Democracy wall\' in Mong Kok.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T14:09:43Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/socrec/photos/a.593110604049208.152616.160696287290644/981439565216308/'
 			}
 		},
@@ -242,7 +1025,7 @@ export default {
 			content: '[22:00] Barricades on Nathan Road, Yau Ma Tei.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T14:07:43Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/socrec/photos/981437805216484/'
 			}
 		},
@@ -252,7 +1035,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T13:59:22Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/freakingcat/status/516587848506408960'
 			}
 		},
@@ -262,7 +1045,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T13:50:44Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/tomgrundy/status/516584254403129345'
 			}
 		},
@@ -272,7 +1055,7 @@ export default {
 			content: '2146, vans continue to carry necessities to protest areas near Admiralty.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T13:48:13Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/longhairhk/photos/a.79833563252.78031.10795878252/10152440382173253/'
 			}
 		},
@@ -282,7 +1065,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T13:46:22Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/varsitycuhk/status/516584018809077760'
 			}
 		},
@@ -292,7 +1075,7 @@ export default {
 			content: '2134, Causeway Bay.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T13:35:13Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/inmediahk/photos/a.321611837875861.67317.200954406608272/748012625235778/'
 			}
 		},
@@ -302,7 +1085,7 @@ export default {
 			content: '2130 BMWs help transport necessities.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T13:32:13Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/inmediahk/photos/a.321611837875861.67317.200954406608272/748012625235778/'
 			}
 		},
@@ -312,8 +1095,8 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T12:57:33Z',
 			tags: ['twitter'],
-			source: {
-				path: 'https://twitter.com/hkdemonow/status/516571697726898177/photo/1'
+			source: { 
+				path: 'https://twitter.com/hkdemonow/status/516571697726898177'
 			}
 		},
 		{
@@ -322,7 +1105,7 @@ export default {
 			content: '1900, The spokesman at Admiralty announced that the police had already set out plans along Arsenal Street, Wan Chai. He urged everyone to be ready for defense at Lippo Centre.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T12:25:13Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/hkverified/photos/a.640888592695635.1073741829.640622619388899/641195412664953/'
 			}
 		},
@@ -332,7 +1115,7 @@ export default {
 			content: '2017 Police reinforcement spotted at Lung Wo Road, near PLA headquarters, Admiralty. No action reported so far.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T12:23:13Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/hk926/photos/a.351496551667942.1073741827.351486368335627/352502804900650/'
 			}
 		},
@@ -342,7 +1125,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T11:39:29Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/hkdemonow/status/516552761719418880'
 			}
 		},
@@ -352,7 +1135,7 @@ export default {
 			content: '1845, Exit E of Causeway Bay Station blocked.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T11:26:53Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/passiontimes/photos/a.422169814512858.102977.420361564693683/764862700243566/'
 			}
 		},
@@ -362,7 +1145,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T11:24:29Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/hkdemonow/status/516548650328403968'
 			}
 		},
@@ -372,7 +1155,7 @@ export default {
 			content: '[19:08] Causeway Bay',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T11:14:53Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/hk926/photos/a.351496551667942.1073741827.351486368335627/352484188235845/?type=1&theater'
 			}
 		},
@@ -382,7 +1165,7 @@ export default {
 			content: '1852, Mong Kok.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T10:52:53Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/UnitedSocialPress/photos/a.579843072048630.1073741826.579827748716829/831126766920258/'
 			}
 		},
@@ -392,7 +1175,7 @@ export default {
 			content: '1830, Admiralty.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T10:45:53Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/UnitedSocialPress/photos/a.625319927500944.1073741845.579827748716829/831124213587180/'
 			}
 		},
@@ -402,7 +1185,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T10:03:29Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/jgriffiths/status/516527526038884353'
 			}
 		},
@@ -416,12 +1199,12 @@ export default {
 				path: 'https://www.youtube.com/watch?v=6rBZnr_Lmuk'
 			}
 		},
-		{
+		{	
 			type:'text',
 			contributor: '02',
 			content:'1714 Protesters still blocking exits D, E and F of Causeway Bay Station.',
 			submitTime:'2014-09-29T09:19:21Z',
-			tags:['customTag'],
+			tags:[],
 		},
 		{
 			type: 'twitter',
@@ -429,7 +1212,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T09:17:33Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/BBCBreaking/status/516514059215450113'
 			}
 		},
@@ -439,7 +1222,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T09:16:29Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/varsitycuhk/status/516513296292511744'
 			}
 		},
@@ -452,12 +1235,12 @@ export default {
 				path: 'https://www.flickr.com/photos/tomaswiik/21231011934/'
 			}
 		},
-		{
+		{	
 			type:'text',
 			contributor: '06',
 			content:'More people are flowing into Mong Kok to join the fun after work and school.',
 			submitTime:'2014-09-29T09:01:21Z',
-			tags:['customTag'],
+			tags:[],
 		},
 		{
 			type: 'facebook',
@@ -465,37 +1248,37 @@ export default {
 			content: '*Breaking*: Another protest site at Connaught Road Central (outside Statue Square) is being set up.',
 			tags: ['facebook'],
 			submitTime: '2014-09-29T08:50:53Z',
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/hongkongeconomicjournal/photos/a.141543665886264.18956.139543009419663/900276943346262/?type=1&theater'
 			}
 		},
-		{
+		{	
 			type:'text',
 			contributor: '02',
 			content:'Police still claiming defence lines were heavily charged. And tear gas were the last alternative.',
 			submitTime:'2014-09-29T08:49:21Z',
-			tags:['customTag'],
+			tags:[],
 		},
-		{
+		{	
 			type:'text',
 			contributor: '04',
 			content:'16:45, Police claimed that protesters were "equipped to impact the policemen."',
 			submitTime:'2014-09-29T08:47:53Z',
-			tags:['customTag'],
+			tags:[],
 		},
-		{
+		{	
 			type:'text',
 			contributor: '05',
 			content:'Police: 87 tear gas bombs deployed (in 9 different locations).',
 			submitTime:'2014-09-29T08:47:33Z',
-			tags:['customTag'],
+			tags:[],
 		},
-		{
+		{	
 			type:'text',
 			contributor: '02',
 			content:'Police say that they were using pepper spray and tear gas to \'maintain a safe distance\' between protesters and policemen. Also claim repeatedly that protesters were charging against police defense.',
 			submitTime:'2014-09-29T08:35:33Z',
-			tags:['customTag'],
+			tags:[],
 		},
 		{
 			type: 'facebook',
@@ -503,44 +1286,44 @@ export default {
 			content: '[16:09] 2000+ gathered in Mong Kok and the occupied area is expanding.',
 			submitTime: '2014-09-29T08:30:53Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/hk926/photos/352447181572879/'
 			}
 		},
-		{
+		{	
 			type:'text',
 			contributor: '05',
 			content:'1619, the police claim that "tear gas" is minimum violence.',
 			submitTime:'2014-09-29T08:26:33Z',
-			tags:['customTag'],
+			tags:[],
 		},
-		{
+		{	
 			type:'text',
 			contributor: '01',
 			content:'1612, Initiator of Occupy Central Campaign Chan Kin Man states that the movement has received a first stage victory. And as the campaign has developed into the current stage, the three initiators of the campaign do not have the power to decide when the movement will come to an end.',
 			submitTime:'2014-09-29T08:21:46Z',
-			tags:['customTag'],
+			tags:[],
 		},
-		{
+		{	
 			type:'text',
 			contributor: '05',
 			content:'Police denounce the \'violent acts\' of protesters and urge protesters to leave peacefully.',
 			submitTime:'2014-09-29T08:18:46Z',
-			tags:['customTag'],
+			tags:[],
 		},
-		{
+		{	
 			type:'text',
 			contributor: '04',
 			content:'Police said 41 were injured in the past few days, in which 12 were police officers.',
 			submitTime:'2014-09-29T08:17:41Z',
-			tags:['customTag'],
+			tags:[],
 		},
-		{
+		{	
 			type:'text',
 			contributor: '04',
 			content:'Police claims that they have \'no choice\' other than deploying tear gas.',
 			submitTime:'2014-09-29T08:16:38Z',
-			tags:['customTag'],
+			tags:[],
 		},
 		{
 			type: 'facebook',
@@ -548,23 +1331,23 @@ export default {
 			content: '[16:00] Protesters set up their barricades near Mandarin Oriental Hotel, Central.',
 			submitTime: '2014-09-29T08:14:53Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/socrec/photos/a.593110604049208.152616.160696287290644/981285261898405/?type=1&theater'
 			}
 		},
-		{
+		{	
 			type:'text',
 			contributor: '04',
 			content:'All eyes on police press conference now. No sign of Chief Police Commissioner Tsang.',
 			submitTime:'2014-09-29T08:14:38Z',
-			tags:['customTag'],
+			tags:[],
 		},
-		{
+		{	
 			type:'text',
 			contributor: '04',
 			content:'HSBC notified their staff that they can leave office early if necessary.\nSource: now TV',
 			submitTime:'2014-09-29T08:13:38Z',
-			tags:['customTag'],
+			tags:[],
 		},
 		{
 			type: 'twitter',
@@ -572,7 +1355,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T08:07:29Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/AgnesBun/status/516499347769286656'
 			}
 		},
@@ -582,7 +1365,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T08:06:29Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/harbourtimes/status/516495471284461568'
 			}
 		},
@@ -592,7 +1375,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T08:04:29Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/varsitycuhk/status/516497900671496192'
 			}
 		},
@@ -602,16 +1385,16 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T08:03:39Z',
 			tags: ['twitter'],
-			source: {
-				path: 'https://twitter.com/varsitycuhk/status/516497900671496192/photo/1'
+			source: { 
+				path: 'https://twitter.com/varsitycuhk/status/516497900671496192'
 			}
 		},
-		{
+		{	
 			type:'text',
 			contributor: '01',
 			content:'1550, HKCTU (Hong Kong Confederation of Trade Unions) is having a rally to call for workers to strike.',
 			submitTime:'2014-09-29T08:02:34Z',
-			tags:['customTag'],
+			tags:[],
 		},
 		{
 			type: 'facebook',
@@ -619,7 +1402,7 @@ export default {
 			content: '[CUHK] Chinese University of Hong Kong, 1500.',
 			submitTime: '2014-09-29T07:36:33Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/socrec/photos/pcb.981237111903220/981237098569888/?type=1&theater'
 			}
 		},
@@ -629,7 +1412,7 @@ export default {
 			content: '50,000 people now in Central.',
 			submitTime: '2014-09-29T07:34:33Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/passiontimes/photos/a.422169814512858.102977.420361564693683/764761716920331/?type=1&theater'
 			}
 		},
@@ -639,7 +1422,7 @@ export default {
 			content: '1520 More and more people arriving at Admiralty Station.',
 			submitTime: '2014-09-29T07:30:33Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/hk926/photos/pcb.352437994907131/352437141573883/'
 			}
 		},
@@ -649,16 +1432,16 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T07:27:39Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/hkdemonow/status/516487927598047232'
 			}
 		},
-		{
+		{	
 			type:'text',
 			contributor: '03',
 			content:'[Official] Police will meet the press at 4pm.\n(Source: Cable TV News)',
 			submitTime:'2014-09-29T07:30:33Z',
-			tags:['customTag'],
+			tags:[],
 		},
 		{
 			type: 'twitter',
@@ -666,8 +1449,8 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T07:25:29Z',
 			tags: ['twitter'],
-			source: {
-				path: 'https://twitter.com/hkdemonow/status/516487927598047232/photo/1'
+			source: { 
+				path: 'https://twitter.com/hkdemonow/status/516487927598047232'
 			}
 		},
 		{
@@ -676,7 +1459,7 @@ export default {
 			content: '[14:35] Citizens continue to transport supplies to the Admiralty site.',
 			submitTime: '2014-09-29T06:20:23Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/passiontimes/photos/764745286921974/'
 			}
 		},
@@ -686,7 +1469,7 @@ export default {
 			content: 'Bottled water supplies in Mong Kok.',
 			submitTime: '2014-09-29T06:20:23Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/inmediahk/photos/a.321611837875861.67317.200954406608272/747790835257957/'
 			}
 		},
@@ -696,7 +1479,7 @@ export default {
 			content: '200-strong rally supporting HK protests in LA.',
 			submitTime: '2014-09-29T06:15:23Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/OCLPHK/photos/a.289787511158449.1073741831.263964720407395/511511878986010/'
 			}
 		},
@@ -705,14 +1488,14 @@ export default {
 			contributor: '05',
 			content: '[HKFS] HKFS clarifies that all rumours on them intending to force entry into the LegCo Building are false.',
 			submitTime: '2014-09-29T06:13:27Z',
-			tags: ['customTag'],
+			tags: [],
 		},
 		{
 			type: 'text',
 			contributor: '05',
 			content: '[14:03] HKU students at the HKUSU strike meeting decided to invite their Vice-Chancellor, Prof. Peter Mathieson, to meet the students in 24 hours, or they will consider escalate their actions.',
 			submitTime: '2014-09-29T06:11:27Z',
-			tags: ['customTag'],
+			tags: [],
 		},
 		{
 			type: 'twitter',
@@ -720,8 +1503,8 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T06:08:29Z',
 			tags: ['twitter'],
-			source: {
-				path: 'https://twitter.com/SCMP_News/status/516468383186186240/photo/1?ref_src=twsrc%5Etfw'
+			source: { 
+				path: 'https://twitter.com/SCMP_News/status/516468383186186240?ref_src=twsrc%5Etfw'
 			}
 		},
 		{
@@ -730,7 +1513,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T06:05:29Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/SCMP_News/status/516468383186186240'
 			}
 		},
@@ -740,16 +1523,16 @@ export default {
 			content: 'An overview of today\'s class boycott in secondary schools.',
 			submitTime: '2014-09-29T05:25:53Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/dashhk/photos/701205439961269/'
 			}
 		},
 		{
 			type: 'text',
 			contributor: '05',
-			content: 'Message from Professor Roland Chin, Provost and Deputy Vice-Chancellor, HKU\nTo: All students and staff\nWe are continuously monitoring the rapidly changing situation in Hong Kong and will be flexible and understanding as staff and students attempt to continue their professional and personal lives in safety and security.\nAs far as practicably possible, the university will adhere to its stated position of "business as usual" but we fully recognise that there are uncertainties facing us all at present. We appeal to all members of the university to remain calm and to maintain high concern for their own safety and that of others.\nClasses will take place as planned and negotiation about re-scheduling of classes is a matter for individual agreements between teachers and students. As far as staff members are concerned, they should make applications for leave in advance according to the normal procedures if they wish to be absent from duty.\nWe are fully aware of the chaotic traffic situation in many parts of Hong Kong and Kowloon which may create difficulty for students and staff in coming back to the campus. I am sure teachers and departments will exercise the necessary flexibility for students and staff members who are facing traffic difficulty.\nProfessor Roland T Chin Provost and Deputy Vice-Chancellor',
+			content: 'Message from Professor Roland Chin, Provost and Deputy Vice-Chancellor, HKU\n\nTo: All students and staff\n\nWe are continuously monitoring the rapidly changing situation in Hong Kong and will be flexible and understanding as staff and students attempt to continue their professional and personal lives in safety and security.\n\nAs far as practicably possible, the university will adhere to its stated position of "business as usual" but we fully recognise that there are uncertainties facing us all at present. We appeal to all members of the university to remain calm and to maintain high concern for their own safety and that of others.\n\nClasses will take place as planned and negotiation about re-scheduling of classes is a matter for individual agreements between teachers and students. As far as staff members are concerned, they should make applications for leave in advance according to the normal procedures if they wish to be absent from duty.\n\nWe are fully aware of the chaotic traffic situation in many parts of Hong Kong and Kowloon which may create difficulty for students and staff in coming back to the campus. I am sure teachers and departments will exercise the necessary flexibility for students and staff members who are facing traffic difficulty.\n\nProfessor Roland T Chin Provost and Deputy Vice-Chancellor',
 			submitTime: '2014-09-29T05:21:14Z',
-			tags: ['customTag','important'],
+			tags: ['important'],
 		},
 		{
 			type: 'twitter',
@@ -757,7 +1540,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T05:17:22Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/hkdemonow/status/516450595624849408'
 			}
 		},
@@ -767,7 +1550,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T05:16:02Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/hkdemonow/status/516455309745733632'
 			}
 		},
@@ -777,7 +1560,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T05:15:28Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/hkdemonow/status/516455309745733632'
 			}
 		},
@@ -787,8 +1570,8 @@ export default {
 			content: 'Press release from the government, specifically the Education Bureau, in response to the announcement by the Professional Teachers\' Union\'s decision to strike.\nOfficial link (it appears that they\'ve edited it since the initial release):\nhttp://www.news.gov.hk/en/categories/school_work/html/2014/09/2014',
 			submitTime: '2014-09-29T05:15:28Z',
 			tags: ['twitter'],
-			source: {
-				path: 'https://twitter.com/tomgrundy/status/516448474292682753/photo/1'
+			source: { 
+				path: 'https://twitter.com/tomgrundy/status/516448474292682753'
 			}
 		},
 		{
@@ -806,8 +1589,8 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T05:13:28Z',
 			tags: ['twitter'],
-			source: {
-				path: 'https://twitter.com/hkdemonow/status/516454219780349953/photo/1'
+			source: { 
+				path: 'https://twitter.com/hkdemonow/status/516454219780349953'
 			}
 		},
 		{
@@ -816,7 +1599,7 @@ export default {
 			content: 'Latest situation in Admiralty',
 			submitTime: '2014-09-29T05:10:53Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/socrec/photos/981134458580152/'
 			}
 		},
@@ -826,7 +1609,7 @@ export default {
 			content: '[HKU] Joint Strike Meeting',
 			submitTime: '2014-09-29T05:09:33Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/hkucampustv/photos/739671382768227/'
 			}
 		},
@@ -836,8 +1619,8 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T05:10:28Z',
 			tags: ['twitter'],
-			source: {
-				path: 'https://twitter.com/ChinaRealTime/status/516449995416150016/photo/1?ref_src=twsrc%5Etfw'
+			source: { 
+				path: 'https://twitter.com/ChinaRealTime/status/516449995416150016?ref_src=twsrc%5Etfw'
 			}
 		},
 		{
@@ -846,7 +1629,7 @@ export default {
 			content: '[SocRec] Numbers are once again growing in Admiralty.',
 			submitTime: '2014-09-29T05:04:33Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/socrec/photos/a.593110604049208.152616.160696287290644/981134458580152/'
 			}
 		},
@@ -856,7 +1639,7 @@ export default {
 			content: 'Cardinal Zen stayed with us at Tim Mei Avenue throughout the night.',
 			submitTime: '2014-09-29T05:03:28Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/debbycsw/status/516448362069897216'
 			}
 		},
@@ -866,7 +1649,7 @@ export default {
 			content: '[HKU] HKU student strike meeting sees over 1000 students in black at Sun Yat-sen Plaza.',
 			submitTime: '2014-09-29T04:59:23Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/undergradnews/photos/a.833105710036487.1073741825.393883453958717/1011434672203589/'
 			}
 		},
@@ -876,7 +1659,7 @@ export default {
 			content: 'Raymond Wong Yuk-man at Mong Kok:',
 			submitTime: '2014-09-29T04:57:28Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/hkchrislau/status/516449778230501376'
 			}
 		},
@@ -895,7 +1678,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T04:49:22Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/varsitycuhk/status/516447220015460353'
 			}
 		},
@@ -905,7 +1688,7 @@ export default {
 			content: 'Secondary school students dropping by applauded by protesters.',
 			submitTime: '2014-09-29T03:33:23Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/socrec/photos/a.593110604049208.152616.160696287290644/981091598584438/'
 			}
 		},
@@ -915,7 +1698,7 @@ export default {
 			content: 'Striking high school students waving at reporters outside the gate.',
 			submitTime: '2014-09-29T03:23:13Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/1393187617624530/photos/pcb.1476221459321145/1476218455988112/'
 			}
 		},
@@ -925,17 +1708,17 @@ export default {
 			content: 'Student strike meeting in Shue Yan University.',
 			submitTime: '2014-09-29T03:23:13Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/1393187617624530/photos/pcb.1476221459321145/1476218455988112/'
 			}
-		},
+		},		
 		{
 			type: 'facebook',
 			contributor: '05',
 			content: '~500 protesters gathered in Mong Kok where a number of vehicles stalled on the major road and with barricades set up.',
 			submitTime: '2014-09-29T02:10:33Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/socrec/photos/981032278590370/'
 			}
 		},
@@ -945,7 +1728,7 @@ export default {
 			content: 'Lawmaker Leung Kwok Hung and founder of Next Media (Apple Daily) Jimmy Lai supports protesters outside Admiralty Centre.',
 			submitTime: '2014-09-29T01:30:33Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/inmediahk/photos/a.321611837875861.67317.200954406608272/747631111940596/?type=1&theater'
 			}
 		},
@@ -955,7 +1738,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T00:37:22Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/george_chen/status/516382578765733889'
 			}
 		},
@@ -965,7 +1748,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-29T00:01:22Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/george_chen/status/516376624133312513'
 			}
 		},
@@ -975,7 +1758,7 @@ export default {
 			content: 'MTR service update',
 			submitTime: '2014-09-28T23:53:31Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/mtrupdate/status/516368476013723649'
 			}
 		},
@@ -985,7 +1768,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-28T22:53:31Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/TesaArcilla/status/516359737747599363'
 			}
 		},
@@ -995,7 +1778,7 @@ export default {
 			content: 'Legitimately recognised, globally, as a revolution! ',
 			submitTime: '2014-09-28T21:21:33Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/inmediahk/photos/a.321611837875861.67317.200954406608272/747546948615679/'
 			}
 		},
@@ -1005,7 +1788,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-28T21:00:33Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/OCLPHK/status/516322208403058688'
 			}
 		},
@@ -1015,7 +1798,7 @@ export default {
 			content: 'London, Trafalgar Sq. at 0359 am HKT in support of HK.',
 			submitTime: '2014-09-28T20:07:33Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/hk926/photos/a.351496551667942.1073741827.351486368335627/352266331590964/'
 			}
 		},
@@ -1025,7 +1808,7 @@ export default {
 			content: 'Proesters heading in with motorbikes.',
 			submitTime: '2014-09-28T20:05:33Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/inmediahk/photos/a.321611837875861.67317.200954406608272/747526471951060/?type=1&theater'
 			}
 		},
@@ -1035,7 +1818,7 @@ export default {
 			content: 'Hennessy Road from Admiralty.',
 			submitTime: '2014-09-28T20:04:33Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/UnitedSocialPress/photos/a.579843072048630.1073741826.579827748716829/830826210283647/?type=1&theater'
 			}
 		},
@@ -1045,7 +1828,7 @@ export default {
 			content: 'Over 10 police vehicles are surrounding the Bank of China Tower.',
 			submitTime: '2014-09-28T20:02:42Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/hkverified/photos/a.640710039380157.1073741827.640622619388899/640793166038511/?type=1&theater'
 			}
 		},
@@ -1055,7 +1838,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-28T19:12:30Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/HKFS1958/status/516301682418782208'
 			}
 		},
@@ -1065,7 +1848,7 @@ export default {
 			content: '3000 signatures collected at Fanling station (northern part of HK) in support for the protests in HK island.',
 			submitTime: '2014-09-28T19:11:50Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/socrec/photos/pcb.980844841942447/980844818609116/?type=1&theater'
 			}
 		},
@@ -1075,7 +1858,7 @@ export default {
 			content: 'Riot police now at Wan Chai.',
 			submitTime: '2014-09-28T19:04:27Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/inmediahk/photos/pcb.747502491953458/747502021953505/?type=1&theater'
 			}
 		},
@@ -1085,7 +1868,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-28T18:06:43Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/jasmine_siu/status/516647350597459968'
 			}
 		},
@@ -1095,7 +1878,7 @@ export default {
 			content: '0108, Central. Protesters gather outside Mandarin Oriental Hotel to prepare for next wave of police evacuation.',
 			submitTime: '2014-09-28T17:15:56Z',
 			tags: ['facebook'],
-			source: {
+			source: { 
 				path: 'https://www.facebook.com/socrec/photos/pcb.981541658539432/981540105206254/'
 			}
 		},
@@ -1105,7 +1888,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-28T17:13:42Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/varsitycuhk/status/516635838122168320'
 			}
 		},
@@ -1115,7 +1898,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-28T17:11:42Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'https://twitter.com/OCLPHK/status/516634540693921792'
 			}
 		},
@@ -1125,7 +1908,7 @@ export default {
 			content: '',
 			submitTime: '2014-09-28T17:07:50Z',
 			tags: ['twitter'],
-			source: {
+			source: { 
 				path: 'http://twitter.com/frostyhk/status/516633958000234498'
 			}
 		}
