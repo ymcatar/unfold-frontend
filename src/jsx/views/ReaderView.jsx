@@ -76,6 +76,7 @@ export default class ReaderView extends React.Component {
 			let streamComponent = small => (
 				<div style={styles.left} id="left">
 					<ReaderStream
+						header={this.state.filter}
 						small={small}
 						data={this.getFilteredStream()}
 						handleFilter={this.handleFilter}

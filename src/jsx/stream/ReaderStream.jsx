@@ -13,6 +13,12 @@ const styles = {
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center'
+	},
+	header: {
+		color: Colors.stream.header,
+		borderBottom: `3px ${Colors.stream.headerBorder} solid`,
+		padding: '0 10px 5px 10px',
+		textAlign: 'center'
 	}
 };
 
@@ -23,7 +29,12 @@ export default class ReaderStream extends React.Component {
     }
 
 	render() {
-		let contents = this.props.data.map(item => (
+		let data = this.props.data.sort((a, b) => {
+			a = new Date(a.submitTime);
+			b = new Date(b.submitTime);
+			return b - a;
+		});
+		let contents = data.map(item => (
 			<UpdateBox
 				key={uuid.v1()}
 				handleFilter={this.props.handleFilter}
@@ -33,6 +44,7 @@ export default class ReaderStream extends React.Component {
 		));
 		return (
 			<div style={styles.main}>
+				<h2 style={styles.header}>#{this.props.header}</h2>
 				{contents}
 			</div>
 		);

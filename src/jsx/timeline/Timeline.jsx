@@ -15,6 +15,7 @@ export default class Timeline extends React.Component {
         let bars = [];
 
         let data = this.props.data.map(item => moment(item.submitTime));
+        data = data.sort((a, b) => b - a);
 
         let hash = {};
         data.forEach(item => {
