@@ -42,11 +42,11 @@ export default class Bar extends React.Component {
 
     scrollTo() {
         if (this.props.length !== 0) {
-            const scroll = new SweetScroll({offset: -15, duration: 500}, "#left");
+            const scroll = new SweetScroll({offset: -15, duration: 0}, "#left");
             let name = 'update_' + this.props.time;
 
             let target = document.getElementsByClassName(name)[0];
-            document.getElementById('stream').style.WebkitFilter = 'blur(5px)';
+            document.getElementById('stream').style.WebkitFilter = 'opacity(0.01)';
             scroll.toElement(target);
 
             this.setState({scrolling: true});
@@ -60,12 +60,12 @@ export default class Bar extends React.Component {
                     count = 0;
                     prevValue = getOffset(target).top;
                 }
-                if (count >= 3) {
+                if (count >= 2) {
                     this.setState({scrolling: false});
                     document.getElementById('stream').style.WebkitFilter = '';
                     clearInterval(align);
                 }
-            }, 750);
+            }, 1000);
         }
     }
 
