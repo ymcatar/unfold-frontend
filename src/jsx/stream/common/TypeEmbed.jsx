@@ -2,8 +2,6 @@ import React from 'react';
 import fetch from 'fetch-jsonp';
 import uuid from 'node-uuid';
 
-import markdown from 'common/Markdown.js';
-
 export default class TypeEmbed extends React.Component {
 
     constructor() {
@@ -26,12 +24,9 @@ export default class TypeEmbed extends React.Component {
 
     render() {
         return (
-            <div>
-                <p dangerouslySetInnerHTML={{__html: markdown(this.props.data)}} />
-                <div
-                    id={this.state.id}
-                    dangerouslySetInnerHTML={{__html: this.state.body}} />
-            </div>
+            <div
+                id={this.state.id}
+                dangerouslySetInnerHTML={{__html: this.state.body}} />
         );
     }
 }

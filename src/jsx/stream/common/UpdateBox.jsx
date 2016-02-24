@@ -1,8 +1,7 @@
 import React from 'react';
-import {OverlayTrigger, Tooltip} from 'react-bootstrap';
 import moment from 'moment';
-import MediaQuery from 'react-responsive';
 import _ from 'lodash';
+import LazyLoad from 'react-lazy-load';
 
 import Colors from 'config/Colors.jsx';
 
@@ -11,6 +10,7 @@ import Tags from './Tags.jsx';
 
 import TypeText from './TypeText.jsx';
 import TypeEmbed from './TypeEmbed.jsx';
+import TypeTwitter from './TypeTwitter.jsx';
 import TypeFacebook from './TypeFacebook.jsx';
 
 const styles = {
@@ -54,19 +54,27 @@ export default class UpdateBox extends React.Component {
 		let content;
 		switch(this.props.data.type) {
 			case 'text':
-				content = (<TypeText data={this.props.data.content}/>);
+				content = null;
 				break;
 			case 'twitter':
-			case 'reddit':
+				content = (<TypeTwitter src={this.props.data.source} />);
+				break;
 			case 'youtube':
 			case 'flickr':
 			case 'imgur':
-				content = (<TypeEmbed data={this.props.data.content} src={this.props.data.source}/>);
+				content = (<TypeEmbed src={this.props.data.source}/>);
 				break;
 			case 'facebook':
-				content = (<TypeFacebook data={this.props.data.content} src={this.props.data.source}/>);
+				content = (<TypeFacebook src={this.props.data.source}/>);
 				break;
 		}
+
+		if (content)
+			content = (
+				<LazyLoad offsetTop={1000} offsetBottom={1000} offsetHorizontal={0}>
+					{content}
+				</LazyLoad>
+			);
 
 		let avatar;
 		if (this.props.small)
@@ -90,6 +98,7 @@ export default class UpdateBox extends React.Component {
 						<h5 className="pull-right">{date.format('llll')}</h5>
 					</div>
 					<div style={styles.content}>
+						<TypeText data={this.props.data.content} />
 						{content}
 					</div>
 					<div>

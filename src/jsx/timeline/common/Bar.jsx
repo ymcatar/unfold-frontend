@@ -19,6 +19,18 @@ const getMainStyles = disable => ({
     cursor: disable? 'auto': 'pointer'
 });
 
+// http://stackoverflow.com/questions/10564680/get-div-position-top-in-javascript
+const getOffset = el => {
+    var _x = 0;
+    var _y = 0;
+    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+        _x += el.offsetLeft - el.scrollLeft;
+        _y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent;
+    }
+    return { top: _y, left: _x };
+};
+
 export default class Bar extends React.Component {
     constructor() {
         super();
@@ -27,9 +39,21 @@ export default class Bar extends React.Component {
 
     scrollTo() {
         if (this.props.length !== 0) {
-            const sweetScroll = new SweetScroll({offset: -15}, "#left");
-            let name = '.update_' + this.props.time;
-            sweetScroll.to(name);
+            const slow = new SweetScroll({offset: -15, duration: 2000}, "#left");
+            const fast = new SweetScroll({offset: -15, duration: 2000}, "#left");
+            let name = 'update_' + this.props.time;
+
+            let target = document.getElementsByClassName(name)[0];
+            slow.toElement(target);
+
+            let prevValue;
+            let align = setInterval(() => {
+                fast.toElement(target);
+                if (getOffset(target).top == prevValue)
+                    clearInterval(align);
+                else
+                    prevValue = getOffset(target).top;
+            }, 2000);
         }
     }
 
