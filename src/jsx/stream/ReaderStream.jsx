@@ -43,7 +43,7 @@ export default class ReaderStream extends React.Component {
 				data={item} />
 		));
 		return (
-			<div style={styles.main}>
+			<div style={styles.main} id="stream">
 				<h2 style={styles.header}>#{this.props.header}</h2>
 				{contents}
 			</div>

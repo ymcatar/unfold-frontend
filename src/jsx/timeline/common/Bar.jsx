@@ -3,6 +3,8 @@ import {OverlayTrigger, Tooltip} from 'react-bootstrap';
 import uuid from 'node-uuid';
 import SweetScroll from 'sweet-scroll';
 
+import {Modal} from 'react-bootstrap';
+
 import Colors from 'config/Colors.jsx';
 
 const getStyles = (length, disable, mobile) => ({
@@ -34,26 +36,36 @@ const getOffset = el => {
 export default class Bar extends React.Component {
     constructor() {
         super();
+        this.state = {scrolling: false};
         this.scrollTo = this.scrollTo.bind(this);
     }
 
     scrollTo() {
         if (this.props.length !== 0) {
-            const slow = new SweetScroll({offset: -15, duration: 2000}, "#left");
-            const fast = new SweetScroll({offset: -15, duration: 2000}, "#left");
+            const scroll = new SweetScroll({offset: -15, duration: 500}, "#left");
             let name = 'update_' + this.props.time;
 
             let target = document.getElementsByClassName(name)[0];
-            slow.toElement(target);
+            document.getElementById('stream').style.WebkitFilter = 'blur(5px)';
+            scroll.toElement(target);
 
-            let prevValue;
+            this.setState({scrolling: true});
+
+            let count = 0, prevValue;
             let align = setInterval(() => {
-                fast.toElement(target);
+                scroll.toElement(target);
                 if (getOffset(target).top == prevValue)
-                    clearInterval(align);
-                else
+                    count++;
+                else {
+                    count = 0;
                     prevValue = getOffset(target).top;
-            }, 2000);
+                }
+                if (count >= 3) {
+                    this.setState({scrolling: false});
+                    document.getElementById('stream').style.WebkitFilter = '';
+                    clearInterval(align);
+                }
+            }, 750);
         }
     }
 
@@ -62,11 +74,20 @@ export default class Bar extends React.Component {
         let tooltip = (<Tooltip id={uuid.v1()}>{`${this.props.label}:00`}</Tooltip>);
         let disable = (this.props.length === 0);
         return (
-            <OverlayTrigger placement="bottom" overlay={tooltip} animation={false}>
-                <div style={getMainStyles(disable)} onClick={this.scrollTo}>
-                    <div style={getStyles(length, disable, this.props.mobile)} />
-                </div>
-            </OverlayTrigger>
+            <div>
+                <OverlayTrigger placement="bottom" overlay={tooltip} animation={false}>
+                    <div style={getMainStyles(disable)} onClick={this.scrollTo}>
+                        <div style={getStyles(length, disable, this.props.mobile)} />
+                    </div>
+                </OverlayTrigger>
+                <Modal bsSize="small" show={this.state.scrolling}>
+                    <Modal.Body>
+                        <center>
+                            <span className="fa fa-spin fa-spinner fa-2x" />
+                        </center>
+                    </Modal.Body>
+                </Modal>
+            </div>
         );
     }
 }

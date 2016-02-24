@@ -11,7 +11,7 @@ ReactDOM.render((
     <Router>
         <Route path='/'>
             <Route path='contributor' component={ContributorView} />
-            <IndexRoute path='*' component={ReaderView} />
+            <IndexRoute component={ReaderView} />
         </Route>
     </Router>
 ), document.getElementById('main'));
