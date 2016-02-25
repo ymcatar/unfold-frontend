@@ -39,8 +39,9 @@ export default class Timeline extends React.Component {
             bars.push((
                 <Day
                     key={uuid.v1()}
+                    data={hash[key]}
                     date={JSON.parse(key)}
-                    data={hash[key]} />
+                    onTravel={this.props.onTravel} />
             ));
         }
 

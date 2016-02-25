@@ -1,32 +1,32 @@
 import React from 'react';
+import _ from 'lodash';
 import fetch from 'fetch-jsonp';
-import uuid from 'node-uuid';
 
 export default class TypeEmbed extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-            id: uuid.v1(),
-            body: ''
-        };
+    static fetchProps(someProps) {
+        return fetch('http://noembed.com/embed?url=' + someProps.path.trim())
+            .then(res => res.json())
+            .then(body => _.extend({
+                body: body.html
+            }, someProps));
     }
 
-    componentWillMount() {
+    componentDidMount() {
+        if (this.props.onResize)
+            this.node.addEventListener('load', this.props.onResize, true);
+    }
 
-        fetch('http://noembed.com/embed?url=' + this.props.src.path.trim())
-            .then(res => res.json())
-            .then(msg => {
-                this.setState({ body: msg.html });
-            })
-            .catch(console.error.bind(console));
+    componentWillUnmount() {
+        if (this.props.onResize)
+            this.node.removeEventListener('load', this.props.onResize, true);
     }
 
     render() {
         return (
             <div
-                id={this.state.id}
-                dangerouslySetInnerHTML={{__html: this.state.body}} />
+                ref={x => { this.node = x; }}
+                dangerouslySetInnerHTML={{__html: this.props.body}} />
         );
     }
 }

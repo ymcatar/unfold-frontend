@@ -1,40 +1,33 @@
 import React from 'react';
+import _ from 'lodash';
 import fetch from 'fetch-jsonp';
 import uuid from 'node-uuid';
 
-import markdown from 'common/Markdown.js';
-
 export default class TypeTwitter extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-            id: uuid.v1(),
-            init: false,
-            body: `<span class="fa fa-spin fa-spinner" />`
-        };
-    }
-
-    componentWillMount() {
+    static fetchProps(someProps) {
         let extra;
-        if (this.props.src.path.trim().match(/^[0-9]+$/g))
-            extra = 'id=' + this.props.src.path.trim();
+        if (someProps.path.trim().match(/^[0-9]+$/g))
+            extra = 'id=' + someProps.path.trim();
         else
-            extra = 'url=' + this.props.src.path.trim();
+            extra = 'url=' + someProps.path.trim();
 
-        fetch('https://api.twitter.com/1/statuses/oembed.json?' + extra)
+        return fetch('https://api.twitter.com/1/statuses/oembed.json?' + extra)
             .then(res => res.json())
-            .then(msg => {
-                this.setState({ body: msg.html, init: true });
-            })
-            .catch(console.error.bind(console));
+            .then(body => _.extend({
+                id: uuid.v1(),
+                body: body.html,
+                init: true
+            }, someProps));
     }
 
-    componentDidUpdate() {
+    componentDidMount() {
         window.twttr.ready(twttr => {
-            Promise.resolve(window.twttr.widgets.load(document.getElementById(this.state.id)))
+            window.twttr.widgets.load(document.getElementById(this.props.id))
                 .then(() => {
-                    document.getElementById(this.state.id).style.removeProperty('display');
+                    document.getElementById(this.props.id).style.removeProperty('display');
+                    if (this.props.onResize)
+                        this.props.onResize();
                 });
         });
     }
@@ -42,9 +35,9 @@ export default class TypeTwitter extends React.Component {
     render() {
         return (
             <div
-                id={this.state.id}
+                id={this.props.id}
                 style={{display: 'none'}}
-                dangerouslySetInnerHTML={{__html: this.state.body}} />
+                dangerouslySetInnerHTML={{__html: this.props.body}} />
         );
     }
 }
