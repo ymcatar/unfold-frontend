@@ -40,7 +40,7 @@ export default class TypeFacebook extends React.Component {
                         style={styles.fb}
                         className="fb-post"
                         data-href={this.props.src.path}
-                        data-width="300">
+                        data-width="450">
                     </div>
                 </div>
             </div>

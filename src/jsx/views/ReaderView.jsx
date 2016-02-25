@@ -19,7 +19,8 @@ const styles = {
 		overflow: 'hidden',
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		overflowX: 'hidden'
 	},
 	left: {
 		backgroundColor: Colors.stream.backgroundColor,
@@ -27,14 +28,16 @@ const styles = {
 		width: '100%',
 		padding: '10px',
 		paddingBottom: '50px',
-		overflowY: 'scroll'
+		overflowY: 'scroll',
+		overflowX: 'hidden'
 	},
 	mid: {
 		backgroundColor: Colors.timeline.backgroundColor,
 		width: '70px',
 		minWidth: '70px',
 		height: '100vh',
-		overflowY: 'scroll'
+		overflowY: 'scroll',
+		overflowX: 'hidden'
 	},
 	right: {
 		backgroundColor: Colors.info.backgroundColor,
@@ -44,6 +47,7 @@ const styles = {
 		width: '300px',
 		padding: '20px',
 		overflowY: 'scroll',
+		overflowX: 'hidden',
 		boxShadow: Colors.zDepth,
 		zIndex: 3
 	}

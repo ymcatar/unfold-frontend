@@ -1,13 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 import _ from 'lodash';
-import LazyLoad from 'react-lazy-load';
 
 import Colors from 'config/Colors.jsx';
 
 import UpdateAvatar from './UpdateAvatar.jsx';
 import Tags from './Tags.jsx';
-
+import LazyLoad from './LazyLoad.jsx';
 import TypeText from './TypeText.jsx';
 import TypeEmbed from './TypeEmbed.jsx';
 import TypeTwitter from './TypeTwitter.jsx';
@@ -69,13 +68,6 @@ export default class UpdateBox extends React.Component {
 				break;
 		}
 
-		if (content)
-			content = (
-				<LazyLoad offsetTop={1000} offsetBottom={1000} offsetHorizontal={0}>
-					{content}
-				</LazyLoad>
-			);
-
 		let avatar;
 		if (this.props.small)
 			avatar = (
@@ -92,6 +84,9 @@ export default class UpdateBox extends React.Component {
 		let tags = this.props.data.tags && this.props.data.tags.length > 0? (
 			<Tags data={this.props.data.tags} handleFilter={this.props.handleFilter} />
 		): null;
+
+		if (content)
+			content = (<LazyLoad>{content}</LazyLoad>);
 
 		return (
 			<div style={styles.main} className={`update_${date.format('YYYYMMDDH')}`}>
