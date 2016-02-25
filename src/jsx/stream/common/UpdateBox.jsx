@@ -67,6 +67,10 @@ export default class UpdateBox extends React.Component {
 		return promise.then(props => ({ embed: props }));
 	}
 
+    shouldComponentUpdate(nextProps) {
+        return !_.isEqualWith(this.props, nextProps, (x, y) => x === y);
+    }
+
 	render() {
 		const {name, title, image, online} = this.props.contributor;
 		const date = moment(this.props.data.submitTime);
