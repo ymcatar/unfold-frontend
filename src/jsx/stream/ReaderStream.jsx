@@ -1,6 +1,6 @@
 import React from 'react';
 import uuid from 'node-uuid';
-import SweetScroll from 'sweet-scroll';
+import _ from 'lodash';
 
 import Colors from 'config/Colors.jsx';
 
@@ -24,36 +24,9 @@ const styles = {
 
 export default class ReaderStream extends React.Component {
 
-	shouldComponentUpdate(nextProps, nextState) {
-        return !_.isEqual(nextProps, this.props);
-    }
-
-	scrollTo(target) {
-        const scroll = new SweetScroll({offset: -15, duration: 0}, "#left");
-        let name = 'update_' + this.props.time;
-
-        target = document.getElementsByClassName(name)[0];
-        document.getElementById('stream').style.opacity = 0;
-        scroll.toElement(target);
-
-        this.setState({scrolling: true});
-
-        let count = 0, prevValue;
-        let align = setInterval(() => {
-            scroll.toElement(target);
-            if (getOffset(target).top == prevValue)
-                count++;
-            else {
-                count = 0;
-                prevValue = getOffset(target).top;
-            }
-            if (count >= 2) {
-                this.setState({scrolling: false});
-                document.getElementById('stream').style.opacity = 1;
-                clearInterval(align);
-            }
-        }, 1000);
-    }
+	shouldComponentUpdate(newProps, newStates) {
+		return !_.isEqual(this.props, newProps);
+	}
 
 	render() {
 		let data = this.props.data.sort((a, b) => {
