@@ -33,7 +33,8 @@ export default class Day extends React.Component {
                     time={year + month + day + i}
                     label={i < 10? '0'+i: i}
                     length={length}
-                    heavier={i == '0'} />
+                    heavier={i === '0'}
+                    onClick={this.props.onTravel.bind(this, new Date(year, month - 1, day, i))} />
             ));
         }
 

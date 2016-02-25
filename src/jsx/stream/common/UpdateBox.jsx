@@ -13,10 +13,11 @@ import TypeFacebook from './TypeFacebook.jsx';
 
 const styles = {
 	main: {
-		width: '600px',
+		width: '620px',
 		maxWidth: '100%',
 		display: 'flex',
-		margin: '10px'
+		padding: '0 10px',
+		margin: '10px auto'
 	},
 	avatar: {
 		position: 'relative',
