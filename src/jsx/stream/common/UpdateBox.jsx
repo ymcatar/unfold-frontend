@@ -89,6 +89,10 @@ export default class UpdateBox extends React.Component {
 				</div>
 			);
 
+		let tags = this.props.data.tags && this.props.data.tags.length > 0? (
+			<Tags data={this.props.data.tags} handleFilter={this.props.handleFilter} />
+		): null;
+
 		return (
 			<div style={styles.main} className={`update_${date.format('YYYYMMDDH')}`}>
 				{avatar}
@@ -102,8 +106,7 @@ export default class UpdateBox extends React.Component {
 						{content}
 					</div>
 					<div>
-						<Tags
-							data={this.props.data.tags} handleFilter={this.props.handleFilter} />
+						{tags}
 					</div>
 				</div>
 			</div>
