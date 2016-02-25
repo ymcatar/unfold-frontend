@@ -10,7 +10,6 @@ import LazyScroller from './common/LazyScroller.jsx';
 const styles = {
 	main: {
 		width: '100%',
-		padding: '10px',
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center'
@@ -19,7 +18,7 @@ const styles = {
 		color: Colors.stream.header,
 		borderBottom: `3px ${Colors.stream.headerBorder} solid`,
 		padding: '0 10px 5px 10px',
-		textAlign: 'center',
+		textAlign: 'center'
 	}
 };
 
@@ -43,6 +42,9 @@ export default class ReaderStream extends React.Component {
 			items: new Array(data.length),
 			loading: new Array(data.length)
 		};
+
+		this.debouncedForceUpdate = _.debounce(this.forceUpdate.bind(this), 200,
+											   {leading: true, maxWait: 200});
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
@@ -73,7 +75,7 @@ export default class ReaderStream extends React.Component {
 					this.state.items[i] = (
 						<UpdateBox key={i} {..._.extend(props, data)} />
 					);
-					this.forceUpdate();
+					this.debouncedForceUpdate();
 				 });
 		});
 	}
@@ -83,14 +85,14 @@ export default class ReaderStream extends React.Component {
 			<div style={styles.main} id="stream">
 				<LazyScroller
 					position={this.state.position}
-					style={{width: '100%', height: 'calc(100vh - 100px)', border: '1px solid red'}}
+					style={{width: '100%', height: 'calc(100vh - 50px)'}}
 					onPositionChange={this.onPositionChange.bind(this)}>
 
 					{[
-					    <h2 key="heading" style={styles.header} height={71}>
-                            #{this.props.header}
-                        </h2>
-                    ].concat(this.state.items)}
+						<h2 key="heading" style={styles.header} height={71}>
+							#{this.props.header}
+						</h2>
+					].concat(this.state.items)}
 				</LazyScroller>
 			</div>
 		);

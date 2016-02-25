@@ -14,11 +14,11 @@ export default class TypeTwitter extends React.Component {
 
         return fetch('https://api.twitter.com/1/statuses/oembed.json?' + extra)
             .then(res => res.json())
-            .then(body => (console.log(body), _.extend({
+            .then(body => _.extend({
                 id: uuid.v1(),
                 body: body.html,
                 init: true
-            }, someProps)));
+            }, someProps));
     }
 
     componentDidMount() {

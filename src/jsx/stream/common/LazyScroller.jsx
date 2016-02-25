@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import _ from 'lodash';
 
 const styles = {
@@ -24,6 +23,9 @@ export default class LazyScroller extends React.Component {
         };
         this.scrollTop = 0;
         this.itemRefs = [];
+
+        this.debouncedRelayout = _.debounce(this.relayout.bind(this), 200,
+                                            {leading: true, maxWait: 200});
     }
 
     componentDidMount() {
@@ -51,7 +53,6 @@ export default class LazyScroller extends React.Component {
             this.container.scrollTop = this.props.position.scrollTop;
             this.setState({forceScrollTop: false});
         }
-
     }
 
     render() {
@@ -64,7 +65,9 @@ export default class LazyScroller extends React.Component {
             let styles = {
                 position: 'absolute',
                 top: attrs.top,
-                width: '100%'
+                width: '100%',
+                height: this.getHeightOf(child),
+                overflowY: 'hidden'
             };
 
             return (
@@ -72,9 +75,11 @@ export default class LazyScroller extends React.Component {
                     key={child.key}
                     style={styles}
                     ref={this.onReportHeight.bind(this, i)}>
-                    {React.cloneElement(child, {
-                        onResize: this.onUpdateHeight.bind(this, i)
-                    })}
+                    <div style={{padding: '1px', margin: '-1px'}}>
+                        {React.cloneElement(child, {
+                            onResize: this.onUpdateHeight.bind(this, i)
+                        })}
+                    </div>
                 </div>
             );
         });
@@ -97,7 +102,7 @@ export default class LazyScroller extends React.Component {
         );
     }
 
-    onReportHeight(index, node, force) {
+    onReportHeight(index, node) {
         if (node)
             this.itemRefs[index] = node;
         else
@@ -107,9 +112,9 @@ export default class LazyScroller extends React.Component {
         if (!child) return;
 
         let key = child.key;
-        if (force || !this.state.heightCache[key]) {
-            this.state.heightCache[key] = node.offsetHeight;
-            this.forceUpdate();
+        if (!this.state.heightCache[key]) {
+            this.state.heightCache[key] = node.firstElementChild.offsetHeight;
+            this.debouncedRelayout();
         }
     }
 
@@ -121,8 +126,8 @@ export default class LazyScroller extends React.Component {
 
         let key = child.key;
         setTimeout(() => {
-            this.state.heightCache[key] = node.offsetHeight;
-            this.forceUpdate();
+            this.state.heightCache[key] = node.firstElementChild.offsetHeight;
+            this.debouncedRelayout();
         }, 1000);
     }
 
@@ -186,6 +191,11 @@ export default class LazyScroller extends React.Component {
         return layout;
     }
 
+    relayout() {
+        let layout = this.computeLayout(this.props);
+        this.setState({layout});
+    }
+
     getHeightOf(child) {
         if (!child)
             return this.props.placeholderHeight;
@@ -200,10 +210,9 @@ export default class LazyScroller extends React.Component {
 
         let position = this.computePosition(this.scrollTop);
 
-        this.props.onPositionChange(position, this.state.layout);
-    }
-
-    invalidate() {
+        // Only update if scrolling across item boundary
+        if (position.index !== this.props.position.index)
+            this.props.onPositionChange(position, this.state.layout);
     }
 }
 
