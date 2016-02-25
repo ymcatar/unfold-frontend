@@ -26,10 +26,7 @@ const styles = {
 		backgroundColor: Colors.stream.backgroundColor,
 		height: '100vh',
 		width: '100%',
-		padding: '10px',
-		paddingBottom: '50px',
-		overflowY: 'scroll',
-		overflowX: 'hidden'
+		paddingBottom: '50px'
 	},
 	mid: {
 		backgroundColor: Colors.timeline.backgroundColor,
@@ -80,6 +77,7 @@ export default class ReaderView extends React.Component {
 			let streamComponent = small => (
 				<div style={styles.left} id="left">
 					<ReaderStream
+						ref={x => { this.stream = x; }}
 						header={this.state.filter}
 						small={small}
 						data={this.getFilteredStream()}
@@ -90,7 +88,9 @@ export default class ReaderView extends React.Component {
 
 			let timelineComponent = (
 				<div style={styles.mid}>
-					<Timeline data={this.getFilteredStream()}/>
+					<Timeline
+						data={this.getFilteredStream()}
+						onTravel={date => { this.stream.scrollTo(date); }} />
 				</div>
 			);
 

@@ -80,6 +80,21 @@ export default class ReaderStream extends React.Component {
 		});
 	}
 
+	scrollTo(date) {
+		console.log(date);
+		let index = _.findIndex(this.state.data, x => new Date(x.submitTime) - date < 0);
+		if (index === -1)
+			throw new Error('invalid date');
+
+		this.setState({
+			position: {
+				index: index,
+				offset: 0,
+				force: true
+			}
+		});
+	}
+
 	render() {
 		return (
 			<div style={styles.main} id="stream">

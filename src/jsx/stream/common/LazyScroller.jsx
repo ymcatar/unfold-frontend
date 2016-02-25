@@ -21,7 +21,11 @@ export default class LazyScroller extends React.Component {
             heightCache: {},
             forceScrollTop: false
         };
+
+        if (!props.position.scrollTop)
+            props.position.scrollTop = this.getScrollTopOf(props.position);
         this.scrollTop = 0;
+
         this.itemRefs = [];
 
         this.debouncedRelayout = _.debounce(this.relayout.bind(this), 200,
@@ -41,10 +45,12 @@ export default class LazyScroller extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (!nextProps.position.scrollTop)
+            nextProps.position.scrollTop = this.getScrollTopOf(nextProps.position);
         let layout = this.computeLayout(nextProps);
         this.setState({layout});
 
-        if (nextProps.position.scrollTop !== this.scrollTop)
+        if (nextProps.position.force)
             this.setState({forceScrollTop: true});
     }
 
@@ -75,7 +81,9 @@ export default class LazyScroller extends React.Component {
                     key={child.key}
                     style={styles}
                     ref={this.onReportHeight.bind(this, i)}>
-                    <div style={{padding: '1px', margin: '-1px'}}>
+                    {/* Stop margin collapsing, so that this element will reflect
+                        the height of the content + 2px, including the margin */}
+                    <div style={{padding: '1px 0', margin: '-1px 0'}}>
                         {React.cloneElement(child, {
                             onResize: this.onUpdateHeight.bind(this, i)
                         })}
@@ -154,7 +162,8 @@ export default class LazyScroller extends React.Component {
             position = {
                 index: 0,
                 offset: 0,
-                scrollTop: 0
+                scrollTop: 0,
+                force: true
             };
         }
 
@@ -196,6 +205,14 @@ export default class LazyScroller extends React.Component {
         this.setState({layout});
     }
 
+    getScrollTopOf(position) {
+        let scrollTop = position.offset;
+        for (let i = 0; i < position.index; i++)
+            scrollTop += this.getHeightOf(this.props.children[i]);
+
+        return scrollTop;
+    }
+
     getHeightOf(child) {
         if (!child)
             return this.props.placeholderHeight;
@@ -210,9 +227,14 @@ export default class LazyScroller extends React.Component {
 
         let position = this.computePosition(this.scrollTop);
 
-        // Only update if scrolling across item boundary
-        if (position.index !== this.props.position.index)
+        if (position.scrollTop === 0 && (position.index !== 0 || position.offset !== 0)) {
+            position.scrollTop = this.getScrollTopOf(position);
+            position.force = true;
             this.props.onPositionChange(position, this.state.layout);
+        } else if (position.index !== this.props.position.index) {
+            // Only update if scrolling across item boundary
+            this.props.onPositionChange(position, this.state.layout);
+        }
     }
 }
 
@@ -230,7 +252,8 @@ LazyScroller.propTypes = {
     position: React.PropTypes.shape({
         index: React.PropTypes.number.isRequired,
         offset: React.PropTypes.number.isRequired,
-        scrollTop: React.PropTypes.number.isRequired
+        scrollTop: React.PropTypes.number,
+        force: React.PropTypes.bool
     }),
     onPositionChange: React.PropTypes.func,
 
@@ -258,5 +281,5 @@ LazyScroller.defaultProps = {
     },
     placeholderHeight: 300,
 
-    preloadRatio: 3
+    preloadRatio: 4
 };
