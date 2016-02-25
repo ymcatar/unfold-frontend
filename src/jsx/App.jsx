@@ -5,7 +5,6 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 const history = createBrowserHistory({ queryKey: false });
 
-import $ from 'jquery-browserify';
 import {Router, Route, Link, IndexRoute, browserHistory} from 'react-router';
 
 import ReaderView from 'views/ReaderView.jsx';
