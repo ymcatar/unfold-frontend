@@ -26,10 +26,7 @@ export default class Day extends React.Component {
 
         let [year, month, day] = this.props.date;
         for (let i = 23; i >= 0; i--) {
-            let multiplier = 2;
-            if (size > 50)
-                multiplier = 5;
-            let length = hash[i] / size * multiplier * 100;
+            let length = 12 * Math.sqrt(hash[i] / size * 144);
             bars.push((
                 <Bar
                     key={uuid.v1()}
