@@ -61,8 +61,7 @@ export default class UpdateBox extends React.Component {
 				promise = TypeEmbed.fetchProps(someProps.data.source);
 				break;
 			case 'facebook':
-				// promise = TypeFacebook.fetchProps(someProps.data.source);
-				promise = Promise.resolve({});
+				promise = TypeFacebook.fetchProps(someProps.data.source);
 				break;
 		}
 		return promise.then(props => ({ embed: props }));
@@ -90,7 +89,7 @@ export default class UpdateBox extends React.Component {
 				content = (<TypeEmbed {...this.props.embed} onResize={this.props.onResize} />);
 				break;
 			case 'facebook':
-				content = null; // (<TypeFacebook {...this.props.embed} />);
+				content = (<TypeFacebook {...this.props.embed} onResize={this.props.onResize} />);
 				break;
 		}
 

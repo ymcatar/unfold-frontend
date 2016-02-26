@@ -15,9 +15,12 @@ const styles = {
 		alignItems: 'center'
 	},
 	header: {
+        width: '200px',
 		color: Colors.stream.header,
 		borderBottom: `3px ${Colors.stream.headerBorder} solid`,
 		padding: '0 10px 5px 10px',
+		marginLeft: 'auto',
+		marginRight: 'auto',
 		textAlign: 'center'
 	}
 };
@@ -35,8 +38,7 @@ export default class ReaderStream extends React.Component {
 		this.state = {
 			position: {
 				index: 0,
-				offset: 0,
-				scrollTop: 0
+				offset: 0
 			},
 			data: data,
 			items: new Array(data.length),
@@ -44,12 +46,27 @@ export default class ReaderStream extends React.Component {
 		};
 
 		this.debouncedForceUpdate = _.debounce(this.forceUpdate.bind(this), 200,
-											   {leading: true, maxWait: 200});
+												{leading: true, maxWait: 200});
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		return true;
-		// return _.isEqual(nextProps, this.props) === false;
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.data !== this.props.data) {
+			let data = nextProps.data.sort((a, b) => {
+				a = new Date(a.submitTime);
+				b = new Date(b.submitTime);
+				return b - a;
+			});
+			this.setState({
+				position: {
+					index: 0,
+					offset: 0,
+					force: true
+				},
+				data: data,
+				items: new Array(data.length),
+				loading: new Array(data.length)
+			});
+		}
 	}
 
 	onPositionChange(position, layout) {
@@ -58,6 +75,9 @@ export default class ReaderStream extends React.Component {
 		});
 		// HACK: we proudly mutate the state
 		layout.forEach((attrs, i) => {
+			i -= 1;
+			if (i < 0)
+				return;
 			if (this.state.loading[i])
 				return;
 			this.state.loading[i] = true;
@@ -76,12 +96,11 @@ export default class ReaderStream extends React.Component {
 						<UpdateBox key={i} {..._.extend(props, data)} />
 					);
 					this.debouncedForceUpdate();
-				 });
+				});
 		});
 	}
 
 	scrollTo(date) {
-		console.log(date);
 		let index = _.findIndex(this.state.data, x => new Date(x.submitTime) - date < 0);
 		if (index === -1)
 			throw new Error('invalid date');
