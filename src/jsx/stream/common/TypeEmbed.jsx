@@ -1,25 +1,36 @@
 import React from 'react';
-import _ from 'lodash';
 import fetch from 'fetch-jsonp';
 
 export default class TypeEmbed extends React.Component {
-
-    static fetchProps(someProps) {
-        return fetch('http://noembed.com/embed?url=' + someProps.path.trim())
-            .then(res => res.json())
-            .then(body => _.extend({
-                body: body.html
-            }, someProps));
+    constructor(props) {
+        super(props);
+        this.state = {
+            body: ''
+        };
+        this.onLoad = this.onLoad.bind(this);
     }
 
     componentDidMount() {
-        if (this.props.onResize)
-            this.node.addEventListener('load', this.props.onResize, true);
+        this.node.addEventListener('load', this.onLoad, true);
+
+        fetch('http://noembed.com/embed?url=' + this.props.data.source.path.trim())
+            .then(res => res.json())
+            .then(body => {
+                this.setState({
+                    body: body.html
+                });
+            });
     }
 
     componentWillUnmount() {
-        if (this.props.onResize)
-            this.node.removeEventListener('load', this.props.onResize, true);
+        this.node.removeEventListener('load', this.onLoad, true);
+    }
+
+    onLoad() {
+        setTimeout(() => {
+            if (this.props.onResize)
+                this.props.onResize();
+        }, 1000);
     }
 
     render() {

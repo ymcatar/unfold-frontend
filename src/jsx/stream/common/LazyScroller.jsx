@@ -13,6 +13,8 @@ const styles = {
     }
 };
 
+let perfLog = () => {};
+
 export default class LazyScroller extends React.Component {
     constructor(props) {
         super(props);
@@ -22,10 +24,11 @@ export default class LazyScroller extends React.Component {
 
         this.state = {
             containerHeight: 1000,
-            layout: this.computeLayout(props, 1000),
             heightCache: {},
+            rendered: {},
             forceScrollTop: false
         };
+        _.extend(this.state, this.computeState(props, 1000));
 
         this.scrollTop = 0;
         this.container = null;
@@ -41,22 +44,20 @@ export default class LazyScroller extends React.Component {
         this.sweetScroll = new SweetScroll({}, this.container);
         this.container.scrollTop = scrollTop;
 
-        let layout = this.computeLayout(this.props, this.container.offsetHeight);
+        let nextState = this.computeState(this.props, this.container.offsetHeight);
+        this.setState(_.extend(nextState, {
+            containerHeight: this.container.offsetHeight
+        }));
 
-        this.setState({
-            containerHeight: this.container.offsetHeight,
-            layout: layout
-        });
         this.scrollTop = this.container.scrollTop;
 
-        this.props.onPositionChange(this.props.position, layout);
+        this.props.onLayoutChange(nextState.layout);
     }
 
     componentWillReceiveProps(nextProps) {
         if (!nextProps.position.scrollTop)
             nextProps.position.scrollTop = this.getScrollTopOf(nextProps.position);
-        let layout = this.computeLayout(nextProps);
-        this.setState({layout});
+        this.setState(this.computeState(nextProps));
 
         if (nextProps.position.force || nextProps.position.reflow)
             this.setState({forceScrollTop: true});
@@ -65,26 +66,29 @@ export default class LazyScroller extends React.Component {
     componentDidUpdate() {
         if (this.state.forceScrollTop) {
             this.sweetScroll.to(this.props.position.scrollTop);
-            if (!this.props.position.reflow) {
-                let layout = this.computeLayout(this.props);
-                this.setState({layout});
-
-                let position = _.omit(this.props.position, 'force');
-
-                this.props.onPositionChange(position, layout);
-            }
-
-            this.setState({forceScrollTop: false});
+            perfLog('setState to unforce');
+            this.setState({
+                position: _.omit(this.props.position, 'force', 'reflow'),
+                forceScrollTop: false
+            });
         }
     }
 
     render() {
-        let displayables = this.state.layout.map((attrs, i) => {
-            let child = this.props.children[i];
+        let total = 0, hidden = 0;
+        let keys = _.keys(this.state.rendered).sort();
+        let displayables = keys.map(key => {
+            total += 1;
+            if (!this.state.layout[key]) hidden += 1;
+            let attrs = this.state.rendered[key];
+
+            let child = attrs.item;
             if (!React.isValidElement(child))
-                child = this.props.placeholderFunc(`placeholder-${i}`, this.props.placeholderHeight);
+                child = this.props.placeholderFunc(`placeholder-${key}`,
+                                                   this.props.placeholderHeight);
 
             let styles = {
+                display: this.state.layout[key] ? 'block' : 'none',
                 position: 'absolute',
                 top: attrs.top,
                 width: '100%',
@@ -96,17 +100,18 @@ export default class LazyScroller extends React.Component {
                 <div
                     key={child.key}
                     style={styles}
-                    ref={this.onReportHeight.bind(this, i)}>
+                    ref={this.onReportHeight.bind(this, key)}>
                     {/* Stop margin collapsing, so that this element will reflect
                         the height of the content + 2px, including the margin */}
                     <div style={{padding: '1px 0', margin: '-1px 0'}}>
                         {React.cloneElement(child, {
-                            onResize: this.onUpdateHeight.bind(this, i)
+                            onResize: this.onUpdateHeight.bind(this, key)
                         })}
                     </div>
                 </div>
             );
         });
+        perfLog('RENDER: ', hidden, '/', total, 'hidden');
 
         let bodyHeight = 0;
         for (let i = 0; i < this.props.children.length; i++)
@@ -126,33 +131,26 @@ export default class LazyScroller extends React.Component {
         );
     }
 
-    onReportHeight(index, node) {
+    onReportHeight(key, node) {
         if (node)
-            this.itemRefs[index] = node;
+            this.itemRefs[key] = node;
         else
             return;
 
-        let child = this.props.children[index];
-        if (!child) return;
-
-        let key = child.key;
-        if (!this.state.heightCache[key]) {
+        if (typeof this.state.heightCache[key] === 'undefined') {
             this.state.heightCache[key] = node.firstElementChild.offsetHeight;
+            perfLog('relayout for ', key);
             this.debouncedRelayout();
         }
     }
 
-    onUpdateHeight(index) {
-        let node = this.itemRefs[index];
+    onUpdateHeight(key) {
+        let node = this.itemRefs[key];
         if (!node) return;
-        let child = this.props.children[index];
-        if (!child) return;
 
-        let key = child.key;
-        setTimeout(() => {
-            this.state.heightCache[key] = node.firstElementChild.offsetHeight;
-            this.debouncedRelayout();
-        }, 1000);
+        this.state.heightCache[key] = node.firstElementChild.offsetHeight;
+        perfLog('relayout for update ', key);
+        this.debouncedRelayout();
     }
 
     computePosition(scrollTop) {
@@ -186,39 +184,45 @@ export default class LazyScroller extends React.Component {
         return position;
     }
 
-    computeLayout(props, containerHeight = this.state.containerHeight) {
+    computeState(props, containerHeight = this.state.containerHeight) {
         let {position, children, preloadRatio} = props;
 
-        let layout = new Array(children.length);
+        let layout = {};
 
-        let displayBottom = -position.offset;
-        let targetBottom = containerHeight * (preloadRatio + 1);
-        for (let i = position.index; i < children.length && displayBottom < targetBottom; i++) {
-            let height = this.getHeightOf(children[i]);
-            layout[i] = {
-                height: height,
-                top: position.scrollTop + displayBottom
+        let addChild = (child, at, bottom) => {
+            let key = child ? child.key : undefined;
+            let height = this.getHeightOf(child);
+            let top = at - (bottom ? height : 0);
+            layout[key] = {
+                key: key,
+                item: child,
+                top: top,
+                height: height
             };
-            displayBottom += height;
-        }
+            return at + (bottom ? -1 : 1) * height;
+        };
 
-        let displayTop = -position.offset;
-        let targetTop = -containerHeight * preloadRatio;
-        for (let i = position.index - 1; i >= 0 && displayTop > targetTop; i--) {
-            let height = this.getHeightOf(children[i]);
-            layout[i] = {
-                height: height,
-                top: position.scrollTop + displayTop - height
-            };
-            displayTop -= height;
-        }
+        let at = position.scrollTop - position.offset;
+        let end = position.scrollTop + containerHeight * (preloadRatio + 1);
+        for (let i = position.index; i < children.length && at < end; i++)
+            at = addChild(children[i], at);
 
-        return layout;
+        at = position.scrollTop - position.offset;
+        end = position.scrollTop - containerHeight * preloadRatio;
+        for (let i = position.index - 1; i >= 0 && at > end; i--)
+            at = addChild(children[i], at, true);
+
+        let rendered = this.state.rendered;
+        _.forEach(layout, (v, k) => {
+            rendered[k] = v;
+        });
+
+        return {layout, rendered};
     }
 
     relayout() {
-        let layout = this.computeLayout(this.props);
-        this.setState({layout});
+        perfLog('setState to relayout');
+        this.setState(this.computeState(this.props));
     }
 
     getScrollTopOf(position) {
@@ -246,23 +250,23 @@ export default class LazyScroller extends React.Component {
         if (position.scrollTop === 0 && (position.index !== 0 || position.offset !== 0)) {
             position.scrollTop = this.getScrollTopOf(position);
             position.force = true;
-            this.props.onPositionChange(position, this.state.layout);
+            this.props.onPositionChange(position);
+
         } else if (position.index !== this.props.position.index) {
             // Only update if scrolling across item boundary
-            this.props.onPositionChange(position, this.state.layout);
+            this.props.onPositionChange(position);
+
+            let nextState = this.computeState(this.props, this.container.offsetHeight);
+            perfLog('setState for crossing boundary');
+            this.setState(nextState);
+            this.props.onLayoutChange(nextState.layout);
         }
     }
 }
 
 LazyScroller.propTypes = {
     children: React.PropTypes.arrayOf(
-        React.PropTypes.oneOfType([
-            React.PropTypes.element,
-            React.PropTypes.shape({
-                props: React.PropTypes.shape({
-                    key: React.PropTypes.any.isRequired
-                }).isRequired
-            })])
+        React.PropTypes.element
     ).isRequired,
 
     position: React.PropTypes.shape({
@@ -273,6 +277,7 @@ LazyScroller.propTypes = {
         reflow: React.PropTypes.bool
     }),
     onPositionChange: React.PropTypes.func,
+    onLayoutChange: React.PropTypes.func,
 
     placeholderFunc: React.PropTypes.func,
     placeholderHeight: React.PropTypes.oneOfType([
@@ -292,6 +297,7 @@ LazyScroller.defaultProps = {
         scrollTop: 0
     },
     onPositionChange: () => {},
+    onLayoutChange: () => {},
 
     placeholderFunc: function placeholder(key, height) {
         return <div key={key} style={{height: height}} />;

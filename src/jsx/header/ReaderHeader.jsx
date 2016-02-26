@@ -21,26 +21,20 @@ export default class ReaderHeader extends React.Component {
     constructor() {
         super();
         this.handleFilter = this.handleFilter.bind(this);
-        this.handleBackToTop = this.handleBackToTop.bind(this);
     }
 
     handleFilter(key) {
-        switch(key) {
+        switch (key) {
             case 'important':
-                this.props.handleFilter.call(this, 'important');
+                this.props.handleFilter('important');
                 break;
             case 'reliable':
-                this.props.handleFilter.call(this, 'reliable');
+                this.props.handleFilter('reliable');
                 break;
             case 'all':
-                this.props.handleFilter.call(this, 'all');
+                this.props.handleFilter('all');
                 break;
         }
-    }
-
-    handleBackToTop() {
-        const sweetScroll = new SweetScroll({offset: -10}, "#left");
-        sweetScroll.to(0);
     }
 
     render() {
@@ -67,7 +61,7 @@ export default class ReaderHeader extends React.Component {
                             Reliable
                         </NavItem>
                     </Nav>
-                    <Nav pullRight onSelect={this.handleBackToTop}>
+                    <Nav pullRight onSelect={this.props.handleBackToTop}>
                         <NavItem eventKey={'top'} href="#">
                             <i className="fa fa-chevron-circle-up" />
                             &nbsp;Top

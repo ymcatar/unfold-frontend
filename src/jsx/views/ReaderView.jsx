@@ -2,15 +2,14 @@ import React from 'react';
 import MediaQuery from 'react-responsive';
 
 import Colors from 'config/Colors.jsx';
-import Placeholder from 'config/Placeholder.jsx';
 
-import ReaderHeader from 'header/ReaderHeader.jsx';
+import ReaderHeaderContainer from 'header/ReaderHeaderContainer.jsx';
 
-import ReaderStream from 'stream/ReaderStream.jsx';
+import ReaderStreamContainer from 'stream/ReaderStreamContainer.jsx';
 
-import Timeline from 'timeline/Timeline.jsx';
+import TimelineContainer from 'timeline/TimelineContainer.jsx';
 
-import ReaderInfo from 'info/ReaderInfo.jsx';
+import ReaderInfoContainer from 'info/ReaderInfoContainer.jsx';
 
 const styles = {
 	main: {
@@ -54,49 +53,30 @@ export default class ReaderView extends React.Component {
 
 	constructor() {
 		super();
-		this.state = {filter: 'all'};
 		this.handleFilter = this.handleFilter.bind(this);
-		this.getFilteredStream = this.getFilteredStream.bind(this);
 	}
 
 	handleFilter(test) {
 		this.setState({filter: test});
 	}
 
-	getFilteredStream() {
-		if (this.state.filter === 'all')
-			return Placeholder.readerStream;
-		else
-			return Placeholder.readerStream.filter(item => (
-				item.tags && item.tags.indexOf(this.state.filter) >= 0
-			));
-	}
-
 	render() {
 		const generateBody = (stream, timeline, info, noAvatar) => {
 			let streamComponent = small => (
-				<div style={styles.left} id="left">
-					<ReaderStream
-						ref={x => { this.stream = x; }}
-						header={this.state.filter}
-						small={small}
-						data={this.getFilteredStream()}
-						handleFilter={this.handleFilter}
-						contributors={Placeholder.contributors} />
+				<div style={styles.left}>
+					<ReaderStreamContainer small={small} />
 				</div>
 			);
 
 			let timelineComponent = (
 				<div style={styles.mid}>
-					<Timeline
-						data={this.getFilteredStream()}
-						onTravel={date => { this.stream.scrollTo(date); }} />
+					<TimelineContainer />
 				</div>
 			);
 
 			let infoComponent = (
 				<div style={styles.right}>
-					<ReaderInfo data={Placeholder} />
+					<ReaderInfoContainer />
 				</div>
 			);
 
@@ -105,9 +85,7 @@ export default class ReaderView extends React.Component {
 			let r = info? infoComponent: null;
 			return (
 				<div>
-					<ReaderHeader
-						filter={this.state.filter}
-						handleFilter={this.handleFilter}/>
+					<ReaderHeaderContainer />
 					<div style={styles.main}>
 						{l}
 						{m}

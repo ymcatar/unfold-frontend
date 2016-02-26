@@ -47,30 +47,13 @@ const styles = {
 };
 
 export default class UpdateBox extends React.Component {
-	static fetchProps(someProps) {
-		let promise;
-		switch (someProps.data.type) {
-			case 'text':
-				promise = Promise.resolve({});
-				break;
-			case 'twitter':
-				promise = TypeTwitter.fetchProps(someProps.data.source);
-				break;
-			case 'youtube':
-			case 'flickr':
-			case 'imgur':
-				promise = TypeEmbed.fetchProps(someProps.data.source);
-				break;
-			case 'facebook':
-				promise = TypeFacebook.fetchProps(someProps.data.source);
-				break;
-		}
-		return promise.then(props => ({ embed: props }));
+	shouldComponentUpdate(nextProps) {
+		let cond = this.props.data !== nextProps.data
+			|| this.props.small !== nextProps.small;
+		if (cond)
+			console.log('updating', this.key);
+		return cond;
 	}
-
-    shouldComponentUpdate(nextProps) {
-        return !_.isEqualWith(this.props, nextProps, (x, y) => x === y);
-    }
 
 	render() {
 		if (!this.props.data) {
@@ -85,27 +68,31 @@ export default class UpdateBox extends React.Component {
 				</div>
 			);
 		}
-		const {name, title, image, online} = this.props.contributor;
-		const date = moment(this.props.data.submitTime);
 
-		let content;
+		let EmbedClass = null;
 		switch(this.props.data.type) {
 			case 'text':
-				content = null;
 				break;
 			case 'twitter':
-				content = (<TypeTwitter {...this.props.embed} onResize={this.props.onResize} />);
+				EmbedClass = TypeTwitter;
 				break;
 			case 'youtube':
 			case 'flickr':
 			case 'imgur':
-				content = (<TypeEmbed {...this.props.embed} onResize={this.props.onResize} />);
+				EmbedClass = TypeEmbed;
 				break;
 			case 'facebook':
-				content = (<TypeFacebook {...this.props.embed} onResize={this.props.onResize} />);
+				EmbedClass = TypeFacebook;
 				break;
 		}
+		let content = EmbedClass ? (
+			<EmbedClass
+				data={this.props.data}
+				onResize={this.props.onResize} />
+		) : null;
 
+		const {name, title, image, online} = this.props.data.contributor;
+		const date = moment(this.props.data.submitTime);
 		let avatar;
 		if (this.props.small)
 			avatar = (
@@ -129,7 +116,7 @@ export default class UpdateBox extends React.Component {
 				{avatar}
 				<div style={styles.card}>
 					<div style={styles.info}>
-						<h5 className="pull-left">{this.props.contributor.name}</h5>
+						<h5 className="pull-left">{this.props.data.contributor.name}</h5>
 						<h5 className="pull-right">{date.format('llll')}</h5>
 					</div>
 					<div style={styles.content}>

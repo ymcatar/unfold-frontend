@@ -11,13 +11,13 @@ export default class ReaderInfo extends React.Component {
         return (
             <div>
                 <EventDetail
-                    title={this.props.data.event.title}
-                    description={this.props.data.event.description} />
+                    title={this.props.event.title}
+                    description={this.props.event.description} />
 
-                <Information data={this.props.data.info} />
+                <Information data={this.props.info} />
 
-                <Contributors data={this.props.data.contributors} />
-                <Translators data={this.props.data.translators} />
+                <Contributors data={this.props.contributors} />
+                <Translators data={this.props.translators} />
             </div>
         );
     }
