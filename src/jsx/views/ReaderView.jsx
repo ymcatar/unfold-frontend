@@ -3,13 +3,13 @@ import MediaQuery from 'react-responsive';
 
 import Colors from 'config/Colors.jsx';
 
-import ReaderHeaderContainer from 'header/ReaderHeaderContainer.jsx';
+import ReaderHeader from 'header/ReaderHeader.jsx';
 
-import ReaderStreamContainer from 'stream/ReaderStreamContainer.jsx';
+import ReaderStream from 'stream/ReaderStream.jsx';
 
-import TimelineContainer from 'timeline/TimelineContainer.jsx';
+import Timeline from 'timeline/Timeline.jsx';
 
-import ReaderInfoContainer from 'info/ReaderInfoContainer.jsx';
+import ReaderInfo from 'info/ReaderInfo.jsx';
 
 const styles = {
     main: {
@@ -64,19 +64,19 @@ export default class ReaderView extends React.Component {
         const generateBody = (stream, timeline, info, noAvatar) => {
             let streamComponent = small => (
                 <div style={styles.left}>
-                    <ReaderStreamContainer small={small} />
+                    <ReaderStream small={small} />
                 </div>
             );
 
             let timelineComponent = (
                 <div style={styles.mid}>
-                    <TimelineContainer />
+                    <Timeline />
                 </div>
             );
 
             let infoComponent = (
                 <div style={styles.right}>
-                    <ReaderInfoContainer />
+                    <ReaderInfo />
                 </div>
             );
 
@@ -85,7 +85,7 @@ export default class ReaderView extends React.Component {
             let r = info? infoComponent: null;
             return (
                 <div>
-                    <ReaderHeaderContainer />
+                    <ReaderHeader />
                     <div style={styles.main}>
                         {l}
                         {m}

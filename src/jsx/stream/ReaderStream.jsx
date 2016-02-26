@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import Colors from 'config/Colors.jsx';
 
 import UpdateBox from './common/UpdateBox.jsx';
 import LazyScroller from './common/LazyScroller.jsx';
+import { reportScroll, reportViewport } from '../actions/stream';
 
 const styles = {
     main: {
@@ -62,3 +65,21 @@ export default class ReaderStream extends React.Component {
         );
     }
 }
+
+export default connect(
+    function stateToProps(state) {
+        return _.pick(state.stream,
+                   'filter', 'filteredStream', 'position');
+    },
+    function dispatchToProps(dispatch) {
+        return {
+            onReportScroll(position) {
+                dispatch(reportScroll(position));
+            },
+
+            onReportViewport(viewport) {
+                dispatch(reportViewport(viewport));
+            }
+        };
+    }
+)(ReaderStream);

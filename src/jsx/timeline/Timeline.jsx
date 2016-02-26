@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import uuid from 'node-uuid';
 import moment from 'moment';
 
 import Day from './common/Day.jsx';
+import { scrollToDate } from '../actions/stream';
 
 const styles = {
     main: {
@@ -10,7 +12,7 @@ const styles = {
     }
 };
 
-export default class Timeline extends React.Component {
+class Timeline extends React.Component {
     render() {
         let bars = [];
 
@@ -52,3 +54,18 @@ export default class Timeline extends React.Component {
         );
     }
 }
+
+export default connect(
+    function stateToProps(state) {
+        return {
+            data: state.stream.filteredStream
+        };
+    },
+    function dispatchToProps(dispatch) {
+        return {
+            onTravel(date) {
+                dispatch(scrollToDate(date));
+            }
+        };
+    }
+)(Timeline);

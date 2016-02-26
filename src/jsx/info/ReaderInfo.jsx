@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import EventDetail from './common/EventDetail.jsx';
 
@@ -6,7 +7,7 @@ import Information from './reader/Information.jsx';
 import Translators from './reader/Translators.jsx';
 import Contributors from './reader/Contributors.jsx';
 
-export default class ReaderInfo extends React.Component {
+class ReaderInfo extends React.Component {
     render() {
         return (
             <div>
@@ -22,3 +23,12 @@ export default class ReaderInfo extends React.Component {
         );
     }
 }
+
+export default connect(
+    function stateToProps(state) {
+        return state.event;
+    },
+    function dispatchToProps(dispatch) {
+        return {};
+    }
+)(ReaderInfo);

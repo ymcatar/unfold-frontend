@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import SweetScroll from 'sweet-scroll';
 
 import Colors from 'config/Colors.jsx';
+import { selectFilter, scrollToTop } from '../actions/stream';
 
 const styles = {
     main: {
@@ -17,7 +19,7 @@ const styles = {
     }
 };
 
-export default class ReaderHeader extends React.Component {
+class ReaderHeader extends React.Component {
     constructor() {
         super();
         this.handleFilter = this.handleFilter.bind(this);
@@ -72,3 +74,20 @@ export default class ReaderHeader extends React.Component {
         );
     }
 }
+
+export default connect(
+    function stateToProps(state) {
+        return {};
+    },
+    function dispatchToProps(dispatch) {
+        return {
+            handleFilter(filter) {
+                dispatch(selectFilter(filter));
+            },
+
+            handleBackToTop() {
+                dispatch(scrollToTop());
+            }
+        };
+    }
+)(ReaderHeader);
