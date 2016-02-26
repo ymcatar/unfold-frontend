@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import SweetScroll from 'sweet-scroll';
 
 const styles = {
     main: {
@@ -15,6 +16,10 @@ const styles = {
 export default class LazyScroller extends React.Component {
     constructor(props) {
         super(props);
+
+        if (!props.position.scrollTop)
+            props.position.scrollTop = this.getScrollTopOf(props.position);
+
         this.state = {
             containerHeight: 1000,
             layout: this.computeLayout(props, 1000),
@@ -22,17 +27,20 @@ export default class LazyScroller extends React.Component {
             forceScrollTop: false
         };
 
-        if (!props.position.scrollTop)
-            props.position.scrollTop = this.getScrollTopOf(props.position);
         this.scrollTop = 0;
-
+        this.container = null;
+        this.sweetScroll = null;
         this.itemRefs = [];
 
-        this.debouncedRelayout = _.debounce(this.relayout.bind(this), 200,
-                                            {leading: true, maxWait: 200});
+        this.debouncedRelayout = _.debounce(this.relayout.bind(this), 50, {leading: true, maxWait: 50});
     }
 
     componentDidMount() {
+        let scrollTop = this.container.scrollTop;
+        this.container.scrollTop = 10;
+        this.sweetScroll = new SweetScroll({}, this.container);
+        this.container.scrollTop = scrollTop;
+
         let layout = this.computeLayout(this.props, this.container.offsetHeight);
 
         this.setState({
@@ -50,13 +58,22 @@ export default class LazyScroller extends React.Component {
         let layout = this.computeLayout(nextProps);
         this.setState({layout});
 
-        if (nextProps.position.force)
+        if (nextProps.position.force || nextProps.position.reflow)
             this.setState({forceScrollTop: true});
     }
 
     componentDidUpdate() {
         if (this.state.forceScrollTop) {
-            this.container.scrollTop = this.props.position.scrollTop;
+            this.sweetScroll.to(this.props.position.scrollTop);
+            if (!this.props.position.reflow) {
+                let layout = this.computeLayout(this.props);
+                this.setState({layout});
+
+                let position = _.omit(this.props.position, 'force');
+
+                this.props.onPositionChange(position, layout);
+            }
+
             this.setState({forceScrollTop: false});
         }
     }
@@ -65,8 +82,7 @@ export default class LazyScroller extends React.Component {
         let displayables = this.state.layout.map((attrs, i) => {
             let child = this.props.children[i];
             if (!React.isValidElement(child))
-                child = this.props.placeholderFunc(`placeholder-${i}`,
-                                                   this.props.placeholderHeight);
+                child = this.props.placeholderFunc(`placeholder-${i}`, this.props.placeholderHeight);
 
             let styles = {
                 position: 'absolute',
@@ -163,7 +179,7 @@ export default class LazyScroller extends React.Component {
                 index: 0,
                 offset: 0,
                 scrollTop: 0,
-                force: true
+                reflow: true
             };
         }
 
@@ -253,7 +269,8 @@ LazyScroller.propTypes = {
         index: React.PropTypes.number.isRequired,
         offset: React.PropTypes.number.isRequired,
         scrollTop: React.PropTypes.number,
-        force: React.PropTypes.bool
+        force: React.PropTypes.bool,
+        reflow: React.PropTypes.bool
     }),
     onPositionChange: React.PropTypes.func,
 

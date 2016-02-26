@@ -1,7 +1,4 @@
 import React from 'react';
-import uuid from 'node-uuid';
-import fetch from 'fetch-jsonp';
-import MediaQuery from 'react-responsive';
 
 import markdown from 'common/Markdown.js';
 
@@ -19,27 +16,32 @@ const styles = {
 
 export default class TypeFacebook extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-            id: uuid.v1()
-        };
+    static fetchProps(someProps) {
+        return Promise.resolve(someProps);
     }
 
     componentDidMount() {
-        if (window.FB)
-            window.FB.XFBML.parse(document.getElementById(this.state.id));
+        if (window.FB) {
+            window.FB.XFBML.parse(this.bodyNode, () => {
+                Promise.resolve().then(() => { // Facebook sucks
+                    if (this.props.onResize)
+                        this.props.onResize();
+                });
+            });
+        }
     }
 
     render() {
         return (
             <div>
                 <p dangerouslySetInnerHTML={{__html: markdown(this.props.data)}} />
-                <div style={styles.post}>
+                <div
+                    ref={x => { this.bodyNode = x; }}
+                    style={styles.post}>
                     <div
                         style={styles.fb}
                         className="fb-post"
-                        data-href={this.props.src.path}
+                        data-href={this.props.path}
                         data-width="450">
                     </div>
                 </div>

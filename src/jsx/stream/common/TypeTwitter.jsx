@@ -1,7 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
 import fetch from 'fetch-jsonp';
-import uuid from 'node-uuid';
 
 export default class TypeTwitter extends React.Component {
 
@@ -15,7 +14,6 @@ export default class TypeTwitter extends React.Component {
         return fetch('https://api.twitter.com/1/statuses/oembed.json?' + extra)
             .then(res => res.json())
             .then(body => _.extend({
-                id: uuid.v1(),
                 body: body.html,
                 init: true
             }, someProps));
@@ -23,9 +21,11 @@ export default class TypeTwitter extends React.Component {
 
     componentDidMount() {
         window.twttr.ready(twttr => {
-            window.twttr.widgets.load(document.getElementById(this.props.id))
+            window.twttr.widgets.load(this.bodyNode)
                 .then(() => {
-                    document.getElementById(this.props.id).style.removeProperty('display');
+                    if (!this.bodyNode)
+                        return;
+                    this.bodyNode.style.removeProperty('display');
                     if (this.props.onResize)
                         this.props.onResize();
                 });
@@ -35,7 +35,7 @@ export default class TypeTwitter extends React.Component {
     render() {
         return (
             <div
-                id={this.props.id}
+                ref={x => { this.bodyNode = x; }}
                 style={{display: 'none'}}
                 dangerouslySetInnerHTML={{__html: this.props.body}} />
         );
