@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import SweetScroll from 'sweet-scroll';
 
 const styles = {
     main: {
@@ -27,14 +28,20 @@ export default class LazyScroller extends React.Component {
         };
 
         this.scrollTop = 0;
-
+        this.container = null;
+        this.sweetScroll = null;
         this.itemRefs = [];
 
-        this.debouncedRelayout = _.debounce(this.relayout.bind(this), 200,
-                                            {leading: true, maxWait: 200});
+        this.debouncedRelayout = _.debounce(this.relayout.bind(this), 50,
+                                            {leading: true, maxWait: 50});
     }
 
     componentDidMount() {
+        let scrollTop = this.container.scrollTop;
+        this.container.scrollTop = 10;
+        this.sweetScroll = new SweetScroll({}, this.container);
+        this.container.scrollTop = scrollTop;
+
         let layout = this.computeLayout(this.props, this.container.offsetHeight);
 
         this.setState({
@@ -58,7 +65,7 @@ export default class LazyScroller extends React.Component {
 
     componentDidUpdate() {
         if (this.state.forceScrollTop) {
-            this.container.scrollTop = this.props.position.scrollTop;
+            this.sweetScroll.to(this.props.position.scrollTop);
             if (!this.props.position.reflow) {
                 let layout = this.computeLayout(this.props);
                 this.setState({layout});

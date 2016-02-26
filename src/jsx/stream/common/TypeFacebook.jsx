@@ -23,9 +23,10 @@ export default class TypeFacebook extends React.Component {
     componentDidMount() {
         if (window.FB) {
             window.FB.XFBML.parse(this.bodyNode, () => {
-
-                if (this.props.onResize)
-                    this.props.onResize();
+                Promise.resolve().then(() => { // Facebook sucks
+                    if (this.props.onResize)
+                        this.props.onResize();
+                });
             });
         }
     }

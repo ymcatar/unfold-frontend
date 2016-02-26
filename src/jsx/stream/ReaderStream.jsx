@@ -45,8 +45,7 @@ export default class ReaderStream extends React.Component {
 			loading: new Array(data.length)
 		};
 
-		this.debouncedForceUpdate = _.debounce(this.forceUpdate.bind(this), 200,
-												{leading: true, maxWait: 200});
+		this.debouncedForceUpdate = this.forceUpdate.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -100,6 +99,15 @@ export default class ReaderStream extends React.Component {
 		});
 	}
 
+	createPlaceholder(key, height) {
+		return (
+			<UpdateBox
+				key={key}
+				style={{height: height - 20}}
+				small={this.props.small} />
+		);
+	}
+
 	scrollTo(date) {
 		let index = _.findIndex(this.state.data, x => new Date(x.submitTime) - date < 0);
 		if (index === -1)
@@ -120,7 +128,8 @@ export default class ReaderStream extends React.Component {
 				<LazyScroller
 					position={this.state.position}
 					style={{width: '100%', height: 'calc(100vh - 50px)'}}
-					onPositionChange={this.onPositionChange.bind(this)}>
+					onPositionChange={this.onPositionChange.bind(this)}
+					placeholderFunc={this.createPlaceholder.bind(this)}>
 
 					{[
 						<h2 key="heading" style={styles.header} height={71}>

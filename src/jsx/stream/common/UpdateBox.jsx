@@ -22,7 +22,8 @@ const styles = {
 	avatar: {
 		position: 'relative',
 		left: '-10px',
-		top: '5px'
+		top: '5px',
+		width: '60px'
 	},
 	card: {
 		width: '100%',
@@ -72,6 +73,18 @@ export default class UpdateBox extends React.Component {
     }
 
 	render() {
+		if (!this.props.data) {
+			// Placeholder
+			let avatar = null;
+			if (this.props.small)
+				avatar = (<div style={styles.avatar} />);
+			return (
+				<div style={_.extend({}, styles.main, this.props.style)}>
+					{avatar}
+					<div style={styles.card} />
+				</div>
+			);
+		}
 		const {name, title, image, online} = this.props.contributor;
 		const date = moment(this.props.data.submitTime);
 
@@ -111,8 +124,7 @@ export default class UpdateBox extends React.Component {
 		): null;
 
 		return (
-			<div style={_.extend({}, styles.main, this.props.style)}
-				className={`update_${date.format('YYYYMMDDH')}`}>
+			<div style={_.extend({}, styles.main, this.props.style)}>
 				{avatar}
 				<div style={styles.card}>
 					<div style={styles.info}>
