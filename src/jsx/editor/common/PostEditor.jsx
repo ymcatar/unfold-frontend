@@ -6,14 +6,15 @@ import Colors from 'config/Colors.jsx';
 
 const styles = {
     editor: {
-        border: `3px ${Colors.editor.border} solid`,
+        border: `1px ${Colors.editor.border} solid`,
         borderRadius: '3px',
         padding: '10px',
         outline: 'none',
         height: '250px',
         overflowY: 'scroll',
         margin: '10px 0 10px 0',
-        fontSize: '110%'
+        fontSize: '110%',
+        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.075)'
     }
 };
 

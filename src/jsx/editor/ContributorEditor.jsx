@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
+import {Button, Input} from 'react-bootstrap';
 
 import Colors from 'config/Colors.jsx';
 
@@ -26,12 +26,14 @@ export default class ContributorEditor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            path: '',
             content: '',
             tags: [],
             suggestions: ['Jason', 'is', 'amazing', 'amusing']
         };
         this.handleContentChange = this.handleContentChange.bind(this);
         this.handleTagsChange = this.handleTagsChange.bind(this);
+        this.handleSourceChange = this.handleSourceChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -43,10 +45,17 @@ export default class ContributorEditor extends React.Component {
         this.setState({tags: tags});
     }
 
+    handleSourceChange() {
+        this.setState({path: this.refs.path.getValue()});
+    }
+
     handleSubmit() {
         let output = {
             content: this.state.content,
-            tags: this.state.tags.map(item => item.text)
+            tags: this.state.tags.map(item => item.text),
+            source: {
+                path: this.state.path
+            }
         };
         this.props.handleSubmit.call(this, output);
     }
@@ -54,11 +63,21 @@ export default class ContributorEditor extends React.Component {
     render() {
         return (
             <div style={styles.main}>
-                <b>Content</b><br/>
+
+                <h5>Content</h5>
                 <PostEditor
                     handleContentChange={this.handleContentChange}
                     content={this.state.content} />
-                <b>Tags</b><br/>
+
+                <h5>Source Path</h5>
+                <Input
+                    ref="path"
+                    value={this.state.path}
+                    onChange={this.handleSourceChange}
+                    bsSize="small"
+                    type="text" />
+
+                <h5>Tags</h5>
                 <PostTags
                     suggestions={this.state.suggestions}
                     tags={this.state.tags}
