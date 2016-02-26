@@ -37,7 +37,13 @@ export default {
 		headerBorder: '#aaa'
 	},
 	editor: {
-		border: '#f5f5f5'
+		border: '#ccc',
+		backgroundColor: '#555',
+		color: 'white',
+		postEditor: {
+			backgroundColor: 'white',
+			color: 'black'
+		}
 	},
 	zDepth: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
 };

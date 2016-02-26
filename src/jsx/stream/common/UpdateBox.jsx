@@ -4,6 +4,8 @@ import _ from 'lodash';
 
 import Colors from 'config/Colors.jsx';
 
+import Card from 'common/Card.jsx';
+
 import UpdateAvatar from './UpdateAvatar.jsx';
 import Tags from './Tags.jsx';
 import TypeText from './TypeText.jsx';
@@ -24,15 +26,6 @@ const styles = {
 		left: '-10px',
 		top: '5px',
 		width: '60px'
-	},
-	card: {
-		width: '100%',
-		maxWidth: '100%',
-		backgroundColor: 'white',
-		boxShadow: Colors.zDepth,
-		border: '3px #FFFFFF solid',
-		borderRadius: '2px',
-		padding: '10px'
 	},
 	info: {
 		color: 'grey',
@@ -114,7 +107,7 @@ export default class UpdateBox extends React.Component {
 			<div style={_.extend({}, styles.main, this.props.style)}>
 
 				{avatar}
-				<div style={styles.card}>
+				<Card>
 					<div style={styles.info}>
 						<h5 className="pull-left">{this.props.data.contributor.name}</h5>
 						<h5 className="pull-right">{date.format('llll')}</h5>
@@ -126,7 +119,7 @@ export default class UpdateBox extends React.Component {
 					<div>
 						{tags}
 					</div>
-				</div>
+				</Card>
 			</div>
 		);
 	}
