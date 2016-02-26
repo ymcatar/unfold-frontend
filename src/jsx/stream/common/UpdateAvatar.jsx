@@ -4,11 +4,11 @@ import {Image} from 'react-bootstrap';
 import Colors from 'config/Colors.jsx';
 
 const getImageStyle = function(size = 55, on = false) {
-	return {
-		width: `${size}px`,
-		height: `${size}px`,
-		boxShadow: Colors.zDepth
-	};
+    return {
+        width: `${size}px`,
+        height: `${size}px`,
+        boxShadow: Colors.zDepth
+    };
 };
 
 

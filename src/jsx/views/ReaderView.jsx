@@ -12,106 +12,106 @@ import TimelineContainer from 'timeline/TimelineContainer.jsx';
 import ReaderInfoContainer from 'info/ReaderInfoContainer.jsx';
 
 const styles = {
-	main: {
-		textColor: Colors.info.textColor,
-		paddingTop: '50px',
-		overflow: 'hidden',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-		overflowX: 'hidden'
-	},
-	left: {
-		backgroundColor: Colors.stream.backgroundColor,
-		height: '100vh',
-		width: '100%',
-		paddingBottom: '50px'
-	},
-	mid: {
-		backgroundColor: Colors.timeline.backgroundColor,
-		width: '70px',
-		minWidth: '70px',
-		height: '100vh',
-		overflowY: 'scroll',
-		overflowX: 'hidden'
-	},
-	right: {
-		backgroundColor: Colors.info.backgroundColor,
-		color: Colors.info.color,
-		height: '100vh',
-		minWidth: '300px',
-		width: '300px',
-		padding: '20px',
-		overflowY: 'scroll',
-		overflowX: 'hidden',
-		boxShadow: Colors.zDepth,
-		zIndex: 3
-	}
+    main: {
+        textColor: Colors.info.textColor,
+        paddingTop: '50px',
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflowX: 'hidden'
+    },
+    left: {
+        backgroundColor: Colors.stream.backgroundColor,
+        height: '100vh',
+        width: '100%',
+        paddingBottom: '50px'
+    },
+    mid: {
+        backgroundColor: Colors.timeline.backgroundColor,
+        width: '70px',
+        minWidth: '70px',
+        height: '100vh',
+        overflowY: 'scroll',
+        overflowX: 'hidden'
+    },
+    right: {
+        backgroundColor: Colors.info.backgroundColor,
+        color: Colors.info.color,
+        height: '100vh',
+        minWidth: '300px',
+        width: '300px',
+        padding: '20px',
+        overflowY: 'scroll',
+        overflowX: 'hidden',
+        boxShadow: Colors.zDepth,
+        zIndex: 3
+    }
 };
 
 export default class ReaderView extends React.Component {
 
-	constructor() {
-		super();
-		this.handleFilter = this.handleFilter.bind(this);
-	}
+    constructor() {
+        super();
+        this.handleFilter = this.handleFilter.bind(this);
+    }
 
-	handleFilter(test) {
-		this.setState({filter: test});
-	}
+    handleFilter(test) {
+        this.setState({filter: test});
+    }
 
-	render() {
-		const generateBody = (stream, timeline, info, noAvatar) => {
-			let streamComponent = small => (
-				<div style={styles.left}>
-					<ReaderStreamContainer small={small} />
-				</div>
-			);
+    render() {
+        const generateBody = (stream, timeline, info, noAvatar) => {
+            let streamComponent = small => (
+                <div style={styles.left}>
+                    <ReaderStreamContainer small={small} />
+                </div>
+            );
 
-			let timelineComponent = (
-				<div style={styles.mid}>
-					<TimelineContainer />
-				</div>
-			);
+            let timelineComponent = (
+                <div style={styles.mid}>
+                    <TimelineContainer />
+                </div>
+            );
 
-			let infoComponent = (
-				<div style={styles.right}>
-					<ReaderInfoContainer />
-				</div>
-			);
+            let infoComponent = (
+                <div style={styles.right}>
+                    <ReaderInfoContainer />
+                </div>
+            );
 
-			let l = stream? streamComponent(noAvatar): null;
-			let m = timeline? timelineComponent: null;
-			let r = info? infoComponent: null;
-			return (
-				<div>
-					<ReaderHeaderContainer />
-					<div style={styles.main}>
-						{l}
-						{m}
-						{r}
-					</div>
-				</div>
-			);
-		};
+            let l = stream? streamComponent(noAvatar): null;
+            let m = timeline? timelineComponent: null;
+            let r = info? infoComponent: null;
+            return (
+                <div>
+                    <ReaderHeaderContainer />
+                    <div style={styles.main}>
+                        {l}
+                        {m}
+                        {r}
+                    </div>
+                </div>
+            );
+        };
 
-		return (
-			<div>
-				<MediaQuery minDeviceWidth={1224}>
-					<MediaQuery minWidth={1000}>
-						{generateBody(true, true, true, true)}
-					</MediaQuery>
-					<MediaQuery minWidth={800} maxWidth={1000}>
-						{generateBody(true, true, true, false)}
-					</MediaQuery>
-					<MediaQuery maxWidth={800}>
-						{generateBody(true, true, false, false)}
-					</MediaQuery>
-				</MediaQuery>
-				<MediaQuery maxDeviceWidth={1224}>
-					{generateBody(true, false, false, false)}
-				</MediaQuery>
-			</div>
-		);
-	}
+        return (
+            <div>
+                <MediaQuery minDeviceWidth={1224}>
+                    <MediaQuery minWidth={1000}>
+                        {generateBody(true, true, true, true)}
+                    </MediaQuery>
+                    <MediaQuery minWidth={800} maxWidth={1000}>
+                        {generateBody(true, true, true, false)}
+                    </MediaQuery>
+                    <MediaQuery maxWidth={800}>
+                        {generateBody(true, true, false, false)}
+                    </MediaQuery>
+                </MediaQuery>
+                <MediaQuery maxDeviceWidth={1224}>
+                    {generateBody(true, false, false, false)}
+                </MediaQuery>
+            </div>
+        );
+    }
 }

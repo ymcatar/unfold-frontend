@@ -2,21 +2,21 @@ import React from 'react';
 import markdown from 'common/Markdown.js';
 
 const styles = {
-	main: {
-		overflowY: 'scroll',
-		height: '20vh'
-	},
-	p: {
-		textAlign: 'justify',
-		textJustify: 'inter-word',
-	}
+    main: {
+        overflowY: 'scroll',
+        height: '20vh'
+    },
+    p: {
+        textAlign: 'justify',
+        textJustify: 'inter-word',
+    }
 };
 
 export default class InfoBox extends React.Component {
-	render() {
-		return (
-			<div
-				dangerouslySetInnerHTML={{__html: markdown(this.props.data)}} />
-		);
-	}
+    render() {
+        return (
+            <div
+                dangerouslySetInnerHTML={{__html: markdown(this.props.data)}} />
+        );
+    }
 }
