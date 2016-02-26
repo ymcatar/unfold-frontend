@@ -6,6 +6,8 @@ import Colors from 'config/Colors.jsx';
 
 const styles = {
     editor: {
+        backgroundColor: Colors.editor.postEditor.backgroundColor,
+        color: Colors.editor.postEditor.color,
         border: `1px ${Colors.editor.border} solid`,
         borderRadius: '3px',
         padding: '10px',
@@ -20,7 +22,7 @@ const styles = {
 
 const editorOptions = {
     placeholder: {
-        text: 'Type your text here. Select text to add formating.',
+        text: 'Type your text here.\nSelect text to add formating.',
         hideOnClick: true
     },
     imageDragging: false,
@@ -42,7 +44,11 @@ const editorOptions = {
 export default class PostEditor extends React.Component {
     render() {
         return (
-            <Editor style={styles.editor} text={this.props.text} onChange={this.props.handleContentChange.bind(this)} options={editorOptions}/>
+            <Editor
+                style={styles.editor}
+                text={this.props.text}
+                onChange={this.props.handleContentChange.bind(this)}
+                options={editorOptions}/>
         );
     }
 }

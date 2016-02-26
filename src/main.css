@@ -44,6 +44,7 @@ div.ReactTags__tags {
 /* Styles for the input */
 div.ReactTags__tagInput {
     width: 100px;
+    color: black;
     display: inline-block;
     vertical-align: middle;
     background-repeat: no-repeat;
@@ -74,6 +75,7 @@ div.ReactTags__selected {
 div.ReactTags__selected span.ReactTags__tag {
     border: 1px solid #ddd;
     background: #eee;
+    color: black;
     font-size: 12px;
     font-weight: bold;
     display: inline-block;
