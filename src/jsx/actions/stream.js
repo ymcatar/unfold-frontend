@@ -40,3 +40,13 @@ export function reportViewport(viewport) {
         viewport: viewport
     };
 }
+
+// For prototyping purpose only
+export const CREATE_POST = 'stream create post';
+
+export function createPost(post) {
+    return {
+        type: CREATE_POST,
+        post: post
+    };
+}

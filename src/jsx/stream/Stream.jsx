@@ -56,7 +56,7 @@ export default class ReaderStream extends React.Component {
                     onLayoutChange={this.props.onReportViewport}
                     placeholderFunc={this.createPlaceholder.bind(this)}>
                     {[
-                        <h2 key="heading" style={styles.header} height={71}>
+                        <h2 key="heading" style={styles.header} height={60}>
                             #{this.props.filter}
                         </h2>
                     ].concat(elements)}

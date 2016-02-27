@@ -2,23 +2,25 @@ import React from 'react';
 import Placeholder from 'config/Placeholder.jsx';
 import Colors from 'config/Colors.jsx';
 
-import ReaderStream from 'stream/ReaderStream.jsx';
+import Stream from 'stream/Stream.jsx';
 
-import ContributorHeader from 'header/ContributorHeader.jsx';
+import Timeline from 'timeline/Timeline.jsx';
+
+import Header from 'header/Header.jsx';
 
 import ContributorEditor from 'editor/ContributorEditor.jsx';
 
 const styles = {
     main: {
         textColor: Colors.info.textColor,
+        paddingTop: '50px',
         overflow: 'hidden',
         display: 'flex',
         justifyContent: 'center',
-        overflowX: 'hidden',
-        backgroundColor: Colors.stream.backgroundColor,
-        height: '100vh'
+        overflowX: 'hidden'
     },
     editor: {
+        backgroundColor: Colors.stream.backgroundColor,
         width: '600px',
         padding: '20px',
         paddingTop: '70px'
@@ -28,6 +30,14 @@ const styles = {
         height: '100vh',
         width: '100%',
         paddingBottom: '50px'
+    },
+    timeline: {
+        backgroundColor: Colors.timeline.backgroundColor,
+        width: '70px',
+        minWidth: '70px',
+        height: '100vh',
+        overflowY: 'scroll',
+        overflowX: 'hidden'
     }
 };
 
@@ -35,24 +45,24 @@ export default class ContributorView extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(input) {
-        console.log(input);
     }
 
     render() {
         return (
-            <div style={styles.main}>
-                <ContributorHeader />
+            <div>
+                <Header />
+                <div style={styles.main}>
+                    <div style={styles.editor}>
+                        <ContributorEditor />
+                    </div>
 
-                <div style={styles.editor}>
-                    <ContributorEditor handleSubmit={this.handleSubmit} />
-                </div>
+                    <div style={styles.stream}>
+                        <Stream />
+                    </div>
 
-                <div style={styles.stream} id="left">
-
+                    <div style={styles.timeline}>
+                        <Timeline />
+                    </div>
                 </div>
             </div>
         );

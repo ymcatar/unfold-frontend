@@ -3,9 +3,9 @@ import MediaQuery from 'react-responsive';
 
 import Colors from 'config/Colors.jsx';
 
-import ReaderHeader from 'header/ReaderHeader.jsx';
+import Header from 'header/Header.jsx';
 
-import ReaderStream from 'stream/ReaderStream.jsx';
+import Stream from 'stream/Stream.jsx';
 
 import Timeline from 'timeline/Timeline.jsx';
 
@@ -64,7 +64,7 @@ export default class ReaderView extends React.Component {
         const generateBody = (stream, timeline, info, noAvatar) => {
             let streamComponent = small => (
                 <div style={styles.left}>
-                    <ReaderStream small={small} />
+                    <Stream small={small} />
                 </div>
             );
 
@@ -85,7 +85,7 @@ export default class ReaderView extends React.Component {
             let r = info? infoComponent: null;
             return (
                 <div>
-                    <ReaderHeader />
+                    <Header />
                     <div style={styles.main}>
                         {l}
                         {m}

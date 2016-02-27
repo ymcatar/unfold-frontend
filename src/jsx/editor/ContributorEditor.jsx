@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {Button, Input} from 'react-bootstrap';
 
 import Colors from 'config/Colors.jsx';
@@ -7,6 +8,7 @@ import Card from 'common/Card.jsx';
 
 import PostEditor from './common/PostEditor.jsx';
 import PostTags from './common/PostTags.jsx';
+import { createPost } from '../actions/stream';
 
 const styles = {
     main: {
@@ -19,7 +21,7 @@ const styles = {
     }
 };
 
-export default class ContributorEditor extends React.Component {
+class ContributorEditor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -54,7 +56,12 @@ export default class ContributorEditor extends React.Component {
                 path: this.state.path
             }
         };
-        this.props.handleSubmit.call(this, output);
+        this.props.handleSubmit(output);
+        this.setState({
+            content: '',
+            tags: [],
+            path: ''
+        });
     }
 
     render() {
@@ -90,3 +97,16 @@ export default class ContributorEditor extends React.Component {
         );
     }
 }
+
+export default connect(
+    function stateToProps(state) {
+        return {};
+    },
+    function dispatchToProps(dispatch) {
+        return {
+            handleSubmit(post) {
+                dispatch(createPost(post));
+            }
+        };
+    }
+)(ContributorEditor);

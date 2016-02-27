@@ -41,6 +41,8 @@ export default class LazyScroller extends React.Component {
     componentDidMount() {
         let scrollTop = this.container.scrollTop;
         this.container.scrollTop = 10;
+        if (this.container.scrollTop === 0)
+            console.log('SweetScroll error!');
         this.sweetScroll = new SweetScroll({}, this.container);
         this.container.scrollTop = scrollTop;
 

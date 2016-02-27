@@ -46,7 +46,7 @@ export default class PostEditor extends React.Component {
         return (
             <Editor
                 style={styles.editor}
-                text={this.props.text}
+                text={this.props.content}
                 onChange={this.props.handleContentChange.bind(this)}
                 options={editorOptions}/>
         );
