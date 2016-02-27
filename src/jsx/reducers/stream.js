@@ -37,8 +37,7 @@ const stream = Placeholder.readerStream
 
 const top = {
     index: 0,
-    offset: 0,
-    scrollTop: 0
+    offset: 0
 };
 
 const initialState = {

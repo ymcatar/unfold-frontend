@@ -29,6 +29,8 @@ const styles = {
 export default class ReaderStream extends React.Component {
     constructor(props) {
         super(props);
+
+        this.createPlaceholder = this.createPlaceholder.bind(this);
     }
 
     createPlaceholder(key, height) {
@@ -54,7 +56,7 @@ export default class ReaderStream extends React.Component {
                     style={{width: '100%', height: 'calc(100vh - 50px)'}}
                     onPositionChange={this.props.onReportScroll}
                     onLayoutChange={this.props.onReportViewport}
-                    placeholderFunc={this.createPlaceholder.bind(this)}>
+                    placeholderFunc={this.createPlaceholder}>
                     {[
                         <h2 key="heading" style={styles.header} height={60}>
                             #{this.props.filter}

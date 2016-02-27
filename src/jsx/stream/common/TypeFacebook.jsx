@@ -3,7 +3,8 @@ import React from 'react';
 const styles = {
     post: {
         borderLeft: '5px solid #EEEEEE',
-        padding: '0px 0px 0px 10px'
+        padding: '0px 0px 0px 10px',
+        minHeight: '100px'
     },
     fb: {
         width: '100% !important',

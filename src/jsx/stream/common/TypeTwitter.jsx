@@ -1,5 +1,11 @@
 import React from 'react';
 
+const styles = {
+    post: {
+        minHeight: '175px'
+    }
+};
+
 let twttrInit = new Promise(resolve => {
     window.twttr.ready(resolve);
 });
@@ -26,6 +32,7 @@ export default class TypeTwitter extends React.Component {
     render() {
         return (
             <div
+                style={styles.post}
                 ref={x => { this.bodyNode = x; }} />
         );
     }
