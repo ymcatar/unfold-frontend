@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import uuid from 'node-uuid';
 
 import Colors from 'config/Colors.jsx';
+import { selectFilter } from 'actions/stream';
 
 const getStyles = style => ({
     marginRight: '5px',
@@ -46,7 +48,7 @@ export default class Tags extends React.Component {
             return (
                 <a
                     style={getStyles(style)}
-                    onClick={() => {this.handleClick(text); }}
+                    onClick={() => {this.props.handleFilter(text);}}
                     key={uuid.v1()}
                     href="#">
                     #{text}
@@ -61,3 +63,16 @@ export default class Tags extends React.Component {
         );
     }
 }
+
+export default connect(
+    function stateToProps(state) {
+        return {};
+    },
+    function dispatchToProps(dispatch) {
+        return {
+            handleFilter(filter) {
+                dispatch(selectFilter(filter));
+            }
+        };
+    }
+)(Tags);

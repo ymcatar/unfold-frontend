@@ -51,13 +51,8 @@ const styles = {
 
 export default class ReaderView extends React.Component {
 
-    constructor() {
-        super();
-        this.handleFilter = this.handleFilter.bind(this);
-    }
-
-    handleFilter(test) {
-        this.setState({filter: test});
+    constructor(props) {
+        super(props);
     }
 
     render() {

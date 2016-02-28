@@ -44,6 +44,7 @@ export default class ReaderStream extends React.Component {
     render() {
         let elements = this.props.filteredStream.map(post => (
             <UpdateBox
+                handleFilter={this.props.handleFilter}
                 key={post.id}
                 data={post}
                 small={this.props.small} />
