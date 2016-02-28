@@ -7,48 +7,60 @@ export default {
     contributors : [
         {
             id: '01',
-            name: 'Bernie Sandwiches',
-            title: 'Our Lord',
+            name: 'Lion Smith',
+            title: 'Journalist working at Hong Kong Post.',
             image: 'res/avatar.jpg',
             online: true
         }, {
             id: '02',
-            name: 'Lord DuARTe',
-            title: 'Savior',
+            name: 'Doggy Chan',
+            title: 'Experienced field reportor from CBC.',
             image: 'res/avatar2.jpg',
-            online: true
-        }, {
-            id: '03',
-            name: 'Donald Dump',
-            title: 'This is a pretty long description of whatever this is talking about. This is a pretty long description of whatever this is talking about. This is a pretty long description of whatever this is talking about. This is a pretty long description of whatever this is talking about.',
-            image: 'res/avatar3.jpg',
             online: false
         }, {
+            id: '03',
+            name: 'Isaac Clinton',
+            title: 'Experienced correspondents from Britain Mail.',
+            image: 'res/avatar3.jpg',
+            online: true
+        }, {
             id: '04',
-            name: 'Lord DuARTe',
-            title: 'Savior',
-            image: 'res/avatar2.jpg',
+            name: 'Camus Bush',
+            title: 'A passionate amateur journalist.',
+            image: 'res/avatar4.jpg',
             online: true
         }, {
             id: '05',
-            name: 'Lord DuARTe',
-            title: 'Savior',
-            image: 'res/avatar2.jpg',
-            online: true
+            name: 'Descrates Sanders',
+            title: 'Greatest painter of all time.',
+            image: 'res/avatar5.jpg',
+            online: false
         }, {
             id: '06',
-            name: 'anthony',
-            title: 'Savior',
-            image: 'res/avatar2.jpg',
-            online: true
+            name: 'Socrates Oilver',
+            title: 'A professional journalist and part-time philosopher.',
+            image: 'res/avatar6.jpg',
+            online: false
         }
     ],
     translators : [
         {
+            name: 'Vincent Chan',
+            title: 'Good at French and painting.',
+            image: 'res/avatar7.jpg',
+            online: false
+        },
+        {
+            name: 'Socrates Oilver',
+            title: 'A professional journalist and part-time philosopher.',
+            image: 'res/avatar6.jpg',
+            online: false
+        },
+        {
             name: 'Matias',
             title: 'Savior',
             image: 'res/avatar2.jpg',
-            online: false
+            online: true
         }
     ],
     readerStream : [
