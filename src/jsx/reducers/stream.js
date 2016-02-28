@@ -79,11 +79,11 @@ export default function reduceStream(state, action) {
             if (action.top)
                 index = 0;
             else
-                index = _.findIndex(stream.completeStream,
+                index = _.findIndex(stream.filteredStream,
                                     x => new Date(x.submitTime) - action.date < 0);
 
             if (index === -1)
-                index = stream.completeStream.length - 1;
+                index = stream.filteredStream.length - 1;
 
             stream = {
                 position: {
