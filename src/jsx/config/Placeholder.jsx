@@ -49,14 +49,12 @@ export default {
             title: 'Good at French and painting.',
             image: 'res/avatar7.jpg',
             online: false
-        },
-        {
+        }, {
             name: 'Socrates Oilver',
             title: 'A professional journalist and part-time philosopher.',
             image: 'res/avatar6.jpg',
             online: false
-        },
-        {
+        }, {
             name: 'Matias',
             title: 'Savior',
             image: 'res/avatar2.jpg',
@@ -67,16 +65,16 @@ export default {
         {
             type: 'text',
             contributor: '06',
-            content: '<p>2352, police are gathering at Wan Chai exhibition center as more protesters increasing in that area.</p>\n',
-            submitTime: '2014-09-30T15:59:22Z',
-            tags: ['WanChai']
+            content: '<p>Police are gathering at Wan Chai exhibition center as more protesters increasing in that area.</p>\n',
+            submitTime: '2014-09-30T15:59:53Z',
+            tags: ['WanChai', 'police']
         }, {
             type: 'facebook',
             contributor: '05',
-            content: '<p>[23:05] Breaking: Protesters seemed to be occupying Canton Road, Tsim Sha Tsui.</p>\n',
-            submitTime: '2014-09-30T15:08:19Z',
+            content: '<p><h3>Breaking: Protesters seemed to be occupying Canton Road, Tsim Sha Tsui.</h3></p>\n',
+            submitTime: '2014-09-30T15:05:19Z',
             tags: [
-                'facebook', 'TsimShaTsui'
+                'facebook', 'TsimShaTsui', 'CantonRoad', 'important'
             ],
             source: {
                 path: 'https://www.facebook.com/socrec/photos/982100198483578/'
@@ -128,7 +126,9 @@ export default {
             contributor: '05',
             content: '<p>2113, Causeway BayMTR station Exit F, protesters setup up obstacles.</p>\n',
             submitTime: '2014-09-30T13:22:22Z',
-            tags: []
+            tags: [
+                'important', 'CausewayBay'
+            ]
         }, {
             type: 'twitter',
             contributor: '02',
@@ -176,7 +176,9 @@ export default {
             contributor: '01',
             content: '<p>[20:55] New protest fronts may be emerging. Tonight, protest organisers announced that the Sheung Shui MTR Station had been &quot;occupied&quot; but did not give details.</p>\n',
             submitTime: '2014-09-30T13:06:22Z',
-            tags: []
+            tags: [
+                'important'
+            ]
         }, {
             type: 'twitter',
             contributor: '04',
@@ -194,7 +196,7 @@ export default {
             content: '<p>Cambodia newspaper headlines.</p>\n',
             submitTime: '2014-09-30T12:04:13Z',
             source: {
-                path: 'http://i.imgur.com/oSQSyeU.jpg'
+                path: 'http://imgur.com/oSQSyeU'
             }
         }, {
             type: 'twitter',
@@ -212,7 +214,9 @@ export default {
             contributor: '01',
             content: '<p>[7:25] Sir Richard Ottaway of the UK Parliament Foreign Affairs Select Committee tells the BBC that they will continue to conduct an inquiry into Hong Kong, which would include looking at the agreement signed between Britain and China regarding Hong Kong. On China&#39;s demand that other countries stay out, he replied: &quot;I don&#39;t agree with them... to say Britain has no role in this is quite ridiculous really.&quot;</p>\n',
             submitTime: '2014-09-30T11:28:22Z',
-            tags: []
+            tags: [
+                'reliable'
+            ]
         }, {
             type: 'twitter',
             contributor: '06',
@@ -227,9 +231,11 @@ export default {
         }, {
             type: 'text',
             contributor: '01',
-            content: '<p>[7:15] Student leaders Lester Shum and Agnes Chow addressed crowds in Central, thanking all those who joined, saying the turnout was a surprise.\n“We are not only hoping for CY [Leung] to step down but we are also hoping for democratic development in Hong Kong – that we should have civil nomination and universal suffrage,” they said.\nChow, whose long, pink hair was soaked in sweat, urged the public to come out and join the protests to tomorrow, a public holiday and the anniversary of the Communist Party’s founding. Chow said she did not know how long the civil disobedience action would last.\nIn a warning to Hong Kong chief executive Leung, she said: “Where there are hundreds of thousands or even over millions of people coming out, you should respect the opinion of Hong Kong people and step down. GGive Hong Kong people a real democratic system with civil nomination.&quot;</p>\n',
+            content: '<p>[7:15] Student leaders Lester Shum and Agnes Chow addressed crowds in Central, thanking all those who joined, saying the turnout was a surprise.\n“We are not only hoping for CY [Leung] to step down but we are also hoping for democratic development in Hong Kong – that we should have civil nomination and universal suffrage,” they said.\nChow, whose long, pink hair was soaked in sweat, urged the public to come out and join the protests to tomorrow, a public holiday and the anniversary of the Communist Party’s founding. Chow said she did not know how long the civil disobedience action would last.\nIn a warning to Hong Kong chief executive Leung, she said: “Where there are hundreds of thousands or even over millions of people coming out, you should respect the opinion of Hong Kong people and step down. Give Hong Kong people a real democratic system with civil nomination.&quot;</p>\n',
             submitTime: '2014-09-30T11:26:22Z',
-            tags: []
+            tags: [
+                'important', 'reliable'
+            ]
         }, {
             type: 'twitter',
             contributor: '02',
