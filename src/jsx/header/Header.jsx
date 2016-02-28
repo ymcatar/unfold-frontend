@@ -22,6 +22,7 @@ const styles = {
 class ReaderHeader extends React.Component {
     constructor() {
         super();
+        this.state = {filter: 'all'};
         this.handleFilter = this.handleFilter.bind(this);
     }
 
@@ -29,12 +30,15 @@ class ReaderHeader extends React.Component {
         switch (key) {
             case 'important':
                 this.props.handleFilter('important');
+                this.setState({filter: 'important'});
                 break;
             case 'reliable':
                 this.props.handleFilter('reliable');
+                this.setState({filter: 'reliable'});
                 break;
             case 'all':
                 this.props.handleFilter('all');
+                this.setState({filter: 'all'});
                 break;
         }
     }
@@ -52,7 +56,7 @@ class ReaderHeader extends React.Component {
                             <img src="res/logo.png" style={styles.logo}/>
                         </Navbar.Text>
                     </Navbar.Header>
-                    <Nav onSelect={this.handleFilter} activeKey={this.props.filter}>
+                    <Nav onSelect={this.handleFilter} activeKey={this.state.filter}>
                         <NavItem eventKey={'all'} href="#">
                             All
                         </NavItem>

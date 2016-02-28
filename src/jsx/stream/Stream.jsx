@@ -29,7 +29,6 @@ const styles = {
 export default class ReaderStream extends React.Component {
     constructor(props) {
         super(props);
-
         this.createPlaceholder = this.createPlaceholder.bind(this);
     }
 
@@ -50,7 +49,7 @@ export default class ReaderStream extends React.Component {
                 small={this.props.small} />
         ));
         return (
-            <div style={styles.main} id="stream">
+            <div style={styles.main}>
                 <LazyScroller
                     position={this.props.position}
                     style={{width: '100%', height: 'calc(100vh - 50px)'}}
@@ -58,7 +57,7 @@ export default class ReaderStream extends React.Component {
                     onLayoutChange={this.props.onReportViewport}
                     placeholderFunc={this.createPlaceholder}>
                     {[
-                        <h2 key="heading" style={styles.header} height={60}>
+                        <h2 key="heading" style={styles.header} height={70}>
                             #{this.props.filter}
                         </h2>
                     ].concat(elements)}

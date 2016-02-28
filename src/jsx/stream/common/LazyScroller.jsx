@@ -65,7 +65,9 @@ export default class LazyScroller extends React.Component {
         // Set up SweetScroll
         let scrollTop = this.container.scrollTop;
         this.container.scrollTop = 10;
-        this.sweetScroll = new SweetScroll({}, this.container);
+        this.sweetScroll = new SweetScroll({
+            easing: 'easeInOutCirc'
+        }, this.container);
         if (!this.sweetScroll.container)
             console.error('SweetScroll error!');
         this.container.scrollTop = scrollTop;
@@ -114,7 +116,7 @@ export default class LazyScroller extends React.Component {
                 this.state.heightCache[key] = height;
                 updated = true;
             }
-        })
+        });
         if (updated)
             this.debouncedRelayout();
     }
@@ -129,8 +131,7 @@ export default class LazyScroller extends React.Component {
 
             let child = attrs.item;
             if (!React.isValidElement(child))
-                child = this.props.placeholderFunc(`placeholder-${key}`,
-                                                   this.props.placeholderHeight);
+                child = this.props.placeholderFunc(`placeholder-${key}`,this.props.placeholderHeight);
 
             let styles = {
                 display: this.state.layout[key] ? 'block' : 'none',
@@ -294,8 +295,7 @@ export default class LazyScroller extends React.Component {
         }
 
         let now = Date.now();
-        let scrollSpeed = (scrollTop - this.state.position.scrollTop)
-                            / (now - this.lastScrollTime) * 1000;
+        let scrollSpeed = (scrollTop - this.state.position.scrollTop) / (now - this.lastScrollTime) * 1000;
         scrollSpeed = ((this.state.position.scrollSpeed * 4) + scrollSpeed) / 5;
         this.lastScrollTime = now;
         this.debounceOnScrollEnd();

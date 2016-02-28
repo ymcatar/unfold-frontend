@@ -4,13 +4,13 @@ import { Provider } from 'react-redux';
 
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
-const history = createBrowserHistory({ queryKey: false });
-
 import {Router, Route, Link, IndexRoute, browserHistory} from 'react-router';
 
 import ReaderView from 'views/ReaderView.jsx';
 import ContributorView from 'views/ContributorView.jsx';
 import store from './store';
+
+const history = createBrowserHistory({ queryKey: false });
 
 ReactDOM.render((
     <Provider store={store}>
