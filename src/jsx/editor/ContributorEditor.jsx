@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Button, Input} from 'react-bootstrap';
-
-import Colors from 'config/Colors.jsx';
+import _ from 'lodash';
 
 import Card from 'common/Card.jsx';
 
@@ -30,10 +29,12 @@ class ContributorEditor extends React.Component {
             tags: [],
             suggestions: ['Jason', 'is', 'amazing', 'amusing']
         };
-        this.handleContentChange = this.handleContentChange.bind(this);
-        this.handleTagsChange = this.handleTagsChange.bind(this);
-        this.handleSourceChange = this.handleSourceChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        _.bindAll(this, [
+            'handleContentChange',
+            'handleTagsChange',
+            'handleSourceChange',
+            'handleSubmit'
+        ]);
     }
 
     handleContentChange(content) {

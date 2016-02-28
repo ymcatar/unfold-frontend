@@ -110,7 +110,7 @@ export default class UpdateBox extends React.Component {
                 <Card>
                     <div style={styles.info}>
                         <h5 className="pull-left">{this.props.data.contributor.name}</h5>
-                        <h5 className="pull-right">{date.format('llll')}</h5>
+                        <h5 className="pull-right">{date.format("D MMM YYYY / HH:MM")}</h5>
                     </div>
                     <div style={styles.content}>
                         <TypeText data={this.props.data.content} />

@@ -33,14 +33,12 @@ export default class PostTags extends React.Component {
 
     render() {
         return (
-            <div>
-                <ReactTags
-                    suggestions={this.props.suggestions}
-                    tags={this.props.tags}
-                    handleDelete={this.handleDelete}
-                    handleAddition={this.handleAddition}
-                    handleDrag={this.handleDrag} />
-            </div>
+            <ReactTags
+                suggestions={this.props.suggestions}
+                tags={this.props.tags}
+                handleDelete={this.handleDelete}
+                handleAddition={this.handleAddition}
+                handleDrag={this.handleDrag} />
         );
     }
 }

@@ -37,7 +37,7 @@ const editorOptions = {
             'unorderedlist',
             'h3',
             'h4'
-        ],
+        ]
     }
 };
 
@@ -47,8 +47,8 @@ export default class PostEditor extends React.Component {
             <Editor
                 style={styles.editor}
                 text={this.props.content}
-                onChange={this.props.handleContentChange.bind(this)}
-                options={editorOptions}/>
-        );
+                onChange={this.props.handleContentChange}
+                options={editorOptions} />
+            );
     }
 }

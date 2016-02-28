@@ -20,8 +20,8 @@ const generateHeader = function(text) {
 };
 
 export default class CollapseBox extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { open: false };
         this.onSelect = this.onSelect.bind(this);
     }

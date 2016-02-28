@@ -12,16 +12,6 @@ const getStyles = style => ({
 });
 
 export default class Tags extends React.Component {
-
-    constructor() {
-        super();
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(key) {
-        this.props.handleFilter.call(this, key);
-    }
-
     render() {
         if (!this.props.data || this.props.data === 0)
             return null;

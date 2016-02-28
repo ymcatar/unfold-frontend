@@ -4,11 +4,11 @@ import uuid from 'node-uuid';
 
 import Colors from 'config/Colors.jsx';
 
-const getStyles = (length, disable, mobile) => ({
+const getStyles = (length, disable) => ({
     backgroundColor: disable? Colors.timeline.disable: Colors.timeline.enable,
     width: `${length/100*70}px`,
-    height: mobile? '30px': '10px',
-    margin: '0 2px 0 auto'
+    height: '10px',
+    margin: '0 auto 0 2px'
 });
 
 const getMainStyles = disable => ({
@@ -29,9 +29,11 @@ export default class Bar extends React.Component {
         let disable = (this.props.length === 0);
         return (
             <div onClick={this.props.onClick}>
-                <OverlayTrigger placement="bottom" overlay={tooltip} animation={false}>
+                <OverlayTrigger
+                    placement={"left"} overlay={tooltip}
+                    animation={false} >
                     <div style={getMainStyles(disable)}>
-                        <div style={getStyles(length, disable, this.props.mobile)} />
+                        <div style={getStyles(length, disable)} />
                     </div>
                 </OverlayTrigger>
             </div>

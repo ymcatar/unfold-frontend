@@ -9,7 +9,7 @@ const styles = {
     text: {
         position: 'relative',
         height: '20px',
-        right: '-28px',
+        paddingLeft: '3px',
         color: Colors.timeline.date,
         fontWeight: '500'
     },

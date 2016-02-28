@@ -1,7 +1,6 @@
 import React from 'react';
-import {Image, OverlayTrigger, Popover} from 'react-bootstrap';
-
 import uuid from 'node-uuid';
+import {Image, OverlayTrigger, Popover} from 'react-bootstrap';
 
 import Colors from 'config/Colors.jsx';
 

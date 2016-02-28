@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
-import SweetScroll from 'sweet-scroll';
 
 import Colors from 'config/Colors.jsx';
 import { selectFilter, reportFilter, scrollToTop } from '../actions/stream';
@@ -20,8 +19,8 @@ const styles = {
 };
 
 class ReaderHeader extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleFilter = this.handleFilter.bind(this);
     }
 
