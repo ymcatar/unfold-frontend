@@ -40,6 +40,13 @@ export default {
 			image: 'res/avatar2.jpg',
 			online: true
 		},
+		{
+			id:'06',
+			name:'mole wong',
+			title:'Savior',
+			image:'res/molewong.jpg',
+			online: false
+		}
 	],
 	translators: [
 		{
@@ -50,6 +57,26 @@ export default {
 		}
 	],
 	readerStream: [
+		{
+			type: 'facebook',
+			contributor: '02',
+			content: 'What is the Gov trying to film?',
+			submitTime: '2016-02-16T08:21:55Z',
+			tags: ['facebook'],
+			source: {
+				path: 'https://www.facebook.com/301049249930992/photos/a.830123620356883.1073741825.301049249930992/968597579842819/?type=3&theater'
+			}
+		},
+		{
+			type: 'facebook',
+			contributor: '01',
+			content: 'Gov’t inspectors shut down Hong Kong’s ‘Occupy Hotel',
+			submitTime: '2016-02-15T08:21:55Z',
+			tags: ['facebook'],
+			source: {
+				path: 'https://www.hongkongfp.com/2015/10/23/govt-inspectors-shut-down-hong-kongs-occupy-hotel/'
+			}
+		},
 		{
 			type: 'facebook',
 			contributor: '01',
