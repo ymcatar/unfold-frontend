@@ -18,6 +18,7 @@ export default class TypeEmbed extends React.Component {
                 this.setState({
                     body: body.html
                 });
+                this.props.onResize();
             });
     }
 
@@ -36,7 +37,7 @@ export default class TypeEmbed extends React.Component {
         return (
             <div
                 ref={x => { this.node = x; }}
-                dangerouslySetInnerHTML={{__html: this.props.body}} />
+                dangerouslySetInnerHTML={{__html: this.state.body}} />
         );
     }
 }
