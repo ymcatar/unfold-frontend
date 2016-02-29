@@ -13,6 +13,7 @@ class ReaderMail extends React.Component {
     handleSubmit() {
         this.props.handleHide();
         let output = {
+            title: this.elm.title.getValue(),
             target: this.elm.target.getValue(),
             content: this.elm.content.getValue()
         };
@@ -28,6 +29,10 @@ class ReaderMail extends React.Component {
                     <Modal.Title>Send Message To Contributor</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <Input
+                        ref={x => {this.elm.title = x;}}
+                        type="Text"
+                        label="Subject" />
                     <Input
                         ref={x => {this.elm.target = x;}}
                         type="select"
