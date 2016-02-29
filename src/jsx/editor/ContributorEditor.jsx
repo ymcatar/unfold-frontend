@@ -34,7 +34,7 @@ class ContributorEditor extends React.Component {
             path: '',
             content: '',
             tags: [],
-            suggestions: ['Jason', 'is', 'amazing', 'amusing']
+            suggestions: ['important', 'reliable', 'unverified', 'facebook', 'twitter', 'CausewayBay', 'Mongkok', 'Central']
         };
         _.bindAll(this, [
             'handleContentChange',
@@ -70,6 +70,7 @@ class ContributorEditor extends React.Component {
             tags: [],
             path: ''
         });
+        console.log(output);
     }
 
     render() {
