@@ -28,7 +28,8 @@ const styles = {
         marginLeft: 'auto',
         marginRight: 'auto',
         textAlign: 'center',
-        fontWeight: '300'
+        fontWeight: '300',
+        fontStyle: 'italic'
     }
 };
 
