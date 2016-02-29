@@ -11,6 +11,7 @@ class ReaderMail extends React.Component {
     }
 
     handleSubmit() {
+        this.props.handleHide();
         let output = {
             target: this.elm.target.getValue(),
             content: this.elm.content.getValue()

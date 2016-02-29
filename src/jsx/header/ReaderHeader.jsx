@@ -74,6 +74,7 @@ class ReaderHeader extends React.Component {
                         <Nav pullRight onSelect={this.handleNavClick}>
                             <NavItem eventKey={'mail'} href="#">
                                 <i className="fa fa-envelope" />
+                                &nbsp;Mail
                             </NavItem>
                             <NavItem eventKey={'top'} href="#">
                                 <i className="fa fa-chevron-circle-up" />
@@ -84,8 +85,7 @@ class ReaderHeader extends React.Component {
                 </Navbar>
                 <ReaderMail
                     show={this.state.showModal}
-                    handleHide={() => {this.setState({showModal: false}); }}
-                />
+                    handleHide={() => {this.setState({showModal: false}); }} />
             </div>
         );
     }
