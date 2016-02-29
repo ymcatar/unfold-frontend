@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 import Colors from 'config/Colors.jsx';
 
+import LazyScroller from './common/LazyScroller.jsx';
 import UpdateBox from './common/UpdateBox.jsx';
 
 const styles = {
@@ -31,7 +32,7 @@ const styles = {
 
 export default class RawStream extends React.Component {
     render() {
-        let elements = this.props.completeStream.map(post => (
+        let elements = this.props.filteredStream.map(post => (
             <UpdateBox
                 key={post.id}
                 data={post}
@@ -40,7 +41,18 @@ export default class RawStream extends React.Component {
         ));
         return (
             <div style={styles.main}>
-                {elements}
+                <LazyScroller
+                    position={this.props.position}
+                    style={{width: '100%', height: 'calc(100vh - 50px)'}}
+                    onPositionChange={this.props.onReportScroll}
+                    onLayoutChange={this.props.onReportViewport}
+                    placeholderFunc={this.createPlaceholder}>
+                    {[
+                        <h2 key="heading" style={styles.header} height={70}>
+                            #{this.props.filter}
+                        </h2>
+                    ].concat(elements)}
+                </LazyScroller>
             </div>
         );
     }
@@ -48,7 +60,7 @@ export default class RawStream extends React.Component {
 
 export default connect(
     function stateToProps(state) {
-        return _.pick(state.raw, 'completeStream');
+        return _.pick(state.raw, 'filter', 'filteredStream', 'position');
     },
     function dispatchToProps(dispatch) {
         return {};
