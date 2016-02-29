@@ -21,11 +21,12 @@ const styles = {
     header: {
         width: '200px',
         color: Colors.stream.header,
-        borderBottom: `3px ${Colors.stream.headerBorder} solid`,
+        borderBottom: `2px ${Colors.stream.headerBorder} solid`,
         padding: '0 10px 5px 10px',
         marginLeft: 'auto',
         marginRight: 'auto',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontWeight: '300'
     }
 };
 

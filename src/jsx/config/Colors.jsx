@@ -33,8 +33,8 @@ export default {
             default: 'grey'
         },
         filter: '#555',
-        header: '#aaa',
-        headerBorder: '#aaa'
+        header: '#4527a0',
+        headerBorder: '#4527a0'
     },
     editor: {
         border: '#ccc',
