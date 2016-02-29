@@ -65,13 +65,13 @@ export default {
         {
             type: 'text',
             contributor: '06',
-            content: '<p>Police are gathering at Wan Chai exhibition center as more protesters increasing in that area.</p>\n',
+            content: '<p>Police are gathering at Wan Chai exhibition center as more protesters gathers in that area.</p>\n',
             submitTime: '2014-09-30T15:59:53Z',
             tags: ['WanChai', 'police']
         }, {
             type: 'facebook',
             contributor: '05',
-            content: '<p><h3>Breaking: Protesters seemed to be occupying Canton Road, Tsim Sha Tsui.</h3></p>\n',
+            content: '<p><h3>Breaking: Protesters seem to be occupying Canton Road, Tsim Sha Tsui.</h3></p>\n',
             submitTime: '2014-09-30T15:05:19Z',
             tags: [
                 'facebook', 'TsimShaTsui', 'CantonRoad', 'important'
@@ -292,7 +292,9 @@ export default {
             contributor: '01',
             content: '<p>[5:45] Hong Kong police hold a press conference saying they never meant to “open fire” on protesters on Sunday, when officers unleashed 87 rounds of tear gas.\nPressed on whether police planned to shoot rubber bullets that day, Police Chief Superintendent Steve Hui Chun-tak, from the police public relations bureau, refused to answer directly, only stressing that they “never intended to fire any shots”.\nHui suggested a warning sign held up by officers before they shot tear gas may have caused confusion.\n“The flag has two sides; the side in black says ‘warning: tear smoke’ while the other side says ‘disperse or we fire’,” he said. “We never meant to show [the other side of the flag] to the crowd in the front and we had absolutely no intention to open fire.&quot;\nOnly pepper spray, batons and tear gas were used, he said.</p>\n',
             submitTime: '2014-09-30T10:03:22Z',
-            tags: []
+            tags: [
+                'reliable', 'important'
+            ]
         }, {
             type: 'text',
             contributor: '01',
@@ -327,43 +329,55 @@ export default {
             contributor: '02',
             content: '<p>1636 Fire Services Department representative claimed emergency services affected by protests.</p>\n',
             submitTime: '2014-09-30T08:37:56Z',
-            tags: []
+            tags: [
+                'policeConference', 'reliable'
+            ]
         }, {
             type: 'text',
             contributor: '02',
             content: '<p>1636 Fire Services Department representative takes turn to speak in the press conference.</p>\n',
             submitTime: '2014-09-30T08:36:56Z',
-            tags: []
+            tags: [
+                'policeConference', 'reliable'
+            ]
         }, {
             type: 'text',
             contributor: '02',
             content: '<p>1633 Police press conference: ~3670 meters of roads blocked in all protest sites.</p>\n',
             submitTime: '2014-09-30T08:34:56Z',
-            tags: []
+            tags: [
+                'policeConference', 'reliable'
+            ]
         }, {
             type: 'text',
             contributor: '02',
             content: '<p>1629 Police representative showing a map of the protests in the press conference.</p>\n',
             submitTime: '2014-09-30T08:29:56Z',
-            tags: []
+            tags: [
+                'policeConference', 'reliable'
+            ]
         }, {
             type: 'text',
             contributor: '02',
             content: '<p>[1615] Press Conference by Police and Fire Service Department starts.</p>\n',
             submitTime: '2014-09-30T08:19:56Z',
-            tags: []
+            tags: [
+                'policeConference', 'reliable'
+            ]
         }, {
             type: 'text',
             contributor: '05',
-            content: '<p>Local media are reporting that the police will speak to reporters at 4pm local time. This will be followed by a public statement due to be issued by student activists and Occupy Central at 4.30pm.</p>\n',
+            content: '<p>Local media are reporting that the police will speak to reporters at 4pm local time. This will be followed by a public statement due to be issued by student activists and Occupy Central at <b>4.30pm.</b></p>\n',
             submitTime: '2014-09-30T08:10:56Z',
-            tags: []
+            tags: [
+                'important', 'reliable'
+            ]
         }, {
             type: 'text',
             contributor: '03',
             content: '<p>The Police Force and Fire Services Department will hold a press conference in 16:00.</p>\n',
             submitTime: '2014-09-30T08:07:56Z',
-            tags: []
+            tags: ['important']
         }, {
             type: 'imgur',
             contributor: '06',
@@ -388,7 +402,9 @@ export default {
             contributor: '03',
             content: '<p><strong>Hospital Authority (HA)</strong> clarifies that earlier rumours about a pregnant woman failing to reach hospital on time due to protests were untrue</p>\n',
             submitTime: '2014-09-30T07:05:56Z',
-            tags: []
+            tags: [
+                'important', 'reliable'
+            ]
         }, {
             type: 'twitter',
             contributor: '02',
@@ -502,7 +518,9 @@ export default {
             contributor: '06',
             content: '<p>Chan Kin Man asked supporters not to bring fresh food for supplies.</p>\n',
             submitTime: '2014-09-30T03:08:18Z',
-            tags: ['facebook'],
+            tags: [
+                'facebook'
+            ],
             source: {
                 path: 'https://www.facebook.com/Sanpoyanpage/photos/pcb.305574666310163/305574632976833/'
             }
@@ -540,7 +558,9 @@ export default {
             contributor: '05',
             content: '<p>Scholarism has once again repeated their four demands on Facebook:</p>\n<ul>\n<li>Establish civil nomination as a valid nomination method for the 2017 Chief Executive Election,</li>\n<li>Start to reform of the Legislative Council (LEGCO), abolish all functional constituency seats of the LEGCO,</li>\n<li>Make an official apology to the Hong Kong people, withdraw the injustice resolution concerning Hong Kong political reform, Or else,</li>\n<li>principal officials responsible for the political reform including CY Leung, Carrie Lam, Rimsky Yuen and Tam Chi-yuen should take the blame and resign.</li>\n</ul>\n',
             submitTime: '2014-09-30T02:25:47Z',
-            tags: ['Scholarism']
+            tags: [
+                'Scholarism', 'important', 'reliable'
+            ]
         }, {
             type: 'facebook',
             contributor: '06',
@@ -579,13 +599,17 @@ export default {
             contributor: '05',
             content: '<p>CY: We highly value and respect the police&#39;s professional opinion</p>\n',
             submitTime: '2014-09-30T01:49:11Z',
-            tags: []
+            tags: [
+                'important', 'reliable'
+            ]
         }, {
             type: 'text',
             contributor: '05',
             content: '<p>CY: I, and the government, respect legal methods of expression, incl. political opinions, but hope that they [protestors] watch for their own safety</p>\n',
             submitTime: '2014-09-30T01:46:53Z',
-            tags: []
+            tags: [
+                'important', 'reliable'
+            ]
         }, {
             type: 'text',
             contributor: '05',
@@ -1653,6 +1677,36 @@ export default {
                 path: 'https://www.facebook.com/socrec/photos/pcb.981541658539432/981540105206254/'
             }
         }, {
+            type: 'twitter',
+            contributor: '05',
+            content: '',
+            submitTime: '2014-09-28T17:13:42Z',
+            tags: ['twitter'],
+            source: {
+                path: 'https://twitter.com/varsitycuhk/status/516635838122168320'
+            }
+        }, {
+            type: 'twitter',
+            contributor: '03',
+            content: '',
+            submitTime: '2014-09-28T17:11:42Z',
+            tags: ['twitter'],
+            source: {
+                path: 'https://twitter.com/OCLPHK/status/516634540693921792'
+            }
+        }, {
+            type: 'twitter',
+            contributor: '03',
+            content: '',
+            submitTime: '2014-09-28T17:07:50Z',
+            tags: ['twitter'],
+            source: {
+                path: 'http://twitter.com/frostyhk/status/516633958000234498'
+            }
+        }
+    ],
+    contributorStream: [
+        {
             type: 'twitter',
             contributor: '05',
             content: '',
