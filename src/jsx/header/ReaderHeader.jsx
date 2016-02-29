@@ -4,7 +4,9 @@ import { Navbar, Nav, NavItem, Modal, Button, Input } from 'react-bootstrap';
 import _ from 'lodash';
 
 import Colors from 'config/Colors.jsx';
-import { selectFilter, reportFilter, scrollToTop } from '../actions/stream';
+import { selectFilter, reportFilter, scrollToTop } from 'actions/stream';
+
+import ReaderMail from 'modal/ReaderMail.jsx';
 
 const styles = {
     main: {
@@ -23,13 +25,9 @@ class ReaderHeader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {showModal: false};
-        this.elm = {};
         _.bindAll(this, [
             'handleNavClick',
-            'handleFilter',
-            'hideModal',
-            'showModal',
-            'handleSubmit'
+            'handleFilter'
         ]);
     }
 
@@ -43,26 +41,9 @@ class ReaderHeader extends React.Component {
                 this.props.handleBackToTop();
                 break;
             case 'mail':
-                this.showModal();
+                this.setState({showModal: true});
                 break;
         }
-    }
-
-    hideModal() {
-        this.setState({showModal: false});
-    }
-
-    showModal() {
-        this.setState({showModal: true});
-    }
-
-    handleSubmit() {
-        this.hideModal();
-        let output = {
-            target: this.elm.target.getValue(),
-            content: this.elm.content.getValue()
-        };
-        console.log(output);
     }
 
     render() {
@@ -101,41 +82,10 @@ class ReaderHeader extends React.Component {
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
-                <Modal
+                <ReaderMail
                     show={this.state.showModal}
-                    onHide={this.hideModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Send Message To Contributor</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Input
-                            ref={x => {this.elm.target = x;}}
-                            type="select"
-                            label="Send to"
-                            multiple>
-                            {
-                                this.props.contributor.map(o => (
-                                    <option value={o.id}>
-                                        {o.name}
-                                    </option>
-                                ))
-                            }
-                        </Input>
-                        <Input
-                            ref={x => {this.elm.content = x;}}
-                            type="textarea"
-                            style={{height: 300}}
-                            label="Mail content" />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button onClick={this.hideModal}>Cancel</Button>
-                        <Button
-                            onClick={this.handleSubmit}
-                            bsStyle="primary">
-                            Send
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
+                    handleHide={() => {this.setState({showModal: false}); }}
+                />
             </div>
         );
     }
