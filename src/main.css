@@ -66,7 +66,6 @@ div.ReactTags__tagInput input:focus {
     padding: 5px;
     border-radius: 2px;
 }
-}
 
 /* Styles for selected tags */
 div.ReactTags__selected {
