@@ -22,20 +22,15 @@ const styles = {
 };
 
 export default class ContributorView extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div>
                 <ContributorHeader />
                 <div style={styles.main}>
-                    <ContributorEditor />
                     <div style={styles.stream}>
                         <RawStream />
                     </div>
+                    <ContributorEditor />
                 </div>
             </div>
         );

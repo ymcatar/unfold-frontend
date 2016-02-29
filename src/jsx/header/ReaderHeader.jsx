@@ -80,7 +80,7 @@ class ReaderHeader extends React.Component {
                                 <MenuItem eventKey="facebook">
                                     #facebook
                                 </MenuItem>
-                                <MenuItem eventKey="facebook">
+                                <MenuItem eventKey="twitter">
                                     #twitter
                                 </MenuItem>
                                 <MenuItem eventKey="Central">

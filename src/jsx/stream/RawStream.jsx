@@ -4,15 +4,15 @@ import _ from 'lodash';
 
 import Colors from 'config/Colors.jsx';
 
+import RawBox from './common/RawBox.jsx';
 import LazyScroller from './common/LazyScroller.jsx';
-import UpdateBox from './common/UpdateBox.jsx';
+import { reportScroll, reportViewport } from '../actions/raw';
 
 const styles = {
     main: {
         backgroundColor: Colors.stream.backgroundColor,
-        height: '100vh',
+        height: '100%',
         width: '100%',
-        paddingBottom: '50px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
@@ -30,20 +30,37 @@ const styles = {
     }
 };
 
-export default class RawStream extends React.Component {
+export default class ReaderStream extends React.Component {
+    constructor(props) {
+        super(props);
+        _.bindAll(this, [
+            'createPlaceholder'
+        ]);
+    }
+
+    createPlaceholder(key, height) {
+        return (
+            <RawBox
+                key={key}
+                style={{height: height - 20}} />
+        );
+    }
+
     render() {
         let elements = this.props.filteredStream.map(post => (
-            <UpdateBox
+            <RawBox
                 key={post.id}
-                data={post}
-                small={this.props.small}
-                handleVerify={this.handleVerify} />
+                data={post} />
         ));
         return (
             <div style={styles.main}>
                 <LazyScroller
                     position={this.props.position}
-                    style={{width: '100%', height: 'calc(100vh - 50px)'}}
+                    style={{
+                        width: '100%',
+                        height: 'calc(100vh - 50px)',
+                        padding: '0 0 20px 0'
+                    }}
                     onPositionChange={this.props.onReportScroll}
                     onLayoutChange={this.props.onReportViewport}
                     placeholderFunc={this.createPlaceholder}>
@@ -63,6 +80,14 @@ export default connect(
         return _.pick(state.raw, 'filter', 'filteredStream', 'position');
     },
     function dispatchToProps(dispatch) {
-        return {};
+        return {
+            onReportScroll(position) {
+                dispatch(reportScroll(position));
+            },
+
+            onReportViewport(viewport) {
+                dispatch(reportViewport(viewport));
+            }
+        };
     }
-)(RawStream);
+)(ReaderStream);

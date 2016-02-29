@@ -17,11 +17,13 @@ const styles = {
         backgroundColor: Colors.editor.backgroundColor,
         width: '450px',
         height: '100vh',
-        padding: '20px'
+        padding: '20px',
+        boxShadow: Colors.zDepth
     },
     submit: {
         clear: 'left',
-        display: 'block'
+        display: 'block',
+        marginTop: '30px'
     }
 };
 
