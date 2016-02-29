@@ -2,7 +2,7 @@ import React from 'react';
 import Placeholder from 'config/Placeholder.jsx';
 import Colors from 'config/Colors.jsx';
 
-import Stream from 'stream/Stream.jsx';
+import RawStream from 'stream/RawStream.jsx';
 
 import ContributorHeader from 'header/ContributorHeader.jsx';
 import ContributorEditor from 'editor/ContributorEditor.jsx';
@@ -33,9 +33,8 @@ export default class ContributorView extends React.Component {
                 <ContributorHeader />
                 <div style={styles.main}>
                     <ContributorEditor />
-
                     <div style={styles.stream}>
-                        <Stream />
+                        <RawStream />
                     </div>
                 </div>
             </div>
