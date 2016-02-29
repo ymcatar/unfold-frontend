@@ -27,7 +27,7 @@ export default class TypeTwitter extends React.Component {
                 setTimeout(() => {
                     if (this.props.onResize)
                         this.props.onResize();
-                }, 1000);
+                }, 500);
             });
     }
 
