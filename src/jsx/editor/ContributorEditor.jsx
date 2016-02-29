@@ -31,7 +31,7 @@ class ContributorEditor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            path: '',
+            path: props.addedPost || '',
             content: '',
             tags: [],
             suggestions: ['important', 'reliable', 'unverified', 'facebook', 'twitter', 'CausewayBay', 'Mongkok', 'Central']
@@ -73,6 +73,17 @@ class ContributorEditor extends React.Component {
         console.log(output);
     }
 
+    componentWillReceiveProps(nextProps) {
+        let tags = nextProps.addedPost.tags.map((o, i) => ({
+            id: i,
+            text: o
+        }));
+        this.setState({
+            path: nextProps.addedPost.source.path,
+            tags: tags
+        });
+    }
+
     render() {
         return (
             <div style={styles.main}>
@@ -107,7 +118,11 @@ class ContributorEditor extends React.Component {
 
 export default connect(
     function stateToProps(state) {
-        return {};
+        if (!state.raw.addedPost)
+            return {};
+        return {
+            addedPost: state.raw.addedPost
+        };
     },
     function dispatchToProps(dispatch) {
         return {

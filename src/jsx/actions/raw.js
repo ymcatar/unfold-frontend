@@ -7,6 +7,15 @@ export function selectFilter(filter) {
     };
 }
 
+export const SELECT_ADDEDPOST = 'raw: select addedpost';
+
+export function selectAddedPost(post) {
+    return {
+        type: SELECT_ADDEDPOST,
+        addedPost: post
+    };
+}
+
 export const SCROLL_TO = 'raw: scroll to';
 
 export function scrollToDate(date) {

@@ -1,6 +1,10 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import _ from 'lodash';
+
+import { selectAddedPost } from 'actions/raw';
 
 import Colors from 'config/Colors.jsx';
 
@@ -23,19 +27,22 @@ const styles = {
     info: {
         color: 'grey',
         height: '25px',
-        marginBottom: '20px'
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
     },
     content: {
         minWidth: '75%',
         maxWidth: '550px',
         margin: '10px 0px 10px 0px'
     },
-    unverified: {
-        marginTop: '10px'
+    addButton: {
+        marginLeft: '8px',
+        height: '30px'
     }
 };
 
-export default class RawBox extends React.Component {
+class RawBox extends React.Component {
     shouldComponentUpdate(nextProps) {
         let cond = this.props.data !== nextProps.data || this.props.small !== nextProps.small;
         if (cond)
@@ -47,7 +54,6 @@ export default class RawBox extends React.Component {
         if (!this.props.data) {
             return (
                 <div style={_.extend({}, styles.main, this.props.style)}>
-
                     <div style={styles.card} />
                 </div>
             );
@@ -85,7 +91,12 @@ export default class RawBox extends React.Component {
             <div style={_.extend({}, styles.main, this.props.style)}>
                 <Card>
                     <div style={styles.info}>
-                        <h5 className="pull-right">{date.format("D MMM YYYY / HH:mm")}</h5>
+                        <h5>{date.format("D MMM YYYY / HH:mm")}</h5>
+                        <Button
+                            bsSize="small" style={styles.addButton}
+                            onClick={() => { this.props.handleAdd(this.props.data); }}>
+                            <i className="fa fa-plus" />
+                        </Button>
                     </div>
                     <div style={styles.content}>
                         <TypeText data={this.props.data.content} />
@@ -99,3 +110,16 @@ export default class RawBox extends React.Component {
         );
     }
 }
+
+export default connect(
+    function stateToProps(state) {
+        return _.pick(state.raw, 'addedPost');
+    },
+    function dispatchToProps(dispatch) {
+        return {
+            handleAdd(post) {
+                dispatch(selectAddedPost(post));
+            }
+        };
+    }
+)(RawBox);
