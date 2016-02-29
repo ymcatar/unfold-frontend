@@ -10,7 +10,10 @@ import { reportScroll, reportViewport } from '../actions/stream';
 
 const styles = {
     main: {
+        backgroundColor: Colors.stream.backgroundColor,
+        height: '100vh',
         width: '100%',
+        paddingBottom: '50px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
@@ -44,7 +47,6 @@ export default class ReaderStream extends React.Component {
     render() {
         let elements = this.props.filteredStream.map(post => (
             <UpdateBox
-                handleFilter={this.props.handleFilter}
                 key={post.id}
                 data={post}
                 small={this.props.small} />

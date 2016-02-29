@@ -100,7 +100,7 @@ export default class UpdateBox extends React.Component {
             );
 
         let tags = this.props.data.tags && this.props.data.tags.length > 0? (
-            <Tags data={this.props.data.tags} handleFilter={this.props.handleFilter} />
+            <Tags data={this.props.data.tags} />
         ): null;
 
         return (

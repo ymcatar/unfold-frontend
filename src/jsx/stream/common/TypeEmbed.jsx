@@ -18,7 +18,8 @@ export default class TypeEmbed extends React.Component {
                 this.setState({
                     body: body.html
                 });
-                this.props.onResize();
+                if (this.props.onResize)
+                    this.props.onResize();
             });
     }
 

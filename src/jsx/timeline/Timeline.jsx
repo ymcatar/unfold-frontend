@@ -3,11 +3,19 @@ import { connect } from 'react-redux';
 import uuid from 'node-uuid';
 import moment from 'moment';
 
+import Colors from 'config/Colors.jsx';
+
 import Day from './common/Day.jsx';
 import { scrollToDate } from '../actions/stream';
 
 const styles = {
     main: {
+        backgroundColor: Colors.timeline.backgroundColor,
+        width: '70px',
+        minWidth: '30px',
+        height: '100vh',
+        overflowY: 'scroll',
+        overflowX: 'hidden',
         padding: '20px 0 5px 0',
     }
 };
