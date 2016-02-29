@@ -1,9 +1,8 @@
 import _ from 'lodash';
 import uuid from 'node-uuid';
 
-import * as actions from '../actions/stream';
+import * as actions from 'actions/stream';
 import Placeholder from '../config/Placeholder.jsx';
-import UpdateBox from '../stream/common/UpdateBox.jsx';
 
 class ElementStore {
     constructor(data) {
