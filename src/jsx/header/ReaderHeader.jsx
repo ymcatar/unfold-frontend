@@ -6,7 +6,7 @@ import _ from 'lodash';
 import Colors from 'config/Colors.jsx';
 import { selectFilter, reportFilter, scrollToTop } from 'actions/stream';
 
-import ReaderMail from 'modal/ReaderMail.jsx';
+import Mail from 'modal/reader/Mail.jsx';
 
 const styles = {
     main: {
@@ -83,7 +83,7 @@ class ReaderHeader extends React.Component {
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
-                <ReaderMail
+                <Mail
                     show={this.state.showModal}
                     handleHide={() => {this.setState({showModal: false}); }} />
             </div>

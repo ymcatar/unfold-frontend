@@ -4,6 +4,8 @@ import _ from 'lodash';
 
 import Colors from 'config/Colors.jsx';
 
+import Proof from 'modal/reader/Proof.jsx';
+
 import UpdateBox from './common/UpdateBox.jsx';
 import LazyScroller from './common/LazyScroller.jsx';
 import { reportScroll, reportViewport } from '../actions/stream';
@@ -33,7 +35,19 @@ const styles = {
 export default class ReaderStream extends React.Component {
     constructor(props) {
         super(props);
-        this.createPlaceholder = this.createPlaceholder.bind(this);
+        this.state = {
+            showProof: false
+        };
+        _.bindAll(this, [
+            'handleVerify',
+            'createPlaceholder'
+        ]);
+    }
+
+    handleVerify(data) {
+        this.setState({
+            showProof: true
+        });
     }
 
     createPlaceholder(key, height) {
@@ -50,7 +64,8 @@ export default class ReaderStream extends React.Component {
             <UpdateBox
                 key={post.id}
                 data={post}
-                small={this.props.small} />
+                small={this.props.small}
+                handleVerify={this.handleVerify} />
         ));
         return (
             <div style={styles.main}>
@@ -66,6 +81,9 @@ export default class ReaderStream extends React.Component {
                         </h2>
                     ].concat(elements)}
                 </LazyScroller>
+                <Proof
+                    show={this.state.showProof}
+                    handleHide={() => { this.setState({showProof: false}); }}/>
             </div>
         );
     }

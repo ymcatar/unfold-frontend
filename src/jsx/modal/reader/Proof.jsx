@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Modal, Button, Input } from 'react-bootstrap';
 import _ from 'lodash';
 
-class ReaderMail extends React.Component {
+class Proof extends React.Component {
     constructor(props) {
         super(props);
         this.elm = {};
@@ -26,7 +26,7 @@ class ReaderMail extends React.Component {
                 show={this.props.show}
                 onHide={this.props.handleHide}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Send Message To Contributor</Modal.Title>
+                    <Modal.Title>Submit Proofs To Contributor</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Input
@@ -40,7 +40,9 @@ class ReaderMail extends React.Component {
                         multiple>
                         {
                             this.props.contributor.map(o => (
-                                <option value={o.id} key={o.id}>
+                                <option
+                                    value={o.id}
+                                    key={o.id}>
                                     {o.name}
                                 </option>
                             ))
@@ -74,4 +76,4 @@ export default connect(
     function dispatchToProps(dispatch) {
         return {};
     }
-)(ReaderMail);
+)(Proof);

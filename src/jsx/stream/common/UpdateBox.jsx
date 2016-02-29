@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
 
@@ -36,16 +37,28 @@ const styles = {
         minWidth: '75%',
         maxWidth: '550px',
         margin: '10px 0px 10px 0px'
+    },
+    unverified: {
+        marginTop: '10px'
     }
 };
 
 export default class UpdateBox extends React.Component {
+
+    constructor(props) {
+        super(props);
+        _.bindAll(this, ['handleVerify']);
+    }
+
     shouldComponentUpdate(nextProps) {
-        let cond = this.props.data !== nextProps.data
-            || this.props.small !== nextProps.small;
+        let cond = this.props.data !== nextProps.data || this.props.small !== nextProps.small;
         if (cond)
             console.log('updating', this.key);
         return cond;
+    }
+
+    handleVerify() {
+        this.props.handleVerify(this.props.data);
     }
 
     render() {
@@ -103,6 +116,15 @@ export default class UpdateBox extends React.Component {
             <Tags data={this.props.data.tags} />
         ): null;
 
+        let unverified = this.props.data.tags && this.props.data.tags.indexOf('unverified') >= 0? (
+            <Button
+                bsStyle="warning"
+                bsSize="small" style={styles.unverified}
+                onClick={this.handleVerify}>
+                Submit Proofs
+            </Button>
+        ): null;
+
         return (
             <div style={_.extend({}, styles.main, this.props.style)}>
 
@@ -118,6 +140,7 @@ export default class UpdateBox extends React.Component {
                     </div>
                     <div>
                         {tags}
+                        {unverified}
                     </div>
                 </Card>
             </div>

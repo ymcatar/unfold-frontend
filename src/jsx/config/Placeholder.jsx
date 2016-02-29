@@ -67,7 +67,7 @@ export default {
             contributor: '06',
             content: '<p>Police are gathering at Wan Chai exhibition center as more protesters gathers in that area.</p>\n',
             submitTime: '2014-09-30T15:59:53Z',
-            tags: ['WanChai', 'police']
+            tags: ['WanChai', 'police', 'unverified']
         }, {
             type: 'facebook',
             contributor: '05',
