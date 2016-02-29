@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Navbar, Nav, NavItem, Modal, Button, Input } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import _ from 'lodash';
 
 import Colors from 'config/Colors.jsx';
@@ -24,6 +24,7 @@ const styles = {
 class ReaderHeader extends React.Component {
     constructor(props) {
         super(props);
+        this.elm = {};
         this.state = {showModal: false};
         _.bindAll(this, [
             'handleNavClick',
@@ -32,7 +33,8 @@ class ReaderHeader extends React.Component {
     }
 
     handleFilter(key) {
-        this.props.handleFilter(key);
+        if (typeof key === 'string')
+            this.props.handleFilter(key);
     }
 
     handleNavClick(key) {
@@ -61,16 +63,41 @@ class ReaderHeader extends React.Component {
                             </Navbar.Text>
                         </Navbar.Header>
                         <Nav onSelect={this.handleFilter} activeKey={this.props.filter}>
-                            <NavItem eventKey={'all'} href="#">
+                            <NavItem eventKey="all" href="#">
                                 All
                             </NavItem>
-                            <NavItem eventKey={'important'} href="#">
+                            <NavItem eventKey="important" href="#">
                                 Important
                             </NavItem>
-                            <NavItem eventKey={'reliable'} href="#">
+                            <NavItem eventKey="reliable" href="#">
                                 Reliable
                             </NavItem>
+                            <NavDropdown
+                                eventKey='customTag'
+                                title="Other"
+                                id="customTag"
+                                onSelect = {(a, key) => { this.handleFilter(key); }} >
+                                <MenuItem eventKey="facebook">
+                                    #facebook
+                                </MenuItem>
+                                <MenuItem eventKey="facebook">
+                                    #twitter
+                                </MenuItem>
+                                <MenuItem eventKey="Central">
+                                    #Central
+                                </MenuItem>
+                                <MenuItem eventKey="TsimShaTsui">
+                                    #TsimShaTsui
+                                </MenuItem>
+                                <MenuItem eventKey="Mongkok">
+                                    #Mongkok
+                                </MenuItem>
+                                <MenuItem eventKey="CausewayBay">
+                                    #CausewayBay
+                                </MenuItem>
+                            </NavDropdown>
                         </Nav>
+
                         <Nav pullRight onSelect={this.handleNavClick}>
                             <NavItem eventKey={'mail'} href="#">
                                 <i className="fa fa-envelope" />
@@ -103,7 +130,6 @@ export default connect(
             handleFilter(filter) {
                 dispatch(selectFilter(filter));
             },
-
             handleBackToTop() {
                 dispatch(scrollToTop());
             }
