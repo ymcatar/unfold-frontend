@@ -5,6 +5,8 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import Colors from 'config/Colors.jsx';
 import { selectFilter, reportFilter, scrollToTop } from 'actions/raw';
 
+import ModifySource from 'modal/contributor/ModifySource.jsx';
+
 const styles = {
     main: {
         boxShadow: Colors.zDepth,
@@ -22,7 +24,9 @@ class ContributorHeader extends React.Component {
     constructor(props) {
         super(props);
         this.elm = {};
-        this.state = {showModal: false};
+        this.state = {
+            showModifySource: false
+        };
         _.bindAll(this, [
             'handleNavClick',
             'handleFilter'
@@ -38,6 +42,9 @@ class ContributorHeader extends React.Component {
         switch (key) {
             case 'top':
                 this.props.handleBackToTop();
+                break;
+            case 'modifySource':
+                this.setState({showModifySource: true});
                 break;
         }
     }
@@ -65,13 +72,21 @@ class ContributorHeader extends React.Component {
                         </Nav>
 
                         <Nav pullRight onSelect={this.handleNavClick}>
+                            <NavItem eventKey={'modifySource'} href="#">
+                                <i className="fa fa-pencil" />
+                                &nbsp;Modify Source
+                            </NavItem>
                             <NavItem eventKey={'top'} href="#">
                                 <i className="fa fa-chevron-circle-up" />
                                 &nbsp;Top
                             </NavItem>
+
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
+                <ModifySource
+                    show={this.state.showModifySource}
+                    handleHide={() => { this.setState({showModifySource: false}); }} />
             </div>
         );
     }
