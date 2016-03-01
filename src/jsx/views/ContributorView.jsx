@@ -3,8 +3,6 @@ import MediaQuery from 'react-responsive';
 
 import Colors from 'config/Colors.jsx';
 
-import Hidden from 'common/Hidden.jsx';
-
 import RawStream from 'stream/RawStream.jsx';
 
 import RawTimeline from 'timeline/RawTimeline.jsx';

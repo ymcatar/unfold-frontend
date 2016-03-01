@@ -77,6 +77,7 @@ class ReaderHeader extends React.Component {
                                 title="Other"
                                 id="customTag"
                                 onSelect = {(a, key) => { this.handleFilter(key); }} >
+                                <MenuItem header>SOURCE</MenuItem>
                                 <MenuItem eventKey="facebook">
                                     #facebook
                                 </MenuItem>
@@ -86,6 +87,8 @@ class ReaderHeader extends React.Component {
                                 <MenuItem eventKey="Central">
                                     #Central
                                 </MenuItem>
+                                <MenuItem divider />
+                                <MenuItem header>CUSTOM TAG</MenuItem>
                                 <MenuItem eventKey="TsimShaTsui">
                                     #TsimShaTsui
                                 </MenuItem>
