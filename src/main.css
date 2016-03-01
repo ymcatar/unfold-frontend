@@ -30,8 +30,20 @@ body, .smooth-container {
     margin-top: 7px;
     margin-bottom: 7px;
 }
-iframe{
+iframe {
     max-width: 100% !important;
+}
+.btn-primary {
+    background-color: #7E57C2;
+    border-color: #4527A0;
+}
+.btn-primary:hover {
+    background-color: #9e7dd8;
+    border-color: #7E57C2;
+}
+.btn-primary:focus:active {
+    background-color: #9e7dd8;
+    border-color: #7E57C2;
 }
 
 /* Example Styles for React Tags*/
