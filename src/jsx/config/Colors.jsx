@@ -39,7 +39,7 @@ export default {
     editor: {
         border: '#ccc',
         backgroundColor: 'white',
-        color: 'white',
+        color: 'black',
         postEditor: {
             backgroundColor: 'white',
             color: 'black'

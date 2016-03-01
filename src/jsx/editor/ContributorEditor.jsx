@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Button, Input} from 'react-bootstrap';
+import {Button, Input, ButtonToolbar} from 'react-bootstrap';
 import _ from 'lodash';
 
 import Colors from 'config/Colors.jsx';
@@ -9,21 +9,23 @@ import Card from 'common/Card.jsx';
 
 import PostEditor from './common/PostEditor.jsx';
 import PostTags from './common/PostTags.jsx';
-import { createPost } from '../actions/stream';
+import { selectAddedPost } from 'actions/raw';
 
 const styles = {
     main: {
         maxWidth: '100%',
         backgroundColor: Colors.editor.backgroundColor,
+        color: Colors.editor.color,
         width: '450px',
         height: '100vh',
         padding: '20px',
-        boxShadow: Colors.zDepth
+        boxShadow: Colors.zDepth,
+        zIndex: 3
     },
-    submit: {
+    button: {
         clear: 'left',
         display: 'block',
-        marginTop: '30px'
+        paddingTop: '20px'
     }
 };
 
@@ -40,7 +42,8 @@ class ContributorEditor extends React.Component {
             'handleContentChange',
             'handleTagsChange',
             'handleSourceChange',
-            'handleSubmit'
+            'handleSubmit',
+            'handleClear'
         ]);
     }
 
@@ -73,7 +76,17 @@ class ContributorEditor extends React.Component {
         console.log(output);
     }
 
+    handleClear() {
+        this.setState({
+            content: '',
+            tags: [],
+            path: ''
+        });
+    }
+
     componentWillReceiveProps(nextProps) {
+        if (!nextProps.addedPost)
+            return;
         let tags = nextProps.addedPost.tags.map((o, i) => ({
             id: i,
             text: o
@@ -82,6 +95,7 @@ class ContributorEditor extends React.Component {
             path: nextProps.addedPost.source.path,
             tags: tags
         });
+        this.props.clearAddedPost();
     }
 
     render() {
@@ -106,11 +120,19 @@ class ContributorEditor extends React.Component {
                     tags={this.state.tags}
                     handleTagsChange={this.handleTagsChange} />
                 <br />
-                <Button
-                    onClick={this.handleSubmit}
-                    style={styles.submit}>
-                    Submit
-                </Button>
+                <ButtonToolbar style={styles.button}>
+                    <Button
+                        onClick={this.handleSubmit}
+                        bsStyle="success"
+                        bsSize="small">
+                        Submit
+                    </Button>
+                    <Button
+                        onClick={this.handleClear}
+                        bsSize="small">
+                        Clear
+                    </Button>
+                </ButtonToolbar>
             </div>
         );
     }
@@ -128,6 +150,9 @@ export default connect(
         return {
             handleSubmit(post) {
                 dispatch(createPost(post));
+            },
+            clearAddedPost() {
+                dispatch(selectAddedPost(null));
             }
         };
     }

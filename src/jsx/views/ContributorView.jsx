@@ -4,6 +4,8 @@ import Colors from 'config/Colors.jsx';
 
 import RawStream from 'stream/RawStream.jsx';
 
+import RawTimeline from 'timeline/RawTimeline.jsx';
+
 import ContributorHeader from 'header/ContributorHeader.jsx';
 import ContributorEditor from 'editor/ContributorEditor.jsx';
 
@@ -27,6 +29,7 @@ export default class ContributorView extends React.Component {
             <div>
                 <ContributorHeader />
                 <div style={styles.main}>
+                    <RawTimeline />
                     <div style={styles.stream}>
                         <RawStream />
                     </div>
