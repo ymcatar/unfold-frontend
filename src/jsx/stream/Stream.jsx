@@ -55,8 +55,7 @@ export default class ReaderStream extends React.Component {
         return (
             <UpdateBox
                 key={key}
-                style={{height: height - 20}}
-                small={this.props.small} />
+                style={{height: height - 20}} />
         );
     }
 
@@ -65,7 +64,6 @@ export default class ReaderStream extends React.Component {
             <UpdateBox
                 key={post.id}
                 data={post}
-                small={this.props.small}
                 handleVerify={this.handleVerify} />
         ));
         return (

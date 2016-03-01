@@ -2,6 +2,8 @@ import _ from 'lodash';
 import uuid from 'node-uuid';
 
 import * as actions from 'actions/raw';
+
+import {contributors as ContributorsData} from 'config/placeholder/event';
 import RawData from 'config/placeholder/raw';
 
 class ElementStore {
@@ -107,6 +109,28 @@ export default function reduceRaw(state, action) {
             break;
         }
 
+        case actions.CREATE_POST: {
+            const types = ['facebook', 'twitter', 'imgur', 'youtube', 'flickr', 'text'];
+            let type = _.find(types, x => action.post.source.path.indexOf(x) !== -1);
+            // For prototyping purpose only
+            let post = {
+                content: action.post.content,
+                tags: action.post.tags,
+                source: action.post.source,
+                type: type,
+
+                id: uuid.v1(),
+                submitTime: new Date(2014, 9, 1, 8, 12),
+                contributor: [0]
+            };
+            stream = {
+                completeStream: [post, ...stream.completeStream],
+                filteredStream:
+                    (stream.filter === 'all' || action.tags.indexOf(stream.filter) !== -1)
+                        ? [post, ...stream.filteredStream]
+                        : stream.filteredStream
+            };
+        }
     }
     return _.defaults({raw: _.defaults(stream, state.raw)}, state);
 }

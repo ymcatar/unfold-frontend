@@ -9,7 +9,7 @@ import Card from 'common/Card.jsx';
 
 import PostEditor from './common/PostEditor.jsx';
 import PostTags from './common/PostTags.jsx';
-import { selectAddedPost } from 'actions/raw';
+import { createPost, selectAddedPost } from 'actions/raw';
 
 const styles = {
     main: {

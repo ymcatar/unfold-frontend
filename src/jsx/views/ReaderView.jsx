@@ -22,32 +22,16 @@ const styles = {
 
 export default class ReaderView extends React.Component {
     render() {
-        const generateBody = (stream, timeline, info, noAvatar) => (
+        return (
             <div>
                 <ReaderHeader />
                 <div style={styles.main}>
-                    {info? (<ReaderInfo />): null}
-                    {timeline? (<Timeline />): null}
-                    {stream? (<Stream small={noAvatar} />): null}
+                    <MediaQuery minDeviceWidth={1224} minWidth={800}>
+                        <ReaderInfo />
+                    </MediaQuery>
+                    <Timeline />
+                    <Stream />
                 </div>
-            </div>
-        );
-        return (
-            <div>
-                <MediaQuery minDeviceWidth={1224}>
-                    <MediaQuery minWidth={1000}>
-                        {generateBody(true, true, true, true)}
-                    </MediaQuery>
-                    <MediaQuery minWidth={800} maxWidth={1000}>
-                        {generateBody(true, true, true, false)}
-                    </MediaQuery>
-                    <MediaQuery maxWidth={800}>
-                        {generateBody(true, true, false, false)}
-                    </MediaQuery>
-                </MediaQuery>
-                <MediaQuery maxDeviceWidth={1224}>
-                    {generateBody(true, false, false, false)}
-                </MediaQuery>
             </div>
         );
     }

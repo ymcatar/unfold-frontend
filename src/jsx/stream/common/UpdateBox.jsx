@@ -1,4 +1,5 @@
 import React from 'react';
+import MediaQuery from 'react-responsive';
 import { Button } from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
@@ -64,9 +65,7 @@ export default class UpdateBox extends React.Component {
     render() {
         if (!this.props.data) {
             // Placeholder
-            let avatar = null;
-            if (this.props.small)
-                avatar = (<div style={styles.avatar} />);
+            let avatar = (<div style={styles.avatar} />);
             return (
                 <div style={_.extend({}, styles.main, this.props.style)}>
                     {avatar}
@@ -99,9 +98,8 @@ export default class UpdateBox extends React.Component {
 
         const {name, title, image, online} = this.props.data.contributor;
         const date = moment(this.props.data.submitTime);
-        let avatar;
-        if (this.props.small)
-            avatar = (
+        let avatar = (
+            <MediaQuery minWidth={800}>
                 <div style={styles.avatar}>
                     <UpdateAvatar
                         name={name}
@@ -110,7 +108,8 @@ export default class UpdateBox extends React.Component {
                         online={online}
                         size="50" />
                 </div>
-            );
+            </MediaQuery>
+        );
 
         let tags = this.props.data.tags && this.props.data.tags.length > 0? (
             <Tags data={this.props.data.tags} />
