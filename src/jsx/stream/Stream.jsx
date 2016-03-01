@@ -14,8 +14,8 @@ const styles = {
     main: {
         backgroundColor: Colors.stream.backgroundColor,
         height: '100vh',
+        padding: '0 20px 50px 20px',
         width: '100%',
-        paddingBottom: '50px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
