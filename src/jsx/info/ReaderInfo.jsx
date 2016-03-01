@@ -16,11 +16,11 @@ const styles = {
         height: '100vh',
         minWidth: '300px',
         width: '300px',
-        padding: '20px',
+        padding: '20px 20px 50px 20px',
         overflowY: 'scroll',
         overflowX: 'hidden',
         boxShadow: Colors.zDepth,
-        zIndex: 3
+        zIndex: 3,
     }
 };
 
