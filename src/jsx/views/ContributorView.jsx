@@ -1,4 +1,6 @@
 import React from 'react';
+import MediaQuery from 'react-responsive';
+
 import Colors from 'config/Colors.jsx';
 
 import RawStream from 'stream/RawStream.jsx';
@@ -12,7 +14,7 @@ import ContributorEditor from 'editor/ContributorEditor.jsx';
 const styles = {
     main: {
         textColor: Colors.info.textColor,
-        paddingTop: '50px',
+        marginTop: '50px',
         overflow: 'hidden',
         display: 'flex',
         justifyContent: 'center',
@@ -25,17 +27,44 @@ const styles = {
 
 export default class ContributorView extends React.Component {
     render() {
-        return (
+        let header = (<ContributorHeader />);
+        let info = (<ContributorInfo />);
+        let timeline = (<RawTimeline />);
+        let stream = (
+            <div style={styles.stream}>
+                <RawStream />
+            </div>
+        );
+        let editor = (<ContributorEditor />);
+
+        const generateBody = (showInfo, showTimeline, showStream, showEditor) => (
             <div>
                 <ContributorHeader />
                 <div style={styles.main}>
-                    <ContributorInfo />
-                    <RawTimeline />
-                    <div style={styles.stream}>
-                        <RawStream />
-                    </div>
-                    <ContributorEditor />
+                    {showInfo? info: null}
+                    {showTimeline? timeline: null}
+                    {showStream? stream: null}
+                    {showEditor? editor: null}
                 </div>
+            </div>
+        );
+
+        return (
+            <div>
+                <MediaQuery minDeviceWidth={1224}>
+                    <MediaQuery minWidth={1000}>
+                        {generateBody(true, true, true, true)}
+                    </MediaQuery>
+                    <MediaQuery minWidth={800} maxWidth={1000}>
+                        {generateBody(true, true, true, true)}
+                    </MediaQuery>
+                    <MediaQuery maxWidth={800}>
+                        {generateBody(false, true, true, true)}
+                    </MediaQuery>
+                </MediaQuery>
+                <MediaQuery maxDeviceWidth={1224}>
+                    {generateBody(false, true, true, false)}
+                </MediaQuery>
             </div>
         );
     }
