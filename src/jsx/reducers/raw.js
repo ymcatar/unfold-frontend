@@ -2,7 +2,7 @@ import _ from 'lodash';
 import uuid from 'node-uuid';
 
 import * as actions from 'actions/raw';
-import Placeholder from '../config/Placeholder.jsx';
+import RawData from 'config/placeholder/raw';
 
 class ElementStore {
     constructor(data) {
@@ -25,7 +25,7 @@ class ElementStore {
     }
 }
 
-const stream = Placeholder.contributorStream
+const stream = RawData
     .map(post => {
         let id = uuid.v1();
         return _.defaults({id}, post);

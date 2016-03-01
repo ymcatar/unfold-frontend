@@ -1,5 +1,4 @@
 import React from 'react';
-import Placeholder from 'config/Placeholder.jsx';
 import Colors from 'config/Colors.jsx';
 
 import RawStream from 'stream/RawStream.jsx';

@@ -1,9 +1,9 @@
 import actions from '../actions/event';
 import _ from 'lodash';
 
-import Placeholder from '../config/Placeholder.jsx';
+import * as EventData from 'config/placeholder/event';
 
-const initialState = Placeholder;
+const initialState = EventData;
 
 export default function reduceEvent(state, action) {
     let {event} = state;

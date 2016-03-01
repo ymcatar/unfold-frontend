@@ -2,7 +2,8 @@ import _ from 'lodash';
 import uuid from 'node-uuid';
 
 import * as actions from 'actions/stream';
-import Placeholder from '../config/Placeholder.jsx';
+import StreamData from 'config/placeholder/stream';
+import { contributors as ContributorsData } from 'config/placeholder/event';
 
 class ElementStore {
     constructor(data) {
@@ -25,10 +26,10 @@ class ElementStore {
     }
 }
 
-const stream = Placeholder.readerStream
+const stream = StreamData
     .map(post => {
         let id = uuid.v1();
-        let contributor = Placeholder.contributors.filter(user => user.id === post.contributor)[0];
+        let contributor = ContributorsData.filter(user => user.id === post.contributor)[0];
         return _.defaults({id, contributor}, post);
     })
     .sort((a, b) => new Date(b.submitTime) - new Date(a.submitTime));
