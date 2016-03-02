@@ -3,12 +3,12 @@ import MediaQuery from 'react-responsive';
 
 import Colors from 'config/Colors.jsx';
 
-import RawStream from 'stream/RawStream.jsx';
+import TranslatorStream from 'stream/TranslatorStream.jsx';
 
 import Timeline from 'timeline/Timeline.jsx';
 
-import ContributorInfo from 'info/ContributorInfo.jsx';
-import ContributorHeader from 'header/ContributorHeader.jsx';
+import TranslatorInfo from 'info/TranslatorInfo.jsx';
+import TranslatorHeader from 'header/TranslatorHeader.jsx';
 import Editor from 'editor/Editor.jsx';
 
 const styles = {
@@ -25,15 +25,15 @@ const styles = {
     }
 };
 
-export default class ContributorView extends React.Component {
+export default class TranslatorView extends React.Component {
     render() {
         return (
             <div>
-                <ContributorHeader />
+                <TranslatorHeader />
                 <div style={styles.main}>
-                    <Timeline type="raw" />
-                    <div style={styles.stream}><RawStream /></div>
-                    <Editor type="raw" />
+                    <Timeline type="stream" />
+                    <div style={styles.stream}><TranslatorStream /></div>
+                    <Editor type="stream" />
                 </div>
             </div>
         );

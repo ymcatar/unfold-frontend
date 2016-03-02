@@ -1,6 +1,6 @@
 import React from 'react';
-import Editor from 'react-medium-editor';
-import {Button} from 'react-bootstrap';
+import MediumEditor from 'react-medium-editor';
+import { Button } from 'react-bootstrap';
 
 import Colors from 'config/Colors.jsx';
 
@@ -12,7 +12,7 @@ const styles = {
         borderRadius: '3px',
         padding: '10px',
         outline: 'none',
-        height: '250px',
+        height: '350px',
         overflowY: 'scroll',
         margin: '10px 0 10px 0',
         fontSize: '110%',
@@ -22,8 +22,7 @@ const styles = {
 
 const editorOptions = {
     placeholder: {
-        text: 'Type your text here.\nSelect text to add formating.',
-        hideOnClick: true
+        text: ''
     },
     imageDragging: false,
     toolbar: {
@@ -41,10 +40,10 @@ const editorOptions = {
     }
 };
 
-export default class PostEditor extends React.Component {
+export default class Editor extends React.Component {
     render() {
         return (
-            <Editor
+            <MediumEditor
                 style={styles.editor}
                 text={this.props.content}
                 onChange={this.props.handleContentChange}

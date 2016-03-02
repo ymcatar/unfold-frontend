@@ -9,7 +9,9 @@ import Card from 'common/Card.jsx';
 
 import PostEditor from './common/PostEditor.jsx';
 import PostTags from './common/PostTags.jsx';
-import { createPost, selectAddedPost } from 'actions/raw';
+
+import { selectAddedPost as rawSelectAddedPost } from 'actions/raw';
+import { selectAddedPost as streamSelectAddedPost } from 'actions/stream';
 
 const styles = {
     main: {
@@ -29,13 +31,14 @@ const styles = {
     }
 };
 
-class ContributorEditor extends React.Component {
+class Editor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             path: props.addedPost || '',
             content: '',
             tags: [],
+            added: false,
             suggestions: ['important', 'reliable', 'unverified', 'facebook', 'twitter', 'CausewayBay', 'Mongkok', 'Central']
         };
         _.bindAll(this, [
@@ -67,33 +70,29 @@ class ContributorEditor extends React.Component {
                 path: this.state.path
             }
         };
-        this.props.handleSubmit(output);
-        this.setState({
-            content: '',
-            tags: [],
-            path: ''
-        });
         console.log(output);
+        this.handleClear();
     }
 
     handleClear() {
         this.setState({
             content: '',
             tags: [],
-            path: ''
+            path: '',
+            added: false
         });
     }
 
     componentWillReceiveProps(nextProps) {
         if (!nextProps.addedPost)
             return;
-        let tags = nextProps.addedPost.tags.map((o, i) => ({
-            id: i,
-            text: o
-        }));
+        let {tags, source, content} = nextProps.addedPost;
+        tags = tags.map((o, i) => ({ id: i, text: o }));
         this.setState({
-            path: nextProps.addedPost.source.path,
-            tags: tags
+            path: source? source.path: '',
+            tags: tags,
+            content: content,
+            added: true
         });
         this.props.clearAddedPost();
     }
@@ -102,13 +101,14 @@ class ContributorEditor extends React.Component {
         return (
             <div style={styles.main}>
                 <h5>Content</h5>
+                <i>(Click to edit. Select to add formatting.)</i>
                 <PostEditor
                     handleContentChange={this.handleContentChange}
                     content={this.state.content} />
-
                 <h5>Source Path</h5>
                 <Input
                     ref="path"
+                    disabled={this.state.added}
                     value={this.state.path}
                     onChange={this.handleSourceChange}
                     bsSize="small"
@@ -139,21 +139,20 @@ class ContributorEditor extends React.Component {
 }
 
 export default connect(
-    function stateToProps(state) {
-        if (!state.raw.addedPost)
-            return {};
-        return {
-            addedPost: state.raw.addedPost
-        };
+    function stateToProps(state, props) {
+        if (props.type === 'raw')
+            return { addedPost: state.raw.addedPost };
+        else if (props.type === 'stream')
+            return { addedPost: state.stream.addedPost };
     },
-    function dispatchToProps(dispatch) {
+    function dispatchToProps(dispatch, props) {
         return {
-            handleSubmit(post) {
-                dispatch(createPost(post));
-            },
             clearAddedPost() {
-                dispatch(selectAddedPost(null));
+                if (props.type === 'raw')
+                    dispatch(rawSelectAddedPost(null));
+                else if (props.type === 'stream')
+                    dispatch(streamSelectAddedPost(null));
             }
         };
     }
-)(ContributorEditor);
+)(Editor);

@@ -6,7 +6,9 @@ import moment from 'moment';
 import Colors from 'config/Colors.jsx';
 
 import Day from './common/Day.jsx';
-import { scrollToDate } from '../actions/stream';
+
+import { scrollToDate as streamScrollToDate } from 'actions/stream';
+import { scrollToDate as rawScrollToDate } from 'actions/raw';
 
 const styles = {
     main: {
@@ -64,15 +66,21 @@ class Timeline extends React.Component {
 }
 
 export default connect(
-    function stateToProps(state) {
-        return {
-            data: state.stream.filteredStream
-        };
+    function stateToProps(state, props) {
+        if (props.type === "stream")
+            return { data: state.stream.filteredStream };
+        else if (props.type === "raw")
+            return { data: state.raw.filteredStream };
+        else
+            return {};
     },
-    function dispatchToProps(dispatch) {
+    function dispatchToProps(dispatch, props) {
         return {
             onTravel(date) {
-                dispatch(scrollToDate(date));
+                if (props.type === "stream")
+                    dispatch(streamScrollToDate(date));
+                else if (props.type === "raw")
+                    dispatch(rawScrollToDate(date));
             }
         };
     }

@@ -29,7 +29,7 @@ export default class ReaderView extends React.Component {
                     <MediaQuery minDeviceWidth={1224} minWidth={800}>
                         <ReaderInfo />
                     </MediaQuery>
-                    <Timeline />
+                    <Timeline type="stream" />
                     <Stream />
                 </div>
             </div>

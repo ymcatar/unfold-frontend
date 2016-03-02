@@ -6,7 +6,7 @@ import Colors from 'config/Colors.jsx';
 
 import RawBox from './common/RawBox.jsx';
 import LazyScroller from './common/LazyScroller.jsx';
-import { reportScroll, reportViewport } from '../actions/raw';
+import { reportScroll, reportViewport } from 'actions/stream';
 
 const styles = {
     main: {
@@ -41,7 +41,7 @@ export default class ReaderStream extends React.Component {
     createPlaceholder(key, height) {
         return (
             <RawBox
-                type="raw"
+                type="stream"
                 key={key}
                 style={{height: height - 20}} />
         );
@@ -50,7 +50,7 @@ export default class ReaderStream extends React.Component {
     render() {
         let elements = this.props.filteredStream.map(post => (
             <RawBox
-                type="raw"
+                type="stream"
                 key={post.id}
                 data={post} />
         ));
@@ -79,7 +79,7 @@ export default class ReaderStream extends React.Component {
 
 export default connect(
     function stateToProps(state) {
-        return _.pick(state.raw, 'filter', 'filteredStream', 'position');
+        return _.pick(state.stream, 'filter', 'filteredStream', 'position');
     },
     function dispatchToProps(dispatch) {
         return {

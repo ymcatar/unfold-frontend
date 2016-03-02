@@ -8,6 +8,7 @@ import {Router, Route, Link, IndexRoute, browserHistory} from 'react-router';
 
 import ReaderView from 'views/ReaderView.jsx';
 import ContributorView from 'views/ContributorView.jsx';
+import TranslatorView from 'views/TranslatorView.jsx';
 import store from './store';
 
 const history = createBrowserHistory({ queryKey: false });
@@ -17,6 +18,7 @@ ReactDOM.render((
         <Router history={history}>
             <Route path='/'>
                 <Route path='contributor' component={ContributorView} />
+                <Route path='translator' component={TranslatorView} />
                 <IndexRoute component={ReaderView} />
             </Route>
         </Router>

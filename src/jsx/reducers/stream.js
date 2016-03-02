@@ -72,6 +72,13 @@ export default function reduceStream(state, action) {
             break;
         }
 
+        case actions.SELECT_ADDEDPOST: {
+            stream = {
+                addedPost: action.addedPost
+            };
+            break;
+        }
+
         case actions.SCROLL_TO: {
             let index = -1;
 

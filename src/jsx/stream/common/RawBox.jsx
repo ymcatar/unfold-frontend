@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import _ from 'lodash';
 
-import { selectAddedPost } from 'actions/raw';
+import { selectAddedPost as rawSelectAddedPost } from 'actions/raw';
+import { selectAddedPost as streamSelectAddedPost } from 'actions/stream';
 
 import Colors from 'config/Colors.jsx';
 
@@ -112,13 +113,21 @@ class RawBox extends React.Component {
 }
 
 export default connect(
-    function stateToProps(state) {
-        return _.pick(state.raw, 'addedPost');
+    function stateToProps(state, props) {
+        if (props.type === 'raw')
+            return state.raw;
+        else if (props.type === 'stream')
+            return state.stream;
+        else
+            return {};
     },
-    function dispatchToProps(dispatch) {
+    function dispatchToProps(dispatch, props) {
         return {
             handleAdd(post) {
-                dispatch(selectAddedPost(post));
+                if (props.type === 'raw')
+                    dispatch(rawSelectAddedPost(post));
+                else if (props.type === 'stream')
+                    dispatch(streamSelectAddedPost(post));
             }
         };
     }
