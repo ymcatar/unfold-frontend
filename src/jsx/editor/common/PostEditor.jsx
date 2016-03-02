@@ -1,6 +1,8 @@
 import React from 'react';
 import MediumEditor from 'react-medium-editor';
 import { Button } from 'react-bootstrap';
+import MediumButton from 'common/MediumButton';
+import fetch from 'fetch-jsonp';
 
 import Colors from 'config/Colors.jsx';
 
@@ -35,8 +37,17 @@ const editorOptions = {
             'orderedlist',
             'unorderedlist',
             'h3',
-            'h4'
+            'h4',
+            'translate'
         ]
+    },
+    extensions: {
+        'translate': new MediumButton({
+            label:'<i class="fa fa-language"></i>',
+            action: function(html, mark){
+                return '突發事件: 示威者似乎被正佔領尖沙咀廣東道。';
+            }
+        })
     }
 };
 
