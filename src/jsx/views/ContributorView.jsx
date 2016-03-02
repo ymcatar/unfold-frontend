@@ -37,9 +37,6 @@ export default class ContributorView extends React.Component {
             <div>
                 <ContributorHeader />
                 <div style={styles.main}>
-                    <MediaQuery minDeviceWidth={1224} minWidth={800}>
-                        {info}
-                    </MediaQuery>
                     {timeline}
                     {stream}
                     {editor}

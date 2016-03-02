@@ -26,7 +26,9 @@ class Proof extends React.Component {
                 show={this.props.show}
                 onHide={this.props.handleHide}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Submit Proofs To Contributor</Modal.Title>
+                    <Modal.Title>
+                        Submit Proofs To Contributor
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Input
@@ -55,9 +57,14 @@ class Proof extends React.Component {
                         label="Mail content" />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={this.props.handleHide}>Cancel</Button>
+                    <Button
+                        bsSize="small"
+                        onClick={this.props.handleHide}>
+                        Cancel
+                    </Button>
                     <Button
                         onClick={this.handleSubmit}
+                        bsSize="small"
                         bsStyle="primary">
                         Send
                     </Button>

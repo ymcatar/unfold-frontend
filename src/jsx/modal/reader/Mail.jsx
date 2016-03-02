@@ -53,9 +53,14 @@ class Mail extends React.Component {
                         label="Mail content" />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={this.props.handleHide}>Cancel</Button>
+                    <Button
+                        bsSize="small"
+                        onClick={this.props.handleHide}>
+                        Cancel
+                    </Button>
                     <Button
                         onClick={this.handleSubmit}
+                        bsSize="small"
                         bsStyle="primary">
                         Send
                     </Button>

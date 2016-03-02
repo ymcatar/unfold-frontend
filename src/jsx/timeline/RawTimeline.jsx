@@ -16,7 +16,7 @@ const styles = {
         height: '100vh',
         overflowY: 'scroll',
         overflowX: 'hidden',
-        padding: '20px 0 5px 0',
+        padding: '20px 0 5px 0'
     }
 };
 
