@@ -45,7 +45,7 @@ const editorOptions = {
         'translate': new MediumButton({
             label:'<i class="fa fa-language"></i>',
             action: function(html, mark){
-                return '突發事件: 示威者似乎被正佔領尖沙咀廣東道。';
+                return '突發事件: 示威者似乎正佔領尖沙咀廣東道。';
             }
         })
     }
