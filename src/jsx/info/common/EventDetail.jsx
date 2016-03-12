@@ -10,7 +10,7 @@ const styles = {
         marginBottom: '20px',
         color: Colors.info.color,
         fontSize: '5vh',
-        fontWeight: 'lighter',
+        fontWeight: 'bolder',
         lineHeight: '90%'
     },
     h2: {

@@ -7,8 +7,6 @@ const styles = {
         width: '100%',
         maxWidth: '100%',
         backgroundColor: 'white',
-        border: '3px solid white',
-        borderRadius: '3px',
         boxShadow: Colors.zDepth,
         padding: '15px'
     }
