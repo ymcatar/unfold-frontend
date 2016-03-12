@@ -11,7 +11,7 @@ import Contributors from './reader/Contributors.jsx';
 
 const styles = {
     main: {
-        backgroundColor: Colors.info.backgroundColor,
+        background: Colors.info.background,
         color: Colors.info.color,
         height: '100vh',
         minWidth: '300px',
@@ -19,8 +19,6 @@ const styles = {
         padding: '20px 20px 50px 20px',
         overflowY: 'scroll',
         overflowX: 'hidden',
-        boxShadow: Colors.zDepth,
-        zIndex: 3,
     }
 };
 

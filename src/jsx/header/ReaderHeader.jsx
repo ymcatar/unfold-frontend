@@ -10,11 +10,11 @@ import Mail from 'modal/reader/Mail.jsx';
 
 const styles = {
     main: {
-        boxShadow: Colors.zDepth,
         backgroundColor: Colors.header.backgroundColor,
         color: Colors.header.color,
-        borderColor: Colors.header.border,
-        fontWeight: '500'
+        border: 'none',
+        borderBottom: `1px solid ${Colors.header.border}`,
+        fontWeight: 'bolder'
     },
     logo: {
         height: '36px'
@@ -51,7 +51,10 @@ class ReaderHeader extends React.Component {
     render() {
         return (
             <div>
-                <Navbar style={styles.main} fixedTop={true} fluid={true}>
+                <Navbar
+                    style={styles.main}
+                    fixedTop={true}
+                    fluid={true}>
                     <Navbar.Toggle>
                         <i className="fa fa-bars" />
                         &nbsp;Toggle

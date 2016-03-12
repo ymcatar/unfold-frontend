@@ -7,12 +7,12 @@ import Colors from 'config/Colors.jsx';
 const getStyles = (length, disable) => ({
     backgroundColor: disable? Colors.timeline.disable: Colors.timeline.enable,
     width: `${length/100*70}px`,
-    height: '10px',
-    margin: '0 auto 0 2px'
+    height: '15px',
+    margin: '0 auto 0 0'
 });
 
 const getMainStyles = disable => ({
-    height: '10px',
+    height: '15px',
     margin: '0 0 2px 0',
     display: 'flex',
     cursor: disable? 'auto': 'pointer'

@@ -1,14 +1,16 @@
 import React from 'react';
 
+import Colors from 'config/Colors.jsx';
+
 const styles = {
     main: {
         width: '100%',
         maxWidth: '100%',
         backgroundColor: 'white',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
-        border: '3px #FFFFFF solid',
-        borderRadius: '2px',
-        padding: '10px'
+        border: '3px solid white',
+        borderRadius: '3px',
+        boxShadow: Colors.zDepth,
+        padding: '15px'
     }
 };
 

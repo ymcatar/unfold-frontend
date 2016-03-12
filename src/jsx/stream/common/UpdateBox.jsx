@@ -17,22 +17,26 @@ import TypeFacebook from './TypeFacebook.jsx';
 
 const styles = {
     main: {
-        width: '620px',
-        maxWidth: '100%',
+        width: '100%',
+        maxWidth: '650px',
         display: 'flex',
         padding: '0 10px',
-        margin: '10px auto'
+        margin: '5px auto'
     },
     avatar: {
-        position: 'relative',
-        left: '-10px',
-        top: '5px',
-        width: '60px'
+        width: '48px'
     },
     info: {
+        marginBottom: '20px',
+        display: 'flex'
+    },
+    name: {
+        marginLeft: '10px',
+        lineHeight: '0.2'
+    },
+    time: {
         color: 'grey',
-        height: '25px',
-        marginBottom: '20px'
+        fontSize: 'smaller'
     },
     content: {
         minWidth: '75%',
@@ -99,16 +103,14 @@ export default class UpdateBox extends React.Component {
         const {name, title, image, online} = this.props.data.contributor;
         const date = moment(this.props.data.submitTime);
         let avatar = (
-            <MediaQuery minWidth={800}>
-                <div style={styles.avatar}>
-                    <UpdateAvatar
-                        name={name}
-                        title={title}
-                        image={image}
-                        online={online}
-                        size="50" />
-                </div>
-            </MediaQuery>
+            <div style={styles.avatar}>
+                <UpdateAvatar
+                    name={name}
+                    title={title}
+                    image={image}
+                    online={online}
+                    size="48" />
+            </div>
         );
 
         let tags = this.props.data.tags && this.props.data.tags.length > 0? (
@@ -126,12 +128,17 @@ export default class UpdateBox extends React.Component {
 
         return (
             <div style={_.extend({}, styles.main, this.props.style)}>
-
-                {avatar}
                 <Card>
                     <div style={styles.info}>
-                        <h5 className="pull-left">{this.props.data.contributor.name}</h5>
-                        <h5 className="pull-right">{date.format("D MMM YYYY / HH:mm")}</h5>
+                        {avatar}
+                        <div style={styles.name}>
+                            <h5>
+                                {this.props.data.contributor.name}
+                            </h5>
+                            <p style={styles.time}>
+                                {date.format("D MMM YYYY - HH:mm")}
+                            </p>
+                        </div>
                     </div>
                     <div style={styles.content}>
                         <TypeText data={this.props.data.content} />

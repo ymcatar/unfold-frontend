@@ -1,7 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,900,500italic,400italic,700italic,900italic,100italic,100);
+
 html, body, #main {
     margin: 0;
     height: 100%;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 #main {
     height: 100vh;
@@ -9,13 +11,17 @@ html, body, #main {
     overflow: hidden;
 }
 .collapseBox {
-    background-color: #4527A0;
-    border: 2px #7E57C2 solid;
+    box-shadow: none;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    border-top: 1px rgba(255, 255, 255, 0.3) solid;
 }
 .collapseBox > .panel-heading {
-    background-color: #4527A0;
+    background-color: transparent;
     color: white;
     border: none;
+    font-weight: bolder;
 }
 ::-webkit-scrollbar {
     display: none;

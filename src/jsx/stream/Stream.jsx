@@ -18,7 +18,7 @@ const styles = {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     header: {
         width: '200px',
@@ -28,8 +28,7 @@ const styles = {
         marginLeft: 'auto',
         marginRight: 'auto',
         textAlign: 'center',
-        fontWeight: '300',
-        fontStyle: 'italic'
+        fontWeight: '500'
     }
 };
 

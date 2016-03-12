@@ -8,13 +8,13 @@ import Bar from './Bar.jsx';
 const styles = {
     text: {
         position: 'relative',
-        height: '20px',
-        paddingLeft: '3px',
+        height: '50px',
+        margin: '20px auto 0 1px',
         color: Colors.timeline.date,
         fontWeight: '500'
     },
     main: {
-        margin: '0 0 20px 0'
+        margin: '0 auto 20px 0px'
     }
 };
 
