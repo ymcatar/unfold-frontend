@@ -9,7 +9,7 @@ const getStyles = (length, disable) => ({
     width: `${length/100*70}px`,
     height: '25px',
     margin: '0 auto 0 -1px',
-    borderRadius: '2px',
+    borderRadius: '2px'
 });
 
 const getMainStyles = disable => ({
@@ -31,7 +31,7 @@ export default class Bar extends React.Component {
         return (
             <div onClick={this.props.onClick}>
                 <OverlayTrigger
-                    placement={"left"} overlay={tooltip}
+                    placement={"right"} overlay={tooltip}
                     animation={false} >
                     <div style={getMainStyles(disable)}>
                         <div style={getStyles(length, disable)} />

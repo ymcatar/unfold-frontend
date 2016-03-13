@@ -8,11 +8,13 @@ import Bar from './Bar.jsx';
 const styles = {
     text: {
         margin: '10px auto 10px 1px',
+        textAlign: 'left',
         color: Colors.timeline.date,
-        fontWeight: '500'
+        fontWeight: 'bolder',
+        lineHeight: '0.5'
     },
     main: {
-        margin: '0 auto 20px 0px'
+        margin: '0 1px 20px 0px'
     }
 };
 
@@ -39,7 +41,10 @@ export default class Day extends React.Component {
         return (
             <div style={styles.main}>
                 <div style={styles.text}>
-                    {`${month}/${day}`}
+                    {month}
+                </div>
+                <div style={styles.text}>
+                    {day}
                 </div>
                 <div>
                     {bars}

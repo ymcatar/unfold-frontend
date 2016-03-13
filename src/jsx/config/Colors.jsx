@@ -3,37 +3,36 @@ export default {
         name: 'white',
         title: 'white',
         online: '#9cf924',
-        offline: '#dadef2'
+        offline: '#3b6cb5'
     },
     header: {
-        backgroundColor: '#FAFAFA',
-        border: '#ddd',
-        color: '#777777'
+        backgroundColor: '#FBFBFB',
+        border: '#F6F6F6',
+        color: 'black'
     },
     info: {
-        background: '#607D8B',
-        color: 'white',
+        background: '#4689F1',
+        color: '#fff',
         information: {
             borderColor: 'rgba(255, 255, 255, 0.3)'
         }
     },
     timeline: {
-        date: '#607D8B',
-        color: '#97a8af',
-        backgroundColor: '#eaeaea',
-        enable: '#97a8af',
-        disable: '#97a8af'
+        date: '#F7F7F7',
+        color: '#F7F7F7',
+        backgroundColor: '#4689F1',
+        enable: '#F7F7F7',
+        disable: '#F7F7F7'
     },
     stream: {
-        backgroundColor: '#eaeaea',
+        backgroundColor: '#EDF0F3',
         tags: {
-            reliable: '#4527a0',
-            important: '#f50057',
-            unverified: '#fcc107',
-            default: 'grey'
+            reliable: '#008BFF',
+            important: '#A5506D',
+            unverified: '#FF3643',
+            default: '#263238'
         },
-        header: '#607D8B',
-        headerBorder: '#607D8B'
+        header: '#aaa'
     },
     editor: {
         border: '#ccc',
@@ -44,5 +43,10 @@ export default {
             color: 'black'
         }
     },
-    zDepth: '0 3px 6px rgba(0,0,0,0.08), 0 3px 6px rgba(0,0,0,0.08)'
+    card: {
+        backgroundColor: 'white',
+        color: 'black',
+        borderColor: '#ECECEC',
+    },
+    zDepth: '0 2px 6px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.10)'
 };

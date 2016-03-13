@@ -1,8 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,900,500italic,400italic,700italic,900italic,100italic,100);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,600,600italic,700,700italic);
 
 html, body, #main {
     margin: 0;
     height: 100%;
+    background-color: #ECEFF1;
     font-family: 'Roboto', sans-serif;
 }
 #main {
@@ -52,84 +53,25 @@ iframe {
     border-color: #7E57C2;
 }
 
-/* Example Styles for React Tags*/
-div.ReactTags__tags {
-    position: relative;
-    float: left;
-    padding: 0 0 10px 0;
+.dropdown-menu {
+    border-color: #E5E6E9;
 }
 
-/* Styles for the input */
-div.ReactTags__tagInput {
-    width: 100px;
-    color: black;
-    display: inline-block;
-    vertical-align: middle;
-    background-repeat: no-repeat;
-    background-position: right 8px center;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    outline: none;
-}
-div.ReactTags__tagInput input,
-div.ReactTags__tagInput input:focus {
-    padding: 0 10px 0 10px;
-    height: 27px;
-    font-size: 12px;
-    width: 100%;
-    outline: none;
-    border: 1px solid #ddd;
-    background: #eee;
-    font-weight: bold;
-    padding: 5px;
-    border-radius: 2px;
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    background-color: #F5F5F5;
+    border-bottom: 3px solid #4689F1;
 }
 
-/* Styles for selected tags */
-div.ReactTags__selected {
-    float: left;
-}
-div.ReactTags__selected span.ReactTags__tag {
-    border: 1px solid #ddd;
-    background: #eee;
-    color: black;
-    font-size: 12px;
-    font-weight: bold;
-    display: inline-block;
-    padding: 5px;
-    cursor: move;
-    border-radius: 2px;
-}
-div.ReactTags__selected a.ReactTags__remove {
-    color: #aaa;
-    margin-left: 5px;
-    cursor: pointer;
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    background-color: #F5F5F5;
+    border-bottom: 3px solid #4689F1;
 }
 
-/* Styles for suggestions */
-div.ReactTags__suggestions {
-    position: absolute;
+.navbar-default .navbar-nav>li>a {
+    color: #675555;
+    border-left: 1px solid #F7F7F7;
 }
-div.ReactTags__suggestions ul {
-    -webkit-padding-start: 0;
-    list-style-type: none;
-    text-align: left;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    background: #EEEEEE;
-    width: 100px;
-}
-div.ReactTags__suggestions li {
-    list-style-type: none;
-    border-bottom: 1px solid #ddd;
-    padding: 5px 10px;
-    margin: 0;
-}
-div.ReactTags__suggestions li mark {
-    margin: 0;
-    font-weight: 800;
-    background: none;
-}
-div.ReactTags__suggestions ul li.active {
-    background: #b7cfe0;
-    cursor: pointer;
+
+.material-icons {
+    font-size: 18px !important;
 }

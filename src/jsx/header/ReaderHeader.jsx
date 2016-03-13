@@ -14,10 +14,8 @@ const styles = {
         color: Colors.header.color,
         border: 'none',
         borderBottom: `1px solid ${Colors.header.border}`,
-        fontWeight: 'bolder'
-    },
-    logo: {
-        height: '36px'
+        fontWeight: 'bolder',
+        boxShadow: Colors.zDepth,
     }
 };
 
@@ -55,14 +53,11 @@ class ReaderHeader extends React.Component {
                     style={styles.main}
                     fixedTop={true}
                     fluid={true}>
-                    <Navbar.Toggle>
-                        <i className="fa fa-bars" />
-                        &nbsp;Toggle
-                    </Navbar.Toggle>
+                    <Navbar.Toggle />
                     <Navbar.Collapse>
                         <Navbar.Header>
                             <Navbar.Text>
-                                <img src="res/logo.png" style={styles.logo}/>
+                                <img src="res/logo.png" height={36}/>
                             </Navbar.Text>
                         </Navbar.Header>
                         <Nav onSelect={this.handleFilter} activeKey={this.props.filter}>
@@ -106,12 +101,10 @@ class ReaderHeader extends React.Component {
 
                         <Nav pullRight onSelect={this.handleNavClick}>
                             <NavItem eventKey={'mail'} href="#">
-                                <i className="fa fa-envelope" />
-                                &nbsp;Mail
+                                <i className="material-icons">mail</i>
                             </NavItem>
                             <NavItem eventKey={'top'} href="#">
-                                <i className="fa fa-chevron-circle-up" />
-                                &nbsp;Top
+                                <i className="material-icons">vertical_align_top</i>
                             </NavItem>
                         </Nav>
                     </Navbar.Collapse>

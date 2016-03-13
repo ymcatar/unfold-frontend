@@ -14,11 +14,12 @@ const styles = {
     main: {
         backgroundColor: Colors.timeline.backgroundColor,
         width: '70px',
-        minWidth: '30px',
         height: '100vh',
         overflowY: 'scroll',
         overflowX: 'hidden',
         padding: '20px 0 50px 0',
+        boxShadow: Colors.zDepth,
+        zIndex: 3
     }
 };
 

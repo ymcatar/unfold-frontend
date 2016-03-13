@@ -16,9 +16,10 @@ const styles = {
         height: '100vh',
         minWidth: '300px',
         width: '300px',
-        padding: '20px 20px 50px 20px',
+        padding: '20px 20px 50px 5px',
         overflowY: 'scroll',
         overflowX: 'hidden',
+        zIndex: 4
     }
 };
 
@@ -29,9 +30,7 @@ class ReaderInfo extends React.Component {
                 <EventDetail
                     title={this.props.event.title}
                     description={this.props.event.description} />
-
                 <Information data={this.props.info} />
-
                 <Contributors data={this.props.contributors} />
                 <Translators data={this.props.translators} />
             </div>

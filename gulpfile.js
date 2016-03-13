@@ -11,7 +11,11 @@ var watch = require('gulp-watch');
 
 var livereload = require('gulp-livereload');
 
-const staticPath = ['./src/index.html', './src/main.css', './src/noembed.css'];
+const staticPath = [
+	'./src/index.html',
+	'./src/main.css',
+	'./src/noembed.css',
+	'./src/reactTag.css'];
 
 gulp.task('jsx', () => {
 	var bundler = browserify('./src/jsx/App.jsx', {

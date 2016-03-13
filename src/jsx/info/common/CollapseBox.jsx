@@ -48,11 +48,15 @@ export default class CollapseBox extends React.Component {
                 className="collapseBox"
                 header={
                     <div>
-                        {this.props.header}
                         {this.state.open?
-                            <i className="fa fa-angle-up pull-left" />:
-                            <i className="fa fa-angle-down pull-left" />
+                            <i className="material-icons">
+                                keyboard_arrow_up
+                            </i> :
+                            <i className="material-icons">
+                                keyboard_arrow_down
+                            </i>
                         }
+                        {this.props.header}
                     </div>
                 }
                 collapsible

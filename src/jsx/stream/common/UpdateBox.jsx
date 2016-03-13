@@ -18,24 +18,29 @@ import TypeFacebook from './TypeFacebook.jsx';
 const styles = {
     main: {
         width: '100%',
-        maxWidth: '650px',
+        minWidth: '100%',
         display: 'flex',
-        padding: '0 10px',
-        margin: '5px auto'
+        margin: '2px auto'
     },
     avatar: {
         width: '48px'
     },
     info: {
         marginBottom: '20px',
-        display: 'flex'
+        display: 'flex',
+        padding: '10px',
+        margin: '-15px -15px 10px -15px',
+        borderBottom: '1px solid #eee'
+    },
+    text: {
+        marginLeft: '10px',
+        lineHeight: '0.2',
     },
     name: {
-        marginLeft: '10px',
-        lineHeight: '0.2'
+        fontWeight: 'bolder'
     },
     time: {
-        color: 'grey',
+        color: '#aaa',
         fontSize: 'smaller'
     },
     content: {
@@ -131,8 +136,8 @@ export default class UpdateBox extends React.Component {
                 <Card>
                     <div style={styles.info}>
                         {avatar}
-                        <div style={styles.name}>
-                            <h5>
+                        <div style={styles.text}>
+                            <h5 style={styles.name}>
                                 {this.props.data.contributor.name}
                             </h5>
                             <p style={styles.time}>

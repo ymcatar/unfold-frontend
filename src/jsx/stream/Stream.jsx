@@ -14,21 +14,22 @@ const styles = {
     main: {
         backgroundColor: Colors.stream.backgroundColor,
         height: '100vh',
-        padding: '0 20px 50px 20px',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
     },
     header: {
-        width: '200px',
+        width: '100%',
+        height: '100px',
+        fontSize: '60px',
         color: Colors.stream.header,
-        borderBottom: `2px ${Colors.stream.headerBorder} solid`,
-        padding: '0 10px 5px 10px',
+        padding: '50px 0 10px 20px',
         marginLeft: 'auto',
         marginRight: 'auto',
-        textAlign: 'center',
-        fontWeight: '500'
+        textAlign: 'left',
+        fontWeight: 'light',
+        fontStyle: 'italic'
     }
 };
 
@@ -74,9 +75,9 @@ export default class ReaderStream extends React.Component {
                     onLayoutChange={this.props.onReportViewport}
                     placeholderFunc={this.createPlaceholder}>
                     {[
-                        <h2 key="heading" style={styles.header} height={70}>
+                        <div key="heading" style={styles.header} height={150}>
                             #{this.props.filter}
-                        </h2>
+                        </div>
                     ].concat(elements)}
                 </LazyScroller>
                 <Proof

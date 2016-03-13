@@ -8,7 +8,7 @@ import { selectFilter } from 'actions/stream';
 const getStyles = style => ({
     marginRight: '5px',
     color: style,
-    fontWeight: '500'
+    fontWeight: 'bold'
 });
 
 export default class Tags extends React.Component {
