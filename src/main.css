@@ -16,7 +16,7 @@ html, body, #main {
     background-color: transparent;
     border: none;
     border-radius: 0;
-    border-top: 1px rgba(255, 255, 255, 0.3) solid;
+    border-top: 2px rgba(255, 255, 255, 0.3) solid;
 }
 .collapseBox > .panel-heading {
     background-color: transparent;
@@ -40,17 +40,23 @@ body, .smooth-container {
 iframe {
     max-width: 100% !important;
 }
-.btn-primary {
-    background-color: #7E57C2;
-    border-color: #4527A0;
-}
-.btn-primary:hover {
-    background-color: #9e7dd8;
-    border-color: #7E57C2;
-}
-.btn-primary:focus:active {
-    background-color: #9e7dd8;
-    border-color: #7E57C2;
+
+code, kbd, pre,
+.form-control,
+.btn, .btn-link,
+.dropdown-menu,
+.input-group-addon, .input-group-btn,
+.nav-tabs a, .nav-pills a, .navbar, .navbar-toggle,
+.icon-bar, .breadcrumb, .pagination, .pager *,
+.label, .badge,
+.jumbotron, .thumbnail,
+.alert, .progress,
+.panel, .well,
+.modal-content,
+.tooltip-inner,
+.popover, .popover-title,
+.carousel-indicators li {
+    border-radius: 0 !important;
 }
 
 .dropdown-menu {
@@ -69,9 +75,14 @@ iframe {
 
 .navbar-default .navbar-nav>li>a {
     color: #675555;
-    border-left: 1px solid #F7F7F7;
+    border-bottom: 3px solid transparent;
 }
 
 .material-icons {
     font-size: 18px !important;
+    vertical-align: middle;
+}
+
+a:focus {
+    outline: none;
 }

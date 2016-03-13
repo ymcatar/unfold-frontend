@@ -10,12 +10,8 @@ import Mail from 'modal/reader/Mail.jsx';
 
 const styles = {
     main: {
-        backgroundColor: Colors.header.backgroundColor,
-        color: Colors.header.color,
-        border: 'none',
-        borderBottom: `1px solid ${Colors.header.border}`,
         fontWeight: 'bolder',
-        boxShadow: Colors.zDepth,
+        borderBottom: `2px solid ${Colors.header.borderColor}`
     }
 };
 
@@ -57,7 +53,7 @@ class ReaderHeader extends React.Component {
                     <Navbar.Collapse>
                         <Navbar.Header>
                             <Navbar.Text>
-                                <img src="res/logo.png" height={36}/>
+                                <img src="res/logo.png" height={40}/>
                             </Navbar.Text>
                         </Navbar.Header>
                         <Nav onSelect={this.handleFilter} activeKey={this.props.filter}>
@@ -70,41 +66,16 @@ class ReaderHeader extends React.Component {
                             <NavItem eventKey="reliable" href="#">
                                 Reliable
                             </NavItem>
-                            <NavDropdown
-                                eventKey='customTag'
-                                title="Other"
-                                id="customTag"
-                                onSelect = {(a, key) => { this.handleFilter(key); }} >
-                                <MenuItem header>SOURCE</MenuItem>
-                                <MenuItem eventKey="facebook">
-                                    #facebook
-                                </MenuItem>
-                                <MenuItem eventKey="twitter">
-                                    #twitter
-                                </MenuItem>
-                                <MenuItem eventKey="Central">
-                                    #Central
-                                </MenuItem>
-                                <MenuItem divider />
-                                <MenuItem header>CUSTOM TAG</MenuItem>
-                                <MenuItem eventKey="TsimShaTsui">
-                                    #TsimShaTsui
-                                </MenuItem>
-                                <MenuItem eventKey="Mongkok">
-                                    #Mongkok
-                                </MenuItem>
-                                <MenuItem eventKey="CausewayBay">
-                                    #CausewayBay
-                                </MenuItem>
-                            </NavDropdown>
                         </Nav>
 
                         <Nav pullRight onSelect={this.handleNavClick}>
                             <NavItem eventKey={'mail'} href="#">
                                 <i className="material-icons">mail</i>
+                                &nbsp;Mail
                             </NavItem>
                             <NavItem eventKey={'top'} href="#">
                                 <i className="material-icons">vertical_align_top</i>
+                                &nbsp;Top
                             </NavItem>
                         </Nav>
                     </Navbar.Collapse>

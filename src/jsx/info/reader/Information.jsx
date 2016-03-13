@@ -10,8 +10,8 @@ const styles = {
         maxHeight: '50vh',
         padding: '10px',
         overflowY: 'scroll',
-        borderTop: `1px solid ${Colors.info.information.borderColor}`,
-        borderBottom: `1px solid ${Colors.info.information.borderColor}`
+        borderTop: `2px solid ${Colors.info.information.borderColor}`,
+        borderBottom: `2px solid ${Colors.info.information.borderColor}`
     }
 };
 

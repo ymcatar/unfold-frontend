@@ -29,7 +29,6 @@ const styles = {
         marginRight: 'auto',
         textAlign: 'left',
         fontWeight: 'light',
-        fontStyle: 'italic'
     }
 };
 
