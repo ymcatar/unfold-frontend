@@ -13,7 +13,7 @@ import { reportScroll, reportViewport } from '../actions/stream';
 const styles = {
     main: {
         backgroundColor: Colors.stream.backgroundColor,
-        height: '100vh',
+        height: 'calc(100vh - 10px)',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -24,7 +24,7 @@ const styles = {
         height: '100px',
         fontSize: '60px',
         color: Colors.stream.header,
-        padding: '50px 0 10px 20px',
+        padding: '30px 0 10px 20px',
         marginLeft: 'auto',
         marginRight: 'auto',
         textAlign: 'left',
