@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { hideReaderMail, hideReaderProof } from 'actions/modal';
+import { hideReaderMail, hideReaderProof } from 'redux/actions/modal';
 
 import Mail from './reader/Mail.jsx';
 import Proof from './reader/Proof.jsx';

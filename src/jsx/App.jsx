@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import { Provider } from 'react-redux';
+import store from 'redux/store';
 
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import {Router, Route, Link, IndexRoute, browserHistory} from 'react-router';
 
 import ReaderView from 'views/ReaderView.jsx';
-import store from './store';
 
 const history = createBrowserHistory({ queryKey: false });
 

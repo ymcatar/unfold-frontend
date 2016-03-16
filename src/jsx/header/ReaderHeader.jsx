@@ -1,11 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import _ from 'lodash';
 
+import { connect } from 'react-redux';
+import { selectFilter, reportFilter, scrollToTop } from 'redux/actions/stream';
+import { showReaderMail } from 'redux/actions/modal'; 
+
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+
 import {header as Colors} from 'config/Colors.jsx';
-import { selectFilter, reportFilter, scrollToTop } from 'actions/stream';
-import { showReaderMail } from 'actions/modal'; 
 
 const styles = {
     main: {

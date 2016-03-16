@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import uuid from 'node-uuid';
 
-import * as actions from 'actions/modal';
+import * as actions from '../actions/modal';
 
 const initialState = {
 	active: null,

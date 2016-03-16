@@ -2,7 +2,7 @@ import React from 'react';
 import MediaQuery from 'react-responsive';
 
 import { connect } from 'react-redux';
-import { showReaderProof } from 'actions/modal';
+import { showReaderProof } from 'redux/actions/modal';
 
 import { Button } from 'react-bootstrap';
 import moment from 'moment';

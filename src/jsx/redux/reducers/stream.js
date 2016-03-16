@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import uuid from 'node-uuid';
 
-import * as actions from 'actions/stream';
+import * as actions from '../actions/stream';
+
 import StreamData from 'config/placeholder/stream';
 import { contributors as ContributorsData } from 'config/placeholder/event';
 

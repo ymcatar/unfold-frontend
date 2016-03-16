@@ -1,13 +1,14 @@
 import React from 'react';
+
 import { connect } from 'react-redux';
+import { scrollToDate } from 'redux/actions/stream';
+
 import uuid from 'node-uuid';
 import moment from 'moment';
 
 import Colors from 'config/Colors.jsx';
 
 import Day from './common/Day.jsx';
-
-import { scrollToDate } from 'actions/stream';
 
 const styles = {
     main: {

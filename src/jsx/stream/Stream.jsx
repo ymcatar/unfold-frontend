@@ -1,12 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import _ from 'lodash';
+
+import { connect } from 'react-redux';
+import { reportScroll, reportViewport } from 'redux/actions/stream';
 
 import Colors from 'config/Colors.jsx';
 
 import UpdateBox from './common/UpdateBox.jsx';
 import LazyScroller from './common/LazyScroller.jsx';
-import { reportScroll, reportViewport } from '../actions/stream';
 
 const styles = {
     main: {

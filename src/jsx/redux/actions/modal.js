@@ -2,7 +2,7 @@ export const SHOW_READER_MAIL = 'modal: show reader mail';
 export let showReaderMail = () => ({
     type: SHOW_READER_MAIL,
     active: 'readerMail',
-    data: data
+    data: null
 });
 
 export const HIDE_READER_MAIL = 'modal: hide reader mail';

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import uuid from 'node-uuid';
 
 import Colors from 'config/Colors.jsx';
-import { selectFilter } from 'actions/stream';
+import { selectFilter } from 'redux/actions/stream';
 
 const getStyles = style => ({
     marginRight: '5px',
