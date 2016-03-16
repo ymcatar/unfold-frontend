@@ -1966,6 +1966,7 @@ export default [{
 	}
 }, {
 	type: 'twitter',
+	contributor: '02',
 	submitTime: '2014-09-28T17:07:50Z',
 	tags: ['twitter'],
 	source: {

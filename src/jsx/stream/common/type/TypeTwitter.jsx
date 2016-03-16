@@ -18,7 +18,7 @@ export default class TypeTwitter extends React.Component {
     }
 
     componentDidMount() {
-        let id = this.props.data.source.path.match(/[0-9]+/)[0];
+        let id = this.props.path.match(/[0-9]+/)[0];
         twttrInit
             .then(() => window.twttr.widgets.createTweet(id, this.bodyNode))
             .then(() => {

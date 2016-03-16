@@ -12,7 +12,7 @@ export default class TypeEmbed extends React.Component {
 
     componentDidMount() {
         this.node.addEventListener('load', this.onLoad, true);
-        fetch('http://noembed.com/embed?url=' + this.props.data.source.path.trim())
+        fetch('http://noembed.com/embed?url=' + this.props.path.trim())
             .then(res => res.json())
             .then(body => {
                 this.setState({

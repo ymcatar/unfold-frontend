@@ -3,15 +3,14 @@ import { connect } from 'react-redux';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import _ from 'lodash';
 
-import Colors from 'config/Colors.jsx';
+import {header as Colors} from 'config/Colors.jsx';
 import { selectFilter, reportFilter, scrollToTop } from 'actions/stream';
-
-import Mail from 'modal/reader/Mail.jsx';
+import { showReaderMail } from 'actions/modal'; 
 
 const styles = {
     main: {
         fontWeight: 'bolder',
-        borderBottom: `2px solid ${Colors.header.borderColor}`
+        borderBottom: `2px solid ${Colors.borderColor}`
     }
 };
 
@@ -37,7 +36,7 @@ class ReaderHeader extends React.Component {
                 this.props.handleBackToTop();
                 break;
             case 'mail':
-                this.setState({showModal: true});
+                this.props.showReaderMail();
                 break;
         }
     }
@@ -80,9 +79,6 @@ class ReaderHeader extends React.Component {
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
-                <Mail
-                    show={this.state.showModal}
-                    handleHide={() => {this.setState({showModal: false}); }} />
             </div>
         );
     }
@@ -97,12 +93,9 @@ export default connect(
     },
     function dispatchToProps(dispatch) {
         return {
-            handleFilter(filter) {
-                dispatch(selectFilter(filter));
-            },
-            handleBackToTop() {
-                dispatch(scrollToTop());
-            }
+            handleFilter: filter => dispatch(selectFilter(filter)),
+            handleBackToTop: () => dispatch(scrollToTop()),
+            showReaderMail: () => dispatch(showReaderMail())
         };
     }
 )(ReaderHeader);

@@ -8,6 +8,8 @@ import Stream from 'stream/Stream.jsx';
 import Timeline from 'timeline/Timeline.jsx';
 import ReaderInfo from 'info/ReaderInfo.jsx';
 
+import ReaderModal from 'modal/ReaderModal.jsx';
+
 const styles = {
     main: {
         textColor: Colors.info.textColor,
@@ -31,7 +33,9 @@ export default class ReaderView extends React.Component {
                         <ReaderInfo />
                     </MediaQuery>
                     <Stream />
+                    <ReaderModal />
                 </div>
+
             </div>
         );
     }
