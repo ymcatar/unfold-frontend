@@ -32,7 +32,7 @@ const styles = {
     }
 };
 
-export default class ReaderStream extends React.Component {
+export default class Stream extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -89,18 +89,12 @@ export default class ReaderStream extends React.Component {
 
 export default connect(
     function stateToProps(state) {
-        return _.pick(state.stream,
-                   'filter', 'filteredStream', 'position');
+        return _.pick(state.stream, 'filter', 'filteredStream', 'position');
     },
     function dispatchToProps(dispatch) {
         return {
-            onReportScroll(position) {
-                dispatch(reportScroll(position));
-            },
-
-            onReportViewport(viewport) {
-                dispatch(reportViewport(viewport));
-            }
+            onReportScroll: position => dispatch(reportScroll(position)),
+            onReportViewport: viewport => dispatch(reportViewport(viewport))
         };
     }
-)(ReaderStream);
+)(Stream);

@@ -19,18 +19,18 @@ import TypeFacebook from './TypeFacebook.jsx';
 
 const styles = {
     main: {
-        width: '620px',
-        maxWidth: '100%',
+        width: '100%',
+        minWidth: '100%',
         display: 'flex',
-        padding: '0 10px',
-        margin: '10px auto'
+        margin: '2px auto'
     },
     info: {
-        color: 'grey',
-        height: '25px',
+        margin: '0 5px 0 auto',
+        marginBottom: '20px',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end'
+        padding: '10px',
+        margin: '-15px -15px 10px -15px',
+        borderBottom: '1px solid #eee'
     },
     content: {
         minWidth: '75%',

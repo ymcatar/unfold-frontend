@@ -8,12 +8,12 @@ import Colors from 'config/Colors.jsx';
 
 import Card from 'common/Card.jsx';
 
-import UpdateAvatar from './UpdateAvatar.jsx';
+import ContributorInfo from './ContributorInfo.jsx';
+
 import Tags from './Tags.jsx';
-import TypeText from './TypeText.jsx';
-import TypeEmbed from './TypeEmbed.jsx';
-import TypeTwitter from './TypeTwitter.jsx';
-import TypeFacebook from './TypeFacebook.jsx';
+
+import TypeText from './type/TypeText.jsx';
+import Type from './type/Type.jsx';
 
 const styles = {
     main: {
@@ -21,27 +21,6 @@ const styles = {
         minWidth: '100%',
         display: 'flex',
         margin: '2px auto'
-    },
-    avatar: {
-        width: '48px'
-    },
-    info: {
-        marginBottom: '20px',
-        display: 'flex',
-        padding: '10px',
-        margin: '-15px -15px 10px -15px',
-        borderBottom: '1px solid #eee'
-    },
-    text: {
-        marginLeft: '10px',
-        lineHeight: '0.2',
-    },
-    name: {
-        fontWeight: 'bolder'
-    },
-    time: {
-        color: '#aaa',
-        fontSize: 'smaller'
     },
     content: {
         minWidth: '75%',
@@ -72,51 +51,9 @@ export default class UpdateBox extends React.Component {
     }
 
     render() {
-        if (!this.props.data) {
-            // Placeholder
-            let avatar = (<div style={styles.avatar} />);
-            return (
-                <div style={_.extend({}, styles.main, this.props.style)}>
-                    {avatar}
-                    <div style={styles.card} />
-                </div>
-            );
-        }
 
-        let EmbedClass = null;
-        switch(this.props.data.type) {
-            case 'text':
-                break;
-            case 'twitter':
-                EmbedClass = TypeTwitter;
-                break;
-            case 'youtube':
-            case 'flickr':
-            case 'imgur':
-                EmbedClass = TypeEmbed;
-                break;
-            case 'facebook':
-                EmbedClass = TypeFacebook;
-                break;
-        }
-        let content = EmbedClass ? (
-            <EmbedClass
-                data={this.props.data}
-                onResize={this.props.onResize} />
-        ) : null;
-
-        const {name, title, image, online} = this.props.data.contributor;
-        const date = moment(this.props.data.submitTime);
-        let avatar = (
-            <div style={styles.avatar}>
-                <UpdateAvatar
-                    name={name}
-                    title={title}
-                    image={image}
-                    online={online}
-                    size="48" />
-            </div>
-        );
+        if (!this.props.data)
+            return null;
 
         let tags = this.props.data.tags && this.props.data.tags.length > 0? (
             <Tags data={this.props.data.tags} />
@@ -134,20 +71,17 @@ export default class UpdateBox extends React.Component {
         return (
             <div style={_.extend({}, styles.main, this.props.style)}>
                 <Card>
-                    <div style={styles.info}>
-                        {avatar}
-                        <div style={styles.text}>
-                            <h5 style={styles.name}>
-                                {this.props.data.contributor.name}
-                            </h5>
-                            <p style={styles.time}>
-                                {date.format("D MMM YYYY - HH:mm")}
-                            </p>
-                        </div>
-                    </div>
+
+                    <ContributorInfo
+                        contributor={this.props.data.contributor}
+                        submitTime={this.props.data.submitTime} />
+
                     <div style={styles.content}>
                         <TypeText data={this.props.data.content} />
-                        {content}
+                        <Type
+                            type={this.props.data.type}
+                            path={this.props.data.source? this.props.data.source.path: null}
+                            onResize={this.props.onResize} />
                     </div>
                     <div>
                         {tags}

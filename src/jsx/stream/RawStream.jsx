@@ -11,26 +11,26 @@ import { reportScroll, reportViewport } from '../actions/raw';
 const styles = {
     main: {
         backgroundColor: Colors.stream.backgroundColor,
-        height: '100%',
+        height: 'calc(100vh - 10px)',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     header: {
-        width: '200px',
+        width: '100%',
+        height: '100px',
+        fontSize: '60px',
         color: Colors.stream.header,
-        borderBottom: `2px ${Colors.stream.headerBorder} solid`,
-        padding: '0 10px 5px 10px',
+        padding: '30px 0 10px 20px',
         marginLeft: 'auto',
         marginRight: 'auto',
-        textAlign: 'center',
-        fontWeight: '300',
-        fontStyle: 'italic'
+        textAlign: 'left',
+        fontWeight: 'light',
     }
 };
 
-export default class ReaderStream extends React.Component {
+export default class RawStream extends React.Component {
     constructor(props) {
         super(props);
         _.bindAll(this, [
@@ -67,7 +67,7 @@ export default class ReaderStream extends React.Component {
                     onLayoutChange={this.props.onReportViewport}
                     placeholderFunc={this.createPlaceholder}>
                     {[
-                        <h2 key="heading" style={styles.header} height={70}>
+                        <h2 key="heading" style={styles.header} height={150}>
                             #{this.props.filter}
                         </h2>
                     ].concat(elements)}
@@ -92,4 +92,4 @@ export default connect(
             }
         };
     }
-)(ReaderStream);
+)(RawStream);
