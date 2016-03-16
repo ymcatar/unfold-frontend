@@ -2,7 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-import Colors from 'config/Colors.jsx';
+import { Info as Colors } from 'config/Colors.jsx';
 
 import EventDetail from './common/EventDetail.jsx';
 
@@ -12,8 +12,8 @@ import Contributors from './reader/Contributors.jsx';
 
 const styles = {
     main: {
-        background: Colors.info.background,
-        color: Colors.info.color,
+        background: Colors.background,
+        color: Colors.color,
         height: '100vh',
         minWidth: '300px',
         width: '300px',

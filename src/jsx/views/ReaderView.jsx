@@ -12,7 +12,6 @@ import ReaderModal from 'modal/ReaderModal.jsx';
 
 const styles = {
     main: {
-        textColor: Colors.info.textColor,
         paddingTop: '50px',
         overflow: 'hidden',
         display: 'flex',

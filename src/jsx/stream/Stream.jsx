@@ -4,14 +4,14 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { reportScroll, reportViewport } from 'redux/actions/stream';
 
-import Colors from 'config/Colors.jsx';
+import { Stream as Colors } from 'config/Colors.jsx';
 
 import UpdateBox from './common/UpdateBox.jsx';
 import LazyScroller from './common/LazyScroller.jsx';
 
 const styles = {
     main: {
-        backgroundColor: Colors.stream.backgroundColor,
+        backgroundColor: Colors.backgroundColor,
         height: 'calc(100vh - 10px)',
         width: '100%',
         display: 'flex',
@@ -22,7 +22,7 @@ const styles = {
         width: '100%',
         height: '100px',
         fontSize: '60px',
-        color: Colors.stream.header,
+        color: Colors.header,
         padding: '30px 0 10px 20px',
         marginLeft: 'auto',
         marginRight: 'auto',

@@ -6,13 +6,13 @@ import { scrollToDate } from 'redux/actions/stream';
 import uuid from 'node-uuid';
 import moment from 'moment';
 
-import Colors from 'config/Colors.jsx';
+import { Timeline as Colors } from 'config/Colors.jsx';
 
 import Day from './common/Day.jsx';
 
 const styles = {
     main: {
-        backgroundColor: Colors.timeline.backgroundColor,
+        backgroundColor: Colors.backgroundColor,
         width: '70px',
         height: '100vh',
         overflowY: 'scroll',

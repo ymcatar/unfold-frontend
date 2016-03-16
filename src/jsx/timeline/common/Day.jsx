@@ -1,15 +1,15 @@
 import React from 'react';
 import uuid from 'node-uuid';
 
-import Colors from 'config/Colors.jsx';
-
 import Bar from './Bar.jsx';
+
+import { Day as Colors } from 'config/Colors.jsx';
 
 const styles = {
     text: {
         margin: '10px auto 10px 1px',
         textAlign: 'left',
-        color: Colors.timeline.date,
+        color: Colors.date,
         fontWeight: 'bolder',
         lineHeight: '0.5'
     },

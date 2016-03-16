@@ -1,12 +1,12 @@
 import React from 'react';
 import {Panel} from 'react-bootstrap';
 
-import Colors from 'config/Colors.jsx';
+import { CollapseBox as Colors } from 'config/Colors.jsx';
 
 const generateStyle = function(props) {
     return {
         container: {
-            backgroundColor: Colors.info.backgroundColor
+            backgroundColor: Colors.backgroundColor
         }
     };
 };

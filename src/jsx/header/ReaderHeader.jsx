@@ -7,7 +7,7 @@ import { showReaderMail } from 'redux/actions/modal'; 
 
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
-import {header as Colors} from 'config/Colors.jsx';
+import { Header as Colors } from 'config/Colors.jsx';
 
 const styles = {
     main: {

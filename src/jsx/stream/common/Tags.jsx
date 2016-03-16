@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'node-uuid';
 
-import Colors from 'config/Colors.jsx';
+import { Tags as Colors } from 'config/Colors.jsx';
 import { selectFilter } from 'redux/actions/stream';
 
 const getStyles = style => ({
@@ -20,19 +20,19 @@ export default class Tags extends React.Component {
             switch(item) {
                 case 'reliable':
                     text = 'reliable';
-                    style = Colors.stream.tags.reliable;
+                    style = Colors.reliable;
                     break;
                 case 'important':
                     text = 'important';
-                    style = Colors.stream.tags.important;
+                    style = Colors.important;
                     break;
                 case 'unverified':
                     text = 'unverified';
-                    style = Colors.stream.tags.unverified;
+                    style = Colors.unverified;
                     break;
                 default:
                     text = item;
-                    style = Colors.stream.tags.default;
+                    style = Colors.default;
                     break;
             }
             return (

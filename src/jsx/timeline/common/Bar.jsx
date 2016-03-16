@@ -2,10 +2,10 @@ import React from 'react';
 import {OverlayTrigger, Tooltip} from 'react-bootstrap';
 import uuid from 'node-uuid';
 
-import Colors from 'config/Colors.jsx';
+import { Bar as Colors } from 'config/Colors.jsx';
 
 const getStyles = (length, disable) => ({
-    backgroundColor: disable? Colors.timeline.disable: Colors.timeline.enable,
+    backgroundColor: disable? Colors.disable: Colors.enable,
     width: `${length/100*70}px`,
     height: '25px',
     margin: '0 auto 0 -1px',

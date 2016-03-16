@@ -1,5 +1,6 @@
 import React from 'react';
-import Colors from 'config/Colors.jsx';
+
+import { EventDetail as Colors } from 'config/Colors.jsx';
 
 const styles = {
     main: {
@@ -8,13 +9,13 @@ const styles = {
     },
     h1: {
         marginBottom: '20px',
-        color: Colors.info.color,
+        color: Colors.color,
         fontSize: '5vh',
         fontWeight: 'bolder',
         lineHeight: '90%'
     },
     h2: {
-        color: Colors.info.color,
+        color: Colors.color,
     }
 };
 

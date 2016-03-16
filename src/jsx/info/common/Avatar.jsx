@@ -2,10 +2,10 @@ import React from 'react';
 import uuid from 'node-uuid';
 import {Image, OverlayTrigger, Popover} from 'react-bootstrap';
 
-import Colors from 'config/Colors.jsx';
+import { Avatar as Colors } from 'config/Colors.jsx';
 
 const getImageStyle = function(size = 55, on = false) {
-    let {online, offline} = Colors.avatar;
+    let {online, offline} = Colors;
     return {
         width: `${size}px`,
         height: `${size}px`,
