@@ -1,7 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Modal, Button, Input } from 'react-bootstrap';
 import _ from 'lodash';
+
+import { connect } from 'react-redux';
+
+import { Modal, Button, Input } from 'react-bootstrap';
 
 class Proof extends React.Component {
     constructor(props) {
@@ -22,52 +24,22 @@ class Proof extends React.Component {
 
     render() {
         return (
-            <Modal
-                show={this.props.show}
-                onHide={this.props.handleHide}>
+            <Modal show={this.props.show} onHide={this.props.handleHide}>
                 <Modal.Header closeButton>
-                    <Modal.Title>
-                        Submit Proofs To Contributor
-                    </Modal.Title>
+                    <Modal.Title>Submit Proofs To Contributor</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Input
-                        ref={x => {this.elm.title = x;}}
-                        type="Text"
-                        label="Subject" />
-                    <Input
-                        ref={x => {this.elm.target = x;}}
-                        type="select"
-                        label="Send to"
-                        multiple>
-                        {
-                            this.props.contributor.map(o => (
-                                <option
-                                    value={o.id}
-                                    key={o.id}>
-                                    {o.name}
-                                </option>
-                            ))
-                        }
+                    <Input ref={x => {this.elm.title = x;}} type="Text" label="Subject" />
+                    <Input ref={x => {this.elm.target = x;}} type="select" label="Send to" multiple>
+                        {this.props.contributor.map(o => (
+                            <option value={o.id} key={o.id}>{o.name}</option>
+                        ))}
                     </Input>
-                    <Input
-                        ref={x => {this.elm.content = x;}}
-                        type="textarea"
-                        style={{height: 300}}
-                        label="Mail content" />
+                    <Input ref={x => {this.elm.content = x;}} type="textarea" style={{height: 300}} label="Mail content" />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button
-                        bsSize="small"
-                        onClick={this.props.handleHide}>
-                        Cancel
-                    </Button>
-                    <Button
-                        onClick={this.handleSubmit}
-                        bsSize="small"
-                        bsStyle="primary">
-                        Send
-                    </Button>
+                    <Button bsSize="small" onClick={this.props.handleHide}>Cancel</Button>
+                    <Button onClick={this.handleSubmit} bsSize="small" bsStyle="primary">Send</Button>
                 </Modal.Footer>
             </Modal>
         );

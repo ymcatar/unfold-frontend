@@ -18,7 +18,6 @@ let fbInit = new Promise(resolve => {
         resolve();
         return;
     }
-
     let other = window.fbAsyncInit;
     window.fbAsyncInit = () => {
         resolve();
@@ -28,33 +27,20 @@ let fbInit = new Promise(resolve => {
 
 export default class TypeFacebook extends React.Component {
     componentDidMount() {
-        return fbInit
-            .then(() => {
-                return new Promise(resolve => {
-                    window.FB.XFBML.parse(this.bodyNode, resolve);
-                });
-            })
-            .then(() => {
-                setTimeout(() => {
-                    if (this.props.onResize)
-                        this.props.onResize();
-                }, 500);
-            });
+        return fbInit.then(() => {
+            return new Promise(resolve => { window.FB.XFBML.parse(this.bodyNode, resolve); });
+        }).then(() => {
+            setTimeout(() => {
+                if (this.props.onResize)
+                    this.props.onResize();
+            }, 500);
+        });
     }
 
     render() {
         return (
-            <div>
-                <div
-                    ref={x => { this.bodyNode = x; }}
-                    style={styles.post}>
-                    <div
-                        style={styles.fb}
-                        className="fb-post"
-                        data-href={this.props.path}
-                        data-width="450">
-                    </div>
-                </div>
+            <div ref={x => { this.bodyNode = x; }} style={styles.post}>
+                <div style={styles.fb} className="fb-post" data-href={this.props.path} data-width="450" />
             </div>
         );
     }

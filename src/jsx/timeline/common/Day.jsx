@@ -23,8 +23,8 @@ export default class Day extends React.Component {
         let bars = [];
         let hash = this.props.data;
         let size = hash.total;
-
         let [year, month, day] = this.props.date;
+        
         for (let i = 23; i >= 0; i--) {
             let length = 12 * Math.sqrt(hash[i] / size * 144);
             bars.push((
@@ -40,15 +40,9 @@ export default class Day extends React.Component {
 
         return (
             <div style={styles.main}>
-                <div style={styles.text}>
-                    {month}
-                </div>
-                <div style={styles.text}>
-                    {day}
-                </div>
-                <div>
-                    {bars}
-                </div>
+                <div style={styles.text}>{month}</div>
+                <div style={styles.text}>{day}</div>
+                <div>{bars}</div>
             </div>
         );
     }

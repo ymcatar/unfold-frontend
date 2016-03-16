@@ -1,8 +1,6 @@
 import React from 'react';
 import MediaQuery from 'react-responsive';
 
-import Colors from 'config/Colors.jsx';
-
 import ReaderHeader from 'header/ReaderHeader.jsx';
 import Stream from 'stream/Stream.jsx';
 import Timeline from 'timeline/Timeline.jsx';
@@ -34,7 +32,6 @@ export default class ReaderView extends React.Component {
                     <Stream />
                     <ReaderModal />
                 </div>
-
             </div>
         );
     }

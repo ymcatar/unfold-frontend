@@ -1,6 +1,7 @@
 import React from 'react';
-import {OverlayTrigger, Tooltip} from 'react-bootstrap';
 import uuid from 'node-uuid';
+
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 import { Bar as Colors } from 'config/Colors.jsx';
 
@@ -20,19 +21,13 @@ const getMainStyles = disable => ({
 });
 
 export default class Bar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         let length = Math.max(3, Math.min(this.props.length, 100));
         let tooltip = (<Tooltip id={uuid.v1()}>{`${this.props.label}:00`}</Tooltip>);
         let disable = (this.props.length === 0);
         return (
             <div onClick={this.props.onClick}>
-                <OverlayTrigger
-                    placement={"right"} overlay={tooltip}
-                    animation={false} >
+                <OverlayTrigger placement={"right"} overlay={tooltip}>
                     <div style={getMainStyles(disable)}>
                         <div style={getStyles(length, disable)} />
                     </div>

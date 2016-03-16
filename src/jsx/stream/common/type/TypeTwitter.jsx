@@ -8,15 +8,9 @@ const styles = {
     }
 };
 
-let twttrInit = new Promise(resolve => {
-    window.twttr.ready(resolve);
-});
+let twttrInit = new Promise(resolve => { window.twttr.ready(resolve); });
 
 export default class TypeTwitter extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         let id = this.props.path.match(/[0-9]+/)[0];
         twttrInit
@@ -33,9 +27,7 @@ export default class TypeTwitter extends React.Component {
 
     render() {
         return (
-            <div
-                style={styles.post}
-                ref={x => { this.bodyNode = x; }} />
+            <div style={styles.post} ref={x => { this.bodyNode = x; }} />
         );
     }
 }

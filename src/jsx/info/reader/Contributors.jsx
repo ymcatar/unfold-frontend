@@ -9,9 +9,7 @@ export default class Contributors extends React.Component {
         let online = this.props.data.filter(curr => curr.online).length;
 
         return (
-            <CollapseBox
-                header={`CONTRIBUTORS (${online}/${total})`}
-                defaultCollapsed={false} >
+            <CollapseBox header={`CONTRIBUTORS (${online}/${total})`} defaultCollapsed={false} >
                 <AvatarList data={this.props.data} />
             </CollapseBox>
         );

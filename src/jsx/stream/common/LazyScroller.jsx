@@ -21,27 +21,20 @@ function shallowEqualExcept(a, b, ...except) {
         if (except.indexOf(k) !== -1) continue;
         if (a[k] !== b[k]) return false;
     }
-
     for (let k in b) {
         if (!b.hasOwnProperty(k)) continue;
         if (except.indexOf(k) !== -1) continue;
         if (a[k] !== b[k]) return false;
     }
-
     return true;
 }
 
 export default class LazyScroller extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = this.computeNextState(props, {
             containerHeight: 1000,
-            position: _.extend({
-                scrollTop: 0,
-                scrollSpeed: 0
-            }, props.position),
-
+            position: _.extend({ scrollTop: 0, scrollSpeed: 0 }, props.position),
             heightCache: {},
             layout: {},
             rendered: {}
@@ -56,7 +49,7 @@ export default class LazyScroller extends React.Component {
         this.boundOnReportHeight = {};
         this.boundOnUpdateHeight = {};
 
-        this.debouncedRelayout = _.debounce(this.relayout.bind(this), 50, {leading: true, maxWait: 50});
+        this.debouncedRelayout = _.debounce(this.relayout.bind(this), 50, { leading: true, maxWait: 50 });
         this.debounceOnScrollEnd = _.debounce(this.onScrollEnd.bind(this), 50);
         this.onScroll = this.onScroll.bind(this);
     }
@@ -65,9 +58,7 @@ export default class LazyScroller extends React.Component {
         // Set up SweetScroll
         let scrollTop = this.container.scrollTop;
         this.container.scrollTop = 10;
-        this.sweetScroll = new SweetScroll({
-            easing: 'easeInOutCirc'
-        }, this.container);
+        this.sweetScroll = new SweetScroll({ easing: 'easeInOutCirc' }, this.container);
         if (!this.sweetScroll.container)
             console.error('SweetScroll error!');
         this.container.scrollTop = scrollTop;
@@ -86,7 +77,6 @@ export default class LazyScroller extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         let ret = !shallowEqualExcept(this.props, nextProps);
-
         // if (!ret)
         //     perfLog('not updating');
         return ret;
@@ -107,7 +97,6 @@ export default class LazyScroller extends React.Component {
         let updated = false;
         _.forEach(this.state.layout, (attrs, key) => {
             if (!attrs.visible) return;
-
             let node = this.itemRefs[key];
             if (!node) return;
 
@@ -142,22 +131,17 @@ export default class LazyScroller extends React.Component {
                 overflowY: 'hidden'
             };
 
-            let onReportHeight = this.boundOnReportHeight[key]
-                || (this.boundOnReportHeight[key] = this.onReportHeight.bind(this, key));
-            let onUpdateHeight = this.boundOnUpdateHeight[key]
-                || (this.boundOnUpdateHeight[key] = this.onUpdateHeight.bind(this, key));
+            let onReportHeight = this.boundOnReportHeight[key] ||
+                (this.boundOnReportHeight[key] = this.onReportHeight.bind(this, key));
+            let onUpdateHeight = this.boundOnUpdateHeight[key] ||
+                (this.boundOnUpdateHeight[key] = this.onUpdateHeight.bind(this, key));
 
             return (
-                <div
-                    key={child.key}
-                    style={styles}
-                    ref={onReportHeight}>
+                <div key={child.key} style={styles} ref={onReportHeight}>
                     {/* Stop margin collapsing, so that this element will reflect
                         the height of the content + 2px, including the margin */}
                     <div style={{padding: '1px 0', margin: '-1px 0'}}>
-                        {React.cloneElement(child, {
-                            onResize: onUpdateHeight
-                        })}
+                        {React.cloneElement(child, { onResize: onUpdateHeight })}
                     </div>
                 </div>
             );
@@ -214,9 +198,7 @@ export default class LazyScroller extends React.Component {
         let {containerHeight} = state;
 
         let getHeightOf = child => {
-            return child && child.props.height
-                || state.heightCache[child.key]
-                || props.placeholderHeight;
+            return child && child.props.height || state.heightCache[child.key] || props.placeholderHeight;
         };
 
         let scrollTop = state.position.scrollTop;
@@ -269,9 +251,7 @@ export default class LazyScroller extends React.Component {
     }
 
     getHeightOf(child) {
-        return (child && child.props.height
-            || this.state.heightCache[child.key]
-            || this.props.placeholderHeight);
+        return (child && child.props.height || this.state.heightCache[child.key] || this.props.placeholderHeight);
     }
 
     onScroll() {

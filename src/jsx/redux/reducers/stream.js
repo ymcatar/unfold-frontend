@@ -35,10 +35,7 @@ const stream = StreamData
     })
     .sort((a, b) => new Date(b.submitTime) - new Date(a.submitTime));
 
-const top = {
-    index: 0,
-    offset: 0
-};
+const top = { index: 0, offset: 0 };
 
 const initialState = {
     filter: 'all',
@@ -54,58 +51,40 @@ initialState.filteredStream = initialState.completeStream;
 
 export default function reduceStream(state, action) {
     let {event, stream} = state;
-
     stream = stream || initialState;
 
     switch (action.type) {
-        case actions.SELECT_FILTER: {
+        case actions.SELECT_FILTER:
             stream = {
                 filter: action.filter,
-
-                filteredStream: action.filter === 'all'
-                    ? stream.completeStream
-                    : stream.completeStream.filter(item => (
+                filteredStream: action.filter === 'all'?
+                    stream.completeStream: stream.completeStream.filter(item => (
                         item.tags && item.tags.indexOf(action.filter) >= 0
                     )),
-
                 position: top
             };
             break;
-        }
 
-        case actions.SELECT_ADDEDPOST: {
-            stream = {
-                addedPost: action.addedPost
-            };
+        case actions.SELECT_ADDEDPOST:
+            stream = { addedPost: action.addedPost };
             break;
-        }
 
-        case actions.SCROLL_TO: {
+        case actions.SCROLL_TO:
             let index = -1;
 
             if (action.top)
                 index = 0;
             else
-                index = _.findIndex(stream.filteredStream,
-                                    x => new Date(x.submitTime) - action.date < 0);
+                index = _.findIndex(stream.filteredStream, x => new Date(x.submitTime) - action.date < 0);
 
             if (index === -1)
                 index = stream.filteredStream.length - 1;
 
-            stream = {
-                position: {
-                    index: index,
-                    offset: 0,
-                    force: true
-                }
-            };
+            stream = { position: { index: index, offset: 0, force: true } };
             break;
-        }
 
         case actions.REPORT_SCROLL: {
-            stream = {
-                position: action.position
-            };
+            stream = { position: action.position };
             break;
         }
 
@@ -117,13 +96,12 @@ export default function reduceStream(state, action) {
         case actions.CREATE_POST: {
             const types = ['facebook', 'twitter', 'imgur', 'youtube', 'flickr', 'text'];
             let type = _.find(types, x => action.post.source.path.indexOf(x) !== -1);
-            // For prototyping purpose only
+
             let post = {
                 content: action.post.content,
                 tags: action.post.tags,
                 source: action.post.source,
-                type: type,
-
+                type,
                 id: uuid.v1(),
                 submitTime: new Date(2014, 9, 1, 8, 12),
                 contributor: Placeholder.contributors[0]
@@ -131,11 +109,10 @@ export default function reduceStream(state, action) {
             stream = {
                 completeStream: [post, ...stream.completeStream],
                 filteredStream:
-                    (stream.filter === 'all' || action.tags.indexOf(stream.filter) !== -1)
-                        ? [post, ...stream.filteredStream]
-                        : stream.filteredStream
+                    (stream.filter === 'all' || action.tags.indexOf(stream.filter) !== -1)?
+                        [post, ...stream.filteredStream]: stream.filteredStream
             };
         }
     }
-    return _.defaults({stream: _.defaults(stream, state.stream)}, state);
+    return _.defaults({ stream: _.defaults(stream, state.stream) }, state);
 }

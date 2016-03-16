@@ -75,7 +75,6 @@ class UpdateBox extends React.Component {
         return (
             <div style={_.extend({}, styles.main, this.props.style)}>
                 <Card>
-
                     <ContributorInfo
                         contributor={this.props.data.contributor}
                         submitTime={this.props.data.submitTime} />

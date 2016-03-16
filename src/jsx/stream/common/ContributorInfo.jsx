@@ -1,13 +1,14 @@
 import React from 'react';
 import moment from 'moment';
 
-import Card from 'common/Card.jsx';
+import { Image } from 'react-bootstrap';
 
-import UpdateAvatar from './UpdateAvatar.jsx';
+import Card from 'common/Card.jsx';
 
 const styles = {
     avatar: {
-        width: '48px'
+        width: '48px',
+        height: '48px'
     },
     info: {
         marginBottom: '20px',
@@ -33,28 +34,12 @@ export default class ContributorInfo extends React.Component {
     render() {
         const {name, title, image, online} = this.props.contributor;
         const date = moment(this.props.submitTime);
-
-        let avatar = (
-            <div style={styles.avatar}>
-                <UpdateAvatar
-                    name={name}
-                    title={title}
-                    image={image}
-                    online={online}
-                    size="48" />
-            </div>
-        );
-
         return (
             <div style={styles.info}>
-                {avatar}
+                <Image src={image} circle style={styles.avatar} />
                 <div style={styles.text}>
-                    <h5 style={styles.name}>
-                        {this.props.contributor.name}
-                    </h5>
-                    <p style={styles.time}>
-                        {date.format("D MMM YYYY - HH:mm")}
-                    </p>
+                    <h5 style={styles.name}>{name}</h5>
+                    <p style={styles.time}>{date.format("D MMM YYYY - HH:mm")}</p>
                 </div>
             </div>
         );

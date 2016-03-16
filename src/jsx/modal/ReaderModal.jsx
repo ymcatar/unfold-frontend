@@ -8,14 +8,11 @@ import Proof from './reader/Proof.jsx';
 
 class ReaderModal extends React.Component {
     render() {
+        let { active } = this.props;
         return (
             <div>
-                <Mail
-                    show={this.props.active === 'readerMail'}
-                    handleHide={this.props.hideReaderMail} />
-                <Proof
-                    show={this.props.active === 'readerProof'}
-                    handleHide={this.props.hideReaderProof} />
+                <Mail show={active === 'readerMail'} handleHide={this.props.hideReaderMail} />
+                <Proof show={active === 'readerProof'} handleHide={this.props.hideReaderProof} />
             </div>
         );
     }

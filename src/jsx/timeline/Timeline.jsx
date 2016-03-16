@@ -32,11 +32,7 @@ class Timeline extends React.Component {
 
         let hash = {};
         data.forEach(item => {
-            let time = JSON.stringify([
-                item.format('YYYY'),
-                item.format('MM'),
-                item.format('DD')
-            ]);
+            let time = JSON.stringify([item.format('YYYY'), item.format('MM'), item.format('DD') ]);
             let hour = item.format('H');
             if (!hash[time]) {
                 hash[time] = {};
@@ -50,18 +46,12 @@ class Timeline extends React.Component {
 
         for (let key in hash) {
             bars.push((
-                <Day
-                    key={uuid.v1()}
-                    data={hash[key]}
-                    date={JSON.parse(key)}
-                    onTravel={this.props.onTravel} />
+                <Day key={uuid.v1()} data={hash[key]} date={JSON.parse(key)} onTravel={this.props.onTravel} />
             ));
         }
 
         return (
-            <div style={styles.main}>
-                {bars}
-            </div>
+            <div style={styles.main}>{bars}</div>
         );
     }
 }
@@ -72,9 +62,7 @@ export default connect(
     },
     function dispatchToProps(dispatch, props) {
         return {
-            onTravel(date) {
-                dispatch(scrollToDate(date));
-            }
+            onTravel: date => dispatch(scrollToDate(date))
         };
     }
 )(Timeline);

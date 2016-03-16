@@ -7,8 +7,6 @@ const initialState = EventData;
 
 export default function reduceEvent(state, action) {
     let {event} = state;
-
     event = event || initialState;
-
     return _.defaults({event}, state);
 }

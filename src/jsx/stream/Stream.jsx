@@ -34,35 +34,18 @@ const styles = {
 export default class Stream extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            showProof: false
-        };
-        _.bindAll(this, [
-            'handleVerify',
-            'createPlaceholder'
-        ]);
-    }
-
-    handleVerify(data) {
-        this.setState({
-            showProof: true
-        });
+        _.bindAll(this, ['createPlaceholder']);
     }
 
     createPlaceholder(key, height) {
         return (
-            <UpdateBox
-                key={key}
-                style={{height: height - 20}} />
+            <UpdateBox key={key} style={{height: height - 20}} />
         );
     }
 
     render() {
         let elements = this.props.filteredStream.map(post => (
-            <UpdateBox
-                key={post.id}
-                data={post}
-                handleVerify={this.handleVerify} />
+            <UpdateBox key={post.id} data={post} />
         ));
         return (
             <div style={styles.main}>

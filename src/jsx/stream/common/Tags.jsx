@@ -16,31 +16,23 @@ export default class Tags extends React.Component {
         if (!this.props.data || this.props.data === 0)
             return null;
         let tags = this.props.data.map(item => {
-            let text, style;
+            let text = item, style;
             switch(item) {
                 case 'reliable':
-                    text = 'reliable';
                     style = Colors.reliable;
                     break;
                 case 'important':
-                    text = 'important';
                     style = Colors.important;
                     break;
                 case 'unverified':
-                    text = 'unverified';
                     style = Colors.unverified;
                     break;
                 default:
-                    text = item;
                     style = Colors.default;
                     break;
             }
             return (
-                <a
-                    style={getStyles(style)}
-                    onClick={() => {this.props.handleFilter(text);}}
-                    key={uuid.v1()}
-                    href="#">
+                <a href="#" style={getStyles(style)} onClick={() => {this.props.handleFilter(text);}} key={uuid.v1()}>
                     #{text}
                 </a>
             );
@@ -60,9 +52,7 @@ export default connect(
     },
     function dispatchToProps(dispatch) {
         return {
-            handleFilter(filter) {
-                dispatch(selectFilter(filter));
-            }
+            handleFilter: filter => dispatch(selectFilter(filter))
         };
     }
 )(Tags);

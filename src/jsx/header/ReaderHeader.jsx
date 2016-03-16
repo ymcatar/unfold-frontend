@@ -19,12 +19,7 @@ const styles = {
 class ReaderHeader extends React.Component {
     constructor(props) {
         super(props);
-        this.elm = {};
-        this.state = {showModal: false};
-        _.bindAll(this, [
-            'handleNavClick',
-            'handleFilter'
-        ]);
+        _.bindAll(this, ['handleNavClick', 'handleFilter']);
     }
 
     handleFilter(key) {
@@ -44,44 +39,45 @@ class ReaderHeader extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <Navbar
-                    style={styles.main}
-                    fixedTop={true}
-                    fluid={true}>
-                    <Navbar.Toggle />
-                    <Navbar.Collapse>
-                        <Navbar.Header>
-                            <Navbar.Text>
-                                <img src="res/logo.png" height={40}/>
-                            </Navbar.Text>
-                        </Navbar.Header>
-                        <Nav onSelect={this.handleFilter} activeKey={this.props.filter}>
-                            <NavItem eventKey="all" href="#">
-                                All
-                            </NavItem>
-                            <NavItem eventKey="important" href="#">
-                                Important
-                            </NavItem>
-                            <NavItem eventKey="reliable" href="#">
-                                Reliable
-                            </NavItem>
-                        </Nav>
 
-                        <Nav pullRight onSelect={this.handleNavClick}>
-                            <NavItem eventKey={'mail'} href="#">
-                                <i className="material-icons">mail</i>
-                                &nbsp;Mail
-                            </NavItem>
-                            <NavItem eventKey={'top'} href="#">
-                                <i className="material-icons">vertical_align_top</i>
-                                &nbsp;Top
-                            </NavItem>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Navbar>
-            </div>
+        const header = (
+            <Navbar.Header>
+                <Navbar.Text>
+                    <img src="res/logo.png" height={40}/>
+                </Navbar.Text>
+            </Navbar.Header>
+        );
+
+        const leftNav = (
+            <Nav onSelect={this.handleFilter} activeKey={this.props.filter}>
+                <NavItem eventKey="all" href="#">All</NavItem>
+                <NavItem eventKey="important" href="#">Important</NavItem>
+                <NavItem eventKey="reliable" href="#">Reliable</NavItem>
+            </Nav>
+        );
+
+        const rightNav = (
+            <Nav pullRight onSelect={this.handleNavClick}>
+                <NavItem eventKey={'mail'} href="#">
+                    <i className="material-icons">mail</i>
+                    &nbsp;Mail
+                </NavItem>
+                <NavItem eventKey={'top'} href="#">
+                    <i className="material-icons">vertical_align_top</i>
+                    &nbsp;Top
+                </NavItem>
+            </Nav>
+        );
+
+        return (
+            <Navbar style={styles.main} fixedTop={true} fluid={true}>
+                <Navbar.Toggle />
+                <Navbar.Collapse>
+                    {header}
+                    {leftNav}
+                    {rightNav}
+                </Navbar.Collapse>
+            </Navbar>
         );
     }
 }

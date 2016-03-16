@@ -1,13 +1,12 @@
 import React from 'react';
+import _ from 'lodash';
 import fetch from 'fetch-jsonp';
 
 export default class TypeEmbed extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            body: ''
-        };
-        this.onLoad = this.onLoad.bind(this);
+        this.state = { body: '' };
+        _.bindAll(this, ['onLoad']);
     }
 
     componentDidMount() {
@@ -15,9 +14,7 @@ export default class TypeEmbed extends React.Component {
         fetch('http://noembed.com/embed?url=' + this.props.path.trim())
             .then(res => res.json())
             .then(body => {
-                this.setState({
-                    body: body.html
-                });
+                this.setState({ body: body.html });
                 if (this.props.onResize)
                     this.props.onResize();
             });
@@ -36,9 +33,7 @@ export default class TypeEmbed extends React.Component {
 
     render() {
         return (
-            <div
-                ref={x => { this.node = x; }}
-                dangerouslySetInnerHTML={{__html: this.state.body}} />
+            <div ref={x => { this.node = x; }} dangerouslySetInnerHTML={{__html: this.state.body}} />
         );
     }
 }

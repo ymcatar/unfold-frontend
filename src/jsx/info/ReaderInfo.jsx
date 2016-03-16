@@ -26,14 +26,13 @@ const styles = {
 
 class ReaderInfo extends React.Component {
     render() {
+        let {event, info, contributors, translators} = this.props;
         return (
             <div style={styles.main}>
-                <EventDetail
-                    title={this.props.event.title}
-                    description={this.props.event.description} />
-                <Information data={this.props.info} />
-                <Contributors data={this.props.contributors} />
-                <Translators data={this.props.translators} />
+                <EventDetail title={event.title} description={event.description} />
+                <Information data={info} />
+                <Contributors data={contributors} />
+                <Translators data={translators} />
             </div>
         );
     }

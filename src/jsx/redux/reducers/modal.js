@@ -1,16 +1,11 @@
 import _ from 'lodash';
-import uuid from 'node-uuid';
 
 import * as actions from '../actions/modal';
 
-const initialState = {
-	active: null,
-	data: null
-};
+const initialState = { active: null, data: null };
 
 export default function reduceStream(state, action) {
 	let { modal } = state;
-
 	modal = modal || initialState;
 
 	switch (action.type) {
@@ -18,13 +13,9 @@ export default function reduceStream(state, action) {
 		case actions.HIDE_READER_MAIL:
 		case actions.SHOW_READER_PROOF:
 		case actions.HIDE_READER_PROOF:
-			modal = {
-				active: action.active,
-				data: action.data
-			};
+			modal = { active: action.active, data: action.data };
 			break;
 	}
-	return _.defaults({
-		modal: _.defaults(modal, state.modal)
-	}, state);
+
+	return _.defaults({ modal: _.defaults(modal, state.modal) }, state);
 }

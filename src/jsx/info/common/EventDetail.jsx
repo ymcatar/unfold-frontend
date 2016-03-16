@@ -21,11 +21,9 @@ const styles = {
 
 export default class EventDetail extends React.Component {
     render() {
-        return(
+        return (
             <div style={styles.main}>
-                <div style={styles.h1}>
-                    {this.props.title}
-                </div>
+                <div style={styles.h1}>{this.props.title}</div>
                 <p style={styles.h2}>{this.props.description}</p>
             </div>
         );

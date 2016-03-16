@@ -9,9 +9,7 @@ export default class Translators extends React.Component {
         let online = this.props.data.filter(curr => curr.online).length;
 
         return (
-            <CollapseBox
-                header={`TRANSLATORS (${online}/${total})`}
-                defaultCollapsed={false} >
+            <CollapseBox header={`TRANSLATORS (${online}/${total})`} defaultCollapsed={false} >
                 <AvatarList data={this.props.data} />
             </CollapseBox>
         );
