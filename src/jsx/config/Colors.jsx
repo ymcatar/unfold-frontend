@@ -1,14 +1,15 @@
+export let header = {
+    backgroundColor: '#FBFBFB',
+    border: '#F6F6F6',
+    color: 'black'
+};
+
 export default {
     avatar: {
         name: 'white',
         title: 'white',
         online: '#9cf924',
         offline: '#3b6cb5'
-    },
-    header: {
-        backgroundColor: '#FBFBFB',
-        border: '#F6F6F6',
-        color: 'black'
     },
     info: {
         background: '#4689F1',

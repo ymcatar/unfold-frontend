@@ -4,8 +4,6 @@ import _ from 'lodash';
 
 import Colors from 'config/Colors.jsx';
 
-import Proof from 'modal/reader/Proof.jsx';
-
 import UpdateBox from './common/UpdateBox.jsx';
 import LazyScroller from './common/LazyScroller.jsx';
 import { reportScroll, reportViewport } from '../actions/stream';
@@ -79,9 +77,6 @@ export default class Stream extends React.Component {
                         </div>
                     ].concat(elements)}
                 </LazyScroller>
-                <Proof
-                    show={this.state.showProof}
-                    handleHide={() => { this.setState({showProof: false}); }}/>
             </div>
         );
     }

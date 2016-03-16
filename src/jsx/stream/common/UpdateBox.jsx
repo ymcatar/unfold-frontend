@@ -1,5 +1,9 @@
 import React from 'react';
 import MediaQuery from 'react-responsive';
+
+import { connect } from 'react-redux';
+import { showReaderProof } from 'actions/modal';
+
 import { Button } from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
@@ -32,7 +36,7 @@ const styles = {
     }
 };
 
-export default class UpdateBox extends React.Component {
+class UpdateBox extends React.Component {
 
     constructor(props) {
         super(props);
@@ -63,7 +67,7 @@ export default class UpdateBox extends React.Component {
             <Button
                 bsStyle="warning"
                 bsSize="small" style={styles.unverified}
-                onClick={this.handleVerify}>
+                onClick={this.props.showReaderProof}>
                 Submit Proofs
             </Button>
         ): null;
@@ -92,3 +96,14 @@ export default class UpdateBox extends React.Component {
         );
     }
 }
+
+export default connect(
+    function stateToProps(state) {
+        return {};
+    },
+    function dispatchToProps(dispatch) {
+        return {
+            showReaderProof: () => dispatch(showReaderProof())
+        };
+    }
+)(UpdateBox);

@@ -6,11 +6,11 @@ const styles = {
     main: {
         width: '100%',
         maxWidth: '100%',
-        backgroundColor: Colors.card.backgroundColor,
-        color: Colors.card.color,
         borderTop: `1px solid ${Colors.card.borderColor}`,
         borderBottom: `1px solid ${Colors.card.borderColor}`,
         padding: '20px',
+        backgroundColor: Colors.card.backgroundColor,
+        color: Colors.card.color,
         boxShadow: Colors.zDepth
     }
 };
