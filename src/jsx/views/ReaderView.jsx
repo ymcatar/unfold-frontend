@@ -26,9 +26,14 @@ export default class ReaderView extends React.Component {
                 <ReaderHeader />
                 <div style={styles.main}>
                     <Timeline type="stream" />
+
                     <MediaQuery minDeviceWidth={1224} minWidth={800}>
-                        <ReaderInfo />
+                        <ReaderInfo mobile={false}/>
                     </MediaQuery>
+                    <MediaQuery maxWidth={800}>
+                        <ReaderInfo mobile={true}/>
+                    </MediaQuery>
+
                     <Stream />
                     <ReaderModal />
                 </div>

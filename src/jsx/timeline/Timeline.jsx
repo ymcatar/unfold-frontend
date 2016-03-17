@@ -13,7 +13,7 @@ import Day from './common/Day.jsx';
 const styles = {
     main: {
         backgroundColor: Colors.backgroundColor,
-        width: '70px',
+        minWidth: '70px',
         height: '100vh',
         overflowY: 'scroll',
         overflowX: 'hidden',

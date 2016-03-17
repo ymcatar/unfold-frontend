@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 
@@ -15,24 +16,52 @@ const styles = {
         background: Colors.background,
         color: Colors.color,
         height: '100vh',
+        zIndex: 4
+    },
+    container: (hide, mobile) => ({
         minWidth: '300px',
-        width: '300px',
+        width: mobile? '80vw': '300px',
         padding: '20px 20px 50px 5px',
         overflowY: 'scroll',
         overflowX: 'hidden',
-        zIndex: 4
-    }
+        display: hide? 'none': 'block'
+    }),
+    button: hide => ({
+        position: 'absolute',
+        top: '60px',
+        left: '30px',
+        height: '30px',
+        width: '30px',
+        backgroundColor: 'transparent',
+        border: 'none',
+        borderRadius: '50% !important'
+    })
 };
 
 class ReaderInfo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {hide: props.mobile};
+    }
     render() {
-        let {event, info, contributors, translators} = this.props;
+        let { event, info, contributors, translators, mobile } = this.props;
+        let { hide } = this.state;
         return (
             <div style={styles.main}>
-                <EventDetail title={event.title} description={event.description} />
-                <Information data={info} />
-                <Contributors data={contributors} />
-                <Translators data={translators} />
+                <Button
+                    bsSize="xsmall"
+                    bsStyle="warning"
+                    style={styles.button(hide)}
+                    onClick={() => { this.setState({hide: !hide}); }}>
+                    {hide? <i className="material-icons">keyboard_arrow_right</i>:
+                        <i className="material-icons">keyboard_arrow_left</i>}
+                </Button>
+                <div style={styles.container(hide, mobile)}>
+                    <EventDetail title={event.title} description={event.description} />
+                    <Information data={info} />
+                    <Contributors data={contributors} />
+                    <Translators data={translators} />
+                </div>
             </div>
         );
     }
@@ -61,14 +90,16 @@ ReaderInfo.propTypes = {
             title: string.isRequired,
             image: string.isRequired,
             online: bool.isRequired
-        }))
+        })),
+    mobile: bool
 };
 
 ReaderInfo.defaultProps = {
     event: { title: '', description: '' },
     info: '',
     contributors: [],
-    translators: []
+    translators: [],
+    mobile: false
 };
 
 export default connect(

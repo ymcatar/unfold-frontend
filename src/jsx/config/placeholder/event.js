@@ -46,3 +46,22 @@ export const contributors = [
         online: false
     }
 ];
+
+export const translators = [
+    {
+        name: 'Vincent Chan',
+        title: 'Good at French and painting.',
+        image: 'res/avatar7.jpg',
+        online: false
+    }, {
+        name: 'Socrates Oilver',
+        title: 'A professional journalist and part-time philosopher.',
+        image: 'res/avatar6.jpg',
+        online: false
+    }, {
+        name: 'Matias',
+        title: 'Savior',
+        image: 'res/avatar2.jpg',
+        online: true
+    }
+];

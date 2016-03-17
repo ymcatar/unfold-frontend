@@ -86,3 +86,7 @@ code, kbd, pre,
 a:focus {
     outline: none;
 }
+.btn:focus,.btn:active:focus,.btn.active:focus,
+.btn.focus,.btn:active.focus,.btn.active.focus {
+    outline: none;
+}
