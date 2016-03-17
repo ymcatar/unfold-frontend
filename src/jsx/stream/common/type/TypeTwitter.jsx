@@ -31,3 +31,10 @@ export default class TypeTwitter extends React.Component {
         );
     }
 }
+
+let { string, func, type } = React.PropTypes;
+
+TypeTwitter.PropTypes = {
+    path: string,
+    onResize: func.isRequired
+};

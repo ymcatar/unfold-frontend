@@ -24,7 +24,7 @@ export default class Day extends React.Component {
         let hash = this.props.data;
         let size = hash.total;
         let [year, month, day] = this.props.date;
-        
+
         for (let i = 23; i >= 0; i--) {
             let length = 12 * Math.sqrt(hash[i] / size * 144);
             bars.push((
@@ -47,3 +47,11 @@ export default class Day extends React.Component {
         );
     }
 }
+
+let { number, string, func, arrayOf, object } = React.PropTypes;
+
+Day.PropTypes = {
+    date: arrayOf(number).isRequired,
+    onTravel: func.isRequired,
+    data: arrayOf(object).isRequired
+};

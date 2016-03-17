@@ -15,3 +15,18 @@ export default class Contributors extends React.Component {
         );
     }
 }
+
+let { arrayOf, shape, string, bool } = React.PropTypes;
+
+Contributors.propTypes = {
+    data: arrayOf(
+        shape({
+            id: string,
+            name: string.isRequired,
+            title: string.isRequired,
+            image: string.isRequired,
+            online: bool.isRequired
+        }))
+};
+
+Contributors.defaultProps = { data: [] };

@@ -56,6 +56,15 @@ class Timeline extends React.Component {
     }
 }
 
+let { arrayOf, shape, string, func } = React.PropTypes;
+
+Timeline.PropTypes = {
+    data: arrayOf(shape({
+        submitTime: string.isRequired
+    })),
+    onTravel: func.isRequired
+};
+
 export default connect(
     function stateToProps(state, props) {
         return { data: state.stream.filteredStream };

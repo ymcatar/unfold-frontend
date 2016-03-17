@@ -27,3 +27,11 @@ export default class Information extends React.Component {
         );
     }
 }
+
+let { string } = React.PropTypes;
+
+Information.propsType = {
+    data: string.isRequired
+};
+
+Information.defaultProps = { data: '' };

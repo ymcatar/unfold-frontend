@@ -45,3 +45,10 @@ export default class TypeFacebook extends React.Component {
         );
     }
 }
+
+let { string, func, type } = React.PropTypes;
+
+TypeFacebook.PropTypes = {
+    path: string,
+    onResize: func.isRequired
+};

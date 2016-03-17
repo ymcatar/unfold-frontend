@@ -18,6 +18,15 @@ class ReaderModal extends React.Component {
     }
 }
 
+let { string, object, func } = React.PropTypes;
+
+ReaderModal.PropTypes = {
+    active: string.isRequired,
+    data: object,
+    hideReaderMail: func.isRequired,
+    hideReaderProof: func.isRequired
+};
+
 export default connect(
     function stateToProps(state) {
         return {

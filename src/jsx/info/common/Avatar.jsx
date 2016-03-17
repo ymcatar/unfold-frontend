@@ -11,7 +11,7 @@ const styles = {
     }
 };
 
-const getImageStyle = (size = 55, on = false) => ({
+const getImageStyle = (size, on) => ({
     width: size,
     height: size,
     border: `5px ${on? Colors.online: Colors.offline} solid`,
@@ -39,3 +39,19 @@ export default class Avatar extends React.Component {
         );
     }
 }
+
+let { string, number, bool, object } = React.PropTypes;
+
+Avatar.propTypes = {
+    name: string.isRequired,
+    title: string.isRequired,
+    size: number.isRequired,
+    image: string.isRequired,
+    online: bool.isRequired,
+    style: object
+};
+
+Avatar.defaultProps = {
+    size: 55,
+    online: false
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import _ from 'lodash';
 import SweetScroll from 'sweet-scroll';
 
@@ -308,30 +309,23 @@ export default class LazyScroller extends React.Component {
     }
 }
 
+let { arrayOf, element, shape, number, bool, func, object, oneOfType, string } = React.PropTypes;
+
 LazyScroller.propTypes = {
-    children: React.PropTypes.arrayOf(
-        React.PropTypes.element
-    ).isRequired,
-
-    position: React.PropTypes.shape({
-        index: React.PropTypes.number.isRequired,
-        offset: React.PropTypes.number.isRequired,
-        scrollTop: React.PropTypes.number,
-        force: React.PropTypes.bool,
-        animate: React.PropTypes.bool
+    children: arrayOf(element).isRequired,
+    position: shape({
+        index: number.isRequired,
+        offset: number.isRequired,
+        scrollTop: number,
+        force: bool,
+        animate: bool
     }),
-    onPositionChange: React.PropTypes.func,
-    onLayoutChange: React.PropTypes.func,
-
-    placeholderFunc: React.PropTypes.func,
-    placeholderHeight: React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string
-    ]),
-
-    preloadRatio: React.PropTypes.number.isRequired,
-
-    style: React.PropTypes.object
+    onPositionChange: func,
+    onLayoutChange: func,
+    placeholderFunc: func,
+    placeholderHeight: oneOfType([number, string]),
+    preloadRatio: number.isRequired,
+    style: object
 };
 
 LazyScroller.defaultProps = {

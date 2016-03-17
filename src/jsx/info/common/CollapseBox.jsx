@@ -56,3 +56,14 @@ export default class CollapseBox extends React.Component {
         );
     }
 }
+
+let { string, bool } = React.PropTypes;
+
+CollapseBox.PropTypes = {
+    header: string.isRequired,
+    defaultCollapsed: bool
+};
+
+CollapseBox.defaultProps = {
+    defaultCollapsed: false
+};

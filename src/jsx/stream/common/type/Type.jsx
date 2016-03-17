@@ -23,3 +23,11 @@ export default class Type extends React.Component {
         );
     }
 }
+
+let { string, func, type } = React.PropTypes;
+
+Type.PropTypes = {
+    path: string,
+    type: string.isRequired,
+    onResize: func.isRequired
+};

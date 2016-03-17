@@ -82,11 +82,19 @@ class ReaderHeader extends React.Component {
     }
 }
 
+let { string, func } = React.PropTypes;
+
+ReaderHeader.propTypes = {
+    filter: string.isRequired,
+    handleFilter: func.isRequired,
+    handleBackToTop: func.isRequired,
+    showReaderMail: func.isRequired
+};
+
 export default connect(
     function stateToProps(state) {
         return {
-            filter: state.stream.filter,
-            contributor: state.event.contributors
+            filter: state.stream.filter
         };
     },
     function dispatchToProps(dispatch) {
@@ -95,5 +103,5 @@ export default connect(
             handleBackToTop: () => dispatch(scrollToTop()),
             showReaderMail: () => dispatch(showReaderMail())
         };
-    }
+}
 )(ReaderHeader);

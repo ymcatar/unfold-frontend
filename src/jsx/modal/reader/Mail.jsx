@@ -46,6 +46,23 @@ class Mail extends React.Component {
     }
 }
 
+let { arrayOf, shape, string, bool } = React.PropTypes;
+
+Mail.propTypes = {
+    contributor: arrayOf(
+        shape({
+            id: string,
+            name: string.isRequired,
+            title: string.isRequired,
+            image: string.isRequired,
+            online: bool.isRequired
+        }))
+};
+
+Mail.defaultProps = {
+    contributor: []
+};
+
 export default connect(
     function stateToProps(state) {
         return {

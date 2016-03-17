@@ -1,4 +1,5 @@
 import React from 'react';
+
 import uuid from 'node-uuid';
 
 import Avatar from './Avatar.jsx';
@@ -27,3 +28,19 @@ export default class AvatarList extends React.Component {
         );
     }
 }
+
+let { arrayOf, shape, string, bool } = React.PropTypes;
+
+AvatarList.propTypes = {
+    data: arrayOf(
+        shape({
+            name: string.isRequired,
+            title: string.isRequired,
+            image: string.isRequired,
+            online: bool.isRequired
+        }))
+};
+
+AvatarList.defaultProps = {
+    data: []
+};

@@ -29,3 +29,15 @@ export default class EventDetail extends React.Component {
         );
     }
 }
+
+let { string } = React.PropTypes;
+
+EventDetail.propTypes = {
+    title: string.isRequired,
+    description: string.isRequired
+};
+
+EventDetail.defaultProps = {
+    title: '',
+    description: ''
+};

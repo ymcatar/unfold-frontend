@@ -36,3 +36,10 @@ export default class Bar extends React.Component {
         );
     }
 }
+
+let { number, string } = React.PropTypes;
+
+Bar.PropTypes = {
+    length: number.isRequired,
+    label: string.isRequired
+};

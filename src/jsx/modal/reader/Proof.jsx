@@ -46,6 +46,23 @@ class Proof extends React.Component {
     }
 }
 
+let { arrayOf, shape, string, bool } = React.PropTypes;
+
+Proof.propTypes = {
+    contributor: arrayOf(
+        shape({
+            id: string,
+            name: string.isRequired,
+            title: string.isRequired,
+            image: string.isRequired,
+            online: bool.isRequired
+        }))
+};
+
+Proof.defaultProps = {
+    contributor: []
+};
+
 export default connect(
     function stateToProps(state) {
         return {

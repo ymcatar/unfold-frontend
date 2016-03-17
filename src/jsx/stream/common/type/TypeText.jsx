@@ -10,3 +10,9 @@ export default class TypeText extends React.Component {
         );
     }
 }
+
+let { string } = React.PropTypes;
+
+TypeText.PropTypes = {
+    data: string
+};

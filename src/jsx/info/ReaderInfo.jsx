@@ -38,6 +38,39 @@ class ReaderInfo extends React.Component {
     }
 }
 
+let { arrayOf, shape, string, bool } = React.PropTypes;
+
+ReaderInfo.propTypes = {
+    event: shape({
+        title: string.isRequired,
+        description: string.isRequired
+    }).isRequired,
+    info: string.isRequired,
+    contributors: arrayOf(
+     shape({
+            id: string,
+            name: string.isRequired,
+            title: string.isRequired,
+            image: string.isRequired,
+            online: bool.isRequired
+        })),
+    translators: arrayOf(
+        shape({
+            id: string,
+            name: string.isRequired,
+            title: string.isRequired,
+            image: string.isRequired,
+            online: bool.isRequired
+        }))
+};
+
+ReaderInfo.defaultProps = {
+    event: { title: '', description: '' },
+    info: '',
+    contributors: [],
+    translators: []
+};
+
 export default connect(
     function stateToProps(state) {
         return state.event;
