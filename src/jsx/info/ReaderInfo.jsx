@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
+import { fetchEvent } from 'redux/actions/event';
 
 import { Info as Colors } from 'config/Colors.jsx';
 
@@ -43,9 +44,19 @@ class ReaderInfo extends React.Component {
         super(props);
         this.state = {hide: props.mobile};
     }
+
+    componentWillMount() {
+        this.props.fetchEvent();
+    }
+
     render() {
-        let { event, info, contributors, translators, mobile } = this.props;
+        let { title, description, information, roles, mobile } = this.props;
         let { hide } = this.state;
+
+        let owner = roles.filter(a => a.type == "OWNER");
+        let contributors = roles.filter(a => a.type == "CONTRIBUTOR");
+        let translators = roles.filter(a => a.type == "TRANSLATOR");
+
         return (
             <div style={styles.main}>
                 <Button
@@ -57,8 +68,8 @@ class ReaderInfo extends React.Component {
                         <i className="material-icons">keyboard_arrow_left</i>}
                 </Button>
                 <div style={styles.container(hide, mobile)}>
-                    <EventDetail title={event.title} description={event.description} />
-                    <Information data={info} />
+                    <EventDetail title={title} description={description} />
+                    <Information data={information} />
                     <Contributors data={contributors} />
                     <Translators data={translators} />
                 </div>
@@ -67,46 +78,41 @@ class ReaderInfo extends React.Component {
     }
 }
 
-let { arrayOf, shape, string, bool } = React.PropTypes;
+let { arrayOf, shape, string, bool, number } = React.PropTypes;
 
 ReaderInfo.propTypes = {
-    event: shape({
-        title: string.isRequired,
-        description: string.isRequired
-    }).isRequired,
-    info: string.isRequired,
-    contributors: arrayOf(
-     shape({
+    title: string,
+    location: string,
+    tags: arrayOf(string),
+    description: string,
+    information: string,
+    startedAt: string,
+    endedAt: string,
+    timezone: number,
+    language: string,
+    roles: arrayOf(shape({
+        type: string,
+        user: shape({
             id: string,
-            name: string.isRequired,
-            title: string.isRequired,
-            image: string.isRequired,
-            online: bool.isRequired
-        })),
-    translators: arrayOf(
-        shape({
-            id: string,
-            name: string.isRequired,
-            title: string.isRequired,
-            image: string.isRequired,
-            online: bool.isRequired
-        })),
+            name: string,
+            description: string
+        })
+    })),
     mobile: bool
 };
 
 ReaderInfo.defaultProps = {
-    event: { title: '', description: '' },
-    info: '',
-    contributors: [],
-    translators: [],
     mobile: false
 };
 
 export default connect(
     function stateToProps(state) {
+        console.log(state.event);
         return state.event;
     },
     function dispatchToProps(dispatch) {
-        return {};
+        return {
+            fetchEvent: id => dispatch(fetchEvent(id))
+        };
     }
 )(ReaderInfo);

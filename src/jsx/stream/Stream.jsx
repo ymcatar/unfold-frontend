@@ -41,13 +41,13 @@ export default class Stream extends React.Component {
 
     createPlaceholder(key, height) {
         return (
-            <UpdateBox key={key} style={{height: height - 20}} type="raw" />
+            <UpdateBox key={key} style={{height: height - 20}} type={this.props.type} />
         );
     }
 
     render() {
         let elements = this.props.filteredStream.map(post => (
-            <UpdateBox key={post.id} data={post} type="raw" />
+            <UpdateBox key={post.id} data={post} type={this.props.type} />
         ));
         return (
             <div style={styles.main}>
@@ -83,9 +83,7 @@ Stream.propTypes = {
         contributor: shape({
             id: string,
             name: string.isRequired,
-            title: string.isRequired,
-            image: string.isRequired,
-            online: bool.isRequired
+            image: string.isRequired
         }),
         submitTime: string.isRequired,
         content: string,
@@ -105,6 +103,8 @@ export default connect(
                 return _.pick(state.stream, 'filter', 'filteredStream', 'position');
             case 'raw':
                 return _.pick(state.raw, 'filter', 'filteredStream', 'position');
+            default:
+                return {};
         }
     },
     function dispatchToProps(dispatch, props) {
@@ -119,6 +119,8 @@ export default connect(
                     onReportScroll: position => dispatch(RawAction.reportScroll(position)),
                     onReportViewport: viewport => dispatch(RawAction.reportViewport(viewport))
                 };
+            default:
+                return {};
         }
     }
 )(Stream);

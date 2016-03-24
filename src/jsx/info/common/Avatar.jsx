@@ -21,12 +21,12 @@ const getImageStyle = (size, on) => ({
 export default class Avatar extends React.Component {
     render() {
 
-        let {name, title, size, online, image, style} = this.props;
+        let {name, description, size, online, image, style} = this.props;
 
         const popover = (
             <Popover className="popover" id={uuid.v1()} >
                 <b style={{marginRight: '10px'}}>{name}</b>
-                {title}
+                {description}
             </Popover>
         );
 
@@ -44,7 +44,7 @@ let { string, number, bool, object } = React.PropTypes;
 
 Avatar.propTypes = {
     name: string.isRequired,
-    title: string.isRequired,
+    description: string.isRequired,
     size: number.isRequired,
     image: string.isRequired,
     online: bool.isRequired,

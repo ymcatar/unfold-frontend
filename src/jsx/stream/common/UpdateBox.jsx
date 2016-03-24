@@ -103,9 +103,7 @@ UpdateBox.propTypes = {
         contributor: shape({
             id: string,
             name: string.isRequired,
-            title: string.isRequired,
-            image: string.isRequired,
-            online: bool.isRequired
+            image: string.isRequired
         }),
         submitTime: string.isRequired,
         content: string,

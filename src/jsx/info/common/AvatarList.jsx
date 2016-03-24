@@ -35,9 +35,8 @@ AvatarList.propTypes = {
     data: arrayOf(
         shape({
             name: string.isRequired,
-            title: string.isRequired,
-            image: string.isRequired,
-            online: bool.isRequired
+            description: string.isRequired,
+            image: string.isRequired
         }))
 };
 

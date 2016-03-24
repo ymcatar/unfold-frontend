@@ -4,7 +4,7 @@ import uuid from 'node-uuid';
 import * as actions from '../actions/stream';
 
 import StreamData from 'config/placeholder/stream';
-import { contributors as ContributorsData } from 'config/placeholder/event';
+import { roles } from 'config/placeholder/event';
 
 class ElementStore {
     constructor(data) {
@@ -26,6 +26,8 @@ class ElementStore {
         _.forEach(this.data, (entry, key) => iteratee(entry, key));
     }
 }
+
+let ContributorsData = roles.filter(i => i.type === "CONTRIBUTOR");
 
 const stream = StreamData
     .map(post => {

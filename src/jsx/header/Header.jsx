@@ -19,7 +19,7 @@ const styles = {
     }
 };
 
-class ReaderHeader extends React.Component {
+class Header extends React.Component {
     constructor(props) {
         super(props);
         _.bindAll(this, ['handleNavClick', 'handleFilter']);
@@ -87,7 +87,7 @@ class ReaderHeader extends React.Component {
 
 let { string, func } = React.PropTypes;
 
-ReaderHeader.propTypes = {
+Header.propTypes = {
     filter: string.isRequired,
     handleFilter: func.isRequired,
     handleBackToTop: func.isRequired,
@@ -123,4 +123,4 @@ export default connect(
                 return {};
         }
 }
-)(ReaderHeader);
+)(Header);

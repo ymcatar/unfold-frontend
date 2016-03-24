@@ -34,7 +34,7 @@ export default class ReaderView extends React.Component {
                         <ReaderInfo mobile={true}/>
                     </MediaQuery>
 
-                    <Stream />
+                    <Stream type="stream" />
                     <ReaderModal />
                 </div>
             </div>
