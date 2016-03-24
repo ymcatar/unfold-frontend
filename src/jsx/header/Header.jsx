@@ -2,7 +2,10 @@ import React from 'react';
 import _ from 'lodash';
 
 import { connect } from 'react-redux';
-import { selectFilter, reportFilter, scrollToTop } from 'redux/actions/stream';
+
+import * as StreamAction from 'redux/actions/stream';
+import * as RawAction from 'redux/actions/raw';
+
 import { showReaderMail } from 'redux/actions/modal'; 
 
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
@@ -92,16 +95,32 @@ ReaderHeader.propTypes = {
 };
 
 export default connect(
-    function stateToProps(state) {
-        return {
-            filter: state.stream.filter
-        };
+    function stateToProps(state, props) {
+        switch (props.type) {
+            case 'reader':
+                return { filter: state.stream.filter };
+            case 'contributor':
+                return { filter: state.raw.filter };
+            default:
+                return {};
+        }
     },
-    function dispatchToProps(dispatch) {
-        return {
-            handleFilter: filter => dispatch(selectFilter(filter)),
-            handleBackToTop: () => dispatch(scrollToTop()),
-            showReaderMail: () => dispatch(showReaderMail())
-        };
+    function dispatchToProps(dispatch, props) {
+        switch (props.type) {
+            case 'reader':
+                return {
+                    handleFilter: filter => dispatch(StreamAction.selectFilter(filter)),
+                    handleBackToTop: () => dispatch(StreamAction.scrollToTop()),
+                    showReaderMail: () => dispatch(StreamAction.showReaderMail())
+                };
+            case 'contributor':
+                return {
+                    handleFilter: filter => dispatch(RawAction.selectFilter(filter)),
+                    handleBackToTop: () => dispatch(RawAction.scrollToTop()),
+                    showReaderMail: () => dispatch(RawAction.showReaderMail())
+                };
+            default:
+                return {};
+        }
 }
 )(ReaderHeader);

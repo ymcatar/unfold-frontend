@@ -1,7 +1,7 @@
 import React from 'react';
 import MediaQuery from 'react-responsive';
 
-import ReaderHeader from 'header/ReaderHeader.jsx';
+import Header from 'header/Header.jsx';
 import Stream from 'stream/Stream.jsx';
 import Timeline from 'timeline/Timeline.jsx';
 import ReaderInfo from 'info/ReaderInfo.jsx';
@@ -23,7 +23,7 @@ export default class ReaderView extends React.Component {
     render() {
         return (
             <div>
-                <ReaderHeader />
+                <Header type="contributor" />
                 <div style={styles.main}>
                     <Timeline type="raw" />
 
