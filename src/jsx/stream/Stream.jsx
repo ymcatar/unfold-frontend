@@ -2,7 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 
 import { connect } from 'react-redux';
-import { reportScroll, reportViewport } from 'redux/actions/stream';
+
+import * as StreamAction from 'redux/actions/stream';
+import * as RawAction from 'redux/actions/raw';
 
 import { Stream as Colors } from 'config/Colors.jsx';
 
@@ -39,13 +41,13 @@ export default class Stream extends React.Component {
 
     createPlaceholder(key, height) {
         return (
-            <UpdateBox key={key} style={{height: height - 20}} />
+            <UpdateBox key={key} style={{height: height - 20}} type="raw" />
         );
     }
 
     render() {
         let elements = this.props.filteredStream.map(post => (
-            <UpdateBox key={post.id} data={post} />
+            <UpdateBox key={post.id} data={post} type="raw" />
         ));
         return (
             <div style={styles.main}>
@@ -97,13 +99,26 @@ Stream.propTypes = {
 };
 
 export default connect(
-    function stateToProps(state) {
-        return _.pick(state.stream, 'filter', 'filteredStream', 'position');
+    function stateToProps(state, props) {
+        switch (props.type) {
+            case 'stream':
+                return _.pick(state.stream, 'filter', 'filteredStream', 'position');
+            case 'raw':
+                return _.pick(state.raw, 'filter', 'filteredStream', 'position');
+        }
     },
-    function dispatchToProps(dispatch) {
-        return {
-            onReportScroll: position => dispatch(reportScroll(position)),
-            onReportViewport: viewport => dispatch(reportViewport(viewport))
-        };
+    function dispatchToProps(dispatch, props) {
+        switch(props.type) {
+            case 'stream':
+                return {
+                    onReportScroll: position => dispatch(StreamAction.reportScroll(position)),
+                    onReportViewport: viewport => dispatch(StreamAction.reportViewport(viewport))
+                };
+            case 'raw':
+                return {
+                    onReportScroll: position => dispatch(RawAction.reportScroll(position)),
+                    onReportViewport: viewport => dispatch(RawAction.reportViewport(viewport))
+                };
+        }
     }
 )(Stream);

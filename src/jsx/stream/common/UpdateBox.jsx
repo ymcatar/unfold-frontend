@@ -55,7 +55,6 @@ class UpdateBox extends React.Component {
     }
 
     render() {
-
         if (!this.props.data)
             return null;
 
@@ -75,9 +74,10 @@ class UpdateBox extends React.Component {
         return (
             <div style={_.extend({}, styles.main, this.props.style)}>
                 <Card>
-                    <ContributorInfo
-                        contributor={this.props.data.contributor}
-                        submitTime={this.props.data.submitTime} />
+                    {this.props.type == "stream"? (
+                        <ContributorInfo
+                            contributor={this.props.data.contributor}
+                            submitTime={this.props.data.submitTime} />): null}
 
                     <div style={styles.content}>
                         <TypeText data={this.props.data.content} />

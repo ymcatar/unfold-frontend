@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { scrollToDate } from 'redux/actions/stream';
+
+import * as StreamAction from 'redux/actions/stream';
+import * as RawAction from 'redux/actions/raw';
 
 import uuid from 'node-uuid';
 import moment from 'moment';
@@ -67,11 +69,23 @@ Timeline.PropTypes = {
 
 export default connect(
     function stateToProps(state, props) {
-        return { data: state.stream.filteredStream };
+        switch (props.type) {
+            case 'stream':
+                return {data: state.stream.filteredStream};
+            case 'raw':
+                return {data: state.raw.filteredStream};
+        }
     },
     function dispatchToProps(dispatch, props) {
-        return {
-            onTravel: date => dispatch(scrollToDate(date))
-        };
+        switch (props.type) {
+            case 'stream':
+                return {
+                    onTravel: date => dispatch(StreamAction.scrollToDate(date))
+                };
+            case 'raw':
+                return {
+                    onTravel: date => dispatch(RawAction.scrollToDate(date))
+                };
+        }
     }
 )(Timeline);
