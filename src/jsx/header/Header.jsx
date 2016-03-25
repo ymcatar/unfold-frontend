@@ -111,7 +111,7 @@ export default connect(
                 return {
                     handleFilter: filter => dispatch(StreamAction.selectFilter(filter)),
                     handleBackToTop: () => dispatch(StreamAction.scrollToTop()),
-                    showReaderMail: () => dispatch(StreamAction.showReaderMail())
+                    showReaderMail: () => dispatch(showReaderMail())
                 };
             case 'contributor':
                 return {

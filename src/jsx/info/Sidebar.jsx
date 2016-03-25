@@ -7,10 +7,8 @@ import { fetchEvent } from 'redux/actions/event';
 import { Info as Colors } from 'config/Colors.jsx';
 
 import EventDetail from './common/EventDetail.jsx';
-
-import Information from './reader/Information.jsx';
-import Translators from './reader/Translators.jsx';
-import Contributors from './reader/Contributors.jsx';
+import Information from './common/Information.jsx';
+import RoleList from './common/RoleList.jsx';
 
 const styles = {
     main: {
@@ -39,7 +37,7 @@ const styles = {
     })
 };
 
-class ReaderInfo extends React.Component {
+class Sidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {hide: props.mobile};
@@ -53,7 +51,7 @@ class ReaderInfo extends React.Component {
         let { title, description, information, roles, mobile } = this.props;
         let { hide } = this.state;
 
-        let owner = roles.filter(a => a.type == "OWNER");
+        let owners = roles.filter(a => a.type == "OWNER");
         let contributors = roles.filter(a => a.type == "CONTRIBUTOR");
         let translators = roles.filter(a => a.type == "TRANSLATOR");
 
@@ -70,8 +68,9 @@ class ReaderInfo extends React.Component {
                 <div style={styles.container(hide, mobile)}>
                     <EventDetail title={title} description={description} />
                     <Information data={information} />
-                    <Contributors data={contributors} />
-                    <Translators data={translators} />
+                    <RoleList data={owners} header="OWNER" />
+                    <RoleList data={contributors} header="CONTRIBUTORS" />
+                    <RoleList data={translators} header="TRANSLATORS" />
                 </div>
             </div>
         );
@@ -80,7 +79,7 @@ class ReaderInfo extends React.Component {
 
 let { arrayOf, shape, string, bool, number } = React.PropTypes;
 
-ReaderInfo.propTypes = {
+Sidebar.propTypes = {
     title: string,
     location: string,
     tags: arrayOf(string),
@@ -101,7 +100,7 @@ ReaderInfo.propTypes = {
     mobile: bool
 };
 
-ReaderInfo.defaultProps = {
+Sidebar.defaultProps = {
     mobile: false
 };
 
@@ -115,4 +114,4 @@ export default connect(
             fetchEvent: id => dispatch(fetchEvent(id))
         };
     }
-)(ReaderInfo);
+)(Sidebar);

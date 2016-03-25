@@ -66,7 +66,7 @@ Mail.defaultProps = {
 export default connect(
     function stateToProps(state) {
         return {
-            contributor: state.event.contributors
+            contributor: state.event.roles.filter(i => i.type === "CONTRIBUTOR")
         };
     },
     function dispatchToProps(dispatch) {

@@ -1,15 +1,16 @@
 import React from 'react';
 
-import CollapseBox from '../common/CollapseBox.jsx';
-import AvatarList from '../common/AvatarList.jsx';
+import CollapseBox from './CollapseBox.jsx';
+import AvatarList from './AvatarList.jsx';
 
-export default class Translators extends React.Component {
+export default class RoleList extends React.Component {
     render() {
         let total = this.props.data.length;
         let online = this.props.data.filter(curr => curr.online).length;
+        let { header } = this.props;
 
         return (
-            <CollapseBox header={`TRANSLATORS (${online}/${total})`} defaultCollapsed={false} >
+            <CollapseBox header={`${header} (${online}/${total})`} defaultCollapsed={false} >
                 <AvatarList data={this.props.data} />
             </CollapseBox>
         );
@@ -18,13 +19,15 @@ export default class Translators extends React.Component {
 
 let { arrayOf, shape, string, bool } = React.PropTypes;
 
-Translators.propTypes = {
+RoleList.propTypes = {
     data: arrayOf(
         shape({
+            id: string,
             name: string.isRequired,
             description: string.isRequired,
             image: string.isRequired
-        }))
+        })),
+    header: string.isRequired
 };
 
-Translators.defaultProps = { data: [] };
+RoleList.defaultProps = { data: [] };

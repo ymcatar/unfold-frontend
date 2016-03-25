@@ -4,7 +4,7 @@ import MediaQuery from 'react-responsive';
 import Header from 'header/Header.jsx';
 import Stream from 'stream/Stream.jsx';
 import Timeline from 'timeline/Timeline.jsx';
-import ReaderInfo from 'info/ReaderInfo.jsx';
+import Sidebar from 'info/Sidebar.jsx';
 
 import ReaderModal from 'modal/ReaderModal.jsx';
 
@@ -28,10 +28,10 @@ export default class ReaderView extends React.Component {
                     <Timeline type="raw" />
 
                     <MediaQuery minDeviceWidth={1224} minWidth={800}>
-                        <ReaderInfo mobile={false}/>
+                        <Sidebar mobile={false}/>
                     </MediaQuery>
                     <MediaQuery maxWidth={800}>
-                        <ReaderInfo mobile={true}/>
+                        <Sidebar mobile={true}/>
                     </MediaQuery>
 
                     <Stream type="raw" />
