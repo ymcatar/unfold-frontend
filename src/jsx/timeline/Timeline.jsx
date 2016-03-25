@@ -15,7 +15,7 @@ import Day from './common/Day.jsx';
 const styles = {
     main: {
         backgroundColor: Colors.backgroundColor,
-        minWidth: '70px',
+        minWidth: '50px',
         height: '100vh',
         overflowY: 'scroll',
         overflowX: 'hidden',
