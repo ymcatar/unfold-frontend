@@ -53,7 +53,6 @@ Proof.propTypes = {
         shape({
             id: string,
             name: string.isRequired,
-            title: string.isRequired,
             image: string.isRequired,
             online: bool.isRequired
         }))
@@ -66,7 +65,7 @@ Proof.defaultProps = {
 export default connect(
     function stateToProps(state) {
         return {
-            contributor: state.event.contributors
+            contributor: state.event.roles.filter(i => i.type === "CONTRIBUTOR")
         };
     },
     function dispatchToProps(dispatch) {

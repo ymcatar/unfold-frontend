@@ -7,14 +7,14 @@ import { Day as Colors } from 'config/Colors.jsx';
 
 const styles = {
     text: {
-        margin: '10px auto 10px 1px',
-        textAlign: 'left',
+        margin: '10px 2px 10px auto',
+        textAlign: 'right',
         color: Colors.date,
         fontWeight: 'bolder',
         lineHeight: '0.5'
     },
     main: {
-        margin: '0 1px 20px 0px'
+        margin: '30px 0 2px 0px'
     }
 };
 

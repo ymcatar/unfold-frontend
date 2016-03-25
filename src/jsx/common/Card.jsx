@@ -5,13 +5,15 @@ import { Card as Colors } from 'config/Colors.jsx';
 const styles = {
     main: {
         width: '100%',
-        maxWidth: '100%',
-        borderTop: `1px solid ${Colors.borderColor}`,
-        borderBottom: `1px solid ${Colors.borderColor}`,
         padding: '20px',
         backgroundColor: Colors.backgroundColor,
         color: Colors.color,
-        boxShadow: Colors.zDepth
+        border: `1px solid ${Colors.borderColor}`,
+        borderBottomWidth: '2px',
+        borderTopWidth: '0px',
+        borderRadius: '3px',
+        margin: '2px 10px 2px 10px',
+        overflow: 'scroll'
     }
 };
 

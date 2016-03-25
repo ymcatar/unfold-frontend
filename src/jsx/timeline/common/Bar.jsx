@@ -7,9 +7,10 @@ import { Bar as Colors } from 'config/Colors.jsx';
 
 const getStyles = (length, disable) => ({
     backgroundColor: disable? Colors.disable: Colors.enable,
+    opacity: Math.max(length*2/100, 0.1),
     width: `${length/100*70}px`,
     height: '25px',
-    margin: '0 auto 0 -1px',
+    margin: '0 -1px 0 auto',
     borderRadius: '2px'
 });
 

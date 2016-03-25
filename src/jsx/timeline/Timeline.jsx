@@ -19,9 +19,7 @@ const styles = {
         height: '100vh',
         overflowY: 'scroll',
         overflowX: 'hidden',
-        padding: '20px 0 50px 0',
-        boxShadow: Colors.zDepth,
-        zIndex: 3
+        padding: '20px 0 50px 0'
     }
 };
 

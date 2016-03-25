@@ -6,16 +6,18 @@ import { connect } from 'react-redux';
 import * as StreamAction from 'redux/actions/stream';
 import * as RawAction from 'redux/actions/raw';
 
+import { toggleSidebar } from 'redux/actions/ui';
 import { showReaderMail } from 'redux/actions/modal'; 
 
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-bootstrap';
 
 import { Header as Colors } from 'config/Colors.jsx';
 
 const styles = {
     main: {
-        fontWeight: 'bolder',
-        borderBottom: `2px solid ${Colors.borderColor}`
+        border: 'none',
+        borderBottom: '1px solid #D3D2D3',
+        fontWeight: 'bold'
     }
 };
 
@@ -32,6 +34,9 @@ class Header extends React.Component {
 
     handleNavClick(key) {
         switch (key) {
+            case 'sidebar':
+                this.props.toggleSidebar(!this.props.sidebar);
+                break;
             case 'top':
                 this.props.handleBackToTop();
                 break;
@@ -45,17 +50,18 @@ class Header extends React.Component {
 
         const header = (
             <Navbar.Header>
-                <Navbar.Text>
-                    <img src="res/logo.png" height={40}/>
-                </Navbar.Text>
+                <Navbar.Brand>
+                    <img src="res/logo.png"/>
+                </Navbar.Brand>
+                <Navbar.Toggle />
             </Navbar.Header>
         );
 
         const leftNav = (
             <Nav onSelect={this.handleFilter} activeKey={this.props.filter}>
-                <NavItem eventKey="all" href="#">All</NavItem>
-                <NavItem eventKey="important" href="#">Important</NavItem>
-                <NavItem eventKey="reliable" href="#">Reliable</NavItem>
+                <NavItem eventKey="all" href="#">all</NavItem>
+                <NavItem eventKey="important" href="#">important</NavItem>
+                <NavItem eventKey="reliable" href="#">reliable</NavItem>
             </Nav>
         );
 
@@ -63,20 +69,22 @@ class Header extends React.Component {
             <Nav pullRight onSelect={this.handleNavClick}>
                 <NavItem eventKey={'mail'} href="#">
                     <i className="material-icons">mail</i>
-                    &nbsp;Mail
                 </NavItem>
                 <NavItem eventKey={'top'} href="#">
                     <i className="material-icons">vertical_align_top</i>
-                    &nbsp;Top
+                </NavItem>
+                <NavItem eventKey={'sidebar'} href="#">
+                    {this.props.sidebar?
+                        <i className="material-icons">info</i>:
+                        <i className="material-icons">info_outline</i>}
                 </NavItem>
             </Nav>
         );
 
         return (
             <Navbar style={styles.main} fixedTop={true} fluid={true}>
-                <Navbar.Toggle />
+                {header}
                 <Navbar.Collapse>
-                    {header}
                     {leftNav}
                     {rightNav}
                 </Navbar.Collapse>
@@ -98,9 +106,15 @@ export default connect(
     function stateToProps(state, props) {
         switch (props.type) {
             case 'reader':
-                return { filter: state.stream.filter };
+                return {
+                    filter: state.stream.filter,
+                    sidebar: state.ui.sidebar
+                };
             case 'contributor':
-                return { filter: state.raw.filter };
+                return {
+                    filter: state.raw.filter,
+                    sidebar: state.ui.sidebar
+                };
             default:
                 return {};
         }
@@ -109,12 +123,14 @@ export default connect(
         switch (props.type) {
             case 'reader':
                 return {
+                    toggleSidebar: val => dispatch(toggleSidebar(val)),
                     handleFilter: filter => dispatch(StreamAction.selectFilter(filter)),
                     handleBackToTop: () => dispatch(StreamAction.scrollToTop()),
                     showReaderMail: () => dispatch(showReaderMail())
                 };
             case 'contributor':
                 return {
+                    toggleSidebar: val => dispatch(toggleSidebar(val)),
                     handleFilter: filter => dispatch(RawAction.selectFilter(filter)),
                     handleBackToTop: () => dispatch(RawAction.scrollToTop()),
                     showReaderMail: () => dispatch(RawAction.showReaderMail())

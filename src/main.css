@@ -1,10 +1,10 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,300italic,400italic,600,600italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,600,600italic,700,700italic);
 
 html, body, #main {
     margin: 0;
     height: 100%;
-    background-color: #ECEFF1;
-    font-family: 'Roboto Slab', sans-serif;
+    background-color: #E5E5E5;
+    font-family: 'Roboto', sans-serif;
 }
 #main {
     height: 100vh;
@@ -40,44 +40,9 @@ body, .smooth-container {
 iframe {
     max-width: 100% !important;
 }
-
-code, kbd, pre,
-.form-control,
-.btn, .btn-link,
-.dropdown-menu,
-.input-group-addon, .input-group-btn,
-.nav-tabs a, .nav-pills a, .navbar, .navbar-toggle,
-.icon-bar, .breadcrumb, .pagination, .pager *,
-.label, .badge,
-.jumbotron, .thumbnail,
-.alert, .progress,
-.panel, .well,
-.modal-content,
-.tooltip-inner,
-.popover, .popover-title,
-.carousel-indicators li {
-    border-radius: 0 !important;
-}
-
 .dropdown-menu {
     border-color: #E5E6E9;
 }
-
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    background-color: #F5F5F5;
-    border-bottom: 3px solid #4689F1;
-}
-
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    background-color: #F5F5F5;
-    border-bottom: 3px solid #4689F1;
-}
-
-.navbar-default .navbar-nav>li>a {
-    color: #675555;
-    border-bottom: 3px solid transparent;
-}
-
 .material-icons {
     font-size: 18px !important;
     vertical-align: middle;
@@ -89,4 +54,8 @@ a:focus {
 .btn:focus,.btn:active:focus,.btn.active:focus,
 .btn.focus,.btn:active.focus,.btn.active.focus {
     outline: none;
+}
+
+.navbar-brand {
+    padding: 10px 20px 10px 20px;
 }

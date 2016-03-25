@@ -3,7 +3,7 @@ const zDepth = '0 2px 6px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.10)';
 /* header */
 
 export let Header = {
-    border: '#F6F6F6'
+    zDepth
 };
 
 /* info */
@@ -15,7 +15,8 @@ export let Avatar = {
 
 export let Info = {
     background: '#4689F1',
-    color: '#fff'
+    color: '#fff',
+    zDepth
 };
 
 export let Information = {
@@ -34,24 +35,24 @@ export let EventDetail = {
 /* timeline */
 
 export let Timeline = {
-    color: '#F7F7F7',
-    backgroundColor: '#4689F1',
+    color: '#AAAAAA',
+    backgroundColor: '#E2E2E2',
     zDepth
 };
 
 export let Day = {
-    date: '#F7F7F7'
+    date: '#aaa'
 };
 
 export let Bar = {
-    enable: '#F7F7F7',
-    disable: '#F7F7F7'
+    enable: '#4689F1',
+    disable: '#4689F1'
 };
 
 /* stream */
 
 export let Stream = {
-    backgroundColor: '#EDF0F3',
+    backgroundColor: '#E2E2E2',
     header: '#aaa'
 };
 
@@ -66,7 +67,7 @@ export let Tags = {
 
 export let Card = {
     backgroundColor: 'white',
-    color: 'black',
-    borderColor: '#ECECEC',
+    color: '#444',
+    borderColor: '#D0D1D5',
     zDepth
 };

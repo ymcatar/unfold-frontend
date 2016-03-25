@@ -14,7 +14,7 @@ import LazyScroller from './common/LazyScroller.jsx';
 const styles = {
     main: {
         backgroundColor: Colors.backgroundColor,
-        height: 'calc(100vh - 10px)',
+        height: '100vh',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -29,7 +29,7 @@ const styles = {
         marginLeft: 'auto',
         marginRight: 'auto',
         textAlign: 'left',
-        fontWeight: 'light',
+        fontWeight: 'lighter'
     }
 };
 
