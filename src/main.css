@@ -1,10 +1,10 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,600,600italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,300italic,400italic,600,600italic,700,700italic);
 
 html, body, #main {
     margin: 0;
     height: 100%;
     background-color: #ECEFF1;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Roboto Slab', sans-serif;
 }
 #main {
     height: 100vh;

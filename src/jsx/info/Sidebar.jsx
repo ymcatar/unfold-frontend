@@ -28,7 +28,7 @@ const styles = {
     button: hide => ({
         position: 'absolute',
         top: '60px',
-        left: '30px',
+        left: '20px',
         height: '30px',
         width: '30px',
         backgroundColor: 'transparent',
