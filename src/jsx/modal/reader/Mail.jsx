@@ -30,17 +30,17 @@ class Mail extends React.Component {
                     <Modal.Title>Send Message To Contributor</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Input ref={x => {this.elm.title = x;}} type="Text" label="Subject" />
-                    <Input ref={x => {this.elm.target = x;}} type="select" label="Send to" multiple>
+                    <Input disabled ref={x => {this.elm.title = x;}} type="Text" label="Subject" placeholder="(unavailable in demo)" />
+                    <Input disabled ref={x => {this.elm.target = x;}} type="select" label="Send to" multiple>
                         {this.props.contributor.map(o => (
                             <option value={o.id} key={o.id}>{o.name}</option>
                         ))}
                     </Input>
-                    <Input ref={x => {this.elm.content = x;}} type="textarea" style={{height: 300}} label="Mail content" />
+                    <Input disabled ref={x => {this.elm.content = x;}} type="textarea" style={{height: 300}} label="Mail content" />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button bsSize="small" onClick={this.props.handleHide}>Cancel</Button>
-                    <Button onClick={this.handleSubmit} bsSize="small" bsStyle="primary">Send</Button>
+                    <Button disabled onClick={this.handleSubmit} bsSize="small" bsStyle="primary">Send</Button>
                 </Modal.Footer>
             </Modal>
         );

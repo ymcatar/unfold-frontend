@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Nav, NavItem } from 'react-bootstrap';
 
 import { toggleSidebar } from 'redux/actions/ui';
-import { showReaderMail } from 'redux/actions/modal'; 
+import { showReaderMail, showReaderSettings } from 'redux/actions/modal'; 
 import { scrollToTop } from 'redux/actions/stream';
 
 class ReaderActions extends React.Component {
@@ -24,12 +24,19 @@ class ReaderActions extends React.Component {
             case 'mail':
                 this.props.showReaderMail();
                 break;
+            case 'settings':
+                this.props.showSettings();
+                break;
         }
     }
 
     render() {
         return (
             <Nav pullRight onSelect={this.handleNavClick}>
+                <NavItem eventKey={'settings'} href="#">
+                    <i className="material-icons">settings</i>
+                    &nbsp;SETTINGS
+                </NavItem>
                 <NavItem eventKey={'mail'} href="#">
                     <i className="material-icons">mail</i>
                     &nbsp;MAIL
@@ -59,7 +66,8 @@ export default connect(
         return ({
             toggleSidebar: val => dispatch(toggleSidebar(val)),
             handleBackToTop: () => dispatch(scrollToTop()),
-            showReaderMail: () => dispatch(showReaderMail())
+            showReaderMail: () => dispatch(showReaderMail()),
+            showSettings: () => dispatch(showReaderSettings())
         });
     }
 )(ReaderActions);

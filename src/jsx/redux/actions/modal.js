@@ -25,3 +25,17 @@ export let hideReaderProof = () => ({
     active: null,
     data: null
 });
+
+export const SHOW_READER_SETTINGS = 'modal: show reader settings';
+export let showReaderSettings = () => ({
+    type: SHOW_READER_SETTINGS,
+    active: 'readerSettings',
+    data: null
+});
+
+export const HIDE_READER_SETTINGS = 'modal: hide reader settings';
+export let hideReaderSettings = () => ({
+    type: HIDE_READER_SETTINGS,
+    active: null,
+    data: null
+});
