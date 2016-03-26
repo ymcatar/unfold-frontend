@@ -12,7 +12,8 @@ import Colors from 'config/colors';
 
 import Card from 'common/Card.jsx';
 
-import ContributorInfo from './ContributorInfo.jsx';
+import ReaderHeader from './header/ReaderHeader.jsx';
+import ContributorHeader from './header/ContributorHeader.jsx';
 
 import Tags from './Tags.jsx';
 
@@ -45,8 +46,6 @@ class UpdateBox extends React.Component {
 
     shouldComponentUpdate(nextProps) {
         let cond = this.props.data !== nextProps.data || this.props.small !== nextProps.small;
-        if (cond)
-            console.log('updating', this.key);
         return cond;
     }
 
@@ -71,14 +70,28 @@ class UpdateBox extends React.Component {
             </Button>
         ): null;
 
+        let header;
+        switch (this.props.role) {
+            case "reader":
+            case "translator":
+                header = (
+                    <ReaderHeader
+                        contributor={this.props.data.contributor}
+                        submitTime={this.props.data.submitTime} />
+                );
+                break;
+            case "contributor":
+                header = (
+                    <ContributorHeader
+                        data={this.props.data} />
+                );
+                break;
+        }
+
         return (
             <div style={_.extend({}, styles.main, this.props.style)}>
                 <Card>
-                    {this.props.type == "stream"? (
-                        <ContributorInfo
-                            contributor={this.props.data.contributor}
-                            submitTime={this.props.data.submitTime} />): null}
-
+                    {header}
                     <div style={styles.content}>
                         <TypeText data={this.props.data.content} />
                         <Type

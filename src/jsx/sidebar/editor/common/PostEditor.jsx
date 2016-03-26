@@ -1,8 +1,6 @@
 import React from 'react';
 import MediumEditor from 'react-medium-editor';
-import { Button } from 'react-bootstrap';
 import MediumButton from 'common/MediumButton';
-import fetch from 'fetch-jsonp';
 
 import { PostEditor as Colors } from 'config/colors';
 

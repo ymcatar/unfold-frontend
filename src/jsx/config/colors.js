@@ -48,7 +48,7 @@ export let Day = {
 
 export let Bar = {
 	enable: '#4186F2',
-	disable: '#4186F2'
+	disable: '#aaa'
 };
 
 /* stream */

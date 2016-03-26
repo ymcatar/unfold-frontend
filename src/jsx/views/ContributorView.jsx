@@ -23,10 +23,10 @@ export default class ReaderView extends React.Component {
     render() {
         return (
             <div>
-                <Header type="contributor" />
+                <Header role="contributor" />
                 <div style={styles.main}>
-                    <Sidebar role="contributor" type="raw" />
-                    <Stream type="raw" />
+                    <Sidebar role="contributor" />
+                    <Stream role="contributor" />
                     <Timeline type="raw" />
                     <ReaderModal />
                 </div>

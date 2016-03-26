@@ -65,3 +65,19 @@ a:focus {
 .btn, .form-control, .modal-content {
     border-radius: 2px !important;
 }
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    background-color: transparent;
+    border-radius: 0px;
+    font-weight: bolder;
+}
+
+.nav-pills>li>a, .nav-pills>li>a:focus, .nav-pills>li>a:hover {
+    background-color: transparent;
+    border-radius: 0px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-pills>li>a {
+    margin-right: 3px;
+}

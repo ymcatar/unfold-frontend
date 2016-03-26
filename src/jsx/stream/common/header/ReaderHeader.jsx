@@ -3,8 +3,6 @@ import moment from 'moment';
 
 import { Image } from 'react-bootstrap';
 
-import Card from 'common/Card.jsx';
-
 const styles = {
     avatar: {
         width: '48px',
@@ -30,7 +28,7 @@ const styles = {
     }
 };
 
-export default class ContributorInfo extends React.Component {
+export default class ReaderHeader extends React.Component {
     render() {
         const {name, title, image, online} = this.props.contributor;
         const date = moment(this.props.submitTime);

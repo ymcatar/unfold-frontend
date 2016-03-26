@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import { Button, Input, ButtonToolbar } from 'react-bootstrap';
 import _ from 'lodash';
 
+import { selectEditorPost } from 'redux/actions/ui';
+
 import { Editor as Colors } from 'config/colors';
 
 import PostEditor from './common/PostEditor.jsx';
 import PostTags from './common/PostTags.jsx';
-
-import { selectAddedPost as rawSelectAddedPost } from 'redux/actions/raw';
-import { selectAddedPost as streamSelectAddedPost } from 'redux/actions/stream';
 
 const styles = {
     button: {
@@ -71,15 +70,14 @@ class Editor extends React.Component {
         this.setState({
             content: '',
             tags: [],
-            path: '',
-            added: false
+            path: ''
         });
     }
 
     componentWillReceiveProps(nextProps) {
-        if (!nextProps.addedPost)
+        if (!nextProps.editorPost)
             return;
-        let {tags, source, content} = nextProps.addedPost;
+        let {tags, source, content} = nextProps.editorPost;
         tags = tags.map((o, i) => ({ id: i, text: o }));
         this.setState({
             path: source? source.path: '',
@@ -87,16 +85,17 @@ class Editor extends React.Component {
             content: content,
             added: true
         });
-        this.props.clearAddedPost();
+        this.props.clearEditorPost();
     }
 
     render() {
         return (
             <div>
+                <i>(Click to edit. Select to add formating.)</i>
                 <PostEditor
                     handleContentChange={this.handleContentChange}
                     content={this.state.content} />
-                <b>Source Path</b>
+                <p>Source Path</p>
                 <Input
                     ref="path"
                     style={styles.input}
@@ -106,7 +105,7 @@ class Editor extends React.Component {
                     bsSize="small"
                     type="text" />
 
-                <b>Tags</b><br />
+                <p>Tags</p>
                 <PostTags
                     suggestions={this.state.suggestions}
                     tags={this.state.tags}
@@ -119,12 +118,15 @@ class Editor extends React.Component {
                         bsSize="small">
                         Submit
                     </Button>
-                    <Button
-                        onClick={this.handleClear}
-                        bsStyle="primary"
-                        bsSize="small">
-                        Clear
-                    </Button>
+                    {/*
+                        // Remove clear until medium editor bug resolved
+                        <Button
+                            onClick={this.handleClear}
+                            bsStyle="primary"
+                            bsSize="small">
+                            Clear
+                        </Button>
+                    */}
                 </ButtonToolbar>
             </div>
         );
@@ -133,25 +135,14 @@ class Editor extends React.Component {
 
 export default connect(
     function stateToProps(state, props) {
-        if (props.type === 'raw')
-            return {
-                addedPost: state.raw.addedPost,
-                sidebar: state.ui.sidebar
-            };
-        else if (props.type === 'stream')
-            return {
-                addedPost: state.stream.addedPost,
-                sidebar: state.ui.sidebar
-            };
+        return {
+            sidebar: state.ui.sidebar,
+            editorPost: state.ui.editorPost
+        };
     },
     function dispatchToProps(dispatch, props) {
         return {
-            clearAddedPost() {
-                if (props.type === 'raw')
-                    dispatch(rawSelectAddedPost(null));
-                else if (props.type === 'stream')
-                    dispatch(streamSelectAddedPost(null));
-            }
+            clearEditorPost: () => dispatch(selectEditorPost(null))
         };
     }
 )(Editor);

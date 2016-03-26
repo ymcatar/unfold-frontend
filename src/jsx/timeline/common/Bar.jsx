@@ -13,8 +13,8 @@ const styles = {
     }),
     bar: (length, disable) => ({
         backgroundColor: disable? Colors.disable: Colors.enable,
-        opacity: Math.max(length*2/100, 0.1),
-        width: `${length/100*70}px`,
+        opacity: Math.max(length*2/100, 0.3),
+        width: `${Math.max(length/100*70, 5)}px`,
         height: '25px',
         margin: '0 -1px 0 auto',
         borderRadius: '2px'

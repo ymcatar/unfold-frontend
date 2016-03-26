@@ -1,15 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
-import { Button } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import { toggleSidebar } from 'redux/actions/ui';
 
 import { Info as Colors } from 'config/colors';
 
-import ReaderSidebar from './reader/ReaderSidebar.jsx';
-
-import Editor from './editor/Editor.jsx';
+import ReaderSidebar from './ReaderSidebar.jsx';
+import ContributorSidebar from './ContributorSidebar.jsx';
 
 const styles = {
     main: (show, mobile) => ({
@@ -36,23 +34,22 @@ class Sidebar extends React.Component {
     }
 
     render() {
+        let content = null;
+        switch (this.props.role) {
+            case "reader":
+                content = <ReaderSidebar />;
+                break;
+            case "contributor":
+                content = <ContributorSidebar />;
+                break;
+        }
 
-        if (this.props.role == "reader") {
-            let { show } = this.props;
-            return (
-                <div style={styles.main(show, this.props.mobile)}>
-                    <ReaderSidebar />
-                </div>
-            );
-        } else if (this.props.role == "contributor") {
-            let { show, mobile, type } = this.props;
-            return (
-                <div style={styles.main(show, mobile)}>
-                    <Editor type={type} />
-                </div>
-            );
-        } else
-            return null;
+        let { show, mobile } = this.props;
+        return (
+            <div style={styles.main(show, mobile)}>
+                {content}
+            </div>
+        );
     }
 }
 
