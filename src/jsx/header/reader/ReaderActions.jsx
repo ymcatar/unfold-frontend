@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Nav, NavItem } from 'react-bootstrap';
 
 import { toggleSidebar } from 'redux/actions/ui';
-import { showReaderMail, showReaderSettings } from 'redux/actions/modal'; 
+import { showReaderMail, showReaderSettings, showLogin } from 'redux/actions/modal'; 
 import { scrollToTop } from 'redux/actions/stream';
 
 class ReaderActions extends React.Component {
@@ -15,6 +15,9 @@ class ReaderActions extends React.Component {
 
     handleNavClick(key) {
         switch (key) {
+            case 'settings':
+                this.props.showSettings();
+                break;
             case 'sidebar':
                 this.props.toggleSidebar(!this.props.sidebar);
                 break;
@@ -24,8 +27,11 @@ class ReaderActions extends React.Component {
             case 'mail':
                 this.props.showReaderMail();
                 break;
-            case 'settings':
-                this.props.showSettings();
+            case 'user':
+                if (this.props.user)
+                    this.props.showLogout();
+                else
+                    this.props.showLogin();
                 break;
         }
     }
@@ -51,6 +57,10 @@ class ReaderActions extends React.Component {
                         <i className="material-icons">info_outline</i>}
                     &nbsp;INFO
                 </NavItem>
+                <NavItem eventKey={'user'} href="#">
+                    <i className="material-icons">people</i>
+                    &nbsp;LOGIN
+                </NavItem>
             </Nav>
         );
     }
@@ -67,7 +77,8 @@ export default connect(
             toggleSidebar: val => dispatch(toggleSidebar(val)),
             handleBackToTop: () => dispatch(scrollToTop()),
             showReaderMail: () => dispatch(showReaderMail()),
-            showSettings: () => dispatch(showReaderSettings())
+            showSettings: () => dispatch(showReaderSettings()),
+            showLogin: () => dispatch(showLogin())
         });
     }
 )(ReaderActions);

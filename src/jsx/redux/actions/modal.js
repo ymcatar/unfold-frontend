@@ -39,3 +39,17 @@ export let hideReaderSettings = () => ({
     active: null,
     data: null
 });
+
+export const SHOW_LOGIN = 'modal: show login';
+export let showLogin = () => ({
+    type: SHOW_LOGIN,
+    active: 'login',
+    data: null
+});
+
+export const HIDE_LOGIN = 'modal: hide login';
+export let hideLogin = () => ({
+    type: HIDE_LOGIN,
+    active: null,
+    data: null
+});

@@ -15,6 +15,8 @@ export default function reduceStream(state, action) {
 		case actions.HIDE_READER_PROOF:
 		case actions.SHOW_READER_SETTINGS:
 		case actions.HIDE_READER_SETTINGS:
+		case actions.SHOW_LOGIN:
+		case actions.HIDE_LOGIN:
 			modal = { active: action.active, data: action.data };
 			break;
 	}

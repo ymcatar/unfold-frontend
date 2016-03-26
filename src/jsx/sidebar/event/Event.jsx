@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchEvent } from 'redux/actions/event';
+import { fetchEvent } from 'redux/actions/ajax';
 
 import EventDetail from './common/EventDetail.jsx';
 import Information from './common/Information.jsx';
