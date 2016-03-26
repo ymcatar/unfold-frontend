@@ -24,7 +24,7 @@ export let Information = {
 };
 
 export let CollapseBox = {
-    backgroundColor: '#4689F1'
+    zDepth
 };
 
 export let EventDetail = {

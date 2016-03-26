@@ -2,12 +2,11 @@ import React from 'react';
 import _ from 'lodash';
 
 import { Panel } from 'react-bootstrap';
-
 import { CollapseBox as Colors } from 'config/Colors.jsx';
 
 const styles = {
     main: {
-        backgroundColor: Colors.backgroundColor
+        boxShadow: Colors.zDepth
     }
 };
 
@@ -48,10 +47,11 @@ export default class CollapseBox extends React.Component {
             <Panel
                 className="collapseBox"
                 header={header}
+                style={styles.main}
                 collapsible
                 onSelect={this.onSelect}
                 expanded={this.state.open}>
-                <div style={styles.main}>{this.props.children}</div>
+                <div>{this.props.children}</div>
             </Panel>
         );
     }

@@ -3,6 +3,7 @@ export const event = {
     description: 'The Umbrella Movement is a loose pro-democracy political movement that was created spontaneously during the Hong Kong protests of 2014.',
     information: "We are currently inviting some more contributors for the live stream. If you are interested, feel free to send a message to one of our contributors!\n",
     tags: [],
+    location: "Hong Kong",
     startedAt: "2016-03-22T12:01:41.985Z",
     endedAt: "2016-03-22T12:01:41.985Z",
     timezone: 0,

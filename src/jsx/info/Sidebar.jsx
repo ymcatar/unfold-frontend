@@ -39,6 +39,7 @@ class Sidebar extends React.Component {
 
     render() {
         let { title, description, information, roles } = this.props.event;
+        let { startedAt, endedAt, location } = this.props.event;
         let { show } = this.props;
 
         let owners = roles.filter(a => a.type == "OWNER");
@@ -47,7 +48,12 @@ class Sidebar extends React.Component {
 
         return (
             <div style={styles.main(show, this.props.mobile)}>
-                <EventDetail title={title} description={description} />
+                <EventDetail
+                    title={title}
+                    description={description}
+                    location={location}
+                    startedAt={startedAt}
+                    endedAt={endedAt} />
                 <Information data={information} />
                 <RoleList data={owners} header="OWNER" />
                 <RoleList data={contributors} header="CONTRIBUTORS" />
