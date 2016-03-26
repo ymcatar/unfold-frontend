@@ -1,14 +1,12 @@
 import React from 'react';
-
+import uuid from 'node-uuid';
+import moment from 'moment';
 import { connect } from 'react-redux';
+
+import { Timeline as Colors } from 'config/colors';
 
 import * as StreamAction from 'redux/actions/stream';
 import * as RawAction from 'redux/actions/raw';
-
-import uuid from 'node-uuid';
-import moment from 'moment';
-
-import { Timeline as Colors } from 'config/colors';
 
 import Day from './common/Day.jsx';
 
@@ -32,7 +30,12 @@ class Timeline extends React.Component {
 
         let hash = {};
         data.forEach(item => {
-            let time = JSON.stringify([item.format('YYYY'), item.format('MM'), item.format('DD') ]);
+            let time = JSON.stringify([
+                item.format('YYYY'),
+                item.format('MM'),
+                item.format('DD')
+            ]);
+
             let hour = item.format('H');
             if (!hash[time]) {
                 hash[time] = {};
@@ -46,7 +49,11 @@ class Timeline extends React.Component {
 
         for (let key in hash) {
             bars.push((
-                <Day key={uuid.v1()} data={hash[key]} date={JSON.parse(key)} onTravel={this.props.onTravel} />
+                <Day
+                    type={this.props.type}
+                    key={uuid.v1()}
+                    data={hash[key]}
+                    date={JSON.parse(key)} />
             ));
         }
 
@@ -55,15 +62,6 @@ class Timeline extends React.Component {
         );
     }
 }
-
-let { arrayOf, shape, string, func } = React.PropTypes;
-
-Timeline.PropTypes = {
-    data: arrayOf(shape({
-        submitTime: string.isRequired
-    })),
-    onTravel: func.isRequired
-};
 
 export default connect(
     function stateToProps(state, props) {
@@ -75,15 +73,6 @@ export default connect(
         }
     },
     function dispatchToProps(dispatch, props) {
-        switch (props.type) {
-            case 'stream':
-                return {
-                    onTravel: date => dispatch(StreamAction.scrollToDate(date))
-                };
-            case 'raw':
-                return {
-                    onTravel: date => dispatch(RawAction.scrollToDate(date))
-                };
-        }
+        return {};
     }
 )(Timeline);

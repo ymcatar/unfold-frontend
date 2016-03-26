@@ -68,34 +68,6 @@ export default class Stream extends React.Component {
     }
 }
 
-let { shape, number, bool, string, arrayOf, func } = React.PropTypes;
-
-Stream.propTypes = {
-    position: shape({
-        index: number.isRequired,
-        offset: number.isRequired,
-        scrollTop: number,
-        force: bool,
-        animate: bool
-    }),
-    filter: string.isRequired,
-    filteredStream: arrayOf(shape({
-        contributor: shape({
-            id: string,
-            name: string.isRequired,
-            image: string.isRequired
-        }),
-        submitTime: string.isRequired,
-        content: string,
-        type: string.isRequired,
-        source: shape({
-            path: string.isRequired
-        })
-    })),
-    onReportScroll: func.isRequired,
-    onReportViewport: func.isRequired
-};
-
 export default connect(
     function stateToProps(state, props) {
         switch (props.type) {

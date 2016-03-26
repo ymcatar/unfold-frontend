@@ -3,6 +3,7 @@ const zDepth = '0 2px 6px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.10)';
 /* header */
 
 export let Header = {
+	borderColor: '#D0D1D5',
 	zDepth
 };
 
@@ -70,4 +71,21 @@ export let Card = {
 	backgroundColor: 'white',
 	color: '#444',
 	borderColor: '#D0D1D5'
+};
+
+/* editor */
+export let Editor = {
+    border: '#ccc',
+    backgroundColor: '#78909C',
+	inputBackground: 'white',
+	inputBorder: '#ddd',
+	inputColor: 'black',
+    color: 'white',
+	zDepth
+};
+
+export let PostEditor = {
+	border: '#ddd',
+    backgroundColor: 'white',
+    color: 'black'
 };

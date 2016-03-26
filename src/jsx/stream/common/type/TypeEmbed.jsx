@@ -37,10 +37,3 @@ export default class TypeEmbed extends React.Component {
         );
     }
 }
-
-let { string, func, type } = React.PropTypes;
-
-TypeEmbed.PropTypes = {
-    path: string,
-    onResize: func.isRequired
-};

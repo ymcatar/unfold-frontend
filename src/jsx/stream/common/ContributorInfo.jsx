@@ -45,14 +45,3 @@ export default class ContributorInfo extends React.Component {
         );
     }
 }
-
-let { string, shape, bool } = React.PropTypes;
-
-ContributorInfo.propTypes = {
-    contributor: shape({
-        id: string,
-        name: string.isRequired,
-        image: string.isRequired
-    }),
-    submitTime: string.isRequired
-};

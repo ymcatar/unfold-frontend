@@ -1,9 +1,13 @@
 import React from 'react';
 import uuid from 'node-uuid';
+import { connect } from 'react-redux';
 
 import Bar from './Bar.jsx';
 
 import { Day as Colors } from 'config/colors';
+
+import { scrollToDate as stream_scrollToDate } from 'redux/actions/stream';
+import { scrollToDate as raw_scrollToDate } from 'redux/actions/raw';
 
 const styles = {
     text: {
@@ -18,7 +22,7 @@ const styles = {
     }
 };
 
-export default class Day extends React.Component {
+class Day extends React.Component {
     render() {
         let bars = [];
         let hash = this.props.data;
@@ -30,10 +34,8 @@ export default class Day extends React.Component {
             bars.push((
                 <Bar
                     key={uuid.v1()}
-                    time={year + month + day + i}
                     label={i < 10? '0'+i: i}
                     length={length}
-                    heavier={i === '0'}
                     onClick={this.props.onTravel.bind(this, new Date(year, month - 1, day, i))} />
             ));
         }
@@ -48,10 +50,16 @@ export default class Day extends React.Component {
     }
 }
 
-let { number, string, func, arrayOf, object } = React.PropTypes;
-
-Day.PropTypes = {
-    date: arrayOf(number).isRequired,
-    onTravel: func.isRequired,
-    data: arrayOf(object).isRequired
-};
+export default connect(
+    function stateToProps(state, props) {
+        return {};
+    },
+    function dispatchToProps(dispatch, props) {
+        switch (props.type) {
+            case 'stream':
+                return { onTravel: date => dispatch(stream_scrollToDate(date)) };
+            case 'raw':
+                return { onTravel: date => dispatch(raw_scrollToDate(date)) };
+        }
+    }
+)(Day);

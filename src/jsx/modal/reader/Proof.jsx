@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 
+import { hideReaderProof } from 'redux/actions/modal';
+
 import { connect } from 'react-redux';
 
 import { Modal, Button, Input } from 'react-bootstrap';
@@ -46,29 +48,16 @@ class Proof extends React.Component {
     }
 }
 
-let { arrayOf, shape, string, bool } = React.PropTypes;
-
-Proof.propTypes = {
-    contributor: arrayOf(
-        shape({
-            id: string,
-            name: string.isRequired,
-            image: string.isRequired,
-            online: bool.isRequired
-        }))
-};
-
-Proof.defaultProps = {
-    contributor: []
-};
-
 export default connect(
     function stateToProps(state) {
         return {
-            contributor: state.event.roles.filter(i => i.type === "CONTRIBUTOR")
+            contributor: state.event.roles.filter(i => i.type === "CONTRIBUTOR"),
+            show: state.modal.active === 'readerProof'
         };
     },
     function dispatchToProps(dispatch) {
-        return {};
+        return {
+            handleHide: () => dispatch(hideReaderProof())
+        };
     }
 )(Proof);

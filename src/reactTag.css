@@ -14,22 +14,20 @@ div.ReactTags__tagInput {
     vertical-align: middle;
     background-repeat: no-repeat;
     background-position: right 8px center;
-    border: 1px solid #ccc;
+    border: 1px solid #407FDD;
     border-radius: 3px;
     outline: none;
 }
 div.ReactTags__tagInput input,
 div.ReactTags__tagInput input:focus {
     padding: 0 10px 0 10px;
-    height: 27px;
+    height: 25px;
     font-size: 12px;
     width: 100%;
     outline: none;
-    border: 1px solid #ddd;
-    background: #eee;
+    background: white;
     font-weight: bold;
     padding: 5px;
-    border-radius: 2px;
 }
 
 /* Styles for selected tags */
@@ -37,8 +35,8 @@ div.ReactTags__selected {
     float: left;
 }
 div.ReactTags__selected span.ReactTags__tag {
-    border: 1px solid #ddd;
-    background: #eee;
+    border: 1px solid #407FDD;
+    background: white;
     color: black;
     font-size: 12px;
     font-weight: bold;

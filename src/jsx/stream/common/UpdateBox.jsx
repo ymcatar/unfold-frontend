@@ -96,26 +96,6 @@ class UpdateBox extends React.Component {
     }
 }
 
-let { string, func, shape, bool } = React.PropTypes;
-
-UpdateBox.propTypes = {
-    data: shape({
-        contributor: shape({
-            id: string,
-            name: string.isRequired,
-            image: string.isRequired
-        }),
-        submitTime: string.isRequired,
-        content: string,
-        type: string.isRequired,
-        source: shape({
-            path: string.isRequired
-        })
-    }),
-    onResize: func.isRequired,
-    showReaderProof: func.isRequired
-};
-
 export default connect(
     function stateToProps(state) {
         return {};

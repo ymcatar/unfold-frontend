@@ -46,17 +46,6 @@ export default class Tags extends React.Component {
     }
 }
 
-let { func, arrayOf, string } = React.PropTypes;
-
-Tags.PropTypes = {
-    data: arrayOf(string).isRequired,
-    handleFilter: func.isRequired
-};
-
-Tags.defaultProps = {
-    data: []
-};
-
 export default connect(
     function stateToProps(state) {
         return {};

@@ -10,10 +10,10 @@ import ReaderModal from 'modal/ReaderModal.jsx';
 
 const styles = {
     main: {
-        paddingTop: '50px',
+        marginTop: '50px',
         overflow: 'hidden',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center',
         overflowX: 'hidden'
     }
@@ -25,7 +25,7 @@ export default class ReaderView extends React.Component {
             <div>
                 <Header type="contributor" />
                 <div style={styles.main}>
-                    <Sidebar />
+                    <Sidebar role="contributor" type="raw" />
                     <Stream type="raw" />
                     <Timeline type="raw" />
                     <ReaderModal />

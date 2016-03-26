@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 
 import { connect } from 'react-redux';
+import { hideReaderMail } from 'redux/actions/modal';
 
 import { Modal, Button, Input } from 'react-bootstrap';
 
@@ -46,29 +47,16 @@ class Mail extends React.Component {
     }
 }
 
-let { arrayOf, shape, string, bool } = React.PropTypes;
-
-Mail.propTypes = {
-    contributor: arrayOf(
-        shape({
-            id: string,
-            name: string.isRequired,
-            image: string.isRequired,
-            online: bool.isRequired
-        }))
-};
-
-Mail.defaultProps = {
-    contributor: []
-};
-
 export default connect(
     function stateToProps(state) {
         return {
-            contributor: state.event.roles.filter(i => i.type === "CONTRIBUTOR")
+            contributor: state.event.roles.filter(i => i.type === "CONTRIBUTOR"),
+            show: state.modal.active == "readerMail"
         };
     },
     function dispatchToProps(dispatch) {
-        return {};
+        return {
+            handleHide: () => dispatch(hideReaderMail())
+        };
     }
 )(Mail);
