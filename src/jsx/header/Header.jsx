@@ -68,14 +68,17 @@ class Header extends React.Component {
             <Nav pullRight onSelect={this.handleNavClick}>
                 <NavItem eventKey={'mail'} href="#">
                     <i className="material-icons">mail</i>
+                    &nbsp;MAIL
                 </NavItem>
                 <NavItem eventKey={'top'} href="#">
                     <i className="material-icons">vertical_align_top</i>
+                    &nbsp;TOP
                 </NavItem>
                 <NavItem eventKey={'sidebar'} href="#">
                     {this.props.sidebar?
                         <i className="material-icons">info</i>:
                         <i className="material-icons">info_outline</i>}
+                    &nbsp;INFO
                 </NavItem>
             </Nav>
         );
