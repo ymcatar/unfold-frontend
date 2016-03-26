@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import * as StreamAction from 'redux/actions/stream';
 import * as RawAction from 'redux/actions/raw';
 
-import { Stream as Colors } from 'config/Colors.jsx';
+import { Stream as Colors } from 'config/colors';
 
 import UpdateBox from './common/UpdateBox.jsx';
 import LazyScroller from './common/LazyScroller.jsx';

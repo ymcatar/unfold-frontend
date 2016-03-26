@@ -9,7 +9,8 @@ const styles = {
         display: 'flex',
         width: '100%',
         flexFlow: 'row wrap',
-        alignContent: 'flex-start'
+        alignContent: 'flex-start',
+        marginBottom: '-5px'
     }
 };
 

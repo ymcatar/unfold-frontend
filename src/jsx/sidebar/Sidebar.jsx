@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { fetchEvent } from 'redux/actions/event';
 import { toggleSidebar } from 'redux/actions/ui';
 
-import { Info as Colors } from 'config/Colors.jsx';
+import { Info as Colors } from 'config/colors';
 
 import EventDetail from './common/EventDetail.jsx';
 import Information from './common/Information.jsx';

@@ -2,11 +2,13 @@ import React from 'react';
 import _ from 'lodash';
 
 import { Panel } from 'react-bootstrap';
-import { CollapseBox as Colors } from 'config/Colors.jsx';
+import { CollapseBox as Colors } from 'config/colors';
 
 const styles = {
     main: {
-        boxShadow: Colors.zDepth
+        border: `1px solid ${Colors.borderColor}`,
+        borderTopWidth: '0px',
+        borderBottomWidth: '2px'
     }
 };
 

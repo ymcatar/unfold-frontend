@@ -8,7 +8,7 @@ import { Button } from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
 
-import Colors from 'config/Colors.jsx';
+import Colors from 'config/colors';
 
 import Card from 'common/Card.jsx';
 

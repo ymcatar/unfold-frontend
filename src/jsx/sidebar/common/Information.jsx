@@ -2,7 +2,7 @@ import React from 'react';
 
 import markdown from 'common/Markdown.js';
 
-import { Information as Colors } from 'config/Colors.jsx';
+import { Information as Colors } from 'config/colors';
 
 import CollapseBox from '../common/CollapseBox.jsx';
 

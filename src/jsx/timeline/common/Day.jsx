@@ -3,7 +3,7 @@ import uuid from 'node-uuid';
 
 import Bar from './Bar.jsx';
 
-import { Day as Colors } from 'config/Colors.jsx';
+import { Day as Colors } from 'config/colors';
 
 const styles = {
     text: {
@@ -14,7 +14,7 @@ const styles = {
         lineHeight: '0.5'
     },
     main: {
-        margin: '30px 0 2px 0px'
+        margin: '30px 0 0 0'
     }
 };
 

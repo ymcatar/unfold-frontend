@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Row, Col } from 'react-bootstrap';
 
-import { EventDetail as Colors } from 'config/Colors.jsx';
+import { EventDetail as Colors } from 'config/colors';
 
 const styles = {
     main: {

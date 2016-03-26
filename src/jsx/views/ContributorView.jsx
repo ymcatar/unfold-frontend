@@ -4,7 +4,7 @@ import MediaQuery from 'react-responsive';
 import Header from 'header/Header.jsx';
 import Stream from 'stream/Stream.jsx';
 import Timeline from 'timeline/Timeline.jsx';
-import Sidebar from 'info/Sidebar.jsx';
+import Sidebar from 'sidebar/Sidebar.jsx';
 
 import ReaderModal from 'modal/ReaderModal.jsx';
 
@@ -25,10 +25,9 @@ export default class ReaderView extends React.Component {
             <div>
                 <Header type="contributor" />
                 <div style={styles.main}>
-                    <Timeline type="raw" />
                     <Sidebar />
-
                     <Stream type="raw" />
+                    <Timeline type="raw" />
                     <ReaderModal />
                 </div>
             </div>

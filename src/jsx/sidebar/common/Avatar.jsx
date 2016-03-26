@@ -3,11 +3,11 @@ import uuid from 'node-uuid';
 
 import { Image, OverlayTrigger, Popover } from 'react-bootstrap';
 
-import { Avatar as Colors } from 'config/Colors.jsx';
+import { Avatar as Colors } from 'config/colors';
 
 const styles = {
     main: {
-        margin: '0px 10px 10px 0px'
+        margin: '0px 5px 5px 0px'
     }
 };
 

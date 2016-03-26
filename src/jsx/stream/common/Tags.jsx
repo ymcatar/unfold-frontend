@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'node-uuid';
 
-import { Tags as Colors } from 'config/Colors.jsx';
+import { Tags as Colors } from 'config/colors';
 import { selectFilter } from 'redux/actions/stream';
 
 const getStyles = style => ({

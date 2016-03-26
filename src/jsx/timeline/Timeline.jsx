@@ -8,7 +8,7 @@ import * as RawAction from 'redux/actions/raw';
 import uuid from 'node-uuid';
 import moment from 'moment';
 
-import { Timeline as Colors } from 'config/Colors.jsx';
+import { Timeline as Colors } from 'config/colors';
 
 import Day from './common/Day.jsx';
 

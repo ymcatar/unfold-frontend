@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Card as Colors } from 'config/Colors.jsx';
+import { Card as Colors } from 'config/colors';
 
 const styles = {
     main: {

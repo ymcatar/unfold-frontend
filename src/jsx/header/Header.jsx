@@ -11,12 +11,11 @@ import { showReaderMail } from 'redux/actions/modal'; 
 
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-bootstrap';
 
-import { Header as Colors } from 'config/Colors.jsx';
+import { Header as Colors } from 'config/colors';
 
 const styles = {
     main: {
-        border: 'none',
-        borderBottom: '1px solid #D3D2D3',
+        border: '1px solid #D0D1D5',
         fontWeight: 'bold'
     }
 };

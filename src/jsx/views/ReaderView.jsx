@@ -4,7 +4,7 @@ import MediaQuery from 'react-responsive';
 import Header from 'header/Header.jsx';
 import Stream from 'stream/Stream.jsx';
 import Timeline from 'timeline/Timeline.jsx';
-import Sidebar from 'info/Sidebar.jsx';
+import Sidebar from 'sidebar/Sidebar.jsx';
 
 import ReaderModal from 'modal/ReaderModal.jsx';
 
