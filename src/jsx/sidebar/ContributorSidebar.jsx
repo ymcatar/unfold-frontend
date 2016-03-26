@@ -14,7 +14,8 @@ const getShowStyle = visible => ({
 
 const styles = {
     nav: {
-        borderBottom: '2px solid rgba(255, 255, 255, 0.3)',
+        paddingBottom: '2px',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
         marginBottom: '40px'
     }
 };
@@ -32,7 +33,8 @@ class ContributorSidebar extends React.Component {
                         activeKey={this.props.active}
                         onSelect={this.props.handleSelect}>
                         <NavItem eventKey="event">Event</NavItem>
-                        <NavItem eventKey="post">Post</NavItem>
+                        <NavItem eventKey="post">
+                        Contributor</NavItem>
                     </Nav>
                 </div>
                 <div style={getShowStyle(editor)}>

@@ -70,6 +70,7 @@ a:focus {
     background-color: transparent;
     border-radius: 0px;
     font-weight: bolder;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .nav-pills>li>a, .nav-pills>li>a:focus, .nav-pills>li>a:hover {

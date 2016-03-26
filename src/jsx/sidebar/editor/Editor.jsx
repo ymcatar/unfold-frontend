@@ -118,15 +118,12 @@ class Editor extends React.Component {
                         bsSize="small">
                         Submit
                     </Button>
-                    {/*
-                        // Remove clear until medium editor bug resolved
-                        <Button
-                            onClick={this.handleClear}
-                            bsStyle="primary"
-                            bsSize="small">
-                            Clear
-                        </Button>
-                    */}
+                    <Button
+                        onClick={this.handleClear}
+                        bsStyle="primary"
+                        bsSize="small">
+                        Clear
+                    </Button>
                 </ButtonToolbar>
             </div>
         );
