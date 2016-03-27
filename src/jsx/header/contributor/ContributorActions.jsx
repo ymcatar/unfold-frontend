@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { Nav, NavItem } from 'react-bootstrap';
 
 import { toggleSidebar } from 'redux/actions/ui';
-import { showReaderMail } from 'redux/actions/modal'; 
+import { showReaderMail, showStreamSettings } from 'redux/actions/modal'; 
 import { scrollToTop } from 'redux/actions/raw';
+
+import User from '../common/User.jsx';
 
 class ContributorActions extends React.Component {
     constructor(props) {
@@ -15,6 +17,9 @@ class ContributorActions extends React.Component {
 
     handleNavClick(key) {
         switch (key) {
+            case 'settings':
+                this.props.showStreamSettings();
+                break;
             case 'sidebar':
                 this.props.toggleSidebar(!this.props.sidebar);
                 break;
@@ -30,6 +35,9 @@ class ContributorActions extends React.Component {
     render() {
         return (
             <Nav pullRight onSelect={this.handleNavClick}>
+                <NavItem eventKey={'settings'} href="#">
+                    <i className="material-icons">settings</i>
+                </NavItem>
                 <NavItem eventKey={'mail'} href="#">
                     <i className="material-icons">mail</i>
                     &nbsp;MAIL
@@ -44,6 +52,7 @@ class ContributorActions extends React.Component {
                         <i className="material-icons">info_outline</i>}
                     &nbsp;SIDEBAR
                 </NavItem>
+                <User />
             </Nav>
         );
     }
@@ -59,7 +68,8 @@ export default connect(
         return ({
             toggleSidebar: val => dispatch(toggleSidebar(val)),
             handleBackToTop: () => dispatch(scrollToTop()),
-            showReaderMail: () => dispatch(showReaderMail())
+            showReaderMail: () => dispatch(showReaderMail()),
+            showStreamSettings: () => dispatch(showStreamSettings()),
         });
     }
 )(ContributorActions);

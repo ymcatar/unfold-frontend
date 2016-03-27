@@ -6,7 +6,7 @@ import Stream from 'stream/Stream.jsx';
 import Timeline from 'timeline/Timeline.jsx';
 import Sidebar from 'sidebar/Sidebar.jsx';
 
-import ReaderModal from 'modal/ReaderModal.jsx';
+import ContributorModal from 'modal/ContributorModal.jsx';
 
 const styles = {
     main: {
@@ -28,7 +28,7 @@ export default class ReaderView extends React.Component {
                     <Sidebar role="contributor" />
                     <Stream role="contributor" />
                     <Timeline type="raw" />
-                    <ReaderModal />
+                    <ContributorModal />
                 </div>
             </div>
         );

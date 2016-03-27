@@ -30,7 +30,10 @@ export default function reduceStream(state, action) {
 
 		case actions.SHOW_PROFILE:
 		case actions.HIDE_PROFILE:
-		
+
+		case actions.SHOW_STREAM_SETTINGS:
+		case actions.HIDE_STREAM_SETTINGS:
+
 			modal = { active: action.active, data: action.data };
 			break;
 	}
