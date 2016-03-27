@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { Modal, Button, Input } from 'react-bootstrap';
 
-class Settings extends React.Component {
+class Login extends React.Component {
     constructor(props) {
         super(props);
         this.elm = {};
@@ -52,4 +52,4 @@ export default connect(
             login: (username, password) => dispatch(postLogin(username, password))
         };
     }
-)(Settings);
+)(Login);

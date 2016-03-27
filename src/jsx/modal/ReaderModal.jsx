@@ -5,6 +5,7 @@ import Proof from './reader/Proof.jsx';
 import Settings from './reader/Settings.jsx';
 
 import Login from './common/Login.jsx';
+import Error from './common/Error.jsx';
 
 export default class ReaderModal extends React.Component {
     render() {
@@ -15,6 +16,7 @@ export default class ReaderModal extends React.Component {
                 <Settings />
 
                 <Login />
+                <Error />
             </div>
         );
     }

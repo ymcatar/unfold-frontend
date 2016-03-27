@@ -1,3 +1,17 @@
+export const SHOW_ERROR = 'modal: show error';
+export let showError = msg => ({
+    type: SHOW_ERROR,
+    active: 'error',
+    data: msg
+});
+
+export const HIDE_ERROR = 'modal: hide error';
+export let hideError = () => ({
+    type: HIDE_ERROR,
+    active: null,
+    data: null
+});
+
 export const SHOW_READER_MAIL = 'modal: show reader mail';
 export let showReaderMail = () => ({
     type: SHOW_READER_MAIL,

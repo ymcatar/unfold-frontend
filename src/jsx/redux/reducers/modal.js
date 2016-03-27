@@ -9,6 +9,8 @@ export default function reduceStream(state, action) {
 	modal = modal || initialState;
 
 	switch (action.type) {
+		case actions.SHOW_ERROR:
+		case actions.HIDE_ERROR:
 		case actions.SHOW_READER_MAIL:
 		case actions.HIDE_READER_MAIL:
 		case actions.SHOW_READER_PROOF:
