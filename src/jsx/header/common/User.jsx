@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
-import { showLogin } from 'redux/actions/modal';
+import { showLogin, showProfile, showSuccess } from 'redux/actions/modal';
 import { getUser, loadLogin, loadLogout } from 'redux/actions/ajax';
 
 class User extends React.Component {
@@ -28,10 +28,11 @@ class User extends React.Component {
     handleNavClick(key) {
         switch (key) {
             case 'profile':
-                this.props.showProfileChange();
+                this.props.showProfile();
                 break;
             case 'logout':
                 this.props.loadLogout();
+                this.props.showSuccess('Successfully logout.');
                 break;
         }
     }
@@ -71,6 +72,8 @@ export default connect(
             loadLogin: () => dispatch(loadLogin()),
             loadLogout: () => dispatch(loadLogout()),
             showLogin: () => dispatch(showLogin()),
+            showProfile: () => dispatch(showProfile()),
+            showSuccess: msg => dispatch(showSuccess(msg)),
             getUser: name => dispatch(getUser(name))
         };
     }

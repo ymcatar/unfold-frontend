@@ -6,6 +6,8 @@ import Settings from './reader/Settings.jsx';
 
 import Login from './common/Login.jsx';
 import Error from './common/Error.jsx';
+import Success from './common/Success.jsx';
+import Profile from './common/Profile.jsx';
 
 export default class ReaderModal extends React.Component {
     render() {
@@ -17,6 +19,8 @@ export default class ReaderModal extends React.Component {
 
                 <Login />
                 <Error />
+                <Success />
+                <Profile />
             </div>
         );
     }
