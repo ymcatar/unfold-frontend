@@ -1,7 +1,7 @@
 import { domain } from 'config/config';
 import fetch from 'isomorphic-fetch';
 
-import { showError } from './modal';
+import { showError, hideLogin } from './modal';
 
 export const RECEIVE_EVENT = 'ajax: receive event';
 let receiveEvent = data => {
@@ -31,23 +31,61 @@ let receiveLogin = data => {
     };
 };
 
+export const LOAD_LOGIN = 'ajax: load login';
+export let loadLogin = (token, exp) => {
+    return function(dispatch) {
+        return new Promise((resolve, reject) => {
+            dispatch(receiveLogin({token, exp}));
+            resolve();
+        });
+    };
+};
+
+export const LOAD_LOGOUT = 'ajax: load logout';
+export let loadLogout = () => ({
+    type: LOAD_LOGOUT
+});
+
 export const POST_LOGIN = 'ajax: post login';
 export let postLogin = (username, password) => {
     return function(dispatch) {
         return fetch(`${domain}/auth`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({username, password})
-        })
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({username, password})
+            })
             .then(res => {
                 if (res.status == 200) {
-                    res.json().then(data => dispatch(receiveLogin(data)));
-                } else
+                    res.json().then(data => {
+                        dispatch(receiveLogin(data));
+                        dispatch(getUser(username));
+                        dispatch(hideLogin());
+                    });
+                } else {
                     dispatch(showError('Login failed. Please try again.'));
-            })
-            .catch(console.error.bind(this));
+                }
+            });
+    };
+};
+
+export const RECEIVE_USER = 'ajax: receive user';
+let receiveUser = data => {
+    return {
+        type: RECEIVE_USER,
+        data
+    };
+};
+
+export const POST_USER = 'ajax: get user';
+export let getUser = username => {
+    return function(dispatch) {
+        return fetch(`${domain}/user/${username}`)
+            .then(res => res.json())
+            .then(data => {
+                dispatch(receiveUser(data));
+            });
     };
 };

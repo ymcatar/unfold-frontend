@@ -28,8 +28,16 @@ class Login extends React.Component {
                     <Modal.Title>Login</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Input ref={x => {this.elm.username = x;}} label="Username" type="text" />
-                    <Input ref={x => {this.elm.password = x;}} label="Password" type="password"/>
+                    <Input
+                        ref={x => {this.elm.username = x;}}
+                        defaultValue="nyancat_73345"
+                        label="Username"
+                        type="text" />
+                    <Input
+                        ref={x => {this.elm.password = x;}}
+                        defaultValue="eightstars"
+                        label="Password"
+                        type="password"/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button bsSize="small" onClick={this.props.handleHide}>Cancel</Button>

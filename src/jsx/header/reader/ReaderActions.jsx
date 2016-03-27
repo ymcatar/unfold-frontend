@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { Nav, NavItem } from 'react-bootstrap';
 
 import { toggleSidebar } from 'redux/actions/ui';
-import { showReaderMail, showReaderSettings, showLogin } from 'redux/actions/modal'; 
+import { showReaderMail, showReaderSettings } from 'redux/actions/modal'; 
 import { scrollToTop } from 'redux/actions/stream';
+
+import User from '../common/User.jsx';
 
 class ReaderActions extends React.Component {
     constructor(props) {
@@ -27,12 +29,6 @@ class ReaderActions extends React.Component {
             case 'mail':
                 this.props.showReaderMail();
                 break;
-            case 'user':
-                if (this.props.user)
-                    this.props.showLogout();
-                else
-                    this.props.showLogin();
-                break;
         }
     }
 
@@ -41,11 +37,9 @@ class ReaderActions extends React.Component {
             <Nav pullRight onSelect={this.handleNavClick}>
                 <NavItem eventKey={'settings'} href="#">
                     <i className="material-icons">settings</i>
-                    &nbsp;SETTINGS
                 </NavItem>
                 <NavItem eventKey={'mail'} href="#">
                     <i className="material-icons">mail</i>
-                    &nbsp;MAIL
                 </NavItem>
                 <NavItem eventKey={'top'} href="#">
                     <i className="material-icons">vertical_align_top</i>
@@ -57,10 +51,7 @@ class ReaderActions extends React.Component {
                         <i className="material-icons">info_outline</i>}
                     &nbsp;INFO
                 </NavItem>
-                <NavItem eventKey={'user'} href="#">
-                    <i className="material-icons">people</i>
-                    &nbsp;LOGIN
-                </NavItem>
+                <User />
             </Nav>
         );
     }
@@ -78,7 +69,6 @@ export default connect(
             handleBackToTop: () => dispatch(scrollToTop()),
             showReaderMail: () => dispatch(showReaderMail()),
             showSettings: () => dispatch(showReaderSettings()),
-            showLogin: () => dispatch(showLogin())
         });
     }
 )(ReaderActions);
