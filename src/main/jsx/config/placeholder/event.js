@@ -13,7 +13,7 @@ export const event = {
             type: "OWNER",
             name: "Lion Smith",
             description: "Journalist working at Hong Kong Post.",
-            image: "res/avatar.jpg",
+            image: "/res/avatar.jpg",
             online: true
         },
         {
@@ -21,7 +21,7 @@ export const event = {
             type: "CONTRIBUTOR",
             name: "Lion Smith",
             description: "Journalist working at Hong Kong Post.",
-            image: "res/avatar.jpg",
+            image: "/res/avatar.jpg",
             online: true
         },
         {
@@ -29,7 +29,7 @@ export const event = {
             type: "CONTRIBUTOR",
             name: "Doggy Chan",
             description: "Experienced field reportor from CBC.",
-            image: "res/avatar2.jpg",
+            image: "/res/avatar2.jpg",
             online: true
         },
         {
@@ -37,7 +37,7 @@ export const event = {
             type: "CONTRIBUTOR",
             name: "Isaac Clinton",
             description: "Experienced correspondents from Britain Mail.",
-            image: "res/avatar3.jpg",
+            image: "/res/avatar3.jpg",
             online: true
         },
         {
@@ -45,7 +45,7 @@ export const event = {
             type: "CONTRIBUTOR",
             name: "Camus Bush",
             description: "A passionate amateur journalist.",
-            image: "res/avatar4.jpg",
+            image: "/res/avatar4.jpg",
             online: false
         },
         {
@@ -53,7 +53,7 @@ export const event = {
             type: "CONTRIBUTOR",
             name: 'Descrates Sanders',
             description: 'Greatest painter of all time.',
-            image: 'res/avatar5.jpg',
+            image: '/res/avatar5.jpg',
             online: false
         },
         {
@@ -61,7 +61,7 @@ export const event = {
             type: "CONTRIBUTOR",
             name: 'Socrates Oilver',
             description: 'A professional journalist and part-time philosopher.',
-            image: 'res/avatar6.jpg',
+            image: '/res/avatar6.jpg',
             online: false
         },
         {
@@ -69,7 +69,7 @@ export const event = {
             type: "TRANSLATOR",
             name: 'Vincent Chan',
             description: 'Good at French and painting.',
-            image: 'res/avatar7.jpg',
+            image: '/res/avatar7.jpg',
             online: false
         },
         {
@@ -77,7 +77,7 @@ export const event = {
             type: "TRANSLATOR",
             name: 'Socrates Oilver',
             description: 'A professional journalist and part-time philosopher.',
-            image: 'res/avatar6.jpg',
+            image: '/res/avatar6.jpg',
             online: true
         },
         {
@@ -85,7 +85,7 @@ export const event = {
             type: "TRANSLATOR",
             name: 'Matias',
             description: 'Savior',
-            image: 'res/avatar2.jpg',
+            image: '/res/avatar2.jpg',
             online: false
         }
     ]

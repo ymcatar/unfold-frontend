@@ -16,7 +16,7 @@ const history = createBrowserHistory({ queryKey: false });
 ReactDOM.render((
     <Provider store={store}>
         <Router history={history}>
-            <Route path='/'>
+            <Route path='/main'>
                 <Route path='contributor' component={ContributorView} />
                 <IndexRoute component={ReaderView} />
             </Route>

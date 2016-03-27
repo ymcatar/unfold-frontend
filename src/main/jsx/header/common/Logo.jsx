@@ -6,7 +6,7 @@ export default class Logo extends React.Component {
         return (
             <Navbar.Header>
                 <Navbar.Brand>
-                    <img src="res/logo.png"/>
+                    <img src="/res/logo.png"/>
                 </Navbar.Brand>
                 <Navbar.Toggle />
             </Navbar.Header>

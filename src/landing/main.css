@@ -1,0 +1,71 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700);
+
+html, body, #main {
+    font-family: Roboto Slab, sans-serif !important;
+    padding: 0;
+    margin: 0;
+    background: #fafafa;
+}
+
+.neal-section h1, h2 {
+    color: #4689F1;
+}
+
+h1, h2, h3 {
+    margin-bottom: 20px;
+}
+
+.demo-image {
+    margin-bottom: 20px;
+    max-width: 100%;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+
+.lead {
+    font-weight: normal;
+}
+
+.navbar {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.tagline-header {
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.16);
+}
+
+.event-box {
+    border: 5px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 0 50px 0;
+}
+
+.inverse {
+    background-color: #4689F1;
+    color: white;
+}
+
+.logo-text {
+    padding-left: 5px;
+    border-left: 3px solid #888;
+    font-weight: bolder;
+    color: #888;
+}
+
+.main-text {
+    font-weight: light;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icons i {
+    padding-right: 20px;
+}
