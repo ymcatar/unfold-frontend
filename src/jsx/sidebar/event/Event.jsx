@@ -38,6 +38,18 @@ class ReaderSidebar extends React.Component {
     }
 }
 
+ReaderSidebar.defaultProps = {
+    event: {
+        title: '',
+        description: '',
+        information: '',
+        roles: [],
+        startedAt: '',
+        endedAt: '',
+        location: ''
+    }
+};
+
 export default connect(
     function stateToProps(state) {
         return {

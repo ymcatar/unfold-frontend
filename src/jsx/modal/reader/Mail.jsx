@@ -50,7 +50,7 @@ class Mail extends React.Component {
 export default connect(
     function stateToProps(state) {
         return {
-            contributor: state.event.roles.filter(i => i.type === "CONTRIBUTOR"),
+            contributor: state.event? state.event.roles.filter(i => i.type === "CONTRIBUTOR"): [],
             show: state.modal.active == "readerMail"
         };
     },
