@@ -94,11 +94,15 @@ export let getUser = id => {
     };
 };
 
-export let putUser = (id, name, profile) => {
+export let putUser = (token, id, name, profile) => {
     return function(dispatch) {
         return fetch(`${domain}/user/${id}`, {
             method: 'PUT',
-            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
             body: JSON.stringify({name, profile})
         })
         .then(res => {

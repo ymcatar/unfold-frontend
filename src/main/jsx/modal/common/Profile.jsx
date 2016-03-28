@@ -18,7 +18,7 @@ class Login extends React.Component {
     handleSubmit() {
         let name = this.elm.name.getValue();
         let description = this.elm.description.getValue();
-        this.props.putUser(this.props.user.id, name, { description });
+        this.props.putUser(this.props.token, this.props.user.id, name, { description });
     }
 
     render() {
@@ -54,13 +54,14 @@ export default connect(
     function stateToProps(state) {
         return {
             show: state.modal.active === 'profile',
-            user: state.user
+            user: state.user,
+            token: state.auth? state.auth.token: null
         };
     },
     function dispatchToProps(dispatch) {
         return {
             handleHide: () => dispatch(hideProfile()),
-            putUser: (id, name, profile) => dispatch(putUser(id, name, profile))
+            putUser: (token, id, name, profile) => dispatch(putUser(token, id, name, profile))
         };
     }
 )(Login);
