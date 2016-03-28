@@ -31,8 +31,8 @@ const styles = {
 
 export default class EventDetail extends React.Component {
     render() {
-        let startedAt = moment(this.props.startedAt).format('ll');
-        let endedAt = moment(this.props.endedAt).format('ll');
+        let startedAt = this.props.startedAt? moment(this.props.startedAt).format('ll'): '?';
+        let endedAt = this.props.endedAt? moment(this.props.endedAt).format('ll'): '?';
         let { location } = this.props;
         return (
             <div style={styles.main}>

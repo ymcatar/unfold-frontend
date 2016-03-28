@@ -13,7 +13,8 @@ export default function reduceEvent(state, action) {
     switch (action.type) {
         case actions.RECEIVE_EVENT: {
             let { event } = state;
-            changes.event = placeholder;
+            changes.event = action.data || placeholder;
+            changes.event.roles = placeholder.roles; // using placeholder until avatar upload added
             break;
         }
         case actions.LOAD_LOGIN:

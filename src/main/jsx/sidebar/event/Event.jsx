@@ -10,10 +10,12 @@ import RoleList from './common/RoleList.jsx';
 class ReaderSidebar extends React.Component {
 
     componentWillMount() {
-        this.props.fetchEvent();
+        if (this.props.eventId)
+            this.props.fetchEvent(this.props.eventId);
     }
 
     render() {
+
         let { title, description, information, roles } = this.props.event;
         let { startedAt, endedAt, location } = this.props.event;
 
@@ -53,7 +55,8 @@ ReaderSidebar.defaultProps = {
 export default connect(
     function stateToProps(state) {
         return {
-            event: state.event
+            event: state.event,
+            eventId: state.ui.eventId
         };
     },
     function dispatchToProps(dispatch) {
