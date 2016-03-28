@@ -5,7 +5,7 @@ var app = express();
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/main', (req, res, next) => {
+app.get('/main/*', (req, res, next) => {
 	res.sendFile(path.resolve(__dirname, './dist/main/index.html'));
 });
 

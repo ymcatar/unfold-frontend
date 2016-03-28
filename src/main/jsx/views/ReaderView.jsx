@@ -21,6 +21,7 @@ const styles = {
 
 export default class ReaderView extends React.Component {
     render() {
+        console.log(this.props.params.eventId);
         return (
             <div>
                 <Header role="reader" />

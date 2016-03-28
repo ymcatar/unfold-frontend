@@ -17,8 +17,10 @@ ReactDOM.render((
     <Provider store={store}>
         <Router history={history}>
             <Route path='/main'>
+                <Route path='reader'>
+                    <Route path=":eventId" component={ReaderView} />
+                </Route>
                 <Route path='contributor' component={ContributorView} />
-                <IndexRoute component={ReaderView} />
             </Route>
         </Router>
     </Provider>
