@@ -1,3 +1,9 @@
+export const STORE_EVENT_ID = 'ui: store event id';
+export let storeEventId = val => ({
+    type: STORE_EVENT_ID,
+    eventId: val
+});
+
 export const TOGGLE_SIDEBAR = 'ui: toggle side bar';
 export let toggleSidebar = val => ({
     type: TOGGLE_SIDEBAR,

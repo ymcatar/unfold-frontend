@@ -12,6 +12,9 @@ export default function reduceStream(state, action) {
 	ui = ui || initialState;
 
 	switch (action.type) {
+		case actions.STORE_EVENT_ID:
+			ui = { eventId: action.eventId };
+			break;
 		case actions.TOGGLE_SIDEBAR:
 			ui = { sidebar: action.sidebar };
 			break;

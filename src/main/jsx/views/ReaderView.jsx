@@ -1,6 +1,9 @@
 import React from 'react';
 import MediaQuery from 'react-responsive';
 
+import { connect } from 'react-redux';
+import { storeEventId } from 'redux/actions/ui';
+
 import Header from 'header/Header.jsx';
 import Stream from 'stream/Stream.jsx';
 import Timeline from 'timeline/Timeline.jsx';
@@ -19,9 +22,13 @@ const styles = {
     }
 };
 
-export default class ReaderView extends React.Component {
+class ReaderView extends React.Component {
+
+    componentWillMount() {
+        this.props.storeEventId(this.props.params.eventId);
+    }
+
     render() {
-        console.log(this.props.params.eventId);
         return (
             <div>
                 <Header role="reader" />
@@ -40,3 +47,14 @@ export default class ReaderView extends React.Component {
         );
     }
 }
+
+export default connect (
+    function stateToProps(state) {
+        return {};
+    },
+    function dispatchToProps(dispatch, props) {
+        return {
+            storeEventId: val => dispatch(storeEventId(val))
+        };
+    }
+)(ReaderView);
