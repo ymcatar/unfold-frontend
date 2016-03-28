@@ -69,7 +69,7 @@ export default connect(
     },
     function dispatchToProps(dispatch, props) {
         return {
-            loadLogin: () => dispatch(loadLogin()),
+            loadLogin: (token, exp) => dispatch(loadLogin(token, exp)),
             loadLogout: () => dispatch(loadLogout()),
             showLogin: () => dispatch(showLogin()),
             showProfile: () => dispatch(showProfile()),

@@ -47,12 +47,6 @@ class streamSettings extends React.Component {
                         label="Title" />
 
                     <Input
-                        ref={x => {this.elm.location = x;}}
-                        defaultValue={location}
-                        type="text"
-                        label="Location" />
-
-                    <Input
                         ref={x => {this.elm.description = x;}}
                         defaultValue={description}
                         maxLength={255}
@@ -61,11 +55,17 @@ class streamSettings extends React.Component {
                         label="Description" />
 
                     <Input
-                        ref={x => {this.elm.information = x;}}
-                        defaultValue={information}
+                        ref={x => {this.elm.location = x;}}
+                        defaultValue={location}
+                        type="text"
+                        label="Location" />
+
+                    <Input
                         type="textarea"
-                        label="Information"
-                        placeholder="Markdown is supported." />
+                        ref={x => {this.elm.information = x;}}
+                        defaultValue={information|| 'To be added.'}
+                        placeholder="Markdown is supported."
+                        label="Information" />
 
                 </Modal.Body>
                 <Modal.Footer>

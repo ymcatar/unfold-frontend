@@ -24,16 +24,14 @@ export let putEvent = (token, eventId, data) => {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoibnlhbmNhdF81NjU2IiwibmFtZSI6Ik55YW4gQ2F0IiwiY3JlYXRlZEF0IjoiMjAxNi0wMy0yN1QxNzoyOTo0OC40ODdaIiwicHJvZmlsZSI6e319LCJpYXQiOjE0NTkwOTk3ODgsImV4cCI6MTQ1OTEwMDY4OH0.7XsiWPB-Y1Qr-uRmJusP1YYw_5yf4DouZDXq7xrpEYA' // hard code the token for now
+                    'Authorization': token
                 },
                 body: JSON.stringify(data)
             })
             .then(res => {
                 if (res.status == 200) {
-                    res.json().then(data => {
-                        dispatch(showSuccess('Stream settings saved successfully.'));
-                        dispatch(fetchEvent(eventId));
-                    });
+                    dispatch(showSuccess('Stream settings saved successfully.'));
+                    dispatch(fetchEvent(eventId));
                 } else {
                     dispatch(showError('Editing settings failed. Please try again.'));
                 }
