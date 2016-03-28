@@ -20,7 +20,9 @@ ReactDOM.render((
                 <Route path='reader'>
                     <Route path=":eventId" component={ReaderView} />
                 </Route>
-                <Route path='contributor' component={ContributorView} />
+                <Route path='contributor'>
+                    <Route path=":eventId" component={ContributorView} />
+                </Route>
             </Route>
         </Router>
     </Provider>
