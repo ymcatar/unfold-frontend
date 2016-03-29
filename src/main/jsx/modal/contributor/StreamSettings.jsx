@@ -24,11 +24,15 @@ class streamSettings extends React.Component {
             title: this.elm.title.getValue(),
             location: this.elm.location.getValue(),
             description: this.elm.description.getValue(),
-            information: this.elm.information.getValue(),
-            startedAt: this.state.startedAt.format(),
-            endedAt: this.state.endedAt.format()
+            information: this.elm.information.getValue()
         };
-        console.log(data);
+
+        if (this.state.startedAt)
+            data.startedAt = this.state.startedAt.format();
+
+        if (this.state.endedAt)
+            data.endedAt = this.state.endedAt.format();
+
         this.props.putEvent(this.props.token, this.props.eventId, data);
     }
 
@@ -100,7 +104,7 @@ class streamSettings extends React.Component {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button bsSize="small" onClick={this.props.handleHide}>Cancel</Button>
-                    <Button bsSize="small" onClick={this.handleSubmit}>Submit</Button>
+                    <Button bsStyle="primary" bsSize="small" onClick={this.handleSubmit}>Submit</Button>
                 </Modal.Footer>
             </Modal>
         );
