@@ -75,9 +75,7 @@ class UpdateBox extends React.Component {
             case "reader":
             case "translator":
                 header = (
-                    <ReaderHeader
-                        contributor={this.props.data.contributor}
-                        submitTime={this.props.data.submitTime} />
+                    <ReaderHeader author={this.props.data.author} />
                 );
                 break;
             case "contributor":
@@ -88,16 +86,20 @@ class UpdateBox extends React.Component {
                 break;
         }
 
+        let embedBody = this.props.data.data? (
+            <Type
+                site={this.props.data.data.site}
+                path={this.props.data.data.url}
+                onResize={this.props.onResize} />
+        ): null;
+
         return (
             <div style={_.extend({}, styles.main, this.props.style)}>
                 <Card>
                     {header}
                     <div style={styles.content}>
-                        <TypeText data={this.props.data.content} />
-                        <Type
-                            type={this.props.data.type}
-                            path={this.props.data.source? this.props.data.source.path: null}
-                            onResize={this.props.onResize} />
+                        <TypeText data={this.props.data.caption} />
+                        {embedBody}
                     </div>
                     <div>
                         {tags}

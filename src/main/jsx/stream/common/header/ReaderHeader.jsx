@@ -6,7 +6,8 @@ import { Image } from 'react-bootstrap';
 const styles = {
     avatar: {
         width: '48px',
-        height: '48px'
+        height: '48px',
+        backgroundColor: 'grey' // placeholder for now
     },
     info: {
         marginBottom: '20px',
@@ -30,7 +31,7 @@ const styles = {
 
 export default class ReaderHeader extends React.Component {
     render() {
-        const {name, title, image, online} = this.props.contributor;
+        const {name, title, image, online} = this.props.author;
         const date = moment(this.props.submitTime);
         return (
             <div style={styles.info}>

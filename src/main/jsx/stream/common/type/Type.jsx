@@ -5,21 +5,26 @@ import TypeTwitter from './TypeTwitter.jsx';
 import TypeFacebook from './TypeFacebook.jsx';
 
 const embedMap = {
-    twitter: TypeTwitter,
-    youtube: TypeEmbed,
-    flickr: TypeEmbed,
-    imgur: TypeEmbed,
-    facebook: TypeFacebook,
-    text: null
+    'twitter.com': TypeTwitter,
+    'www.youtube.com': TypeEmbed,
+    'www.flickr.com': TypeEmbed,
+    'www.imgur.com': TypeEmbed,
+    'www.facebook.com': TypeFacebook
 };
 
 export default class Type extends React.Component {
     render() {
+
         if (!this.props.path)
             return null;
-        let Embed = embedMap[this.props.type];
-        return (
-            <Embed path={this.props.path} onResize={this.props.onResize} />
-        );
+
+        let Embed = embedMap[this.props.site];
+
+        if (Embed)
+            return (
+                <Embed path={this.props.path} onResize={this.props.onResize} />
+            );
+        else
+            return null;
     }
 }

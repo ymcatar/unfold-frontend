@@ -3,50 +3,24 @@ import uuid from 'node-uuid';
 
 import * as actions from '../actions/stream';
 
-import StreamData from 'config/placeholder/stream';
-import { roles } from 'config/placeholder/event';
+// import StreamData from 'config/placeholder/stream';
+// import { roles } from 'config/placeholder/event';
 
-class ElementStore {
-    constructor(data) {
-        this.data = data || {};
-    }
+// let ContributorsData = roles.filter(i => i.type === "CONTRIBUTOR");
 
-    get(key) {
-        return this.data[key];
-    }
-
-    set(key, entry) {
-        this.data[key] = entry;
-        // Pretend to be immutable =)
-        return new ElementStore(this.data);
-    }
-
-    forEach(iteratee) {
-        // FIXME: order of forEach may not be stable
-        _.forEach(this.data, (entry, key) => iteratee(entry, key));
-    }
-}
-
-let ContributorsData = roles.filter(i => i.type === "CONTRIBUTOR");
-
-const stream = StreamData
-    .map(post => {
-        let id = uuid.v1();
-        let contributor = ContributorsData.filter(user => user.id === post.contributor)[0];
-        return _.defaults({id, contributor}, post);
-    })
-    .sort((a, b) => new Date(b.submitTime) - new Date(a.submitTime));
-
-const top = { index: 0, offset: 0 };
+// const stream = StreamData
+//     .map(post => {
+//         let id = uuid.v1();
+//         let contributor = ContributorsData.filter(user => user.id === post.contributor)[0];
+//         return _.defaults({id, contributor}, post);
+//     })
+//     .sort((a, b) => new Date(b.submitTime) - new Date(a.submitTime));
 
 const initialState = {
     filter: 'all',
-    completeStream: stream,
-    filteredStream: stream,
-    position: top,
-    elements: new Array(stream.length),
-    cachedElements: [],
-    elementStore: new ElementStore()
+    completeStream: [],
+    filteredStream: [],
+    position: { index: 0, offset: 0 }
 };
 
 initialState.filteredStream = initialState.completeStream;
@@ -93,27 +67,6 @@ export default function reduceStream(state, action) {
         case actions.REPORT_VIEWPORT: {
             // Load data or something fancy
             break;
-        }
-
-        case actions.CREATE_POST: {
-            const types = ['facebook', 'twitter', 'imgur', 'youtube', 'flickr', 'text'];
-            let type = _.find(types, x => action.post.source.path.indexOf(x) !== -1);
-
-            let post = {
-                content: action.post.content,
-                tags: action.post.tags,
-                source: action.post.source,
-                type,
-                id: uuid.v1(),
-                submitTime: new Date(2014, 9, 1, 8, 12),
-                contributor: Placeholder.contributors[0]
-            };
-            stream = {
-                completeStream: [post, ...stream.completeStream],
-                filteredStream:
-                    (stream.filter === 'all' || action.tags.indexOf(stream.filter) !== -1)?
-                        [post, ...stream.filteredStream]: stream.filteredStream
-            };
         }
     }
     return _.defaults({ stream: _.defaults(stream, state.stream) }, state);

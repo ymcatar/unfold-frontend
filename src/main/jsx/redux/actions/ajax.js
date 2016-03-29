@@ -104,11 +104,28 @@ export let putUser = (token, id, name, profile) => {
             body: JSON.stringify({name, profile})
         })
         .then(res => {
-            if (res.status == 200)
+            if (res.status == 200) {
                 dispatch(showSuccess('Profile successfully updated.'));
+                dispatch(getUser(id));
+            }
             else
                 dispatch(showError('Profile update failed. Please try again.'));
         })
         .catch(err => {dispatch(showError('Profile update failed. Please try again.')); });
+    };
+};
+
+/* timeline */
+
+export const RECEIVE_TIMELINE = 'ajax: receive timeline';
+let receiveTimeline = data => ({ type: RECEIVE_TIMELINE, data });
+
+export let getTimeline = eventId => {
+    return function(dispatch) {
+        return fetch(`${domain}/event/${eventId}/timeline`)
+            .then(res => res.json())
+            .then(data => {
+                dispatch(receiveTimeline(data.posts));
+            });
     };
 };

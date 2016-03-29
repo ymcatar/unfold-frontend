@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import { connect } from 'react-redux';
 
+import { getTimeline } from 'redux/actions/ajax';
 import * as StreamAction from 'redux/actions/stream';
 import * as RawAction from 'redux/actions/raw';
 
@@ -39,6 +40,10 @@ export default class Stream extends React.Component {
         _.bindAll(this, ['createPlaceholder']);
     }
 
+    componentWillMount() {
+        this.props.getTimeline(this.props.eventId);
+    }
+
     createPlaceholder(key, height) {
         return (
             <UpdateBox key={key} style={{height: height - 20}} role={this.props.role} />
@@ -73,9 +78,19 @@ export default connect(
         switch (props.role) {
             case 'reader':
             case 'translator':
-                return _.pick(state.stream, 'filter', 'filteredStream', 'position');
+                return {
+                    filter: state.stream.filter,
+                    filteredStream: state.stream.filteredStream,
+                    position: state.stream.position,
+                    eventId: state.ui.eventId
+                };
             case 'contributor':
-                return _.pick(state.raw, 'filter', 'filteredStream', 'position');
+            return {
+                filter: state.raw.filter,
+                filteredStream: state.raw.filteredStream,
+                position: state.raw.position,
+                eventId: state.ui.eventId
+            };
             default:
                 return {};
         }
@@ -86,12 +101,14 @@ export default connect(
             case 'translator':
                 return {
                     onReportScroll: position => dispatch(StreamAction.reportScroll(position)),
-                    onReportViewport: viewport => dispatch(StreamAction.reportViewport(viewport))
+                    onReportViewport: viewport => dispatch(StreamAction.reportViewport(viewport)),
+                    getTimeline: eventId => dispatch(getTimeline(eventId))
                 };
             case 'contributor':
                 return {
                     onReportScroll: position => dispatch(RawAction.reportScroll(position)),
-                    onReportViewport: viewport => dispatch(RawAction.reportViewport(viewport))
+                    onReportViewport: viewport => dispatch(RawAction.reportViewport(viewport)),
+                    getTimeline: eventId => dispatch(getTimeline(eventId))
                 };
             default:
                 return {};

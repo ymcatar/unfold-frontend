@@ -41,6 +41,12 @@ export default function reduceEvent(state, action) {
             changes.user = action.data;
             break;
         }
+
+        case actions.RECEIVE_TIMELINE: {
+            state.stream.filteredStream = action.data;
+            state.stream.completeStream = action.data;
+            return state;
+        }
     }
     return _.defaults(changes, state);
 }
