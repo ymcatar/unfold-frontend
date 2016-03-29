@@ -15,7 +15,8 @@ const staticPath = [
 	'./src/main/index.html',
 	'./src/main/main.css',
 	'./src/main/noembed.css',
-	'./src/main/reactTag.css'
+	'./src/main/reactTag.css',
+	'./src/main/daterangepicker.css'
 ];
 
 const staticLandingPath = [

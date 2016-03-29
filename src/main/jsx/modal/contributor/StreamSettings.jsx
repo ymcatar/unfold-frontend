@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import moment from 'moment';
 
 import { hideStreamSettings } from 'redux/actions/modal';
 import { putEvent } from 'redux/actions/ajax';
@@ -7,30 +8,45 @@ import { putEvent } from 'redux/actions/ajax';
 import { connect } from 'react-redux';
 
 import { Modal, Button, Input } from 'react-bootstrap';
+import DateRangePicker from 'react-bootstrap-daterangepicker';
 
 class streamSettings extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {};
         this.elm = {};
-        _.bindAll(this, ['handeleSubmit']);
+        _.bindAll(this, ['handleSubmit', 'handlePicker']);
     }
 
-    handeleSubmit() {
+    handleSubmit() {
         let data = {
             title: this.elm.title.getValue(),
             location: this.elm.location.getValue(),
             description: this.elm.description.getValue(),
-            information: this.elm.information.getValue()
+            information: this.elm.information.getValue(),
+            startedAt: this.state.startedAt.format(),
+            endedAt: this.state.endedAt.format()
         };
+        console.log(data);
         this.props.putEvent(this.props.token, this.props.eventId, data);
+    }
+
+    handlePicker(e, picker) {
+        this.setState({
+            startedAt: picker.startDate,
+            endedAt: picker.endDate
+        });
     }
 
     render() {
         if (!this.props.event)
             return null;
 
-        let { title, location, description, information } = this.props.event;
+        let { title, location, description, information, startedAt, endedAt } = this.props.event;
+
+        startedAt = startedAt || new Date();
+        endedAt = endedAt || new Date();
 
         return (
             <Modal show={this.props.show} onHide={this.props.handleHide}>
@@ -54,10 +70,12 @@ class streamSettings extends React.Component {
                         type="textarea"
                         label="Description" />
 
+                    <hr />
+
                     <Input
+                        type="text"
                         ref={x => {this.elm.location = x;}}
                         defaultValue={location}
-                        type="text"
                         label="Location" />
 
                     <Input
@@ -67,10 +85,22 @@ class streamSettings extends React.Component {
                         placeholder="Markdown is supported."
                         label="Information" />
 
+                    <hr />
+
+                    <label>Date</label>
+                    <DateRangePicker
+                        onApply={this.handlePicker}
+                        startDate={moment(startedAt)}
+                        endDate={moment(endedAt)}>
+                        <Button>Open</Button>
+                    </DateRangePicker>
+
+                    <hr />
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button bsSize="small" onClick={this.props.handleHide}>Cancel</Button>
-                    <Button bsSize="small" onClick={this.handeleSubmit}>Submit</Button>
+                    <Button bsSize="small" onClick={this.handleSubmit}>Submit</Button>
                 </Modal.Footer>
             </Modal>
         );
