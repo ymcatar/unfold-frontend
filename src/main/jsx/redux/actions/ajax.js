@@ -129,3 +129,18 @@ export let getTimeline = eventId => {
             });
     };
 };
+
+/* timegram */
+
+export const RECEIVE_TIMEGRAM = 'ajax: receive timegram';
+let receiveTimegram = data => ({ type: RECEIVE_TIMEGRAM, data });
+
+export let getTimegram = eventId => {
+    return function(dispatch) {
+        return fetch(`${domain}/event/${eventId}/timegram`)
+            .then(res => res.json())
+            .then(data => {
+                dispatch(receiveTimegram(data));
+            });
+    };
+};

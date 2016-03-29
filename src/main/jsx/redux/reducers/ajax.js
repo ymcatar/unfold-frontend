@@ -47,6 +47,13 @@ export default function reduceEvent(state, action) {
             state.stream.completeStream = action.data;
             return state;
         }
+
+        case actions.RECEIVE_TIMEGRAM: {
+            state.timeline = {};
+            state.timeline.span = action.span;
+            state.timeline.timegram = action.timegram;
+            return state;
+        }
     }
     return _.defaults(changes, state);
 }
