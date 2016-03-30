@@ -5,7 +5,7 @@ import { Nav, NavItem } from 'react-bootstrap';
 
 import { toggleSidebar } from 'redux/actions/ui';
 import { showReaderMail, showReaderSettings } from 'redux/actions/modal'; 
-import { scrollToTop } from 'redux/actions/stream';
+import { scrollTo } from 'redux/actions/stream';
 
 import User from '../common/User.jsx';
 
@@ -66,7 +66,7 @@ export default connect(
     function dispatchToProps(dispatch, props) {
         return ({
             toggleSidebar: val => dispatch(toggleSidebar(val)),
-            handleBackToTop: () => dispatch(scrollToTop()),
+            handleBackToTop: () => dispatch(scrollTo(0)),
             showReaderMail: () => dispatch(showReaderMail()),
             showSettings: () => dispatch(showReaderSettings()),
         });

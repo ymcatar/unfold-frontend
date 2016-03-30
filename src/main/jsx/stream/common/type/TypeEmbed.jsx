@@ -5,35 +5,32 @@ import fetch from 'fetch-jsonp';
 export default class TypeEmbed extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { body: '' };
-        _.bindAll(this, ['onLoad']);
+        this.state = { rendered: false, body: '' };
     }
 
-    componentDidMount() {
-        this.node.addEventListener('load', this.onLoad, true);
-        fetch('http://noembed.com/embed?url=' + this.props.path.trim())
-            .then(res => res.json())
-            .then(body => {
-                this.setState({ body: body.html });
-                if (this.props.onResize)
-                    this.props.onResize();
-            });
-    }
-
-    componentWillUnmount() {
-        this.node.removeEventListener('load', this.onLoad, true);
-    }
-
-    onLoad() {
-        setTimeout(() => {
-            if (this.props.onResize)
-                this.props.onResize();
-        }, 1000);
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.loaded && !this.state.rendered)
+            fetch('http://noembed.com/embed?url=' + this.props.path.trim())
+                .then(res => res.json())
+                .then(body => {
+                    this.setState({ body: body.html });
+                })
+                .then(() => {
+                    let onScroll = (event) => {
+                        this.elm.style.height = 'auto';
+                        this.state.rendered = true; // avoid rerendering
+                        document.removeEventListener('mousewheel', onScroll, false);
+                    };
+                    document.addEventListener('mousewheel', onScroll, false);
+                });
     }
 
     render() {
+        if (!this.props.loaded)
+            return null;
+
         return (
-            <div ref={x => { this.node = x; }} dangerouslySetInnerHTML={{__html: this.state.body}} />
+            <div ref={x => { this.elm = x; }} dangerouslySetInnerHTML={{__html: this.state.body}} />
         );
     }
 }

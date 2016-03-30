@@ -9,7 +9,8 @@ const styles = {
     fb: {
         width: '100% !important',
         overflowY: 'hidden',
-        overflowX: 'scroll'
+        overflowX: 'scroll',
+        height: '100px'
     }
 };
 
@@ -26,21 +27,39 @@ let fbInit = new Promise(resolve => {
 });
 
 export default class TypeFacebook extends React.Component {
-    componentDidMount() {
-        return fbInit.then(() => {
-            return new Promise(resolve => { window.FB.XFBML.parse(this.bodyNode, resolve); });
-        }).then(() => {
-            setTimeout(() => {
-                if (this.props.onResize)
-                    this.props.onResize();
-            }, 500);
-        });
+
+    constructor(props) {
+        super(props);
+        this.state = { rendered: false };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.loaded && !this.state.rendered)
+            fbInit.then(() => {
+                return new Promise(resolve => { window.FB.XFBML.parse(this.elm, resolve); });
+            })
+            .then(() => {
+                let onScroll = (event) => {
+                    this.embedElm.style.height = 'auto';
+                    this.state.rendered = true; // avoid rerendering
+                    document.removeEventListener('mousewheel', onScroll, false);
+                };
+                document.addEventListener('mousewheel', onScroll, false);
+            });
     }
 
     render() {
+        if (!this.props.loaded)
+            return null;
+
         return (
-            <div ref={x => { this.bodyNode = x; }} style={styles.post}>
-                <div style={styles.fb} className="fb-post" data-href={this.props.path} data-width="450" />
+            <div ref={x => { this.elm = x; }} style={styles.post}>
+                <div
+                    ref={x => {this.embedElm = x;}}
+                    style={styles.fb}
+                    className="fb-post"
+                    data-href={this.props.path}
+                    data-width="450" />
             </div>
         );
     }

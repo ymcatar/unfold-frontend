@@ -24,8 +24,7 @@ const styles = {
     main: {
         width: '100%',
         minWidth: '100%',
-        display: 'flex',
-        margin: '2px auto'
+        margin: '5px auto 5px auto'
     },
     content: {
         minWidth: '75%',
@@ -42,11 +41,6 @@ class UpdateBox extends React.Component {
     constructor(props) {
         super(props);
         _.bindAll(this, ['handleVerify']);
-    }
-
-    shouldComponentUpdate(nextProps) {
-        let cond = this.props.data !== nextProps.data || this.props.small !== nextProps.small;
-        return cond;
     }
 
     handleVerify() {
@@ -88,13 +82,13 @@ class UpdateBox extends React.Component {
 
         let embedBody = this.props.data.data? (
             <Type
+                loaded={this.props.visible}
                 site={this.props.data.data.site}
-                path={this.props.data.data.url}
-                onResize={this.props.onResize} />
+                path={this.props.data.data.url} />
         ): null;
 
         return (
-            <div style={_.extend({}, styles.main, this.props.style)}>
+            <div style={styles.main}>
                 <Card>
                     {header}
                     <div style={styles.content}>

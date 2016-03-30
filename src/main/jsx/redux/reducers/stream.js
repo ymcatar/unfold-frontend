@@ -19,8 +19,7 @@ import * as actions from '../actions/stream';
 const initialState = {
     filter: 'all',
     completeStream: [],
-    filteredStream: [],
-    position: { index: 0, offset: 0 }
+    filteredStream: []
 };
 
 initialState.filteredStream = initialState.completeStream;
@@ -37,37 +36,22 @@ export default function reduceStream(state, action) {
                     stream.completeStream: stream.completeStream.filter(item => (
                         item.tags && item.tags.indexOf(action.filter) >= 0
                     )),
-                position: top
+                position: 0
             };
             break;
 
-        case actions.SELECT_ADDEDPOST:
-            stream = { addedPost: action.addedPost };
-            break;
-
         case actions.SCROLL_TO:
-            let index = -1;
-
-            if (action.top)
-                index = 0;
-            else
-                index = _.findIndex(stream.filteredStream, x => new Date(x.submitTime) - action.date < 0);
-
-            if (index === -1)
-                index = stream.filteredStream.length - 1;
-
-            stream = { position: { index: index, offset: 0, force: true } };
+            stream = {
+                scrollPending: true,
+                position: action.position
+            };
             break;
 
-        case actions.REPORT_SCROLL: {
-            stream = { position: action.position };
+        case actions.RESET_SCROLL:
+            stream = {
+                scrollPending: false
+            };
             break;
-        }
-
-        case actions.REPORT_VIEWPORT: {
-            // Load data or something fancy
-            break;
-        }
     }
     return _.defaults({ stream: _.defaults(stream, state.stream) }, state);
 }

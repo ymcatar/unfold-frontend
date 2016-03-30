@@ -1,29 +1,30 @@
 import React from 'react';
 import _ from 'lodash';
+import SweetScroll from "sweet-scroll";
 
 import { connect } from 'react-redux';
 
+import LazyLoad from 'react-lazyload';
+
 import { getTimeline } from 'redux/actions/ajax';
-import * as StreamAction from 'redux/actions/stream';
-import * as RawAction from 'redux/actions/raw';
+import { resetScroll } from 'redux/actions/stream';
+// import * as RawAction from 'redux/actions/raw';
 
 import { Stream as Colors } from 'config/colors';
 
 import UpdateBox from './common/UpdateBox.jsx';
-import LazyScroller from './common/LazyScroller.jsx';
 
 const styles = {
     main: {
         backgroundColor: Colors.backgroundColor,
         height: '100vh',
         width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        paddingBottom: '100px',
+        overflowY: 'scroll'
     },
     header: {
         width: '100%',
-        height: '100px',
+        height: '150px',
         fontSize: '60px',
         color: Colors.header,
         padding: '30px 0 10px 20px',
@@ -35,39 +36,34 @@ const styles = {
 };
 
 export default class Stream extends React.Component {
-    constructor(props) {
-        super(props);
-        _.bindAll(this, ['createPlaceholder']);
-    }
 
     componentWillMount() {
         this.props.getTimeline(this.props.eventId);
     }
 
-    createPlaceholder(key, height) {
-        return (
-            <UpdateBox key={key} style={{height: height - 20}} role={this.props.role} />
-        );
+    componentDidMount() {
+        this.sweetScroll = new SweetScroll({}, "#streamContainer");
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.scrollPending) {
+            this.sweetScroll.to({ top: nextProps.position });
+            this.props.resetScroll();
+        }
     }
 
     render() {
         let elements = this.props.filteredStream.map(post => (
-            <UpdateBox key={post.id} data={post} role={this.props.role} />
+            <LazyLoad wheel={true} scroll={false} offset={2500}>
+                <UpdateBox key={post.id} data={post} role={this.props.role} />
+            </LazyLoad>
         ));
         return (
-            <div style={styles.main}>
-                <LazyScroller
-                    position={this.props.position}
-                    style={{width: '100%', height: 'calc(100vh - 50px)'}}
-                    onPositionChange={this.props.onReportScroll}
-                    onLayoutChange={this.props.onReportViewport}
-                    placeholderFunc={this.createPlaceholder}>
-                    {[
-                        <div key="heading" style={styles.header} height={150}>
-                            #{this.props.filter}
-                        </div>
-                    ].concat(elements)}
-                </LazyScroller>
+            <div style={styles.main} id="streamContainer">
+                <div key="heading" style={styles.header}>
+                    #{this.props.filter}
+                </div>
+                {elements}
             </div>
         );
     }
@@ -81,16 +77,17 @@ export default connect(
                 return {
                     filter: state.stream.filter,
                     filteredStream: state.stream.filteredStream,
+                    scrollPending: state.stream.scrollPending,
                     position: state.stream.position,
                     eventId: state.ui.eventId
                 };
             case 'contributor':
-            return {
-                filter: state.raw.filter,
-                filteredStream: state.raw.filteredStream,
-                position: state.raw.position,
-                eventId: state.ui.eventId
-            };
+                return {
+                    filter: state.raw.filter,
+                    filteredStream: state.raw.filteredStream,
+                    position: state.raw.position,
+                    eventId: state.ui.eventId
+                };
             default:
                 return {};
         }
@@ -100,15 +97,13 @@ export default connect(
             case 'reader':
             case 'translator':
                 return {
-                    onReportScroll: position => dispatch(StreamAction.reportScroll(position)),
-                    onReportViewport: viewport => dispatch(StreamAction.reportViewport(viewport)),
-                    getTimeline: eventId => dispatch(getTimeline(eventId))
+                    getTimeline: eventId => dispatch(getTimeline(eventId)),
+                    resetScroll: () => dispatch(resetScroll())
                 };
             case 'contributor':
                 return {
-                    onReportScroll: position => dispatch(RawAction.reportScroll(position)),
-                    onReportViewport: viewport => dispatch(RawAction.reportViewport(viewport)),
-                    getTimeline: eventId => dispatch(getTimeline(eventId))
+                    getTimeline: eventId => dispatch(getTimeline(eventId)),
+                    resetScroll: () => dispatch(resetScroll())
                 };
             default:
                 return {};

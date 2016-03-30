@@ -22,7 +22,7 @@ export default class Type extends React.Component {
 
         if (Embed)
             return (
-                <Embed path={this.props.path} onResize={this.props.onResize} />
+                <Embed path={this.props.path} loaded={this.props.loaded} />
             );
         else
             return null;
