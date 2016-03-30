@@ -14,6 +14,14 @@ const styles = {
     }
 };
 
+function isElementInViewport (el) {
+    var rect = el.getBoundingClientRect();
+    return (
+        rect.top >= (window.innerHeight / 4 || document.documentElement.clientHeight / 4) &&
+        rect.bottom <= (window.innerHeight * 3 / 4 || document.documentElement.clientHeight * 3 / 4)
+    );
+}
+
 let fbInit = new Promise(resolve => {
     if (window.FB) {
         resolve();
@@ -39,10 +47,12 @@ export default class TypeFacebook extends React.Component {
                 return new Promise(resolve => { window.FB.XFBML.parse(this.elm, resolve); });
             })
             .then(() => {
+                this.state.rendered = true; // avoid rerendering
                 let onScroll = (event) => {
-                    this.embedElm.style.height = 'auto';
-                    this.state.rendered = true; // avoid rerendering
-                    document.removeEventListener('mousewheel', onScroll, false);
+                    if (isElementInViewport(this.elm)) {
+                        this.embedElm.style.height = 'auto';
+                        document.removeEventListener('mousewheel', onScroll, false);
+                    }
                 };
                 document.addEventListener('mousewheel', onScroll, false);
             });

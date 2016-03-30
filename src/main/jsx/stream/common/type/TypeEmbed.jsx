@@ -2,6 +2,20 @@ import React from 'react';
 import _ from 'lodash';
 import fetch from 'fetch-jsonp';
 
+const styles = {
+    main: {
+        height: '100px'
+    }
+};
+
+function isElementInViewport (el) {
+    var rect = el.getBoundingClientRect();
+    return (
+        rect.top >= (window.innerHeight / 4 || document.documentElement.clientHeight / 4) &&
+        rect.bottom <= (window.innerHeight * 3 / 4 || document.documentElement.clientHeight * 3 / 4)
+    );
+}
+
 export default class TypeEmbed extends React.Component {
     constructor(props) {
         super(props);
@@ -14,12 +28,14 @@ export default class TypeEmbed extends React.Component {
                 .then(res => res.json())
                 .then(body => {
                     this.setState({ body: body.html });
+                    this.state.rendered = true; // avoid rerendering
                 })
                 .then(() => {
                     let onScroll = (event) => {
-                        this.elm.style.height = 'auto';
-                        this.state.rendered = true; // avoid rerendering
-                        document.removeEventListener('mousewheel', onScroll, false);
+                        if (isElementInViewport(this.elm)) {
+                            this.elm.style.height = 'auto';
+                            document.removeEventListener('mousewheel', onScroll, false);
+                        }
                     };
                     document.addEventListener('mousewheel', onScroll, false);
                 });
@@ -30,7 +46,10 @@ export default class TypeEmbed extends React.Component {
             return null;
 
         return (
-            <div ref={x => { this.elm = x; }} dangerouslySetInnerHTML={{__html: this.state.body}} />
+            <div
+                style={styles.main}
+                ref={x => { this.elm = x; }}
+                dangerouslySetInnerHTML={{__html: this.state.body}} />
         );
     }
 }

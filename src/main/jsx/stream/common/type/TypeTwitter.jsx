@@ -8,6 +8,14 @@ const styles = {
     }
 };
 
+function isElementInViewport (el) {
+    var rect = el.getBoundingClientRect();
+    return (
+        rect.top >= (window.innerHeight / 4 || document.documentElement.clientHeight / 4) &&
+        rect.bottom <= (window.innerHeight * 3 / 4 || document.documentElement.clientHeight * 3 / 4)
+    );
+}
+
 let twttrInit = new Promise(resolve => { window.twttr.ready(resolve); });
 
 export default class TypeTwitter extends React.Component {
@@ -23,10 +31,12 @@ export default class TypeTwitter extends React.Component {
             twttrInit
                 .then(() => window.twttr.widgets.createTweet(id, this.elm))
                 .then(() => {
+                    this.state.rendered = true; // avoid rerendering
                     let onScroll = (event) => {
-                        this.elm.style.height = 'auto';
-                        this.state.rendered = true; // avoid rerendering
-                        document.removeEventListener('mousewheel', onScroll, false);
+                        if (isElementInViewport(this.elm)) {
+                            this.elm.style.height = 'auto';
+                            document.removeEventListener('mousewheel', onScroll, false);
+                        }
                     };
                     document.addEventListener('mousewheel', onScroll, false);
                 });
