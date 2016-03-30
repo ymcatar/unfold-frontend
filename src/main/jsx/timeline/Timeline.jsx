@@ -7,6 +7,7 @@ import { Timeline as Colors } from 'config/colors';
 
 import * as StreamAction from 'redux/actions/stream';
 import * as RawAction from 'redux/actions/raw';
+import { getTimegram } from 'redux/actions/ajax';
 
 import Day from './common/Day.jsx';
 
@@ -21,33 +22,43 @@ const styles = {
     }
 };
 
+let toDateArray = date => ([
+    moment(date).format('YYYY'),
+    moment(date).format('MM'),
+    moment(date).format('DD')
+]);
+
 class Timeline extends React.Component {
+
+    componentWillMount() {
+        this.props.getTimegram(this.props.eventId);
+    }
+
     render() {
         let bars = [];
-
-        let data = this.props.data.map(item => moment(item.submitTime));
-        data = data.sort((a, b) => b - a);
-
         let hash = {};
-        data.forEach(item => {
-            let time = JSON.stringify([
-                item.format('YYYY'),
-                item.format('MM'),
-                item.format('DD')
-            ]);
 
-            let hour = item.format('H');
+        if (!this.props.timeline)
+            return null;
+
+        let { begin, end } = this.props.timeline.span;
+
+        let { timegram } = this.props.timeline;
+
+        timegram.forEach(item => {
+            let time = JSON.stringify(toDateArray(item.begin));
+            let hour = moment(item.begin).format("H");
             if (!hash[time]) {
                 hash[time] = {};
-                hash[time].total = 0;
                 for (let i = 0; i < 24; i++)
                     hash[time][i] = 0;
+                hash[time].total = 0;
             }
-            hash[time].total++;
-            hash[time][hour]++;
+            hash[time][hour] = item.frequency;
+            hash[time].total += hash[time][hour];
         });
 
-        for (let key in hash) {
+        for (let key in hash)
             bars.push((
                 <Day
                     type={this.props.type}
@@ -55,7 +66,6 @@ class Timeline extends React.Component {
                     data={hash[key]}
                     date={JSON.parse(key)} />
             ));
-        }
 
         return (
             <div style={styles.main}>{bars}</div>
@@ -67,12 +77,20 @@ export default connect(
     function stateToProps(state, props) {
         switch (props.type) {
             case 'stream':
-                return {data: state.stream.filteredStream};
+                return {
+                    timeline: state.timeline,
+                    eventId: state.ui.eventId
+                };
             case 'raw':
-                return {data: state.raw.filteredStream};
+                return {
+                    data: state.raw.filteredStream,
+                    eventId: state.ui.eventId
+                };
         }
     },
     function dispatchToProps(dispatch, props) {
-        return {};
+        return {
+            getTimegram: (eventId) => dispatch(getTimegram(eventId))
+        };
     }
 )(Timeline);

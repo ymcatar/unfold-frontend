@@ -137,7 +137,7 @@ let receiveTimegram = data => ({ type: RECEIVE_TIMEGRAM, data });
 
 export let getTimegram = eventId => {
     return function(dispatch) {
-        return fetch(`${domain}/event/${eventId}/timegram`)
+        return fetch(`${domain}/event/${eventId}/timegram?resolution=3600`)
             .then(res => res.json())
             .then(data => {
                 dispatch(receiveTimegram(data));

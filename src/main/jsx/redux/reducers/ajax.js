@@ -50,8 +50,8 @@ export default function reduceEvent(state, action) {
 
         case actions.RECEIVE_TIMEGRAM: {
             state.timeline = {};
-            state.timeline.span = action.span;
-            state.timeline.timegram = action.timegram;
+            state.timeline.span = action.data.span;
+            state.timeline.timegram = action.data.timegram;
             return state;
         }
     }

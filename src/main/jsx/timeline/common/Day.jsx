@@ -31,6 +31,8 @@ class Day extends React.Component {
 
         for (let i = 23; i >= 0; i--) {
             let length = 12 * Math.sqrt(hash[i] / size * 144);
+            if (size === 0)
+                length = 0;
             bars.push((
                 <Bar
                     key={uuid.v1()}
