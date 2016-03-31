@@ -172,6 +172,21 @@ export let getTimegram = eventId => {
     };
 };
 
+/* tags */
+
+export const RECEIVE_TAGS = 'ajax: receive tags';
+let receiveTags = data => ({ type: RECEIVE_TAGS, data });
+
+export let getTags = eventId => {
+    return function(dispatch) {
+        return fetch(`${domain}/event/${eventId}/tags`)
+            .then(res => res.json())
+            .then(data => {
+                dispatch(receiveTags(data));
+            });
+    };
+};
+
 /* post */
 
 export const RECEIVE_POST = 'ajax: receive post';

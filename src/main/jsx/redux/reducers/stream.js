@@ -8,7 +8,8 @@ const initialState = {
     completeStream: [],
     filteredStream: [],
     completeNewStream: [],
-    filteredNewStream: []
+    filteredNewStream: [],
+    tags: []
 };
 
 initialState.filteredStream = initialState.completeStream;

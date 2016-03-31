@@ -56,6 +56,11 @@ export default function reduceEvent(state, action) {
             return state;
         }
 
+        case actions.RECEIVE_TAGS: {
+            state.stream.tags = action.data;
+            return state;
+        }
+
         case actions.RECEIVE_TIMEGRAM: {
             state.timeline = {};
             state.timeline.span = action.data.span;
