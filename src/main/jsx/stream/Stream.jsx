@@ -103,16 +103,16 @@ export default class Stream extends React.Component {
     }
 
     render() {
-        let { filteredStream, completeNewStream, role, filter } = this.props;
+        let { filteredStream, filteredNewStream, role, filter } = this.props;
 
         return (
             <div style={styles.main} ref={x => {this.elm = x;}}>
                 <div key="heading" style={styles.header}>
                     #{filter}
                 </div>
-                {completeNewStream.length > 0?
+                {filteredNewStream.length > 0?
                     (<p style={styles.marker}>New Update</p>): null}
-                <Posts data={completeNewStream} role={role} />
+                <Posts data={filteredNewStream} role={role} />
                 <Posts data={filteredStream} role={role} marker={true}/>
             </div>
         );
@@ -127,7 +127,7 @@ export default connect(
                 return {
                     filter: state.stream.filter,
                     filteredStream: state.stream.filteredStream,
-                    completeNewStream: state.stream.completeNewStream || [],
+                    filteredNewStream: state.stream.filteredNewStream || [],
                     scrollPending: state.stream.scrollPending,
                     position: state.stream.position,
                     eventId: state.ui.eventId

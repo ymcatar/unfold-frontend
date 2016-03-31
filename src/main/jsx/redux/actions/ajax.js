@@ -191,7 +191,7 @@ const post2 = {
 	},
 	"id": "44666ff9-3df2-4e08-9cb6-333fdae04abd",
 	"caption": "This is a new post!",
-	"tags": [],
+	"tags": ["important"],
 	"createdAt": "2016-03-27T17:31:25.458Z",
 	"updatedAt": "2016-03-27T17:33:31.410Z",
 	"authorId": "umbrella_19632",

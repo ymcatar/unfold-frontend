@@ -36,6 +36,10 @@ export default function reduceStream(state, action) {
                     stream.completeStream: stream.completeStream.filter(item => (
                         item.tags && item.tags.indexOf(action.filter) >= 0
                     )),
+                filteredNewStream: action.filter === 'all'?
+                    stream.completeNewStream: stream.completeNewStream.filter(item => (
+                        item.tags && item.tags.indexOf(action.filter) >= 0
+                    )),
                 position: 0
             };
             break;

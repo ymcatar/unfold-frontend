@@ -57,7 +57,12 @@ export default function reduceEvent(state, action) {
 
         case actions.RECEIVE_POST: {
             state.stream.completeNewStream = state.stream.completeNewStream || [];
+            state.stream.filteredNewStream = state.stream.filteredNewStream || [];
             state.stream.completeNewStream = state.stream.completeNewStream.concat([action.data]);
+
+            if (action.data.tags.indexOf(state.stream.filter) >= 0 || state.stream.filter === "all")
+                state.stream.filteredNewStream = state.stream.filteredNewStream.concat([action.data]);
+
             return state;
         }
     }

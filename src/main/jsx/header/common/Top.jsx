@@ -37,7 +37,7 @@ class Top extends React.Component {
 export default connect(
     function stateToProps(state, props) {
         return {
-            count: (state.stream.completeNewStream || []).length
+            count: (state.stream.filteredNewStream || []).length
         };
     },
     function dispatchToProps(dispatch, props) {
