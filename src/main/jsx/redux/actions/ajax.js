@@ -1,5 +1,6 @@
 import { domain } from 'config/config';
 import fetch from 'isomorphic-fetch';
+import moment from 'moment';
 
 import { showError, hideLogin, showSuccess } from './modal';
 
@@ -47,8 +48,26 @@ let receiveLogin = data => ({ type: RECEIVE_LOGIN, data });
 export let loadLogin = (token, exp) => {
     return function(dispatch) {
         return new Promise((resolve, reject) => {
-            dispatch(receiveLogin({token, exp}));
-            resolve();
+            if (moment.unix(exp).isSameOrBefore(moment())) {
+                fetch(`${domain}/auth`, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify({token})
+                })
+                .then(res => {
+                    if (res.status == 200) {
+                        res.json().then(data => {
+                            console.log(data);
+                            dispatch(receiveLogin(data));
+                        });
+                    } else {
+                        dispatch(showError('Login failed. Please try again.'));
+                    }
+                });
+            } else {
+                dispatch(receiveLogin({token, exp}));
+                resolve();
+            }
         });
     };
 };
