@@ -4,7 +4,8 @@ import fetch from 'fetch-jsonp';
 
 const styles = {
     main: {
-        height: '100px'
+        height: '100px',
+        maxWidth: '500px'
     }
 };
 
