@@ -9,6 +9,8 @@ const styles = {
 };
 
 function isElementInViewport (el) {
+    if (!el)
+        return false;
     var rect = el.getBoundingClientRect();
     return (
         rect.top >= (window.innerHeight / 4 || document.documentElement.clientHeight / 4) &&

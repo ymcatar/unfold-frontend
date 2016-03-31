@@ -55,25 +55,9 @@ export default function reduceEvent(state, action) {
             return state;
         }
 
-        case actions.ENQUEUE_POST: {
-            state.stream.queue = state.stream.queue || [];
-            state.stream.queue = state.stream.queue.concat([action.data]);
-
-            if (!state.ui.newPostCount)
-                state.ui.newPostCount = 0;
-
-            state.ui.newPostCount++;
-
-            return state;
-        }
-
-        case actions.DEQUEUE_POST: {
-            state.stream.queue.shift();
-            return state;
-        }
-
-        case actions.RESET_POST_COUNT: {
-            state.ui.newPostCount = 0;
+        case actions.RECEIVE_POST: {
+            state.stream.completeNewStream = state.stream.completeNewStream || [];
+            state.stream.completeNewStream = state.stream.completeNewStream.concat([action.data]);
             return state;
         }
     }

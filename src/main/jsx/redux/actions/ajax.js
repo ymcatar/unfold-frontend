@@ -147,14 +147,8 @@ export let getTimegram = eventId => {
 
 /* post */
 
-export const ENQUEUE_POST = 'ajax: enqueue post';
-let enqueuePost = data => ({ type: ENQUEUE_POST, data });
-
-export const DEQUEUE_POST = 'ajax: dequeue post';
-export let dequeuePost = () => ({ type: DEQUEUE_POST });
-
-export const RESET_POST_COUNT = 'ajax: reset post count';
-export let resetPostCount = () => ({ type: RESET_POST_COUNT });
+export const RECEIVE_POST = 'ajax: receive post';
+export let receivePost = data => ({ type: RECEIVE_POST, data });
 
 const post = {
 	"data": {
@@ -184,10 +178,39 @@ const post = {
 	}
 };
 
+const post2 = {
+	"data": {
+		"siteImage": "https://abs.twimg.com/a/1458881967/img/t1/favicon.svg",
+		"authorImage": null,
+		"rel": "TEXT",
+		"title": "Richard Frost on Twitter",
+		"content": "At the barricades outside Mandarin Hotel. People dressed for tear gas. Umbrellas are strung through the fences. HK pic.twitter.com/WuyADbLd6e&mdash; Richard Frost (@frostyhk) September 29, 2014\n",
+		"url": "https://twitter.com/frostyhk/status/516633958000234498",
+		"site": "twitter.com",
+		"author": "Richard Frost"
+	},
+	"id": "44666ff9-3df2-4e08-9cb6-333fdae04abd",
+	"caption": "This is a new post!",
+	"tags": [],
+	"createdAt": "2016-03-27T17:31:25.458Z",
+	"updatedAt": "2016-03-27T17:33:31.410Z",
+	"authorId": "umbrella_19632",
+	"eventId": "2ff24461-dea2-4240-9db6-4b5bb5eafaed",
+	"author": {
+		"id": "umbrella_19632",
+		"name": "Socrates Oliver",
+		"createdAt": "2016-03-27T17:30:47.051Z",
+		"profile": {
+			"description": "Test1234"
+		}
+	}
+};
+
 export let simulatePost = () => {
     return function(dispatch) {
         setTimeout(() => {
-            dispatch(enqueuePost(post));
+            dispatch(receivePost(post));
+            dispatch(receivePost(post2));
         }, 5000);
     };
 };

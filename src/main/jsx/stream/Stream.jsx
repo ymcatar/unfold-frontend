@@ -49,8 +49,8 @@ const styles = {
 class Posts extends React.Component {
 
     shouldComponentUpdate(nextProps) {
-        let curr = this.props.filteredStream;
-        let next = nextProps.filteredStream;
+        let curr = this.props.data;
+        let next = nextProps.data;
 
         if (!curr && next || next && curr.length !== next.length)
             return true;
@@ -59,17 +59,18 @@ class Posts extends React.Component {
     }
 
     render() {
-        if (!this.props.filteredStream)
+        if (!this.props.data)
             return null;
 
         let lastTime;
-        let elements = this.props.filteredStream.map(post => {
-            let currentTime = moment(post.createdAt).format("DD/MM hA");
+        let elements = this.props.data.map(post => {
             let marker;
-            if (lastTime != currentTime || !lastTime)
-                marker = (<p style={styles.marker}>{currentTime}</p>);
-            lastTime = currentTime;
-
+            if (this.props.marker) {
+                let currentTime = moment(post.createdAt).format("DD/MM, hA");
+                if (lastTime != currentTime || !lastTime)
+                    marker = (<p style={styles.marker}>{currentTime}</p>);
+                lastTime = currentTime;
+            }
             return (
                 <div key={post.id}>
                     {marker}
@@ -86,12 +87,6 @@ class Posts extends React.Component {
 }
 
 export default class Stream extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = { posts: [] };
-    }
-
     componentWillMount() {
         this.props.getTimeline(this.props.eventId);
     }
@@ -105,27 +100,20 @@ export default class Stream extends React.Component {
             this.sweetScroll.to({ top: nextProps.position });
             this.props.resetScroll();
         }
-        if (nextProps.queue.length > 0) {
-            this.setState({ posts: this.state.posts.concat([nextProps.queue[0]]) });
-            this.props.dequeuePost();
-        }
     }
 
     render() {
-        let posts = this.state.posts.map(post => (
-            <LazyLoad key={post.id} wheel={true} scroll={false} offset={2500}>
-                <UpdateBox data={post} role={this.props.role} />
-            </LazyLoad>
-        ));
+        let { filteredStream, completeNewStream, role, filter } = this.props;
 
         return (
             <div style={styles.main} ref={x => {this.elm = x;}}>
                 <div key="heading" style={styles.header}>
-                    #{this.props.filter}
+                    #{filter}
                 </div>
-                {this.state.posts.length > 0? (<p style={styles.marker}>New Update</p>): null}
-                {posts}
-                <Posts filteredStream={this.props.filteredStream} role={this.props.role} />
+                {completeNewStream.length > 0?
+                    (<p style={styles.marker}>New Update</p>): null}
+                <Posts data={completeNewStream} role={role} />
+                <Posts data={filteredStream} role={role} marker={true}/>
             </div>
         );
     }
@@ -139,8 +127,8 @@ export default connect(
                 return {
                     filter: state.stream.filter,
                     filteredStream: state.stream.filteredStream,
+                    completeNewStream: state.stream.completeNewStream || [],
                     scrollPending: state.stream.scrollPending,
-                    queue: state.stream.queue || [],
                     position: state.stream.position,
                     eventId: state.ui.eventId
                 };
@@ -161,8 +149,7 @@ export default connect(
             case 'translator':
                 return {
                     getTimeline: eventId => dispatch(getTimeline(eventId)),
-                    resetScroll: () => dispatch(resetScroll()),
-                    dequeuePost: () => dispatch(dequeuePost())
+                    resetScroll: () => dispatch(resetScroll())
                 };
             case 'contributor':
                 return {
