@@ -143,7 +143,7 @@ class Editor extends React.Component {
 export default connect(
     function stateToProps(state, props) {
         return {
-            token: state.auth.token,
+            token: state.auth? state.auth.token: undefined,
             eventId: state.ui.eventId,
             sidebar: state.ui.sidebar,
             post: state.ui.editorPost
