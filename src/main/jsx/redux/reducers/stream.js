@@ -3,23 +3,12 @@ import uuid from 'node-uuid';
 
 import * as actions from '../actions/stream';
 
-// import StreamData from 'config/placeholder/stream';
-// import { roles } from 'config/placeholder/event';
-
-// let ContributorsData = roles.filter(i => i.type === "CONTRIBUTOR");
-
-// const stream = StreamData
-//     .map(post => {
-//         let id = uuid.v1();
-//         let contributor = ContributorsData.filter(user => user.id === post.contributor)[0];
-//         return _.defaults({id, contributor}, post);
-//     })
-//     .sort((a, b) => new Date(b.submitTime) - new Date(a.submitTime));
-
 const initialState = {
     filter: 'all',
     completeStream: [],
-    filteredStream: []
+    filteredStream: [],
+    completeNewStream: [],
+    filteredNewStream: []
 };
 
 initialState.filteredStream = initialState.completeStream;

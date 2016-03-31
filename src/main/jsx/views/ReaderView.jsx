@@ -27,7 +27,6 @@ class ReaderView extends React.Component {
 
     componentWillMount() {
         this.props.storeEventId(this.props.params.eventId);
-        this.props.simulatePost();
     }
 
     render() {

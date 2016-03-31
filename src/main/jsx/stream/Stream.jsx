@@ -7,9 +7,8 @@ import { connect } from 'react-redux';
 
 import LazyLoad from 'react-lazyload';
 
-import { getTimeline, dequeuePost } from 'redux/actions/ajax';
+import { getStream, getRaw } from 'redux/actions/ajax';
 import { resetScroll } from 'redux/actions/stream';
-// import * as RawAction from 'redux/actions/raw';
 
 import { Stream as Colors } from 'config/colors';
 
@@ -20,6 +19,7 @@ const styles = {
         backgroundColor: Colors.backgroundColor,
         height: '100vh',
         width: '100%',
+        padding: '30px',
         paddingBottom: '100px',
         overflowY: 'scroll'
     },
@@ -88,7 +88,7 @@ class Posts extends React.Component {
 
 export default class Stream extends React.Component {
     componentWillMount() {
-        this.props.getTimeline(this.props.eventId);
+        this.props.getStream(this.props.eventId);
     }
 
     componentDidMount() {
@@ -121,43 +121,29 @@ export default class Stream extends React.Component {
 
 export default connect(
     function stateToProps(state, props) {
-        switch (props.role) {
-            case 'reader':
-            case 'translator':
-                return {
-                    filter: state.stream.filter,
-                    filteredStream: state.stream.filteredStream,
-                    filteredNewStream: state.stream.filteredNewStream || [],
-                    scrollPending: state.stream.scrollPending,
-                    position: state.stream.position,
-                    eventId: state.ui.eventId
-                };
-            case 'contributor':
-                return {
-                    filter: state.raw.filter,
-                    filteredStream: state.raw.filteredStream,
-                    position: state.raw.position,
-                    eventId: state.ui.eventId
-                };
-            default:
-                return {};
-        }
+        return {
+            filter: state.stream.filter,
+            filteredStream: state.stream.filteredStream,
+            filteredNewStream: state.stream.filteredNewStream || [],
+            scrollPending: state.stream.scrollPending,
+            position: state.stream.position,
+            eventId: state.ui.eventId
+        };
+
     },
     function dispatchToProps(dispatch, props) {
         switch(props.role) {
             case 'reader':
             case 'translator':
                 return {
-                    getTimeline: eventId => dispatch(getTimeline(eventId)),
+                    getStream: eventId => dispatch(getStream(eventId)),
                     resetScroll: () => dispatch(resetScroll())
                 };
             case 'contributor':
                 return {
-                    getTimeline: eventId => dispatch(getTimeline(eventId)),
+                    getStream: eventId => dispatch(getRaw(eventId)),
                     resetScroll: () => dispatch(resetScroll())
                 };
-            default:
-                return {};
         }
     }
 )(Stream);

@@ -2,6 +2,8 @@ import _ from 'lodash';
 
 import { event as placeholder } from 'config/placeholder/event';
 
+import rawPlaceholder from 'config/placeholder/raw';
+
 import * as actions from '../actions/ajax';
 
 const initialState = placeholder;
@@ -42,9 +44,15 @@ export default function reduceEvent(state, action) {
             break;
         }
 
-        case actions.RECEIVE_TIMELINE: {
+        case actions.RECEIVE_STREAM: {
             state.stream.filteredStream = action.data;
             state.stream.completeStream = action.data;
+            return state;
+        }
+
+        case actions.RECEIVE_RAW: {
+            state.stream.filteredStream = rawPlaceholder;
+            state.stream.completeStream = rawPlaceholder;
             return state;
         }
 

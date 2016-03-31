@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import { NavItem } from 'react-bootstrap';
 
 import { scrollTo } from 'redux/actions/stream';
-import { resetPostCount } from 'redux/actions/ajax';
-
-import User from '../common/User.jsx';
 
 class Top extends React.Component {
     constructor(props) {
@@ -41,9 +38,8 @@ export default connect(
         };
     },
     function dispatchToProps(dispatch, props) {
-        return ({
-            handleBackToTop: () => dispatch(scrollTo(0)),
-            resetPostCount: () => dispatch(resetPostCount())
-        });
+        return {
+            handleBackToTop: () => dispatch(scrollTo(0))
+        };
     }
 )(Top);

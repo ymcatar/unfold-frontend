@@ -1,5 +1,5 @@
 export const SELECT_FILTER = 'stream: select filter';
-export let selectFilter = filter => ({ type: SELECT_FILTER, filter: filter });
+export let selectFilter = filter => ({ type: SELECT_FILTER, filter });
 
 export const SCROLL_TO = 'stream: scroll to';
 export let scrollTo = position => ({ type: SCROLL_TO, position });

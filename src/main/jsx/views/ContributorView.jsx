@@ -35,7 +35,6 @@ class ContributorView extends React.Component {
                 <div style={styles.main}>
                     <Sidebar role="contributor" />
                     <Stream role="contributor" />
-                    <Timeline type="raw" />
                     <ContributorModal />
                 </div>
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import { selectFilter } from 'redux/actions/raw';
+import { selectFilter } from 'redux/actions/stream';
 
 class ContributorFilter extends React.Component {
     constructor(props) {
@@ -30,7 +30,7 @@ class ContributorFilter extends React.Component {
 export default connect(
     function stateToProps(state, props) {
         return {
-            filter: state.raw.filter
+            filter: state.stream.filter
         };
     },
     function dispatchToProps(dispatch, props) {
