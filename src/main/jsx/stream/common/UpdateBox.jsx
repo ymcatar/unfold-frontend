@@ -79,8 +79,7 @@ class UpdateBox extends React.Component {
                 break;
             case "contributor":
                 header = (
-                    <ContributorHeader
-                        data={this.props.data} />
+                    <ContributorHeader data={this.props.data} />
                 );
                 break;
         }

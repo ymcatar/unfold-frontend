@@ -32,8 +32,49 @@ const styles = {
         marginRight: 'auto',
         textAlign: 'left',
         fontWeight: 'lighter'
+    },
+    marker: {
+        width: '100%',
+        padding: '30px 0 10px 20px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        textAlign: 'left',
+        fontSize: '30px',
+        fontWeight: 'bolder',
+        color: Colors.header
     }
 };
+
+class Posts extends React.Component {
+
+    shouldComponentUpdate(nextProps) {
+        let curr = this.props.filteredStream;
+        let next = nextProps.filteredStream;
+
+        if (!curr && next || next && curr.length !== next.length)
+            return true;
+        else
+            return false;
+    }
+
+    render() {
+        if (!this.props.filteredStream)
+            return null;
+
+        let elements = this.props.filteredStream.map(post => {
+            // if (!lastDate || post.author.submitTime
+            console.log(post.author.submitTime);
+            return (
+                <LazyLoad key={post.id} wheel={true} scroll={false} offset={2500}>
+                    <UpdateBox data={post} role={this.props.role} />
+                </LazyLoad>
+            );
+        });
+        return (
+            <div>{elements}</div>
+        );
+    }
+}
 
 export default class Stream extends React.Component {
 
@@ -62,14 +103,7 @@ export default class Stream extends React.Component {
     }
 
     render() {
-
         let posts = this.state.posts.map(post => (
-            <LazyLoad key={post.id} wheel={true} scroll={false} offset={2500}>
-                <UpdateBox data={post} role={this.props.role} />
-            </LazyLoad>
-        ));
-
-        let elements = this.props.filteredStream.map(post => (
             <LazyLoad key={post.id} wheel={true} scroll={false} offset={2500}>
                 <UpdateBox data={post} role={this.props.role} />
             </LazyLoad>
@@ -80,8 +114,10 @@ export default class Stream extends React.Component {
                 <div key="heading" style={styles.header}>
                     #{this.props.filter}
                 </div>
+                <p style={styles.marker}>New Update</p>
                 {posts}
-                {elements}
+                <hr />
+                <Posts filteredStream={this.props.filteredStream} role={this.props.role} />
             </div>
         );
     }
