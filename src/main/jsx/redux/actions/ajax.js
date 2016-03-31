@@ -147,8 +147,11 @@ export let getTimegram = eventId => {
 
 /* post */
 
-export const RECEIVE_POST = 'ajax: receive post';
-let receivePost = data => ({ type: RECEIVE_POST, data });
+export const ENQUEUE_POST = 'ajax: enqueue post';
+let enqueuePost = data => ({ type: ENQUEUE_POST, data });
+
+export const DEQUEUE_POST = 'ajax: dequeue post';
+export let dequeuePost = () => ({ type: DEQUEUE_POST });
 
 const post = {
 	"data": {
@@ -181,8 +184,7 @@ const post = {
 export let simulatePost = () => {
     return function(dispatch) {
         setTimeout(() => {
-            console.log('creating new post');
-            dispatch(receivePost(post));
+            dispatch(enqueuePost(post));
         }, 10000);
     };
 };

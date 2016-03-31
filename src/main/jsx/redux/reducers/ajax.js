@@ -55,8 +55,14 @@ export default function reduceEvent(state, action) {
             return state;
         }
 
-        case actions.RECEIVE_POST: {
-            state.stream.pending = action.data;
+        case actions.ENQUEUE_POST: {
+            state.stream.queue = state.stream.queue || [];
+            state.stream.queue = state.stream.queue.concat([action.data]);
+            return state;
+        }
+
+        case actions.DEQUEUE_POST: {
+            state.stream.queue.shift();
             return state;
         }
     }

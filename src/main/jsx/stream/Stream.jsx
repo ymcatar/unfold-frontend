@@ -1,12 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
 import SweetScroll from "sweet-scroll";
+import uuid from 'node-uuid';
 
 import { connect } from 'react-redux';
 
 import LazyLoad from 'react-lazyload';
 
-import { getTimeline } from 'redux/actions/ajax';
+import { getTimeline, dequeuePost } from 'redux/actions/ajax';
 import { resetScroll } from 'redux/actions/stream';
 // import * as RawAction from 'redux/actions/raw';
 
@@ -39,9 +40,7 @@ export default class Stream extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            posts: []
-        };
+        this.state = { posts: [] };
     }
 
     componentWillMount() {
@@ -57,23 +56,22 @@ export default class Stream extends React.Component {
             this.sweetScroll.to({ top: nextProps.position });
             this.props.resetScroll();
         }
-        if (!_.eq(nextProps.pending, this.props.pending)) {
-            let { posts } = this.state;
-            posts.push(nextProps.pending);
-            this.setState({ posts });
+        if (nextProps.queue.length > 0) {
+            this.setState({ posts: this.state.posts.concat([nextProps.queue[0]]) });
+            this.props.dequeuePost();
         }
     }
 
     render() {
         let posts = this.state.posts.map(post => (
-            <LazyLoad wheel={true} scroll={false} offset={2500}>
-                <UpdateBox key={post.id} data={post} role={this.props.role} />
+            <LazyLoad key={uuid.v1()} wheel={true} scroll={false} offset={2500}>
+                <UpdateBox data={post} role={this.props.role} />
             </LazyLoad>
         ));
 
         let elements = this.props.filteredStream.map(post => (
-            <LazyLoad wheel={true} scroll={false} offset={2500}>
-                <UpdateBox key={post.id} data={post} role={this.props.role} />
+            <LazyLoad key={post.id} wheel={true} scroll={false} offset={2500}>
+                <UpdateBox data={post} role={this.props.role} />
             </LazyLoad>
         ));
 
@@ -98,7 +96,7 @@ export default connect(
                     filter: state.stream.filter,
                     filteredStream: state.stream.filteredStream,
                     scrollPending: state.stream.scrollPending,
-                    pending: state.stream.pending,
+                    queue: state.stream.queue || [],
                     position: state.stream.position,
                     eventId: state.ui.eventId
                 };
@@ -119,7 +117,8 @@ export default connect(
             case 'translator':
                 return {
                     getTimeline: eventId => dispatch(getTimeline(eventId)),
-                    resetScroll: () => dispatch(resetScroll())
+                    resetScroll: () => dispatch(resetScroll()),
+                    dequeuePost: () => dispatch(dequeuePost())
                 };
             case 'contributor':
                 return {
