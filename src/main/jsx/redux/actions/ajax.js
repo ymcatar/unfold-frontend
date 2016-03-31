@@ -177,6 +177,32 @@ export let getTimegram = eventId => {
 export const RECEIVE_POST = 'ajax: receive post';
 export let receivePost = data => ({ type: RECEIVE_POST, data });
 
+export let postPost = (token, eventId, data) => {
+    console.log(data);
+    return function(dispatch) {
+        return fetch(`${domain}/event/${eventId}/timeline`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => {
+            console.log(res.status);
+            if (res.status == 201)
+                dispatch(showSuccess('Update successfully added.'));
+            else
+                dispatch(showError('Update adding failed. Please try again.'));
+        })
+        .catch(err => {
+            console.error(err);
+            dispatch(showError('Update adding failed. Please try again.'));
+        });
+    };
+};
+
 const post = {
 	"data": {
 		"siteImage": "https://abs.twimg.com/a/1458881967/img/t1/favicon.svg",

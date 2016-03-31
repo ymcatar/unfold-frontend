@@ -4,6 +4,7 @@ import { Button, Input, ButtonToolbar } from 'react-bootstrap';
 import _ from 'lodash';
 
 import { selectEditorPost } from 'redux/actions/ui';
+import { postPost } from 'redux/actions/ajax';
 
 import { Editor as Colors } from 'config/colors';
 
@@ -68,8 +69,13 @@ class Editor extends React.Component {
 
     handleSubmit() {
         let { post } = this.state;
+        if (post.data.url === '')
+            delete post.data;
+        if (post.caption === '')
+            delete post.caption;
+
         post.tags = post.tags.map(item => item.text);
-        console.log(post);
+        this.props.postPost(this.props.token, this.props.eventId, post); // wow, so many post
         this.handleClear();
     }
 
@@ -137,13 +143,16 @@ class Editor extends React.Component {
 export default connect(
     function stateToProps(state, props) {
         return {
+            token: state.auth.token,
+            eventId: state.ui.eventId,
             sidebar: state.ui.sidebar,
             post: state.ui.editorPost
         };
     },
     function dispatchToProps(dispatch, props) {
         return {
-            clearEditorPost: () => dispatch(selectEditorPost(null))
+            clearEditorPost: () => dispatch(selectEditorPost(null)),
+            postPost: (token, eventId, post) => dispatch(postPost(token, eventId, post))
         };
     }
 )(Editor);
