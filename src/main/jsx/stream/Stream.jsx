@@ -37,6 +37,13 @@ const styles = {
 
 export default class Stream extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            posts: []
+        };
+    }
+
     componentWillMount() {
         this.props.getTimeline(this.props.eventId);
     }
@@ -50,19 +57,32 @@ export default class Stream extends React.Component {
             this.sweetScroll.to({ top: nextProps.position });
             this.props.resetScroll();
         }
+        if (!_.eq(nextProps.pending, this.props.pending)) {
+            let { posts } = this.state;
+            posts.push(nextProps.pending);
+            this.setState({ posts });
+        }
     }
 
     render() {
+        let posts = this.state.posts.map(post => (
+            <LazyLoad wheel={true} scroll={false} offset={2500}>
+                <UpdateBox key={post.id} data={post} role={this.props.role} />
+            </LazyLoad>
+        ));
+
         let elements = this.props.filteredStream.map(post => (
             <LazyLoad wheel={true} scroll={false} offset={2500}>
                 <UpdateBox key={post.id} data={post} role={this.props.role} />
             </LazyLoad>
         ));
+
         return (
             <div style={styles.main} id="streamContainer">
                 <div key="heading" style={styles.header}>
                     #{this.props.filter}
                 </div>
+                {posts}
                 {elements}
             </div>
         );
@@ -78,6 +98,7 @@ export default connect(
                     filter: state.stream.filter,
                     filteredStream: state.stream.filteredStream,
                     scrollPending: state.stream.scrollPending,
+                    pending: state.stream.pending,
                     position: state.stream.position,
                     eventId: state.ui.eventId
                 };

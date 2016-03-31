@@ -29,7 +29,8 @@ const styles = {
     content: {
         minWidth: '75%',
         maxWidth: '550px',
-        margin: '10px 0px 10px 0px'
+        margin: '10px 0px 10px 0px',
+        overflowY: 'hidden'
     },
     unverified: {
         marginTop: '10px'
@@ -45,6 +46,10 @@ class UpdateBox extends React.Component {
 
     handleVerify() {
         this.props.handleVerify(this.props.data);
+    }
+
+    shouldComponentUpdate(nextProps) {
+        return this.props.visible != nextProps.visible;
     }
 
     render() {

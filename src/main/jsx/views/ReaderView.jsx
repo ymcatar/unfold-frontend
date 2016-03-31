@@ -3,6 +3,7 @@ import MediaQuery from 'react-responsive';
 
 import { connect } from 'react-redux';
 import { storeEventId } from 'redux/actions/ui';
+import { simulatePost } from 'redux/actions/ajax';
 
 import Header from 'header/Header.jsx';
 import Stream from 'stream/Stream.jsx';
@@ -26,6 +27,7 @@ class ReaderView extends React.Component {
 
     componentWillMount() {
         this.props.storeEventId(this.props.params.eventId);
+        this.props.simulatePost();
     }
 
     render() {
@@ -54,7 +56,8 @@ export default connect (
     },
     function dispatchToProps(dispatch, props) {
         return {
-            storeEventId: val => dispatch(storeEventId(val))
+            storeEventId: val => dispatch(storeEventId(val)),
+            simulatePost: () => dispatch(simulatePost())
         };
     }
 )(ReaderView);

@@ -45,9 +45,7 @@ export default class TypeTwitter extends React.Component {
 
     render() {
         return (
-            <div
-                style={styles.post}
-                ref={x => { this.elm = x; }} />
+            <div style={styles.post} ref={x => { this.elm = x; }} />
         );
     }
 }

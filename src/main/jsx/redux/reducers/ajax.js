@@ -54,6 +54,11 @@ export default function reduceEvent(state, action) {
             state.timeline.timegram = action.data.timegram;
             return state;
         }
+
+        case actions.RECEIVE_POST: {
+            state.stream.pending = action.data;
+            return state;
+        }
     }
     return _.defaults(changes, state);
 }
