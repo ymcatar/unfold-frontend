@@ -1,7 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
 import SweetScroll from "sweet-scroll";
-import uuid from 'node-uuid';
 
 import { connect } from 'react-redux';
 
@@ -48,7 +47,7 @@ export default class Stream extends React.Component {
     }
 
     componentDidMount() {
-        this.sweetScroll = new SweetScroll({}, "#streamContainer");
+        this.sweetScroll = new SweetScroll({}, this.elm);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -63,8 +62,9 @@ export default class Stream extends React.Component {
     }
 
     render() {
+
         let posts = this.state.posts.map(post => (
-            <LazyLoad key={uuid.v1()} wheel={true} scroll={false} offset={2500}>
+            <LazyLoad key={post.id} wheel={true} scroll={false} offset={2500}>
                 <UpdateBox data={post} role={this.props.role} />
             </LazyLoad>
         ));
@@ -76,7 +76,7 @@ export default class Stream extends React.Component {
         ));
 
         return (
-            <div style={styles.main} id="streamContainer">
+            <div style={styles.main} ref={x => {this.elm = x;}}>
                 <div key="heading" style={styles.header}>
                     #{this.props.filter}
                 </div>

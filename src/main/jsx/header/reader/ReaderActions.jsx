@@ -5,9 +5,9 @@ import { Nav, NavItem } from 'react-bootstrap';
 
 import { toggleSidebar } from 'redux/actions/ui';
 import { showReaderMail, showReaderSettings } from 'redux/actions/modal'; 
-import { scrollTo } from 'redux/actions/stream';
 
 import User from '../common/User.jsx';
+import Top from '../common/Top.jsx';
 
 class ReaderActions extends React.Component {
     constructor(props) {
@@ -23,9 +23,6 @@ class ReaderActions extends React.Component {
             case 'sidebar':
                 this.props.toggleSidebar(!this.props.sidebar);
                 break;
-            case 'top':
-                this.props.handleBackToTop();
-                break;
             case 'mail':
                 this.props.showReaderMail();
                 break;
@@ -35,15 +32,12 @@ class ReaderActions extends React.Component {
     render() {
         return (
             <Nav pullRight onSelect={this.handleNavClick}>
+                <Top />
                 <NavItem eventKey={'settings'} href="#">
                     <i className="material-icons">settings</i>
                 </NavItem>
                 <NavItem eventKey={'mail'} href="#">
                     <i className="material-icons">mail</i>
-                </NavItem>
-                <NavItem eventKey={'top'} href="#">
-                    <i className="material-icons">vertical_align_top</i>
-                    &nbsp;TOP
                 </NavItem>
                 <NavItem eventKey={'sidebar'} href="#">
                     {this.props.sidebar?
@@ -66,7 +60,6 @@ export default connect(
     function dispatchToProps(dispatch, props) {
         return ({
             toggleSidebar: val => dispatch(toggleSidebar(val)),
-            handleBackToTop: () => dispatch(scrollTo(0)),
             showReaderMail: () => dispatch(showReaderMail()),
             showSettings: () => dispatch(showReaderSettings()),
         });

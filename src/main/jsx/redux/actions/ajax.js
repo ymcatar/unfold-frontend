@@ -153,6 +153,9 @@ let enqueuePost = data => ({ type: ENQUEUE_POST, data });
 export const DEQUEUE_POST = 'ajax: dequeue post';
 export let dequeuePost = () => ({ type: DEQUEUE_POST });
 
+export const RESET_POST_COUNT = 'ajax: reset post count';
+export let resetPostCount = () => ({ type: RESET_POST_COUNT });
+
 const post = {
 	"data": {
 		"siteImage": "https://abs.twimg.com/a/1458881967/img/t1/favicon.svg",
@@ -185,6 +188,6 @@ export let simulatePost = () => {
     return function(dispatch) {
         setTimeout(() => {
             dispatch(enqueuePost(post));
-        }, 10000);
+        }, 5000);
     };
 };
