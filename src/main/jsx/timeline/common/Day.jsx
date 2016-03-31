@@ -6,7 +6,7 @@ import Bar from './Bar.jsx';
 
 import { Day as Colors } from 'config/colors';
 
-import { scrollToDate } from 'redux/actions/stream';
+import { scrollTo } from 'redux/actions/stream';
 
 const styles = {
     text: {
@@ -22,6 +22,18 @@ const styles = {
 };
 
 class Day extends React.Component {
+
+    constructor(props) {
+        super(props);
+        _.bindAll(this, ['scrollToDate']);
+    }
+
+    scrollToDate(i) {
+        let [year, month, day] = this.props.date;
+        if (this.props.data[i] > 0)
+            this.props.scrollTo(`${day}_${month}_${year}_${i}`);
+    }
+
     render() {
         let bars = [];
         let hash = this.props.data;
@@ -37,7 +49,7 @@ class Day extends React.Component {
                     key={uuid.v1()}
                     label={i < 10? '0'+i: i}
                     length={length}
-                    onClick={this.props.onTravel.bind(this, new Date(year, month - 1, day, i))} />
+                    onClick={() => { this.scrollToDate(i); }} />
             ));
         }
 
@@ -56,6 +68,8 @@ export default connect(
         return {};
     },
     function dispatchToProps(dispatch, props) {
-        return { onTravel: date => dispatch(scrollToDate(date)) };
+        return {
+            scrollTo: val => dispatch(scrollTo(val))
+        };
     }
 )(Day);

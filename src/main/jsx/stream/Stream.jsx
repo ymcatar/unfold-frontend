@@ -66,9 +66,13 @@ class Posts extends React.Component {
         let elements = this.props.data.map(post => {
             let marker;
             if (this.props.marker) {
-                let currentTime = moment(post.createdAt).format("DD/MM, hA");
+                let currentTime = moment(post.createdAt).format("DD/MM, ha");
                 if (lastTime != currentTime || !lastTime)
-                    marker = (<p style={styles.marker}>{currentTime}</p>);
+                    marker = (
+                        <p style={styles.marker} id={moment(post.createdAt).format("DD_MM_YYYY_H")}>
+                            {currentTime}
+                        </p>
+                    );
                 lastTime = currentTime;
             }
             return (
@@ -96,8 +100,11 @@ export default class Stream extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.scrollPending) {
+        if (nextProps.scrollPending && typeof nextProps.position == 'number') {
             this.sweetScroll.to({ top: nextProps.position });
+            this.props.resetScroll();
+        } else if (nextProps.scrollPending && typeof nextProps.position == 'string') {
+            this.sweetScroll.toElement(document.getElementById(nextProps.position));
             this.props.resetScroll();
         }
     }
