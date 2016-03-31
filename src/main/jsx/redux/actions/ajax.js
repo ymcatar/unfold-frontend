@@ -57,7 +57,6 @@ export let loadLogin = (token, exp) => {
                 .then(res => {
                     if (res.status == 200) {
                         res.json().then(data => {
-                            console.log(data);
                             dispatch(receiveLogin(data));
                         });
                     } else {

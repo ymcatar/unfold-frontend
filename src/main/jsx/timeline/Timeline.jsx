@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 
 import { Timeline as Colors } from 'config/colors';
 
-import * as StreamAction from 'redux/actions/stream';
-import * as RawAction from 'redux/actions/raw';
 import { getTimegram } from 'redux/actions/ajax';
 
 import Day from './common/Day.jsx';
@@ -75,18 +73,10 @@ class Timeline extends React.Component {
 
 export default connect(
     function stateToProps(state, props) {
-        switch (props.type) {
-            case 'stream':
-                return {
-                    timeline: state.timeline,
-                    eventId: state.ui.eventId
-                };
-            case 'raw':
-                return {
-                    data: state.raw.filteredStream,
-                    eventId: state.ui.eventId
-                };
-        }
+        return {
+            timeline: state.timeline,
+            eventId: state.ui.eventId
+        };
     },
     function dispatchToProps(dispatch, props) {
         return {

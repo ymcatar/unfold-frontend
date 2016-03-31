@@ -6,8 +6,7 @@ import Bar from './Bar.jsx';
 
 import { Day as Colors } from 'config/colors';
 
-import { scrollToDate as stream_scrollToDate } from 'redux/actions/stream';
-import { scrollToDate as raw_scrollToDate } from 'redux/actions/raw';
+import { scrollToDate } from 'redux/actions/stream';
 
 const styles = {
     text: {
@@ -57,11 +56,6 @@ export default connect(
         return {};
     },
     function dispatchToProps(dispatch, props) {
-        switch (props.type) {
-            case 'stream':
-                return { onTravel: date => dispatch(stream_scrollToDate(date)) };
-            case 'raw':
-                return { onTravel: date => dispatch(raw_scrollToDate(date)) };
-        }
+        return { onTravel: date => dispatch(scrollToDate(date)) };
     }
 )(Day);
