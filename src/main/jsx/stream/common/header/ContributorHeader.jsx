@@ -3,7 +3,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import { connect } from 'react-redux';
 
-import { selectEditorPost } from 'redux/actions/ui';
+import { selectEditorPost, switchSidebar } from 'redux/actions/ui';
 
 import { Button } from 'react-bootstrap';
 
@@ -25,6 +25,7 @@ class ContributorHeader extends React.Component {
     }
 
     handleClick() {
+        this.props.switchSidebar();
         this.props.selectPost(this.props.data);
     }
 
@@ -45,7 +46,8 @@ export default connect(
     },
     function dispatchToProps(dispatch) {
         return {
-            selectPost: val => dispatch(selectEditorPost(val))
+            selectPost: val => dispatch(selectEditorPost(val)),
+            switchSidebar: () => dispatch(switchSidebar('post'))
         };
     }
 )(ContributorHeader);

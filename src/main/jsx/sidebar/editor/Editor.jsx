@@ -23,15 +23,21 @@ const styles = {
     }
 };
 
+const emptyPost = {
+    caption: '',
+    data: {
+        url: ''
+    },
+    tags: []
+};
+
 class Editor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            path: props.addedPost || '',
-            content: '',
-            tags: [],
+            post: emptyPost,
             added: false,
-            suggestions: ['important', 'reliable', 'unverified', 'facebook', 'twitter', 'CausewayBay', 'Mongkok', 'Central']
+            suggestions: ['important', 'reliable', 'unverified']
         };
         _.bindAll(this, [
             'handleContentChange',
@@ -42,49 +48,47 @@ class Editor extends React.Component {
         ]);
     }
 
-    handleContentChange(content) {
-        this.setState({content: content});
+    handleContentChange(caption) {
+        let { post } = this.state;
+        post.caption = caption;
+        this.setState({ post });
     }
 
     handleTagsChange(tags) {
-        this.setState({tags: tags});
+        let { post } = this.state;
+        post.tags = tags;
+        this.setState({ post });
     }
 
     handleSourceChange() {
-        this.setState({path: this.refs.path.getValue()});
+        let { post } = this.state;
+        post.data.url = this.refs.path.getValue();
+        this.setState({ post });
     }
 
     handleSubmit() {
-        let output = {
-            content: this.state.content,
-            tags: this.state.tags.map(item => item.text),
-            source: {
-                path: this.state.path
-            }
-        };
-        console.log(output);
+        let { post } = this.state;
+        post.tags = post.tags.map(item => item.text);
+        console.log(post);
         this.handleClear();
     }
 
     handleClear() {
-        this.setState({
-            content: '',
-            tags: [],
-            path: ''
-        });
+        this.setState({ post: emptyPost });
     }
 
     componentWillReceiveProps(nextProps) {
-        if (!nextProps.editorPost)
+        if (!nextProps.post)
             return;
-        let {tags, source, content} = nextProps.editorPost;
-        tags = tags.map((o, i) => ({ id: i, text: o }));
-        this.setState({
-            path: source? source.path: '',
-            tags: tags,
-            content: content,
-            added: true
-        });
+
+        let { post } = nextProps;
+        post = {
+            caption: '',
+            data: { url: post.data.url },
+            tags: (post.tags || []).map((o, i) => ({ id: i, text: o }))
+        };
+
+        this.setState({ post, added: true });
         this.props.clearEditorPost();
     }
 
@@ -94,13 +98,13 @@ class Editor extends React.Component {
                 <i>(Click to edit. Select to add formating.)</i>
                 <PostEditor
                     handleContentChange={this.handleContentChange}
-                    content={this.state.content} />
+                    content={this.state.post.caption} />
                 <p>Source Path</p>
                 <Input
                     ref="path"
                     style={styles.input}
                     disabled={this.state.added}
-                    value={this.state.path}
+                    value={this.state.post.data.url || ""}
                     onChange={this.handleSourceChange}
                     bsSize="small"
                     type="text" />
@@ -108,7 +112,7 @@ class Editor extends React.Component {
                 <p>Tags</p>
                 <PostTags
                     suggestions={this.state.suggestions}
-                    tags={this.state.tags}
+                    tags={this.state.post.tags || []}
                     handleTagsChange={this.handleTagsChange} />
                 <br />
                 <ButtonToolbar style={styles.button}>
@@ -134,7 +138,7 @@ export default connect(
     function stateToProps(state, props) {
         return {
             sidebar: state.ui.sidebar,
-            editorPost: state.ui.editorPost
+            post: state.ui.editorPost
         };
     },
     function dispatchToProps(dispatch, props) {
