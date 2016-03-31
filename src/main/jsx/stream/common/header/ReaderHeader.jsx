@@ -32,7 +32,7 @@ const styles = {
 export default class ReaderHeader extends React.Component {
     render() {
         const {name, title, image, online} = this.props.author;
-        const date = moment(this.props.submitTime);
+        const date = moment(this.props.time);
         return (
             <div style={styles.info}>
                 <Image src={image} circle style={styles.avatar} />
