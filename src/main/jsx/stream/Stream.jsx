@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import moment from 'moment';
 import SweetScroll from "sweet-scroll";
 
 import { connect } from 'react-redux';
@@ -40,7 +41,7 @@ const styles = {
         marginRight: 'auto',
         textAlign: 'left',
         fontSize: '30px',
-        fontWeight: 'bolder',
+        fontWeight: 'lighter',
         color: Colors.header
     }
 };
@@ -61,13 +62,21 @@ class Posts extends React.Component {
         if (!this.props.filteredStream)
             return null;
 
+        let lastTime;
         let elements = this.props.filteredStream.map(post => {
-            // if (!lastDate || post.author.submitTime
-            console.log(post.author.submitTime);
+            let currentTime = moment(post.createdAt).format("DD/MM hA");
+            let marker;
+            if (lastTime != currentTime || !lastTime)
+                marker = (<p style={styles.marker}>{currentTime}</p>);
+            lastTime = currentTime;
+
             return (
-                <LazyLoad key={post.id} wheel={true} scroll={false} offset={2500}>
-                    <UpdateBox data={post} role={this.props.role} />
-                </LazyLoad>
+                <div key={post.id}>
+                    {marker}
+                    <LazyLoad wheel={true} scroll={false} offset={2500}>
+                        <UpdateBox data={post} role={this.props.role} />
+                    </LazyLoad>
+                </div>
             );
         });
         return (
@@ -114,9 +123,8 @@ export default class Stream extends React.Component {
                 <div key="heading" style={styles.header}>
                     #{this.props.filter}
                 </div>
-                <p style={styles.marker}>New Update</p>
+                {this.state.posts.length > 0? (<p style={styles.marker}>New Update</p>): null}
                 {posts}
-                <hr />
                 <Posts filteredStream={this.props.filteredStream} role={this.props.role} />
             </div>
         );
