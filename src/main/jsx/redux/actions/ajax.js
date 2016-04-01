@@ -1,7 +1,6 @@
 import { domain, socket_domain } from 'config/config';
 import fetch from 'isomorphic-fetch';
 import moment from 'moment';
-import socket from 'socket.io-client';
 
 import { showError, hideLogin, showSuccess } from './modal';
 
@@ -218,50 +217,21 @@ export let postPost = (token, eventId, data) => {
     };
 };
 
-const post = {
-	"data": {
-		"siteImage": "https://abs.twimg.com/a/1458881967/img/t1/favicon.svg",
-		"authorImage": null,
-		"rel": "TEXT",
-		"title": "Richard Frost on Twitter",
-		"content": "At the barricades outside Mandarin Hotel. People dressed for tear gas. Umbrellas are strung through the fences. HK pic.twitter.com/WuyADbLd6e&mdash; Richard Frost (@frostyhk) September 29, 2014\n",
-		"url": "https://twitter.com/frostyhk/status/516633958000234498",
-		"site": "twitter.com",
-		"author": "Richard Frost"
-	},
-	"id": "44666ff9-3df2-4e08-9cb6-333fdae04abe",
-	"caption": "This is a new post!",
-	"tags": [],
-	"createdAt": "2016-03-27T17:31:25.458Z",
-	"updatedAt": "2016-03-27T17:33:31.410Z",
-	"authorId": "umbrella_19632",
-	"eventId": "2ff24461-dea2-4240-9db6-4b5bb5eafaed",
-	"author": {
-		"id": "umbrella_19632",
-		"name": "Socrates Oliver",
-		"createdAt": "2016-03-27T17:30:47.051Z",
-		"profile": {
-			"description": "Test1234"
-		}
-	}
-};
-
-export let simulatePost = () => {
-    return function(dispatch) {
-        setTimeout(() => {
-            dispatch(receivePost(post));
-        }, 5000);
-    };
-};
-
-/* socket io */
-
 export let startStreaming = eventId => {
     return function(dispatch) {
-        console.log(`${socket_domain}/event/${eventId}`);
-        let client = socket(`${socket_domain}/event/${eventId}`);
-        client.on('connect', () => {
-            console.log('connected!');
-        });
+        let client = new WebSocket(`${socket_domain}/event/${eventId}`);
+        client.onopen = event => {
+            console.log('Connected!');
+        };
+        client.onmessage = event => {
+            let { data } = event;
+            data = JSON.parse(data);
+            if (data.type == 'updated' && data.resource == 'post') {
+                dispatch(receivePost(data.data));
+            }
+        };
+        client.onerror = err => {
+            console.error(err);
+        };
     };
 };
