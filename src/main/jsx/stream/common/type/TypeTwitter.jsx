@@ -1,4 +1,5 @@
 import React from 'react';
+import { isElementInViewport } from 'common/util';
 
 const styles = {
     post: {
@@ -7,16 +8,6 @@ const styles = {
         height: '100px'
     }
 };
-
-function isElementInViewport (el) {
-    if (!el)
-        return false;
-    var rect = el.getBoundingClientRect();
-    return (
-        rect.top >= (window.innerHeight / 4 || document.documentElement.clientHeight / 4) &&
-        rect.bottom <= (window.innerHeight * 3 / 4 || document.documentElement.clientHeight * 3 / 4)
-    );
-}
 
 let twttrInit = new Promise(resolve => { window.twttr.ready(resolve); });
 

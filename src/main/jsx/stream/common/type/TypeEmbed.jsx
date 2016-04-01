@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import fetch from 'fetch-jsonp';
+import { isElementInViewport } from 'common/util';
 
 const styles = {
     main: {
@@ -8,16 +9,6 @@ const styles = {
         maxWidth: '500px'
     }
 };
-
-function isElementInViewport (el) {
-    if (!el)
-        return false;
-    var rect = el.getBoundingClientRect();
-    return (
-        rect.top >= (window.innerHeight / 4 || document.documentElement.clientHeight / 4) &&
-        rect.bottom <= (window.innerHeight * 3 / 4 || document.documentElement.clientHeight * 3 / 4)
-    );
-}
 
 export default class TypeEmbed extends React.Component {
     constructor(props) {
