@@ -41,7 +41,7 @@ class User extends React.Component {
         if (!this.props.user || !this.props.auth)
             return (
                 <NavItem href="#" onClick={this.handleClick}>
-                    <i className="material-icons">people</i>
+                    <i className="material-icons">account_circle</i>
                     &nbsp;LOGIN
                 </NavItem>
             );
@@ -50,7 +50,7 @@ class User extends React.Component {
                 <NavDropdown
                     id="profile"
 
-                    title={<i className="material-icons">people</i>} >
+                    title={<i className="material-icons">account_circle</i>} >
                     <MenuItem disabled>Signed in as {this.props.user.name}</MenuItem>
                     <MenuItem divider />
                     <MenuItem onClick={() => {this.handleNavClick('profile');}}>Change Profile</MenuItem>
