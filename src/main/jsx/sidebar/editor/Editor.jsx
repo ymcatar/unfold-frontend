@@ -69,7 +69,7 @@ class Editor extends React.Component {
 
     handleSubmit() {
         let { post } = this.state;
-        if (post.data.url === '')
+        if (post.data && post.data.url === '')
             delete post.data;
         if (post.caption === '')
             delete post.caption;
@@ -80,7 +80,7 @@ class Editor extends React.Component {
     }
 
     handleClear() {
-        this.setState({ post: emptyPost });
+        this.setState({ post: emptyPost, added: false });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -110,7 +110,7 @@ class Editor extends React.Component {
                     ref="path"
                     style={styles.input}
                     disabled={this.state.added}
-                    value={this.state.post.data.url || ""}
+                    value={this.state.post.data? this.state.post.data.url: ""}
                     onChange={this.handleSourceChange}
                     bsSize="small"
                     type="text" />

@@ -1,18 +1,15 @@
 import React from 'react';
 import _ from 'lodash';
-import moment from 'moment';
-import SweetScroll from "sweet-scroll";
+import SweetScroll from 'sweet-scroll';
 
 import { connect } from 'react-redux';
 
-import LazyLoad from 'react-lazyload';
-
-import { getStream, getRaw } from 'redux/actions/ajax';
+import { getStream, getRaw, startStreaming } from 'redux/actions/ajax';
 import { resetScroll } from 'redux/actions/stream';
 
 import { Stream as Colors } from 'config/colors';
 
-import UpdateBox from './common/UpdateBox.jsx';
+import Posts from './common/Posts.jsx';
 
 const styles = {
     main: {
@@ -46,53 +43,10 @@ const styles = {
     }
 };
 
-class Posts extends React.Component {
-
-    shouldComponentUpdate(nextProps) {
-        let curr = this.props.data;
-        let next = nextProps.data;
-
-        if (!curr && next || next && curr.length !== next.length)
-            return true;
-        else
-            return false;
-    }
-
-    render() {
-        if (!this.props.data)
-            return null;
-
-        let lastTime;
-        let elements = this.props.data.map(post => {
-            let marker;
-            if (this.props.marker) {
-                let currentTime = moment(post.createdAt).format("DD/MM, ha");
-                if (lastTime != currentTime || !lastTime)
-                    marker = (
-                        <p style={styles.marker} id={moment(post.createdAt).format("DD_MM_YYYY_H")}>
-                            {currentTime}
-                        </p>
-                    );
-                lastTime = currentTime;
-            }
-            return (
-                <div key={post.id}>
-                    {marker}
-                    <LazyLoad wheel={true} scroll={false} offset={2500}>
-                        <UpdateBox data={post} role={this.props.role} />
-                    </LazyLoad>
-                </div>
-            );
-        });
-        return (
-            <div>{elements}</div>
-        );
-    }
-}
-
 export default class Stream extends React.Component {
     componentWillMount() {
         this.props.getStream(this.props.eventId);
+        this.props.startStreaming(this.props.eventId);
     }
 
     componentDidMount() {
@@ -144,11 +98,13 @@ export default connect(
             case 'translator':
                 return {
                     getStream: eventId => dispatch(getStream(eventId)),
+                    startStreaming: eventId => dispatch(startStreaming(eventId)),
                     resetScroll: () => dispatch(resetScroll())
                 };
             case 'contributor':
                 return {
                     getStream: eventId => dispatch(getRaw(eventId)),
+                    startStreaming: eventId => dispatch(startStreaming(eventId)),
                     resetScroll: () => dispatch(resetScroll())
                 };
         }

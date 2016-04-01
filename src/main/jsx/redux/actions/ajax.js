@@ -1,6 +1,7 @@
-import { domain } from 'config/config';
+import { domain, socket_domain } from 'config/config';
 import fetch from 'isomorphic-fetch';
 import moment from 'moment';
+import socket from 'socket.io-client';
 
 import { showError, hideLogin, showSuccess } from './modal';
 
@@ -205,7 +206,6 @@ export let postPost = (token, eventId, data) => {
             body: JSON.stringify(data)
         })
         .then(res => {
-            console.log(res.status);
             if (res.status == 201)
                 dispatch(showSuccess('Update successfully added.'));
             else
@@ -251,5 +251,17 @@ export let simulatePost = () => {
         setTimeout(() => {
             dispatch(receivePost(post));
         }, 5000);
+    };
+};
+
+/* socket io */
+
+export let startStreaming = eventId => {
+    return function(dispatch) {
+        console.log(`${socket_domain}/event/${eventId}`);
+        let client = socket(`${socket_domain}/event/${eventId}`);
+        client.on('connect', () => {
+            console.log('connected!');
+        });
     };
 };
