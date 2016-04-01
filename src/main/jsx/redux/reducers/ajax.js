@@ -71,10 +71,10 @@ export default function reduceEvent(state, action) {
         case actions.RECEIVE_POST: {
             state.stream.completeNewStream = state.stream.completeNewStream || [];
             state.stream.filteredNewStream = state.stream.filteredNewStream || [];
-            state.stream.completeNewStream = state.stream.completeNewStream.concat([action.data]);
+            state.stream.completeNewStream = [action.data].concat(state.stream.completeNewStream);
 
             if (action.data.tags.indexOf(state.stream.filter) >= 0 || state.stream.filter === "all")
-                state.stream.filteredNewStream = state.stream.filteredNewStream.concat([action.data]);
+                state.stream.filteredNewStream = [action.data].concat(state.stream.filteredNewStream);
 
             return state;
         }

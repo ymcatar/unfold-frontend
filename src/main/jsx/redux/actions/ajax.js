@@ -220,13 +220,14 @@ export let postPost = (token, eventId, data) => {
 export let startStreaming = eventId => {
     return function(dispatch) {
         let client = new WebSocket(`${socket_domain}/event/${eventId}`);
-        client.onopen = event => {
-            console.log('Connected!');
-        };
+        // client.onopen = event => {
+        //     console.log('Connected!');
+        // };
         client.onmessage = event => {
             let { data } = event;
             data = JSON.parse(data);
-            if (data.type == 'updated' && data.resource == 'post') {
+            console.log(data);
+            if (data.type == 'created' && data.resource == 'post') {
                 dispatch(receivePost(data.data));
             }
         };
