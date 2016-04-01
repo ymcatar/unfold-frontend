@@ -27,6 +27,9 @@ class ContributorActions extends React.Component {
             case 'mail':
                 this.props.showReaderMail();
                 break;
+            case 'reader':
+                window.open(`../reader/${this.props.eventId}`, '_blank');
+                break;
         }
     }
 
@@ -34,6 +37,10 @@ class ContributorActions extends React.Component {
         return (
             <Nav pullRight onSelect={this.handleNavClick}>
                 <Top type="contributor" />
+                <NavItem eventKey={'reader'} href="#">
+                    <i className="material-icons">public</i>
+                    &nbsp;READER
+                </NavItem>
                 <NavItem eventKey={'settings'} href="#">
                     <i className="material-icons">settings</i>
                 </NavItem>
@@ -56,7 +63,8 @@ class ContributorActions extends React.Component {
 export default connect(
     function stateToProps(state, props) {
         return {
-            sidebar: state.ui.sidebar
+            sidebar: state.ui.sidebar,
+            eventId: state.ui.eventId
         };
     },
     function dispatchToProps(dispatch, props) {
