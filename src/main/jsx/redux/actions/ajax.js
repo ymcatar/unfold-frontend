@@ -226,10 +226,10 @@ export let startStreaming = eventId => {
         client.onmessage = event => {
             let { data } = event;
             data = JSON.parse(data);
-            console.log(data);
-            if (data.type == 'created' && data.resource == 'post') {
+            if (data.type == 'created' && data.resource === 'post' && !data.data.data) // so many data!
                 dispatch(receivePost(data.data));
-            }
+            else if (data.type == 'updated' && data.resource === 'post')
+                dispatch(receivePost(data.data));
         };
         client.onerror = err => {
             console.error(err);
