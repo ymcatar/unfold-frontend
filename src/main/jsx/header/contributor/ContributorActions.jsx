@@ -46,13 +46,11 @@ class ContributorActions extends React.Component {
                 </NavItem>
                 <NavItem eventKey={'mail'} href="#">
                     <i className="material-icons">mail</i>
-                    &nbsp;MAIL
                 </NavItem>
                 <NavItem eventKey={'sidebar'} href="#">
                     {this.props.sidebar?
                         <i className="material-icons">info</i>:
                         <i className="material-icons">info_outline</i>}
-                    &nbsp;SIDEBAR
                 </NavItem>
                 <User />
             </Nav>
