@@ -8,20 +8,31 @@ import { Avatar as Colors } from 'config/colors';
 const styles = {
     main: {
         margin: '0px 5px 5px 0px'
-    }
+    },
+    image: (size, on) => ({
+        width: size,
+        height: size,
+        border: `5px ${on? Colors.online: Colors.offline} solid`,
+        padding: 3
+    }),
+    blank: (size, on) => ({
+        width: size,
+        height: size,
+        padding: 3,
+        border: `5px ${on? Colors.online: Colors.offline} solid`,
+        backgroundColor: '#808080',
+        borderRadius: '50%'
+    })
 };
-
-const getImageStyle = (size, on) => ({
-    width: size,
-    height: size,
-    border: `5px ${on? Colors.online: Colors.offline} solid`,
-    padding: 3
-});
 
 export default class Avatar extends React.Component {
     render() {
 
-        let {name, description, size, online, image, style} = this.props;
+        let { size, style } = this.props;
+        let { name, user } = this.props.user;
+        let { description } = this.props.user.profile;
+        let image = null;
+        let online = true;
 
         const popover = (
             <Popover className="popover" id={uuid.v1()} >
@@ -30,28 +41,22 @@ export default class Avatar extends React.Component {
             </Popover>
         );
 
+        const avatar = image? (
+            <Image style={styles.image(size, online)} src={image} circle />
+        ): (
+            <div style={styles.blank(size, online)} />
+        );
+
         return (
             <div style={styles.main}>
                 <OverlayTrigger trigger={["hover", "focus"]} placement="top" overlay={popover}>
-                    <Image style={getImageStyle(size, online)} src={image} circle />
+                {avatar}
                 </OverlayTrigger>
             </div>
         );
     }
 }
 
-let { string, number, bool, object } = React.PropTypes;
-
-Avatar.propTypes = {
-    name: string.isRequired,
-    description: string.isRequired,
-    size: number.isRequired,
-    image: string.isRequired,
-    online: bool.isRequired,
-    style: object
-};
-
 Avatar.defaultProps = {
-    size: 55,
-    online: false
+    size: 55
 };

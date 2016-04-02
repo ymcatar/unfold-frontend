@@ -29,18 +29,3 @@ export default class AvatarList extends React.Component {
         );
     }
 }
-
-let { arrayOf, shape, string, bool } = React.PropTypes;
-
-AvatarList.propTypes = {
-    data: arrayOf(
-        shape({
-            name: string.isRequired,
-            description: string.isRequired,
-            image: string.isRequired
-        }))
-};
-
-AvatarList.defaultProps = {
-    data: []
-};

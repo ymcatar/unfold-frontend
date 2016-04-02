@@ -16,18 +16,3 @@ export default class RoleList extends React.Component {
         );
     }
 }
-
-let { arrayOf, shape, string, bool } = React.PropTypes;
-
-RoleList.propTypes = {
-    data: arrayOf(
-        shape({
-            id: string,
-            name: string.isRequired,
-            description: string.isRequired,
-            image: string.isRequired
-        })),
-    header: string.isRequired
-};
-
-RoleList.defaultProps = { data: [] };

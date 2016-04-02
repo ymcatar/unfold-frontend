@@ -14,10 +14,8 @@ export default function reduceEvent(state, action) {
 
     switch (action.type) {
         case actions.RECEIVE_EVENT: {
-            let { event } = state;
-            changes.event = action.data || placeholder;
-            changes.event.roles = placeholder.roles; // using placeholder until avatar upload added
-            break;
+            state.event = action.data || placeholder;
+            return state;
         }
         case actions.LOAD_LOGIN:
         case actions.RECEIVE_LOGIN: {
@@ -38,12 +36,10 @@ export default function reduceEvent(state, action) {
             break;
         }
         case actions.RECEIVE_USER: {
-            let { user } = state;
+            state.user = action.data;
             localStorage.user = action.data.id;
-            changes.user = action.data;
-            break;
+            return state;
         }
-
         case actions.RECEIVE_STREAM: {
             state.stream.filteredStream = action.data;
             state.stream.completeStream = action.data;
