@@ -39,8 +39,8 @@ export default class Tags extends React.Component {
         });
         return (
             <div>
-                <i className="fa fa-tag">&nbsp;</i>
-                {tags}
+                <i className="zmdi zmdi-tag-more" />
+                &nbsp;{tags}
             </div>
         );
     }

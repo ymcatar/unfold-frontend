@@ -39,9 +39,9 @@ export default class CollapseBox extends React.Component {
         const header = (
             <div>
                 {this.state.open?
-                    <i className="material-icons">keyboard_arrow_up</i>:
-                    <i className="material-icons">keyboard_arrow_down</i>}
-                {this.props.header}
+                    <i className="zmdi zmdi-chevron-up" />:
+                    <i className="zmdi zmdi-chevron-down" />}
+                &nbsp;{this.props.header}
             </div>
         );
 

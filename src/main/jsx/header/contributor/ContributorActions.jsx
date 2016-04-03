@@ -38,19 +38,20 @@ class ContributorActions extends React.Component {
             <Nav pullRight onSelect={this.handleNavClick}>
                 <Top type="contributor" />
                 <NavItem eventKey={'reader'} href="#">
-                    <i className="material-icons">public</i>
+                    <i className="zmdi zmdi-globe zmdi-hc-fw" />
                     &nbsp;READER
                 </NavItem>
-                <NavItem eventKey={'settings'} href="#">
-                    <i className="material-icons">settings</i>
-                </NavItem>
                 <NavItem eventKey={'mail'} href="#">
-                    <i className="material-icons">mail</i>
+                    <i className="zmdi zmdi-email zmdi-hc-fw" />
+                </NavItem>
+                <NavItem eventKey={'settings'} href="#">
+                    <i className="zmdi zmdi-settings zmdi-hc-fw" />
                 </NavItem>
                 <NavItem eventKey={'sidebar'} href="#">
                     {this.props.sidebar?
-                        <i className="material-icons">info</i>:
-                        <i className="material-icons">info_outline</i>}
+                        <i className="zmdi zmdi-info zmdi-hc-fw" />:
+                        <i className="zmdi zmdi-info-outline zmdi-hc-fw" />
+                    }
                 </NavItem>
                 <User />
             </Nav>

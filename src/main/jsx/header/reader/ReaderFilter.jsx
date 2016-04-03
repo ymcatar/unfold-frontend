@@ -36,7 +36,7 @@ class ReaderFilter extends React.Component {
                         .filter(item => item.frequency > 1)
                         .sort((a, b) => b.frequency - a.frequency)
                         .map(item => (<MenuItem key={item.name} eventKey={item.name}>
-                            #{item.name} ({item.frequency})
+                            <i className="zmdi zmdi-tag-more" />&nbsp;{item.name} ({item.frequency})
                         </MenuItem>))
                     }
                 </NavDropdown>

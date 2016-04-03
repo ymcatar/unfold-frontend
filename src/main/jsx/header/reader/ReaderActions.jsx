@@ -36,7 +36,7 @@ class ReaderActions extends React.Component {
 
         let contributor = this.props.isContributor? (
             <NavItem eventKey={'contributor'} href="#">
-                <i className="material-icons">public</i>
+                <i className="zmdi zmdi-globe zmdi-hc-fw" />
                 &nbsp;CONTRIBUTOR
             </NavItem>
         ): null;
@@ -45,16 +45,17 @@ class ReaderActions extends React.Component {
             <Nav pullRight onSelect={this.handleNavClick}>
                 <Top />
                 {contributor}
-                <NavItem eventKey={'settings'} href="#">
-                    <i className="material-icons">settings</i>
-                </NavItem>
                 <NavItem eventKey={'mail'} href="#">
-                    <i className="material-icons">mail</i>
+                    <i className="zmdi zmdi-email zmdi-hc-fw" />
+                </NavItem>
+                <NavItem eventKey={'settings'} href="#">
+                    <i className="zmdi zmdi-settings zmdi-hc-fw" />
                 </NavItem>
                 <NavItem eventKey={'sidebar'} href="#">
                     {this.props.sidebar?
-                        <i className="material-icons">info</i>:
-                        <i className="material-icons">info_outline</i>}
+                        <i className="zmdi zmdi-info zmdi-hc-fw" />:
+                        <i className="zmdi zmdi-info-outline zmdi-hc-fw" />
+                    }
                 </NavItem>
                 <User />
             </Nav>

@@ -33,7 +33,7 @@ class ContributorHeader extends React.Component {
         return (
             <div style={styles.info}>
                 <Button bsSize="small" onClick={this.handleClick}>
-                    <i className="material-icons">add</i>
+                    <i className="zmdi zmdi-plus" />
                 </Button>
             </div>
         );

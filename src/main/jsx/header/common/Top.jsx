@@ -24,7 +24,7 @@ class Top extends React.Component {
 
         return (
             <NavItem href="#" onClick={this.handleClick}>
-                <i className="material-icons">vertical_align_top</i>
+                <i className="zmdi zmdi-format-valign-top" />
                 &nbsp;{label}
             </NavItem>
         );

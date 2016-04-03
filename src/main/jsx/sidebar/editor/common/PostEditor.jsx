@@ -41,7 +41,7 @@ const editorOptions = {
     },
     extensions: {
         'translate': new MediumButton({
-            label:'T',
+            label:'<i class="zmdi zmdi-translate" />',
             action: function(html, mark){
                 return '突發事件: 示威者似乎正佔領尖沙咀廣東道。';
             }

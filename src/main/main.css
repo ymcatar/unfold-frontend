@@ -45,10 +45,6 @@ iframe {
 .dropdown-menu {
     border-color: #E5E6E9;
 }
-.material-icons {
-    font-size: 18px !important;
-    vertical-align: middle;
-}
 
 a:focus {
     outline: none;
