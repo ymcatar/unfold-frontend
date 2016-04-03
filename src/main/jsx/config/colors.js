@@ -1,5 +1,9 @@
 const zDepth = '0 2px 6px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.10)';
 
+export let ErrorView = {
+	title: '#A8A8A8'
+};
+
 /* header */
 
 export let Header = {

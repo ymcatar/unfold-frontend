@@ -10,6 +10,7 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 import ReaderView from 'views/ReaderView.jsx';
 import ContributorView from 'views/ContributorView.jsx';
+import ErrorView from 'views/ErrorView.jsx';
 
 const history = createBrowserHistory({ queryKey: false });
 
@@ -23,7 +24,9 @@ ReactDOM.render((
                 <Route path='contributor'>
                     <Route path=":eventId" component={ContributorView} />
                 </Route>
+                <IndexRoute component={ErrorView} />
             </Route>
+            <IndexRoute component={ErrorView} />
         </Router>
     </Provider>
 ), document.getElementById('main'));
