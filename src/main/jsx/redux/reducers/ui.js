@@ -15,6 +15,9 @@ export default function reduceStream(state, action) {
 		case actions.STORE_EVENT_ID:
 			ui = { eventId: action.eventId };
 			break;
+		case actions.STORE_READER_SETTINGS:
+			ui = { readerSettings: action.data };
+			break;
 		case actions.TOGGLE_SIDEBAR:
 			ui = { sidebar: action.sidebar };
 			break;
