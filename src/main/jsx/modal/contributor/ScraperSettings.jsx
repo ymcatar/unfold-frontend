@@ -68,12 +68,10 @@ class scraperSettings extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (!_.eq(newProps.data, this.props.data)) {
+        if (!_.eq(newProps.data, this.props.data))
             this.setState({
                 data: importData(newProps.data)
             });
-            console.log(importData(newProps.data));
-        }
     }
 
     handleSelect(activeKey) {
