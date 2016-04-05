@@ -19,8 +19,6 @@ export default class Type extends React.Component {
         if (!this.props.path)
             return null;
 
-        console.log(this.props.site);
-
         let Embed = embedMap[this.props.site];
 
         if (Embed)
