@@ -16,14 +16,15 @@ class ContributorFilter extends React.Component {
     }
 
     render() {
-        return (
-            <Nav onSelect={this.handleFilter} activeKey={this.props.filter}>
-                <NavItem eventKey="all" href="#">all</NavItem>
-                <NavItem eventKey="facebook" href="#">facebook</NavItem>
-                <NavItem eventKey="twitter" href="#">twitter</NavItem>
-                <NavItem eventKey="youtube" href="#">youtube</NavItem>
-            </Nav>
-        );
+        return null;
+        // return (
+        //     <Nav onSelect={this.handleFilter} activeKey={this.props.filter}>
+        //         <NavItem eventKey="all" href="#">all</NavItem>
+        //         <NavItem eventKey="facebook" href="#">facebook</NavItem>
+        //         <NavItem eventKey="twitter" href="#">twitter</NavItem>
+        //         <NavItem eventKey="youtube" href="#">youtube</NavItem>
+        //     </Nav>
+        // );
     }
 }
 

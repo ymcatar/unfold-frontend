@@ -5,6 +5,7 @@ import TypeTwitter from './TypeTwitter.jsx';
 import TypeFacebook from './TypeFacebook.jsx';
 
 const embedMap = {
+    'Twitter': TypeTwitter,
     'twitter.com': TypeTwitter,
     'www.youtube.com': TypeEmbed,
     'www.flickr.com': TypeEmbed,
@@ -17,6 +18,8 @@ export default class Type extends React.Component {
 
         if (!this.props.path)
             return null;
+
+        console.log(this.props.site);
 
         let Embed = embedMap[this.props.site];
 

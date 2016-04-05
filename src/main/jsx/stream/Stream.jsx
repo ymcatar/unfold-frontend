@@ -4,7 +4,7 @@ import SweetScroll from 'sweet-scroll';
 
 import { connect } from 'react-redux';
 
-import { getStream, getRaw, startStreaming } from 'redux/actions/ajax';
+import { getStream, getRaw, startStreaming, startScraper } from 'redux/actions/ajax';
 import { resetScroll } from 'redux/actions/stream';
 
 import { Stream as Colors } from 'config/colors';
@@ -45,8 +45,15 @@ const styles = {
 
 export default class Stream extends React.Component {
     componentWillMount() {
-        this.props.getStream(this.props.eventId);
-        this.props.startStreaming(this.props.eventId);
+        switch(this.props.role) {
+            case 'reader':
+                this.props.getStream(this.props.eventId);
+                this.props.startStreaming(this.props.eventId);
+                break;
+            case 'contributor':
+                this.props.startScraper(this.props.token, this.props.eventId);
+                break;
+        }
     }
 
     componentDidMount() {
@@ -103,8 +110,7 @@ export default connect(
                 };
             case 'contributor':
                 return {
-                    getStream: eventId => dispatch(getRaw(eventId)),
-                    startStreaming: eventId => dispatch(startStreaming(eventId)),
+                    startScraper: (token, eventId) => dispatch(startScraper(token, eventId)),
                     resetScroll: () => dispatch(resetScroll())
                 };
         }

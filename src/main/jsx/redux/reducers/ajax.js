@@ -75,6 +75,13 @@ export default function reduceEvent(state, action) {
             return state;
         }
 
+        case actions.RECEIVE_SCRAPER_POST: {
+            state.stream.completeNewStream = state.stream.completeNewStream || [];
+            state.stream.completeNewStream = [action.data].concat(state.stream.completeNewStream);
+            state.stream.filteredNewStream = state.stream.completeNewStream; // ignore filtering for now
+            return state;
+        }
+
         case actions.RECEIVE_SCRAPER_CONFIG: {
             state.config = {};
             state.config.scraper = action.data;

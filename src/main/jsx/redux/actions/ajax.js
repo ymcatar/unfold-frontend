@@ -281,3 +281,21 @@ export let putScraperConfig = (token, eventId, data) => {
         });
     };
 };
+
+export const RECEIVE_SCRAPER_POST = 'ajax: receive scraper post';
+let receiveScraperPost = data => ({ type: RECEIVE_SCRAPER_POST, data });
+
+export let startScraper = (token, eventId) => {
+    return function(dispatch) {
+        let client = new WebSocket(`${socket_domain}/event/${eventId}/ticks`);
+        client.onopen = event => {
+            console.log('Connected!');
+        };
+        client.onmessage = event => {
+            let { data } = event;
+            data = JSON.parse(data);
+            if (data.type === 'created' && data.resource === 'tick') // so many data!
+                dispatch(receiveScraperPost(data.data));
+        };
+    };
+};
