@@ -193,7 +193,6 @@ export const RECEIVE_POST = 'ajax: receive post';
 export let receivePost = data => ({ type: RECEIVE_POST, data });
 
 export let postPost = (token, eventId, data) => {
-    console.log(data);
     return function(dispatch) {
         return fetch(`${domain}/event/${eventId}/timeline`, {
             method: 'POST',
@@ -234,5 +233,51 @@ export let startStreaming = eventId => {
         client.onerror = err => {
             console.error(err);
         };
+    };
+};
+
+/* scraper */
+
+export const RECEIVE_SCRAPER_CONFIG = 'ajax: scraper config';
+export let receiveScraperConfig = data => ({ type: RECEIVE_SCRAPER_CONFIG, data });
+
+export const getScrapperConfig = (token, eventId) => {
+    return function(dispatch) {
+        return fetch(`${domain}/event/${eventId}/sources`, {
+            headers: {
+                'Authorization': token
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                dispatch(receiveScraperConfig(data));
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    };
+};
+
+export let putScraperConfig = (token, eventId, data) => {
+    return function(dispatch) {
+        return fetch(`${domain}/event/${eventId}/sources`, {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => {
+            if (res.status == 200)
+                dispatch(showSuccess('Update successfully added.'));
+            else
+                dispatch(showError('Update adding failed. Please try again.'));
+        })
+        .catch(err => {
+            console.error(err);
+            dispatch(showError('Update adding failed. Please try again.'));
+        });
     };
 };

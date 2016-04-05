@@ -34,6 +34,9 @@ export default function reduceStream(state, action) {
 		case actions.SHOW_STREAM_SETTINGS:
 		case actions.HIDE_STREAM_SETTINGS:
 
+		case actions.SHOW_SCRAPER_SETTINGS:
+		case actions.HIDE_SCRAPER_SETTINGS:
+
 			modal = { active: action.active, data: action.data };
 			break;
 	}

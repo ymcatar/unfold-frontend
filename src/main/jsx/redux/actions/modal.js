@@ -53,3 +53,9 @@ export let showStreamSettings = () => ({ type: SHOW_STREAM_SETTINGS, active: 'st
 
 export const HIDE_STREAM_SETTINGS = 'modal: hide stream settings';
 export let hideStreamSettings = () => ({ type: HIDE_STREAM_SETTINGS, active: null, data: null});
+
+export const SHOW_SCRAPER_SETTINGS = 'modal: show scraper settings';
+export let showScraperSettings = () => ({ type: SHOW_SCRAPER_SETTINGS, active: 'scraperSettings', data: null});
+
+export const HIDE_SCRAPER_SETTINGS = 'modal: hide scraper settings';
+export let hideScraperSettings = () => ({ type: HIDE_SCRAPER_SETTINGS, active: null, data: null});

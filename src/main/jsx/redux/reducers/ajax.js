@@ -74,6 +74,12 @@ export default function reduceEvent(state, action) {
 
             return state;
         }
+
+        case actions.RECEIVE_SCRAPER_CONFIG: {
+            state.config = {};
+            state.config.scraper = action.data;
+            return state;
+        }
     }
     return _.defaults(changes, state);
 }

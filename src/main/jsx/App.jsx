@@ -6,7 +6,7 @@ import store from 'redux/store';
 
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {Router, Route, browserHistory} from 'react-router';
 
 import ReaderView from 'views/ReaderView.jsx';
 import ContributorView from 'views/ContributorView.jsx';
@@ -24,9 +24,9 @@ ReactDOM.render((
                 <Route path='contributor'>
                     <Route path=":eventId" component={ContributorView} />
                 </Route>
-                <IndexRoute component={ErrorView} />
+                <Route path='*' component={ErrorView} />
             </Route>
-            <IndexRoute component={ErrorView} />
+            <Route path='*' component={ErrorView} />
         </Router>
     </Provider>
 ), document.getElementById('main'));

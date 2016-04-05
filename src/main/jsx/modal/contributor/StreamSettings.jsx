@@ -76,6 +76,16 @@ class streamSettings extends React.Component {
 
                     <hr />
 
+                    <label>Date</label>
+                    <DateRangePicker
+                        onApply={this.handlePicker}
+                        startDate={moment(startedAt)}
+                        endDate={moment(endedAt)}>
+                        <Button>Open</Button>
+                    </DateRangePicker>
+
+                    <hr />
+
                     <Input
                         type="text"
                         ref={x => {this.elm.location = x;}}
@@ -88,16 +98,6 @@ class streamSettings extends React.Component {
                         defaultValue={information|| 'To be added.'}
                         placeholder="Markdown is supported."
                         label="Information" />
-
-                    <hr />
-
-                    <label>Date</label>
-                    <DateRangePicker
-                        onApply={this.handlePicker}
-                        startDate={moment(startedAt)}
-                        endDate={moment(endedAt)}>
-                        <Button>Open</Button>
-                    </DateRangePicker>
 
                     <hr />
 

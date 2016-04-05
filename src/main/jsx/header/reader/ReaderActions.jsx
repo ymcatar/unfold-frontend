@@ -23,9 +23,9 @@ class ReaderActions extends React.Component {
             case 'sidebar':
                 this.props.toggleSidebar(!this.props.sidebar);
                 break;
-            case 'mail':
-                this.props.showReaderMail();
-                break;
+            // case 'mail':
+            //     this.props.showReaderMail();
+            //     break;
             case 'contributor':
                 window.open(`../contributor/${this.props.eventId}`, '_blank');
                 break;
@@ -45,9 +45,11 @@ class ReaderActions extends React.Component {
             <Nav pullRight onSelect={this.handleNavClick}>
                 <Top />
                 {contributor}
+                {/*
                 <NavItem eventKey={'mail'} href="#">
                     <i className="zmdi zmdi-email zmdi-hc-fw" />
                 </NavItem>
+                */}
                 <NavItem eventKey={'settings'} href="#">
                     <i className="zmdi zmdi-settings zmdi-hc-fw" />
                 </NavItem>
@@ -80,7 +82,7 @@ export default connect(
     function dispatchToProps(dispatch, props) {
         return ({
             toggleSidebar: val => dispatch(toggleSidebar(val)),
-            showReaderMail: () => dispatch(showReaderMail()),
+            // showReaderMail: () => dispatch(showReaderMail()),
             showSettings: () => dispatch(showReaderSettings()),
         });
     }

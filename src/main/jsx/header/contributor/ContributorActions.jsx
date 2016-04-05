@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Nav, NavItem } from 'react-bootstrap';
 
 import { toggleSidebar } from 'redux/actions/ui';
-import { showReaderMail, showStreamSettings } from 'redux/actions/modal'; 
+import { showReaderMail, showStreamSettings, showScraperSettings } from 'redux/actions/modal'; 
 import { scrollToTop } from 'redux/actions/stream';
 
 import User from '../common/User.jsx';
@@ -24,8 +24,11 @@ class ContributorActions extends React.Component {
             case 'sidebar':
                 this.props.toggleSidebar(!this.props.sidebar);
                 break;
-            case 'mail':
-                this.props.showReaderMail();
+            // case 'mail':
+            //     this.props.showReaderMail();
+            //     break;
+            case 'scraper':
+                this.props.showScraperSettings();
                 break;
             case 'reader':
                 window.open(`../reader/${this.props.eventId}`, '_blank');
@@ -41,11 +44,16 @@ class ContributorActions extends React.Component {
                     <i className="zmdi zmdi-globe zmdi-hc-fw" />
                     &nbsp;READER
                 </NavItem>
+                {/*
                 <NavItem eventKey={'mail'} href="#">
                     <i className="zmdi zmdi-email zmdi-hc-fw" />
                 </NavItem>
+                */}
                 <NavItem eventKey={'settings'} href="#">
                     <i className="zmdi zmdi-settings zmdi-hc-fw" />
+                </NavItem>
+                <NavItem eventKey={'scraper'} href="#">
+                    <i className="zmdi zmdi-collection-plus zmdi-hc-fw" />
                 </NavItem>
                 <NavItem eventKey={'sidebar'} href="#">
                     {this.props.sidebar?
@@ -69,8 +77,9 @@ export default connect(
     function dispatchToProps(dispatch, props) {
         return ({
             toggleSidebar: val => dispatch(toggleSidebar(val)),
-            showReaderMail: () => dispatch(showReaderMail()),
+            //showReaderMail: () => dispatch(showReaderMail()),
             showStreamSettings: () => dispatch(showStreamSettings()),
+            showScraperSettings: () => dispatch(showScraperSettings())
         });
     }
 )(ContributorActions);

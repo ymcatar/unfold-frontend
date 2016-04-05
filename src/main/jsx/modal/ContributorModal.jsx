@@ -3,6 +3,7 @@ import React from 'react';
 import Mail from './reader/Mail.jsx';
 
 import StreamSettings from './contributor/StreamSettings.jsx';
+import ScraperSettings from './contributor/ScraperSettings.jsx';
 
 import Login from './common/Login.jsx';
 import Error from './common/Error.jsx';
@@ -15,6 +16,7 @@ export default class ContributorModal extends React.Component {
             <div>
                 <Mail />
                 <StreamSettings />
+                <ScraperSettings />
 
                 <Login />
                 <Error />
