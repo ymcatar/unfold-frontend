@@ -47,8 +47,8 @@ export default class Stream extends React.Component {
     componentWillMount() {
         switch(this.props.role) {
             case 'reader':
-                this.props.getStream(this.props.eventId);
-                this.props.startStreaming(this.props.eventId);
+                this.props.getStream(this.props.eventId, this.props.lang);
+                this.props.startStreaming(this.props.eventId, this.props.lang);
                 break;
             case 'contributor':
                 this.props.startScraper(this.props.token, this.props.eventId);
@@ -95,7 +95,9 @@ export default connect(
             filteredNewStream: state.stream.filteredNewStream || [],
             scrollPending: state.stream.scrollPending,
             position: state.stream.position,
-            eventId: state.ui.eventId
+            eventId: state.ui.eventId,
+            lang: state.ui.readerSettings && state.ui.readerSettings.lang?
+                state.ui.readerSettings.lang: 'eng'
         };
 
     },
@@ -104,8 +106,8 @@ export default connect(
             case 'reader':
             case 'translator':
                 return {
-                    getStream: eventId => dispatch(getStream(eventId)),
-                    startStreaming: eventId => dispatch(startStreaming(eventId)),
+                    getStream: (eventId, lang) => dispatch(getStream(eventId, lang)),
+                    startStreaming: (eventId, lang) => dispatch(startStreaming(eventId, lang)),
                     resetScroll: () => dispatch(resetScroll())
                 };
             case 'contributor':

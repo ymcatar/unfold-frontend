@@ -138,8 +138,9 @@ export let putUser = (token, id, name, profile) => {
 export const RECEIVE_STREAM = 'ajax: receive stream';
 let receiveStream = data => ({ type: RECEIVE_STREAM, data });
 
-export let getStream = eventId => {
+export let getStream = (eventId, lang) => {
     return function(dispatch) {
+        //return fetch(`${domain}/event/${eventId}/timeline${lang?`?lang=${lang}`: ''}`)
         return fetch(`${domain}/event/${eventId}/timeline`)
             .then(res => res.json())
             .then(data => {
