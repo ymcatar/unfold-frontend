@@ -72,12 +72,12 @@ class UpdateBox extends React.Component {
         let header;
         switch (this.props.role) {
             case "reader":
-            case "translator":
                 header = (
                     <ReaderHeader author={this.props.data.author} time={this.props.data.createdAt} />
                 );
                 break;
             case "contributor":
+            case "translator":
                 header = (
                     <ContributorHeader data={this.props.data} />
                 );

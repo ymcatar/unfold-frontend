@@ -47,6 +47,7 @@ export default class Stream extends React.Component {
     componentWillMount() {
         switch(this.props.role) {
             case 'reader':
+            case 'translator':
                 this.props.getStream(this.props.eventId, this.props.lang);
                 this.props.startStreaming(this.props.eventId, this.props.lang);
                 break;

@@ -8,6 +8,7 @@ import { Info as Colors } from 'config/colors';
 
 import ReaderSidebar from './ReaderSidebar.jsx';
 import ContributorSidebar from './ContributorSidebar.jsx';
+import TranslatorSidebar from './TranslatorSidebar.jsx';
 
 const styles = {
     main: (show, mobile) => ({
@@ -41,6 +42,9 @@ class Sidebar extends React.Component {
                 break;
             case "contributor":
                 content = <ContributorSidebar />;
+                break;
+            case "translator":
+                content = <TranslatorSidebar />;
                 break;
         }
 

@@ -89,8 +89,8 @@ class Editor extends React.Component {
 
         let { post } = nextProps;
         post = {
-            caption: '',
-            data: { url: post.data.url },
+            caption: post.caption? post.caption: '',
+            data: { url: post.data? post.data.url: '' },
             tags: (post.tags || []).map((o, i) => ({ id: i, text: o }))
         };
 

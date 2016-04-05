@@ -31,6 +31,10 @@ export default class Header extends React.Component {
                 filter = <ContributorFilter />;
                 actions = <ContributorActions />;
                 break;
+            case "translator":
+                filter = null;
+                actions = null;
+                break;
         }
 
         return (
