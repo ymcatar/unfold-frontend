@@ -59,7 +59,8 @@ class scraperSettings extends React.Component {
         _.bindAll(this, [
             'handleSelect',
             'handleAddSubmit',
-            'handleSubmit'
+            'handleSubmit',
+            'handleDelete'
         ]);
     }
 
@@ -89,6 +90,13 @@ class scraperSettings extends React.Component {
 
     handleSubmit() {
         this.props.putScraperConfig(this.props.token, this.props.eventId, exportData(this.state.data));
+    }
+
+    handleDelete(i) {
+        let { data } = this.state;
+        data = _.clone(data);
+        data.splice(i, 1);
+        this.setState({ data: data });
     }
 
     render() {
@@ -139,21 +147,21 @@ class scraperSettings extends React.Component {
             <Table>
                 <thead>
                     <tr>
-                        <th>Website</th>
-                        <th>Type</th>
+                        <th width="10%">Website</th>
+                        <th width="10%">Type</th>
                         <th>Name</th>
-                        <th></th>
+                        <th width="3%"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {this.state.data.map(item => (
+                    {this.state.data.map((item, i) => (
                         <tr key={item.website+item.option+item.name}>
                             <td>{item.website}</td>
                             <td>{item.option}</td>
                             <td>{item.name}</td>
                             <td>
-                                <a href="#">
-                                    <i className="fa fa-trash"/>
+                                <a href="#" onClick={() => { this.handleDelete(i); }}>
+                                    <i className="zmdi zmdi-delete"/>
                                 </a>
                             </td>
                         </tr>
