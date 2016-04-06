@@ -31,7 +31,7 @@ class TranslatorView extends React.Component {
     render() {
         return (
             <div>
-                <Header role="contributor" />
+                <Header role="translator" />
                 <div style={styles.main}>
                     <Sidebar role="translator" />
                     <Stream role="translator" />

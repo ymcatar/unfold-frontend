@@ -12,6 +12,9 @@ import ReaderActions from './reader/ReaderActions.jsx';
 import ContributorFilter from './contributor/ContributorFilter.jsx';
 import ContributorActions from './contributor/ContributorActions.jsx';
 
+import TranslatorFilter from './translator/TranslatorFilter.jsx';
+import TranslatorActions from './translator/TranslatorActions.jsx';
+
 const styles = {
     main: {
         border: `1px solid ${Colors.borderColor}`,
@@ -32,8 +35,8 @@ export default class Header extends React.Component {
                 actions = <ContributorActions />;
                 break;
             case "translator":
-                filter = null;
-                actions = null;
+                filter = <TranslatorFilter />;
+                actions = <TranslatorActions />;
                 break;
         }
 

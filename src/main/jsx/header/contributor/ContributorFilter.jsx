@@ -16,7 +16,11 @@ class ContributorFilter extends React.Component {
     }
 
     render() {
-        return null;
+        return (
+            <Nav>
+                <NavItem disabled>CONTRIBUTOR</NavItem>
+            </Nav>
+        );
         // return (
         //     <Nav onSelect={this.handleFilter} activeKey={this.props.filter}>
         //         <NavItem eventKey="all" href="#">all</NavItem>
