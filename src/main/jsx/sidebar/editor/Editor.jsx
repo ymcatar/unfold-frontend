@@ -45,12 +45,14 @@ class Editor extends React.Component {
             'handleTagsChange',
             'handleSourceChange',
             'handleSubmit',
-            'handleClear'
+            'handleClear',
+            'resetClear'
         ]);
     }
 
     handleContentChange(caption) {
         let { post } = this.state;
+        console.log(caption);
         post.caption = caption;
         this.setState({ post });
     }
@@ -79,6 +81,10 @@ class Editor extends React.Component {
         this.handleClear();
     }
 
+    resetClear() {
+        this.setState({clear: false});
+    }
+
     handleClear() {
         this.setState({ post: emptyPost, added: false, clear: true });
         this.props.clearEditorPost();
@@ -101,7 +107,7 @@ class Editor extends React.Component {
 
     render() {
 
-        let tags = this.props.type == 'CONTRIBUTOR'? (
+        let tags = this.props.type == 'contributor'? (
             <div>
                 <p>Tags</p>
                 <PostTags
@@ -116,6 +122,7 @@ class Editor extends React.Component {
             <div>
                 <i>(Click to edit. Select to add formating.)</i>
                 <PostEditor
+                    resetClear={this.resetClear}
                     clear={this.state.clear}
                     handleContentChange={this.handleContentChange}
                     content={this.state.post.caption} />

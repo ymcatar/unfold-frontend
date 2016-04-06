@@ -74,9 +74,11 @@ class PostEditor extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.clear)
+        if (nextProps.clear) {
             this.changeText('');
-        if (!_.eq(this.props.post, nextProps.post) && nextProps.post.caption)
+            this.props.resetClear();
+        }
+        if (!_.eq(this.props.post, nextProps.post) && nextProps.post && nextProps.post.caption)
             this.changeText(nextProps.post.caption);
     }
 
