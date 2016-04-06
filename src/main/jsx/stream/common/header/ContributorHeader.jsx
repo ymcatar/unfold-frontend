@@ -30,9 +30,13 @@ class ContributorHeader extends React.Component {
     }
 
     render() {
+
+        let disabled = this.props.editorPost && this.props.data?
+            this.props.editorPost.id === this.props.data.id: false;
+
         return (
             <div style={styles.info}>
-                <Button bsSize="small" onClick={this.handleClick}>
+                <Button bsSize="small" onClick={this.handleClick} disabled={disabled}>
                     <i className="zmdi zmdi-plus" />
                 </Button>
             </div>
@@ -42,7 +46,9 @@ class ContributorHeader extends React.Component {
 
 export default connect(
     function stateToProps(state) {
-        return {};
+        return {
+            editorPost: state.ui.editorPost
+        };
     },
     function dispatchToProps(dispatch) {
         return {

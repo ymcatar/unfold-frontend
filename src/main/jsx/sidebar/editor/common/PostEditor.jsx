@@ -1,4 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+
+import _ from 'lodash';
 import MediumEditor from 'react-medium-editor';
 import MediumButton from 'common/MediumButton';
 
@@ -12,7 +16,7 @@ const styles = {
         borderRadius: '3px',
         padding: '10px',
         outline: 'none',
-        height: '350px',
+        height: '250px',
         overflowY: 'scroll',
         margin: '10px 0 10px 0',
         fontSize: '110%',
@@ -20,7 +24,7 @@ const styles = {
     }
 };
 
-const editorOptions = {
+const editorOptions = changeHandler => ({
     placeholder: {
         text: ''
     },
@@ -43,20 +47,52 @@ const editorOptions = {
         'translate': new MediumButton({
             label:'<i class="zmdi zmdi-translate" />',
             action: function(html, mark){
-                return '突發事件: 示威者似乎正佔領尖沙咀廣東道。';
+                let translated = '突發事件: 示威者似乎正佔領尖沙咀廣東道。';
+                setTimeout(() => {
+                    changeHandler();
+                }, 100);
+                return translated;
             }
         })
     }
-};
+});
 
-export default class Editor extends React.Component {
+class PostEditor extends React.Component {
+
+    constructor(props) {
+        super(props);
+        _.bindAll(this, ['handleContentChange']);
+    }
+
+    handleContentChange() {
+        this.props.handleContentChange(ReactDOM.findDOMNode(this.elm).innerHTML);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.clear)
+            ReactDOM.findDOMNode(this.elm).innerHTML = '';
+        if (this.props.content !== nextProps.content)
+            ReactDOM.findDOMNode(this.elm).innerHTML = nextProps.content;
+    }
+
     render() {
         return (
             <MediumEditor
+                ref={x => { this.elm = x; }}
                 style={styles.editor}
-                text={this.props.content}
-                onChange={this.props.handleContentChange}
-                options={editorOptions} />
+                onChange={this.handleContentChange}
+                options={editorOptions(this.handleContentChange)} />
             );
     }
 }
+
+export default connect(
+    function stateToProps(state, props) {
+        return {
+            post: state.ui.editorPost
+        };
+    },
+    function dispatchToProps(dispatch, props) {
+        return { };
+    }
+)(PostEditor);

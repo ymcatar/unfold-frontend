@@ -80,22 +80,23 @@ class Editor extends React.Component {
     }
 
     handleClear() {
-        this.setState({ post: emptyPost, added: false });
+        this.setState({ post: emptyPost, added: false, clear: true });
+        this.props.clearEditorPost();
     }
 
     componentWillReceiveProps(nextProps) {
-        if (!nextProps.post)
-            return;
+        if (nextProps.clear)
+            this.setState({ clear: false });
 
-        let { post } = nextProps;
-        post = {
-            caption: post.caption? post.caption: '',
-            data: { url: post.data? post.data.url: '' },
-            tags: (post.tags || []).map((o, i) => ({ id: i, text: o }))
-        };
-
-        this.setState({ post, added: true });
-        this.props.clearEditorPost();
+        if (nextProps.post) {
+            let { post } = nextProps;
+            post = {
+                caption: post.caption? post.caption: '',
+                data: { url: post.data? post.data.url: '' },
+                tags: (post.tags || []).map((o, i) => ({ id: i, text: o }))
+            };
+            this.setState({ post, added: true });
+        }
     }
 
     render() {
@@ -103,6 +104,7 @@ class Editor extends React.Component {
             <div>
                 <i>(Click to edit. Select to add formating.)</i>
                 <PostEditor
+                    clear={this.state.clear}
                     handleContentChange={this.handleContentChange}
                     content={this.state.post.caption} />
                 <p>Source Path</p>
