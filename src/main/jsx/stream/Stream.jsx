@@ -48,13 +48,9 @@ export default class Stream extends React.Component {
     componentWillMount() {
         switch(this.props.role) {
             case 'reader':
-                this.props.getStream(this.props.eventId, this.props.lang);
-                this.props.startStreaming(this.props.eventId, this.props.lang);
-                /* pour settings from localStorage to redux store */
-                if (localStorage.readerSettings)
-                    this.props.storeReaderSettings(JSON.parse(localStorage.readerSettings));
-                else
-                    this.props.storeReaderSettings(defaultConfig);
+                let lang = JSON.parse(localStorage.readerSettings).lang || 'en';
+                this.props.getStream(this.props.eventId, lang);
+                this.props.startStreaming(this.props.eventId, lang);
                 break;
             case 'translator':
                 this.props.getStream(this.props.eventId, this.props.lang);

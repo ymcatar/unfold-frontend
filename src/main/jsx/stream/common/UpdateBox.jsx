@@ -53,7 +53,6 @@ class UpdateBox extends React.Component {
     }
 
     render() {
-        console.log(this.props.lang);
         if (!this.props.data)
             return null;
 
@@ -93,8 +92,9 @@ class UpdateBox extends React.Component {
         ): null;
 
         let caption = this.props.data.caption;
-        if (this.props.data.translations && this.props.data.translations[this.props.lang])
-            caption = this.props.data.translations[this.props.lang].content;
+        let lang = JSON.parse(localStorage.readerSettings).lang || 'en';
+        if (this.props.data.translations && this.props.data.translations[lang])
+            caption = this.props.data.translations[lang].content;
 
         return (
             <div style={styles.main}>

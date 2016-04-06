@@ -8,10 +8,6 @@ import { connect } from 'react-redux';
 
 import { Modal, Button, Input } from 'react-bootstrap';
 
-const defaultConfig = {
-    lang: 'eng'
-};
-
 class Settings extends React.Component {
 
     constructor(props) {
@@ -42,7 +38,7 @@ class Settings extends React.Component {
                         label="Stream Language"
                         placeholder="select">
                         <option value="en">English</option>
-                        <option value="zh-Hant">Traditional Chinese</option>
+                        <option value="zh-hant">Traditional Chinese</option>
                     </Input>
                 </Modal.Body>
                 <Modal.Footer>

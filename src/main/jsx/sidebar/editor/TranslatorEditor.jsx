@@ -122,7 +122,7 @@ class TranslatorEditor extends React.Component {
                     bsSize="small"
                     type="select">
                     <option value="en">English</option>
-                    <option value="zh-Hant">Traditional Chinese</option>
+                    <option value="zh-hant">Traditional Chinese</option>
                 </Input>
 
 
