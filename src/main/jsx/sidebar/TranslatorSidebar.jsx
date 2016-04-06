@@ -5,7 +5,7 @@ import { Nav, NavItem } from 'react-bootstrap';
 
 import { switchSidebar } from 'redux/actions/ui';
 
-import Editor from './editor/Editor.jsx';
+import TranslatorEditor from './editor/TranslatorEditor.jsx';
 import Event from './event/Event.jsx';
 
 const getShowStyle = visible => ({
@@ -38,7 +38,7 @@ class ContributorSidebar extends React.Component {
                     </Nav>
                 </div>
                 <div style={getShowStyle(editor)}>
-                    <Editor type="translator" />
+                    <TranslatorEditor />
                 </div>
                 <div style={getShowStyle(event)}>
                     <Event />

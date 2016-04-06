@@ -5,6 +5,7 @@ import SweetScroll from 'sweet-scroll';
 import { connect } from 'react-redux';
 
 import { getStream, getRaw, startStreaming, startScraper } from 'redux/actions/ajax';
+import { storeReaderSettings } from 'redux/actions/ui';
 import { resetScroll } from 'redux/actions/stream';
 
 import { Stream as Colors } from 'config/colors';
@@ -47,6 +48,14 @@ export default class Stream extends React.Component {
     componentWillMount() {
         switch(this.props.role) {
             case 'reader':
+                this.props.getStream(this.props.eventId, this.props.lang);
+                this.props.startStreaming(this.props.eventId, this.props.lang);
+                /* pour settings from localStorage to redux store */
+                if (localStorage.readerSettings)
+                    this.props.storeReaderSettings(JSON.parse(localStorage.readerSettings));
+                else
+                    this.props.storeReaderSettings(defaultConfig);
+                break;
             case 'translator':
                 this.props.getStream(this.props.eventId, this.props.lang);
                 this.props.startStreaming(this.props.eventId, this.props.lang);
@@ -98,7 +107,7 @@ export default connect(
             position: state.stream.position,
             eventId: state.ui.eventId,
             lang: state.ui.readerSettings && state.ui.readerSettings.lang?
-                state.ui.readerSettings.lang: 'eng'
+                state.ui.readerSettings.lang: 'en'
         };
 
     },
@@ -109,7 +118,8 @@ export default connect(
                 return {
                     getStream: (eventId, lang) => dispatch(getStream(eventId, lang)),
                     startStreaming: (eventId, lang) => dispatch(startStreaming(eventId, lang)),
-                    resetScroll: () => dispatch(resetScroll())
+                    resetScroll: () => dispatch(resetScroll()),
+                    storeReaderSettings: data => dispatch(storeReaderSettings(data)),
                 };
             case 'contributor':
                 return {

@@ -140,8 +140,8 @@ let receiveStream = data => ({ type: RECEIVE_STREAM, data });
 
 export let getStream = (eventId, lang) => {
     return function(dispatch) {
-        //return fetch(`${domain}/event/${eventId}/timeline${lang?`?lang=${lang}`: ''}`)
-        return fetch(`${domain}/event/${eventId}/timeline`)
+        return fetch(`${domain}/event/${eventId}/timeline${lang?`?language=${lang}`: ''}`)
+        //return fetch(`${domain}/event/${eventId}/timeline`)
             .then(res => res.json())
             .then(data => {
                 dispatch(receiveStream(data.posts));
@@ -185,6 +185,32 @@ export let getTags = eventId => {
             .then(data => {
                 dispatch(receiveTags(data));
             });
+    };
+};
+
+/* translation */
+
+export let putTranslation = (token, eventId, postId, data) => {
+    return function(dispatch) {
+        return fetch(`${domain}/event/${eventId}/timeline/${postId}`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => {
+            if (res.status == 200)
+                dispatch(showSuccess('Update successfully added.'));
+            else
+                dispatch(showError('Update adding failed. Please try again.'));
+        })
+        .catch(err => {
+            console.error(err);
+            dispatch(showError('Update adding failed. Please try again.'));
+        });
     };
 };
 

@@ -53,6 +53,7 @@ class UpdateBox extends React.Component {
     }
 
     render() {
+        console.log(this.props.lang);
         if (!this.props.data)
             return null;
 
@@ -91,12 +92,16 @@ class UpdateBox extends React.Component {
                 path={this.props.data.data.url} />
         ): null;
 
+        let caption = this.props.data.caption;
+        if (this.props.data.translations && this.props.data.translations[this.props.lang])
+            caption = this.props.data.translations[this.props.lang].content;
+
         return (
             <div style={styles.main}>
                 <Card>
                     {header}
                     <div style={styles.content}>
-                        <TypeText data={this.props.data.caption} />
+                        <TypeText data={caption} />
                         {embedBody}
                     </div>
                     <div>
@@ -111,7 +116,9 @@ class UpdateBox extends React.Component {
 
 export default connect(
     function stateToProps(state) {
-        return {};
+        return {
+            lang: state.ui.readerSettings? state.ui.readerSettings.lang: 'en'
+        };
     },
     function dispatchToProps(dispatch) {
         return {

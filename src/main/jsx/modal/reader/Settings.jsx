@@ -20,14 +20,6 @@ class Settings extends React.Component {
         _.bindAll(this, ['handleSubmit']);
     }
 
-    componentWillMount() {
-        /* pour settings from localStorage to redux store */
-        if (localStorage.readerSettings)
-            this.props.storeReaderSettings(JSON.parse(localStorage.readerSettings));
-        else
-            this.props.storeReaderSettings(defaultConfig);
-    }
-
     handleSubmit() {
         let data = {
             lang: this.elm.lang.getValue()
@@ -49,8 +41,8 @@ class Settings extends React.Component {
                         type="select"
                         label="Stream Language"
                         placeholder="select">
-                        <option value="eng">English</option>
-                        <option value="cht">Traditional Chinese</option>
+                        <option value="en">English</option>
+                        <option value="zh-Hant">Traditional Chinese</option>
                     </Input>
                 </Modal.Body>
                 <Modal.Footer>
@@ -71,8 +63,8 @@ export default connect(
     function dispatchToProps(dispatch) {
         return {
             handleHide: () => dispatch(hideReaderSettings()),
-            storeReaderSettings: data => dispatch(storeReaderSettings(data)),
-            showSuccess: msg => dispatch(showSuccess(msg))
+            showSuccess: msg => dispatch(showSuccess(msg)),
+            storeReaderSettings: data => dispatch(storeReaderSettings(data))
         };
     }
 )(Settings);

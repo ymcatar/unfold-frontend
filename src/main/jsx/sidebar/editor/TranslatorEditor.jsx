@@ -4,12 +4,11 @@ import { Button, Input, ButtonToolbar } from 'react-bootstrap';
 import _ from 'lodash';
 
 import { selectEditorPost } from 'redux/actions/ui';
-import { postPost } from 'redux/actions/ajax';
+import { putTranslation } from 'redux/actions/ajax';
 
 import { Editor as Colors } from 'config/colors';
 
 import PostEditor from './common/PostEditor.jsx';
-import PostTags from './common/PostTags.jsx';
 
 const styles = {
     button: {
@@ -32,18 +31,14 @@ const emptyPost = {
     tags: []
 };
 
-class Editor extends React.Component {
+class TranslatorEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            post: emptyPost,
-            added: false,
-            suggestions: ['important', 'reliable', 'unverified']
-        };
+        this.state = { post: emptyPost, lang: 'en' };
         _.bindAll(this, [
             'handleContentChange',
-            'handleTagsChange',
             'handleSourceChange',
+            'handleLangChange',
             'handleSubmit',
             'handleClear',
             'resetClear'
@@ -52,15 +47,12 @@ class Editor extends React.Component {
 
     handleContentChange(caption) {
         let { post } = this.state;
-        console.log(caption);
         post.caption = caption;
         this.setState({ post });
     }
 
-    handleTagsChange(tags) {
-        let { post } = this.state;
-        post.tags = tags;
-        this.setState({ post });
+    handleLangChange(e) {
+        this.setState({ lang: e.target.value });
     }
 
     handleSourceChange() {
@@ -70,15 +62,13 @@ class Editor extends React.Component {
     }
 
     handleSubmit() {
-        let { post } = this.state;
-        if (post.data && post.data.url === '')
-            delete post.data;
-        if (post.caption === '')
-            delete post.caption;
-
-        post.tags = post.tags.map(item => item.text);
-        this.props.postPost(this.props.token, this.props.eventId, post); // wow, so many post
-        this.handleClear();
+        let { caption, id } = this.state.post;
+        let { lang } = this.state;
+        let post = { translations: {} };
+        post.translations[lang] = {
+            content: caption
+        };
+        this.props.putTranslation(this.props.token, this.props.eventId, id, post);
     }
 
     resetClear() {
@@ -86,7 +76,7 @@ class Editor extends React.Component {
     }
 
     handleClear() {
-        this.setState({ post: emptyPost, added: false, clear: true });
+        this.setState({ post: emptyPost, clear: true });
         this.props.clearEditorPost();
     }
 
@@ -97,27 +87,15 @@ class Editor extends React.Component {
         if (nextProps.post) {
             let { post } = nextProps;
             post = {
+                id: post.id,
                 caption: post.caption? post.caption: '',
-                data: { url: post.data? post.data.url: '' },
-                tags: (post.tags || []).map((o, i) => ({ id: i, text: o }))
+                data: { url: post.data? post.data.url: '' }
             };
             this.setState({ post, added: true });
         }
     }
 
     render() {
-
-        let tags = this.props.type == 'contributor'? (
-            <div>
-                <p>Tags</p>
-                <PostTags
-                    suggestions={this.state.suggestions}
-                    tags={this.state.post.tags || []}
-                    handleTagsChange={this.handleTagsChange} />
-                <br />
-            </div>
-        ): null;
-
         return (
             <div>
                 <i>(Click to edit. Select to add formating.)</i>
@@ -126,18 +104,31 @@ class Editor extends React.Component {
                     clear={this.state.clear}
                     handleContentChange={this.handleContentChange}
                     content={this.state.post.caption} />
+
                 <p>Source Path</p>
                 <Input
-                    ref="path"
                     style={styles.input}
-                    disabled={this.state.added || this.props.type !== 'contributor'}
+                    disabled={true}
                     value={this.state.post.data? this.state.post.data.url: ""}
                     onChange={this.handleSourceChange}
                     bsSize="small"
                     type="text" />
-                {tags}
+
+                <p>Target Language</p>
+                <Input
+                    syule={styles.input}
+                    value={this.state.lang}
+                    onChange={this.handleLangChange}
+                    bsSize="small"
+                    type="select">
+                    <option value="en">English</option>
+                    <option value="zh-Hant">Traditional Chinese</option>
+                </Input>
+
+
                 <ButtonToolbar style={styles.button}>
                     <Button
+                        disabled={this.state.post.caption === '' || !this.state.post.data.url}
                         onClick={this.handleSubmit}
                         bsStyle="primary"
                         bsSize="small">
@@ -150,6 +141,7 @@ class Editor extends React.Component {
                         Clear
                     </Button>
                 </ButtonToolbar>
+
             </div>
         );
     }
@@ -167,7 +159,7 @@ export default connect(
     function dispatchToProps(dispatch, props) {
         return {
             clearEditorPost: () => dispatch(selectEditorPost(null)),
-            postPost: (token, eventId, post) => dispatch(postPost(token, eventId, post))
+            putTranslation: (token, eventId, id, post) => dispatch(putTranslation(token, eventId, id, post))
         };
     }
-)(Editor);
+)(TranslatorEditor);
