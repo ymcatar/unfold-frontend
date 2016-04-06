@@ -8,6 +8,7 @@ import { showReaderMail, showReaderSettings } from 'redux/actions/modal'; 
 
 import User from '../common/User.jsx';
 import Top from '../common/Top.jsx';
+import SwitchRole from '../common/SwitchRole.jsx';
 
 class ReaderActions extends React.Component {
     constructor(props) {
@@ -26,25 +27,15 @@ class ReaderActions extends React.Component {
             // case 'mail':
             //     this.props.showReaderMail();
             //     break;
-            case 'contributor':
-                window.open(`../contributor/${this.props.eventId}`, '_blank');
-                break;
         }
     }
 
     render() {
 
-        let contributor = this.props.isContributor? (
-            <NavItem eventKey={'contributor'} href="#">
-                <i className="zmdi zmdi-globe zmdi-hc-fw" />
-                &nbsp;CONTRIBUTOR
-            </NavItem>
-        ): null;
-
         return (
             <Nav pullRight onSelect={this.handleNavClick}>
-                <Top />
-                {contributor}
+                <Top type="reader" />
+                <SwitchRole type="reader"/>
                 {/*
                 <NavItem eventKey={'mail'} href="#">
                     <i className="zmdi zmdi-email zmdi-hc-fw" />
@@ -67,16 +58,9 @@ class ReaderActions extends React.Component {
 
 export default connect(
     function stateToProps(state, props) {
-
-        let isContributor = state.event && state.user && state.event.roles?
-            state.event.roles.filter(item => (
-                item.userId = state.user.id && (item.type === 'CONTRIBUTOR' || item.type === 'OWNER')
-        ))[0]: false;
-
         return {
             sidebar: state.ui.sidebar,
-            eventId: state.ui.eventId,
-            isContributor
+            eventId: state.ui.eventId
         };
     },
     function dispatchToProps(dispatch, props) {

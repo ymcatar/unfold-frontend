@@ -9,6 +9,7 @@ import { scrollToTop } from 'redux/actions/stream';
 
 import User from '../common/User.jsx';
 import Top from '../common/Top.jsx';
+import SwitchRole from '../common/SwitchRole.jsx';
 
 class ContributorActions extends React.Component {
     constructor(props) {
@@ -40,10 +41,7 @@ class ContributorActions extends React.Component {
         return (
             <Nav pullRight onSelect={this.handleNavClick}>
                 <Top type="contributor" />
-                <NavItem eventKey={'reader'} href="#">
-                    <i className="zmdi zmdi-globe zmdi-hc-fw" />
-                    &nbsp;READER
-                </NavItem>
+                <SwitchRole type="contributor" />
                 {/*
                 <NavItem eventKey={'mail'} href="#">
                     <i className="zmdi zmdi-email zmdi-hc-fw" />
