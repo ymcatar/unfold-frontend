@@ -68,11 +68,16 @@ class PostEditor extends React.Component {
         this.props.handleContentChange(ReactDOM.findDOMNode(this.elm).innerHTML);
     }
 
+    changeText(text) {
+        this.elm.state.text = text;
+        ReactDOM.findDOMNode(this.elm).innerHTML = text;
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.clear)
-            ReactDOM.findDOMNode(this.elm).innerHTML = '';
-        if (this.props.content !== nextProps.content)
-            ReactDOM.findDOMNode(this.elm).innerHTML = nextProps.content;
+            this.changeText('');
+        if (!_.eq(this.props.post, nextProps.post) && nextProps.post.caption)
+            this.changeText(nextProps.post.caption);
     }
 
     render() {
@@ -89,7 +94,7 @@ class PostEditor extends React.Component {
 export default connect(
     function stateToProps(state, props) {
         return {
-            post: state.ui.editorPost
+            post: state.ui.editorPost,
         };
     },
     function dispatchToProps(dispatch, props) {
