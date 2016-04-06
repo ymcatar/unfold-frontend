@@ -1,5 +1,5 @@
 import React from 'react';
-import {WithContext as ReactTags} from 'react-tag-input';
+import { WithContext as ReactTags } from 'react-tag-input';
 import _ from 'lodash';
 
 export default class PostTags extends React.Component {
@@ -34,6 +34,8 @@ export default class PostTags extends React.Component {
     render() {
         return (
             <ReactTags
+                autofocus={false}
+                autocomplete={true}
                 suggestions={this.props.suggestions}
                 tags={this.props.tags}
                 handleDelete={this.handleDelete}

@@ -100,6 +100,18 @@ class Editor extends React.Component {
     }
 
     render() {
+
+        let tags = this.props.type == 'CONTRIBUTOR'? (
+            <div>
+                <p>Tags</p>
+                <PostTags
+                    suggestions={this.state.suggestions}
+                    tags={this.state.post.tags || []}
+                    handleTagsChange={this.handleTagsChange} />
+                <br />
+            </div>
+        ): null;
+
         return (
             <div>
                 <i>(Click to edit. Select to add formating.)</i>
@@ -111,18 +123,12 @@ class Editor extends React.Component {
                 <Input
                     ref="path"
                     style={styles.input}
-                    disabled={this.state.added}
+                    disabled={this.state.added || this.props.type !== 'contributor'}
                     value={this.state.post.data? this.state.post.data.url: ""}
                     onChange={this.handleSourceChange}
                     bsSize="small"
                     type="text" />
-
-                <p>Tags</p>
-                <PostTags
-                    suggestions={this.state.suggestions}
-                    tags={this.state.post.tags || []}
-                    handleTagsChange={this.handleTagsChange} />
-                <br />
+                {tags}
                 <ButtonToolbar style={styles.button}>
                     <Button
                         onClick={this.handleSubmit}

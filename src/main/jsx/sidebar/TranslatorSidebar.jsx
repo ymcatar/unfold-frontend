@@ -38,7 +38,7 @@ class ContributorSidebar extends React.Component {
                     </Nav>
                 </div>
                 <div style={getShowStyle(editor)}>
-                    <Editor type="raw" />
+                    <Editor type="translator" />
                 </div>
                 <div style={getShowStyle(event)}>
                     <Event />
