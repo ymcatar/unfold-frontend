@@ -9,7 +9,7 @@ import Stream from 'stream/Stream.jsx';
 import Timeline from 'timeline/Timeline.jsx';
 import Sidebar from 'sidebar/Sidebar.jsx';
 
-import ContributorModal from 'modal/ContributorModal.jsx';
+import TranslatorModal from 'modal/TranslatorModal.jsx';
 
 const styles = {
     main: {
@@ -35,7 +35,7 @@ class TranslatorView extends React.Component {
                 <div style={styles.main}>
                     <Sidebar role="translator" />
                     <Stream role="translator" />
-                    {/* <ContributorModal /> */}
+                    <TranslatorModal />
                  </div>
             </div>
         );

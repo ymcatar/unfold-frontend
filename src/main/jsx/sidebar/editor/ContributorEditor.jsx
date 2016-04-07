@@ -109,6 +109,8 @@ class ContributorEditor extends React.Component {
             <div>
                 <i>(Click to edit. Select to add formating.)</i>
                 <PostEditor
+                    type="contributor"
+                    lang={this.props.lang}
                     resetClear={this.resetClear}
                     clear={this.state.clear}
                     handleContentChange={this.handleContentChange}

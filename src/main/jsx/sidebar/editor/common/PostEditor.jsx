@@ -6,6 +6,9 @@ import _ from 'lodash';
 import MediumEditor from 'react-medium-editor';
 import MediumButton from 'common/MediumButton';
 
+import { domain } from 'config/config';
+import { showSuccess } from 'redux/actions/modal';
+
 import { PostEditor as Colors } from 'config/colors';
 
 const styles = {
@@ -24,7 +27,7 @@ const styles = {
     }
 };
 
-const editorOptions = changeHandler => ({
+let editorOptions =  {
     placeholder: {
         text: ''
     },
@@ -43,18 +46,22 @@ const editorOptions = changeHandler => ({
             'translate'
         ]
     },
-    extensions: {
-        'translate': new MediumButton({
-            label:'<i class="zmdi zmdi-translate" />',
-            action: function(html, mark){
-                let translated = '突發事件: 示威者似乎正佔領尖沙咀廣東道。';
-                setTimeout(() => {
-                    changeHandler();
-                }, 100);
-                return translated;
-            }
-        })
-    }
+    extensions: {}
+};
+
+const getTranslate = (token, data) => new Promise((resolve, reject) => {
+    fetch(`${domain}/translate`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(msg => resolve(msg.content))
+    .catch(err => reject(error));
 });
 
 class PostEditor extends React.Component {
@@ -83,12 +90,28 @@ class PostEditor extends React.Component {
     }
 
     render() {
+        if (this.props.type === 'translator') {
+            let that = this;
+            editorOptions.extensions.translate = new MediumButton({
+                label:'<i class="zmdi zmdi-translate" />',
+                action: (html, mark) => {
+                    getTranslate(this.props.token, {
+                        to: this.props.lang,
+                        content: html
+                    })
+                    .then(msg => {
+                        that.props.showSuccess(msg);
+                    });
+                    return html;
+                }
+            });
+        }
         return (
             <MediumEditor
                 ref={x => { this.elm = x; }}
                 style={styles.editor}
                 onChange={this.handleContentChange}
-                options={editorOptions(this.handleContentChange)} />
+                options={editorOptions} />
             );
     }
 }
@@ -96,10 +119,13 @@ class PostEditor extends React.Component {
 export default connect(
     function stateToProps(state, props) {
         return {
+            token: state.auth? state.auth.token: null,
             post: state.ui.editorPost,
         };
     },
     function dispatchToProps(dispatch, props) {
-        return { };
+        return {
+            showSuccess: msg => dispatch(showSuccess(msg))
+        };
     }
 )(PostEditor);
