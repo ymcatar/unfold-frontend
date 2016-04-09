@@ -25,58 +25,82 @@ const staticLandingPath = [
 	'./src/landing/main.css'
 ];
 
-gulp.task('jsx', () => {
-	var bundler = browserify('./src/main/jsx/App.jsx', {
-		debug: true,
-		paths: ['./src/main/jsx'],
-		cache: {},
-		packageCache: {},
-		fullPaths: true
-	}).transform(babelify, {
-		presets: ["es2015", "react"],
-		ignore: /(bower_components)|(node_modules)/
-	});
+var bundler = browserify('./src/main/jsx/App.jsx', {
+	debug: true,
+	paths: ['./src/main/jsx'],
+	cache: {},
+	packageCache: {},
+	fullPaths: true
+}).transform(babelify, {
+	presets: ["es2015", "react"],
+	ignore: /(bower_components)|(node_modules)/
+});
 
-	function rebundle() {
-		gutil.log('jsx starting.');
-		bundler
-			.bundle()
-			.on('error', err => { gutil.log(err.message); })
-			.pipe(source('bundle.js'))
-			.pipe(gulp.dest('./dist/main'))
-			.pipe(livereload())
-			.on('end', () => { gutil.log('jsx completed.'); });
-	}
+function rebundle(cb) {
+	gutil.log('jsx starting.');
+	var stream = bundler
+		.bundle()
+		.on('error', err => {
+			if (err.codeFrame)
+				gutil.log(err.message + '\n' + err.codeFrame);
+			else
+				gutil.log(err.message);
+			if (cb)
+				cb(err);
+		})
+		.pipe(source('bundle.js'))
+		.pipe(gulp.dest('./dist/main'))
+		.pipe(livereload())
+		.on('end', () => {
+			gutil.log('jsx completed.');
+			if (cb)
+				cb();
+		});
+	if (!cb)
+		return stream;
+}
 
+gulp.task('jsx', rebundle);
+
+gulp.task('watch:jsx', () => {
 	bundler = watchify(bundler);
 	rebundle();
-	bundler.on('update', rebundle);
+	bundler.on('update', () => { rebundle(); });
 });
+
+function static() {
+	return gulp
+		.src(staticPath)
+		.pipe(gulp.dest('./dist/main'))
+		.pipe(livereload());
+}
 
 gulp.task('static', () => {
-	function process() {
-		gulp
-			.src(staticPath)
-			.pipe(gulp.dest('./dist/main'))
-			.pipe(livereload());
-	}
-	process();
-	watch(staticPath, process);
+	return static();
 });
 
+gulp.task('watch:static', ['static'], () => {
+	watch(staticPath, static);
+});
+
+function static_landing() {
+	return gulp
+		.src(staticLandingPath)
+		.pipe(gulp.dest('./dist/landing'))
+		.pipe(livereload());
+}
+
 gulp.task('static_landing', () => {
-	function process() {
-		gulp
-			.src(staticLandingPath)
-			.pipe(gulp.dest('./dist/landing'))
-			.pipe(livereload());
-	}
-	process();
-	watch(staticLandingPath, process);
+	return static_landing();
+});
+
+gulp.task('watch:static_landing', ['static_landing'], () => {
+	watch(staticLandingPath, static_landing);
 });
 
 gulp.task('reload', () => {
 	livereload.listen();
 });
 
-gulp.task('default', ['jsx', 'static', 'reload', 'static_landing']);
+gulp.task('default', ['watch:jsx', 'watch:static', 'watch:static_landing', 'reload']);
+gulp.task('build', ['jsx', 'static', 'static_landing']);
