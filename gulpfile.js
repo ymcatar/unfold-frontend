@@ -3,13 +3,18 @@ var gulp = require('gulp');
 var browserify = require('browserify');
 var babelify = require('babelify');
 var watchify = require('watchify');
+var envify = require('envify');
 
 var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 
 var gutil = require('gulp-util');
 var watch = require('gulp-watch');
+var uglify = require('gulp-uglify');
 
 var livereload = require('gulp-livereload');
+
+var _ = require('lodash');
 
 const staticPath = [
 	'./src/main/index.html',
@@ -26,15 +31,14 @@ const staticLandingPath = [
 ];
 
 var bundler = browserify('./src/main/jsx/App.jsx', {
-	debug: true,
+	debug: process.env.NODE_ENV !== 'production',
 	paths: ['./src/main/jsx'],
 	cache: {},
-	packageCache: {},
-	fullPaths: true
+	packageCache: {}
 }).transform(babelify, {
 	presets: ["es2015", "react"],
 	ignore: /(bower_components)|(node_modules)/
-});
+}).transform(envify, _.extend({ _: 'purge' }, process.env));
 
 function rebundle(cb) {
 	gutil.log('jsx starting.');
@@ -48,7 +52,17 @@ function rebundle(cb) {
 			if (cb)
 				cb(err);
 		})
-		.pipe(source('bundle.js'))
+		.pipe(source('bundle.js'));
+
+	if (process.env.NODE_ENV === 'production') {
+		stream = stream
+		    .pipe(buffer())
+            .pipe(uglify({
+                preserveComments: 'license'
+            }));
+	}
+
+	stream = stream
 		.pipe(gulp.dest('./dist/main'))
 		.pipe(livereload())
 		.on('end', () => {
@@ -65,7 +79,7 @@ gulp.task('jsx', rebundle);
 gulp.task('watch:jsx', () => {
 	bundler = watchify(bundler);
 	rebundle();
-	bundler.on('update', () => { rebundle(); });
+	bundler.on('update', () => { gulp.start('jsx'); });
 });
 
 function static() {

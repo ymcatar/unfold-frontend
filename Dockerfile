@@ -17,7 +17,9 @@ RUN npm install || (cat npm-debug.log && false)
 
 COPY . $APP_ROOT/
 
-RUN npm run build
+ARG env
+
+RUN env NODE_ENV=production $env npm run build
 
 RUN rm -rf src
 
