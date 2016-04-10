@@ -69,6 +69,7 @@ export default class Stream extends React.Component {
             this.sweetScroll.to({ top: nextProps.position });
             this.props.resetScroll();
         } else if (nextProps.scrollPending && typeof nextProps.position == 'string') {
+            this.sweetScroll = new SweetScroll({}, this.elm);
             this.sweetScroll.toElement(document.getElementById(nextProps.position));
             this.props.resetScroll();
         }
