@@ -53,6 +53,9 @@ class UpdateBox extends React.Component {
     }
 
     render() {
+
+        console.log(this.props.visible);
+
         if (!this.props.data)
             return null;
 
