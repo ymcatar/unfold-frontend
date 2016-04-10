@@ -79,11 +79,11 @@ export default class Stream extends React.Component {
         let { filteredStream, filteredNewStream, role, filter } = this.props;
 
         let newStream = (
-            <Posts data={filteredNewStream} role={role} type="new" />
+            <Posts data={filteredNewStream} role={role} type="new" lang={this.props.lang} />
         );
 
         let oldStream = role == 'reader' || role == 'translator'? (
-            <Posts data={filteredStream} role={role} marker={true} type="old" />
+            <Posts data={filteredStream} role={role} marker={true} type="old" lang={this.props.lang} />
         ): null;
 
         return (
@@ -109,7 +109,7 @@ export default connect(
             scrollPending: state.stream.scrollPending,
             position: state.stream.position,
             eventId: state.ui.eventId,
-            lang: state.ui.readerSettings && state.ui.readerSettings.lang?
+            lang: state.ui.readerSettings?
                 state.ui.readerSettings.lang: 'en'
         };
 

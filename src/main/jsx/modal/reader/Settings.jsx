@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-import { hideReaderSettings, showSuccess } from 'redux/actions/modal';
+import { hideReaderSettings } from 'redux/actions/modal';
 import { storeReaderSettings } from 'redux/actions/ui';
 
 import { connect } from 'react-redux';
@@ -12,17 +12,26 @@ class Settings extends React.Component {
 
     constructor(props) {
         super(props);
-        this.elm = {};
+        this.state = { lang: 'en' };
         _.bindAll(this, ['handleSubmit']);
     }
 
+    componentWillMount() {
+        if (localStorage.readerSettings) {
+            let settings = localStorage.readerSettings;
+            settings = JSON.parse(settings);
+            this.props.storeReaderSettings(settings);
+            this.setState({ lang: settings.lang });
+        }
+    }
+
     handleSubmit() {
-        let data = {
-            lang: this.elm.lang.getValue()
-        };
+        let data = { lang: this.state.lang };
+        console.log(data.lang);
         localStorage.readerSettings = JSON.stringify(data);
         this.props.storeReaderSettings(data);
-        this.props.showSuccess('User settings updated successfully.'); // no ajax involved, assumed always success
+        location.reload();
+
     }
 
     render() {
@@ -33,7 +42,8 @@ class Settings extends React.Component {
                 </Modal.Header>
                 <Modal.Body>
                     <Input
-                        ref={x => { this.elm.lang = x; }}
+                        onChange={e => { this.setState({lang: e.target.value}); }}
+                        value={this.state.lang}
                         type="select"
                         label="Stream Language"
                         placeholder="select">
@@ -58,6 +68,8 @@ export default connect(
     },
     function dispatchToProps(dispatch) {
         return {
+            getStream: (eventId, lang) => dispatch(getStream(eventId, lang)),
+            startStreaming: (eventId, lang) => dispatch(startStreaming(eventId, lang)),
             handleHide: () => dispatch(hideReaderSettings()),
             showSuccess: msg => dispatch(showSuccess(msg)),
             storeReaderSettings: data => dispatch(storeReaderSettings(data))

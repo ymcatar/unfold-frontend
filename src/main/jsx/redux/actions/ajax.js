@@ -149,6 +149,7 @@ let receiveStream = data => ({ type: RECEIVE_STREAM, data });
 
 export let getStream = (eventId, lang) => {
     return function(dispatch) {
+        // console.log(`${domain}/event/${eventId}/timeline${lang?`?language=${lang}`: ''}`);
         return fetch(`${domain}/event/${eventId}/timeline${lang?`?language=${lang}`: ''}`)
         //return fetch(`${domain}/event/${eventId}/timeline`)
             .then(res => res.json())
