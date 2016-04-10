@@ -32,7 +32,8 @@ const styles = {
 
 export default class ReaderHeader extends React.Component {
     render() {
-        const {name, image, online} = this.props.author || {};
+        let {name, image, online} = this.props.author || {};
+        image = `https://api.adorable.io/avatars/55/${name}.png`;
         const date = moment(this.props.time);
         return (
             <div style={styles.info}>

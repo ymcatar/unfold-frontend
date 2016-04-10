@@ -34,6 +34,8 @@ export default class Avatar extends React.Component {
         let image = null;
         let online = true;
 
+        image = `https://api.adorable.io/avatars/55/${name}.png`;
+
         const popover = (
             <Popover className="popover" id={uuid.v1()} >
                 <b style={{marginRight: '10px'}}>{name}</b>

@@ -35,7 +35,7 @@ class TranslatorView extends React.Component {
 
         if (this.props.loaded && !this.props.isTranslator) {
             console.log(this.props.params.eventId);
-            window.location = `../reader/${this.props.params.eventId}`;
+            window.location = `/main/reader/${this.props.params.eventId}`;
             return;
         }
 
