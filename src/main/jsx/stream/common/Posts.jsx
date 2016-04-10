@@ -16,6 +16,15 @@ const styles = {
         fontSize: '30px',
         fontWeight: 'lighter',
         color: Colors.header
+    },
+    empty: {
+        padding: '30px 0 10px 20px',
+        color: Colors.header,
+        fontSize: '2vw'
+    },
+    icon: {
+        fontSize: '10vw',
+        paddingTop: '10px'
     }
 };
 
@@ -34,6 +43,17 @@ export default class Posts extends React.Component {
     render() {
         if (!this.props.data)
             return null;
+
+        let { data, role, type } = this.props;
+        if ((data.length === 0 && role === "contributor" && type === "new") ||
+            (data.length === 0 && role === ("reader" || role == "translator") && type === "old"))
+            return (
+                <div style={styles.empty}>
+                    <i style={styles.icon} className="zmdi zmdi-landscape"></i>
+                    <br />
+                    There is no updates in this live stream at the moment.
+                </div>
+            );
 
         let lastTime;
         let elements = this.props.data.map(post => {

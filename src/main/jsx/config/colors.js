@@ -1,7 +1,8 @@
 const zDepth = '0 2px 6px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.10)';
 
 export let ErrorView = {
-	title: '#A8A8A8'
+	title: '#aaa',
+	text: '#555'
 };
 
 /* header */
@@ -92,4 +93,10 @@ export let PostEditor = {
 	border: '#ddd',
     backgroundColor: 'white',
     color: 'black'
+};
+
+/* Loading */
+
+export let Loading = {
+	color: '#aaa'
 };

@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch';
 import moment from 'moment';
 
 import { showError, hideLogin, showSuccess } from './modal';
+import { showErrorPage } from './ui';
 
 /* event */
 
@@ -13,8 +14,16 @@ export let fetchEvent = id => {
     return function(dispatch) {
         return fetch(`${domain}/event/${id}`)
             .then(msg => msg.json())
+            .then(data => new Promise((resolve, reject) => {
+                if (data.error)
+                    reject(data.error);
+                else
+                    resolve(data);
+            }))
             .then(data => dispatch(receiveEvent(data)))
-            .catch(console.error.bind(console));
+            .catch(err => {
+                dispatch(showErrorPage(err));
+            });
     };
 };
 

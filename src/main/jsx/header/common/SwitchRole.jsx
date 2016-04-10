@@ -64,7 +64,6 @@ class User extends React.Component {
 
 export default connect(
     function stateToProps(state, props) {
-
         let userRoleList = state.event && state.user && state.event.roles?
             state.event.roles
                 .filter(item => item.user.id == state.user.id)
@@ -77,7 +76,6 @@ export default connect(
             isContributor = isOwner || userRoleList.indexOf('CONTRIBUTOR') >= 0;
             isTranslator = isOwner || userRoleList.indexOf('TRANSLATOR') >= 0;
         }
-
         return { isOwner, isContributor, isTranslator, eventId: state.ui.eventId };
     },
     function dispatchToProps(dispatch, props) {

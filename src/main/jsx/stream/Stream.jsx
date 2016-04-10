@@ -46,6 +46,7 @@ const styles = {
 
 export default class Stream extends React.Component {
     componentWillMount() {
+        localStorage.readerSettings = localStorage.readerSettings || "{}";
         switch(this.props.role) {
             case 'reader':
                 let lang = JSON.parse(localStorage.readerSettings).lang || 'en';
@@ -62,12 +63,9 @@ export default class Stream extends React.Component {
         }
     }
 
-    componentDidMount() {
-        this.sweetScroll = new SweetScroll({}, this.elm);
-    }
-
     componentWillReceiveProps(nextProps) {
         if (nextProps.scrollPending && typeof nextProps.position == 'number') {
+            this.sweetScroll = new SweetScroll({}, this.elm);
             this.sweetScroll.to({ top: nextProps.position });
             this.props.resetScroll();
         } else if (nextProps.scrollPending && typeof nextProps.position == 'string') {
@@ -79,6 +77,14 @@ export default class Stream extends React.Component {
     render() {
         let { filteredStream, filteredNewStream, role, filter } = this.props;
 
+        let newStream = (
+            <Posts data={filteredNewStream} role={role} type="new" />
+        );
+
+        let oldStream = role == 'reader' || role == 'translator'? (
+            <Posts data={filteredStream} role={role} marker={true} type="old" />
+        ): null;
+
         return (
             <div style={styles.main} ref={x => {this.elm = x;}}>
                 <div key="heading" style={styles.header}>
@@ -86,8 +92,8 @@ export default class Stream extends React.Component {
                 </div>
                 {filteredNewStream.length > 0?
                     (<p style={styles.marker}>New Update</p>): null}
-                <Posts data={filteredNewStream} role={role} />
-                <Posts data={filteredStream} role={role} marker={true}/>
+                {oldStream}
+                {newStream}
             </div>
         );
     }

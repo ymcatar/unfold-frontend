@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+import showErrorPage from 'common/util';
+
 import { event as placeholder } from 'config/placeholder/event';
 
 import rawPlaceholder from 'config/placeholder/raw';
@@ -14,7 +16,7 @@ export default function reduceEvent(state, action) {
 
     switch (action.type) {
         case actions.RECEIVE_EVENT: {
-            state.event = action.data || placeholder;
+            state.event = action.data;
             return state;
         }
         case actions.LOAD_LOGIN:
@@ -38,6 +40,7 @@ export default function reduceEvent(state, action) {
         case actions.RECEIVE_USER: {
             state.user = action.data;
             localStorage.user = action.data.id;
+
             return state;
         }
         case actions.RECEIVE_STREAM: {

@@ -10,17 +10,19 @@ import Stream from 'stream/Stream.jsx';
 import Timeline from 'timeline/Timeline.jsx';
 import Sidebar from 'sidebar/Sidebar.jsx';
 
+import Loading from 'views/Loading.jsx';
+
 import ReaderModal from 'modal/ReaderModal.jsx';
 
 const styles = {
-    main: {
+    main: loaded => ({
         paddingTop: '50px',
         overflow: 'hidden',
-        display: 'flex',
+        display: loaded? 'flex': 'none',
         alignItems: 'center',
         justifyContent: 'center',
         overflowX: 'hidden'
-    }
+    })
 };
 
 class ReaderView extends React.Component {
@@ -32,8 +34,9 @@ class ReaderView extends React.Component {
     render() {
         return (
             <div>
+                <Loading loaded={this.props.loaded} />
                 <Header role="reader" />
-                <div style={styles.main}>
+                <div style={styles.main(this.props.loaded)}>
                     <MediaQuery minDeviceWidth={1224} minWidth={800}>
                        <Sidebar mobile={false} role="reader"/>
                     </MediaQuery>
@@ -51,7 +54,9 @@ class ReaderView extends React.Component {
 
 export default connect (
     function stateToProps(state) {
-        return {};
+        return {
+            loaded: state.stream && state.event
+        };
     },
     function dispatchToProps(dispatch, props) {
         return {

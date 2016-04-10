@@ -13,3 +13,6 @@ export let switchSidebar = val => ({ type: SWITCH_SIDEBAR, sidebarActive: val })
 
 export const SELECT_EDITOR_POST = 'ui: select editor post';
 export let selectEditorPost = val => ({ type: SELECT_EDITOR_POST, editorPost: val });
+
+export const SHOW_ERROR_PAGE = 'ui: show error page';
+export let showErrorPage = () => ({ type: SHOW_ERROR_PAGE });

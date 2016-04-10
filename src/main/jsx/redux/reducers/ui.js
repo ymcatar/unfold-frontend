@@ -27,6 +27,9 @@ export default function reduceStream(state, action) {
 		case actions.SELECT_EDITOR_POST:
 			ui = { editorPost: action.editorPost };
 			break;
+		case actions.SHOW_ERROR_PAGE:
+			window.location = '/main/error';
+			break;
 	}
 
 	return _.defaults({ ui: _.defaults(ui, state.ui) }, state);

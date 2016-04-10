@@ -11,15 +11,17 @@ import Sidebar from 'sidebar/Sidebar.jsx';
 
 import ContributorModal from 'modal/ContributorModal.jsx';
 
+import Loading from 'views/Loading.jsx';
+
 const styles = {
-    main: {
+    main: loaded => ({
         marginTop: '50px',
         overflow: 'hidden',
-        display: 'flex',
+        display: loaded? 'flex': 'none',
         alignItems: 'flex-start',
         justifyContent: 'center',
         overflowX: 'hidden'
-    }
+    })
 };
 
 class ContributorView extends React.Component {
@@ -29,10 +31,18 @@ class ContributorView extends React.Component {
     }
 
     render() {
+
+        if (this.props.loaded && !this.props.isContributor) {
+            console.log(this.props.params.eventId);
+            window.location = `/main/reader/${this.props.params.eventId}`;
+            return;
+        }
+
         return (
             <div>
+                <Loading loaded={this.props.loaded} />
                 <Header role="contributor" />
-                <div style={styles.main}>
+                <div style={styles.main(this.props.loaded)}>
                     <Sidebar role="contributor" />
                     <Stream role="contributor" />
                     <ContributorModal />
@@ -44,7 +54,12 @@ class ContributorView extends React.Component {
 
 export default connect (
     function stateToProps(state) {
-        return {};
+
+        let isContributor = state.event && state.event.roles && state.user?
+            _.find(state.event.roles, { userId: state.user.id, type: "OWNER" }) ||
+            _.find(state.event.roles, { userId: state.user.id, type: "CONTRIBUTOR" }): false;
+
+        return { loaded: state.stream && state.event, isContributor };
     },
     function dispatchToProps(dispatch, props) {
         return {
