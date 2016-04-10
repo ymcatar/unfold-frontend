@@ -14,6 +14,7 @@ import Posts from './common/Posts.jsx';
 
 const styles = {
     main: {
+        position: 'relatve',
         backgroundColor: Colors.backgroundColor,
         height: '100vh',
         width: '100%',

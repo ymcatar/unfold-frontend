@@ -71,7 +71,7 @@ export default class Posts extends React.Component {
             return (
                 <div key={post.id}>
                     {marker}
-                    <LazyLoad wheel={true} scroll={false} offset={2500}>
+                    <LazyLoad overflow offset={-2000}>
                         <UpdateBox data={post} role={this.props.role} />
                     </LazyLoad>
                 </div>
