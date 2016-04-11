@@ -333,7 +333,7 @@ export let startScraper = (token, eventId) => {
                 queue[0].id = 'post_' + queue[0].id;
                 dispatch(receiveScraperPost(queue.pop()));
             }
-        }, 1000);
+        }, 5000);
 
         let client = new WebSocket(`${socket_domain}/event/${eventId}/ticks`);
         client.onopen = event => {
