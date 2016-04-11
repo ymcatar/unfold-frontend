@@ -30,12 +30,10 @@ class Login extends React.Component {
                 <Modal.Body>
                     <Input
                         ref={x => {this.elm.username = x;}}
-                        defaultValue="nyancat_5656"
                         label="Username"
                         type="text" />
                     <Input
                         ref={x => {this.elm.password = x;}}
-                        defaultValue="eightstars"
                         label="Password"
                         type="password"/>
                 </Modal.Body>
