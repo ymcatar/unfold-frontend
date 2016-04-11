@@ -319,11 +319,22 @@ export let putScraperConfig = (token, eventId, data) => {
     };
 };
 
+let queue = [];
+
 export const RECEIVE_SCRAPER_POST = 'ajax: receive scraper post';
 let receiveScraperPost = data => ({ type: RECEIVE_SCRAPER_POST, data });
 
 export let startScraper = (token, eventId) => {
     return function(dispatch) {
+
+        setInterval(() => {
+            if (queue.length > 0) {
+                console.log(queue[0]);
+                queue[0].id = 'post_' + queue[0].id;
+                dispatch(receiveScraperPost(queue.pop()));
+            }
+        }, 1000);
+
         let client = new WebSocket(`${socket_domain}/event/${eventId}/ticks`);
         client.onopen = event => {
             console.log('Connected!');
@@ -332,7 +343,7 @@ export let startScraper = (token, eventId) => {
             let { data } = event;
             data = JSON.parse(data);
             if (data.type === 'created' && data.resource === 'tick') // so many data!
-                dispatch(receiveScraperPost(data.data));
+                queue.push(data.data);
         };
     };
 };
