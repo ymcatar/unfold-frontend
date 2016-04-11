@@ -96,6 +96,9 @@ class TranslatorEditor extends React.Component {
     }
 
     render() {
+
+        let disabled = this.state.post.caption === '' || !this.props.post;
+
         return (
             <div>
                 <i>(Click to edit. Select to add formating.)</i>
@@ -130,7 +133,7 @@ class TranslatorEditor extends React.Component {
 
                 <ButtonToolbar style={styles.button}>
                     <Button
-                        disabled={this.state.post.caption === '' || !this.state.post.data.url}
+                        disabled={disabled}
                         onClick={this.handleSubmit}
                         bsStyle="primary"
                         bsSize="small">
